@@ -22,14 +22,15 @@ When adding new code or any changes, put the 2 lines below into terminal
 		git checkout branch-name
 		/*this will move you into the branch you just made and all changes you push will only be added into that branch until it is merged into master branch*/
 
-		side note: git checkout master will move you back into the master branch
+side note: git checkout master will move you back into the master branch
 
 
 ----PUSHING YOUR CHANGES ONCE YOU ARE DONE----
 
 Put the following into your terminal
-			git add .
-			git commit -m "write a message describing the change you made"
-			git push origin branch-name
+
+		git add .
+		git commit -m "write a message describing the change you made"
+		git push origin branch-name
 			
-		Then go to https://github.com/wilyyy/CompassPlus and merge your branch to the master branch using a pull request and merge.
+Then go to https://github.com/wilyyy/CompassPlus and merge your branch to the master branch using a pull request and merge.
