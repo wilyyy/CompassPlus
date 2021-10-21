@@ -1,6 +1,6 @@
 # CompassPlus
 
-----FIRST TIME SET UP----
+-------------------- FIRST TIME SET UP --------------------
 
 To import the project to your local directory, 
 
@@ -14,9 +14,9 @@ When installing new dependencies, remember that we are using yarn as a package m
 look up the yarn way of installing that package in google then copy that code into terminal
 		
 		
-----MAKING CHANGES----
+-------------------- MAKING CHANGES --------------------
 
-When adding new code or any changes, put the 2 lines below into terminal
+When adding new code or any changes, put the 2 lines below into terminal before coding
 
 		git branch branch-name  
 		/* this will create a new branch with name branch-name (can be named anything, usually named after features/components you plan to add) */
@@ -27,7 +27,7 @@ When adding new code or any changes, put the 2 lines below into terminal
 side note: git checkout master will move you back into the master branch
 
 
-----PUSHING YOUR CHANGES ONCE YOU ARE DONE----
+-------------------- PUSHING YOUR CHANGES ONCE YOU ARE DONE --------------------
 
 Put the following into your terminal
 
