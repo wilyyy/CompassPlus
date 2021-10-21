@@ -4,7 +4,7 @@
 
 To import the project to your local directory, 
 
-		git clone [https://github.com/wilyyy/CompassPlus.git](https://github.com/wilyyy/CompassPlus.git)
+		git clone https://github.com/wilyyy/CompassPlus.git
 
 After cloning, install all currently installed dependencies (whatever is currently on package.json) using:
 
