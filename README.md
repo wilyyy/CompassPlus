@@ -3,9 +3,11 @@
 ----FIRST TIME SET UP----
 
 To import the project to your local directory, 
+
 		git clone [https://github.com/wilyyy/CompassPlus.git](https://github.com/wilyyy/CompassPlus.git)
 
 After cloning, install all currently installed dependencies (whatever is currently on package.json) using:
+
 		yarn install
 
 When installing new dependencies, remember that we are using yarn as a package manager so don't use npm install. it's usually not a good idea to mix the two.
