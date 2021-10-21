@@ -10,8 +10,10 @@ After cloning, install all currently installed dependencies (whatever is current
 
 		yarn install
 
-When installing new dependencies, remember that we are using yarn as a package manager so don't use npm install. it's usually not a good idea to mix the two.
-look up the yarn way of installing that package in google then copy that code into terminal
+When installing new dependencies, remember that we are using yarn as a package manager so don't use npm install. 
+It's usually not a good idea to mix the two.
+Look up the yarn way of installing that package in google then copy that install command into terminal.
+It usually looks like yarn add thingy instead of npm install thingy
 		
 		
 -------------------- MAKING CHANGES --------------------
