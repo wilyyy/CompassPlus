@@ -39,7 +39,7 @@ Put the following into your terminal
 			
 Then go to https://github.com/wilyyy/CompassPlus and merge your branch to the master branch using a pull request and merge.
 
--------------------- PULLING LATEST VERSION OF THE APP INTO YOUR LOCAL MACHINE --------------------
+## PULLING LATEST VERSION OF THE APP INTO YOUR LOCAL MACHINE
 
 While making sure you are on your branch, put the following command into your terminal to pull the latest changes from the master branch onto your computer
 		
