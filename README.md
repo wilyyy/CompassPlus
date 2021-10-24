@@ -1,6 +1,6 @@
 # CompassPlus
 
--------------------- FIRST TIME SET UP --------------------
+## FIRST TIME SET UP
 
 To import the project to your local directory, 
 
@@ -16,7 +16,7 @@ Look up the yarn way of installing that package in google then copy that install
 It usually looks like yarn add thingy instead of npm install thingy
 		
 		
--------------------- MAKING CHANGES --------------------
+## MAKING CHANGES
 
 When adding new code or any changes, put the 2 lines below into terminal before coding
 
@@ -29,7 +29,7 @@ When adding new code or any changes, put the 2 lines below into terminal before 
 side note: git checkout master will move you back into the master branch
 
 
--------------------- PUSHING YOUR CHANGES ONCE YOU ARE DONE --------------------
+## PUSHING YOUR CHANGES ONCE YOU ARE DONE
 
 Put the following into your terminal
 
