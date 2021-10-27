@@ -4,7 +4,7 @@ import { Button, Input, ThemeProvider } from 'react-native-elements';
 
 const theme = {
     colors: {
-        primary: '#009DDC',
+        primary: '#009DDC', //mess with this later
     },
     Button: {
       raised: true,
@@ -43,7 +43,7 @@ const LinkCompassCard = () => {
                 onPress={() => console.log("hello world")} 
                 title="Add Card" 
                 style={{ color: theme.colors.primary }}
-                
+
             />
         </TransferCardCont>
     </ThemeProvider>
