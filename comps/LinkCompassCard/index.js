@@ -77,4 +77,5 @@ const styles = StyleSheet.create({
         color: '#fff'
     }
 });
+
 export default LinkCompassCard;
