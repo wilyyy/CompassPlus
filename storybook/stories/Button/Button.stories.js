@@ -6,9 +6,12 @@ import { Text } from 'react-native';
 import Button from '.';
 import CenterView from '../CenterView';
 import LinkCompassCard from '../../../comps/LinkCompassCard'
+import SignUpTransitCard from '../../../comps/SignUpTransitCard'
+
 
 storiesOf('Button', module)
   .add('Add Compass Card', () => <LinkCompassCard />)
+  .add('Transit Sign Up Card', () => <SignUpTransitCard />)
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add('with text', () => (
