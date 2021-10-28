@@ -56,4 +56,4 @@ Everyone should use the same naving conventions in our code as we are being mark
 const variableName
 
 #### Function
-const FunctionName () => {}
+const FunctionName = () => {}
