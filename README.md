@@ -50,6 +50,8 @@ While making sure you are on your branch, put the following command into your te
 If there have been any new dependencies installed since you last pulled from master, remember that you can use the 'yarn install' command to install all that is missing from your local version of the app.
 
 ## Naming Conventions
+Everyone should use the same naving conventions in our code as we are being marked on the consistency of our code.
+
 #### Variable
 const variableName
 
