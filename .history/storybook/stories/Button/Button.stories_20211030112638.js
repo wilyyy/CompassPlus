@@ -5,7 +5,21 @@ import React from 'react';
 import { Text } from 'react-native';
 import Button from '.';
 import CenterView from '../CenterView';
+<<<<<<< HEAD
 
+storiesOf('Button', module)
+  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
+  .add('with text', () => (
+    <Button onPress={action('clicked-text')}>
+      <Text>{text('Button text', 'Hello Button')}</Text>
+    </Button>
+  ))
+  .add('with some emoji', () => (
+    <Button onPress={action('clicked-emoji')}>
+      <Text>😀 😎 👍 💯</Text>
+    </Button>
+  ));
+=======
 import LinkCompassCard from '../../../comps/LinkCompassCard';
 import SignUpTransitCard from '../../../comps/SignUpTransitCard';
 import RideCard from '../../../comps/RideCardCont';
@@ -26,3 +40,4 @@ storiesOf('Button', module)
   //     <Text>😀 😎 👍 💯</Text>
   //   </Button>
   // ));
+>>>>>>> 1152984671af9439a131979c6f1faf72440eea9c
