@@ -57,3 +57,7 @@ const variableName
 
 #### Function
 const FunctionName = () => {}
+
+#### Component Props
+
+#### Objects and Arrays
