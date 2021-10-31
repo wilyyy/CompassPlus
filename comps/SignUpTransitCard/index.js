@@ -4,6 +4,8 @@ import { SafeAreaView, StyleSheet, TextInput, Pressable, Text } from "react-nati
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { position } from "polished";
 
+//might remove props later once bus route api is added
+
 const TransitCardCont = styled.View`
     width: 303px;
     height: 105px;
