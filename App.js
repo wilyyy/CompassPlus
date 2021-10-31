@@ -9,13 +9,11 @@ import LinkCompassCard from './comps/LinkCompassCard';
 import RideCard from './comps/RideCardCont';
 import SignUpTransitCard from './comps/SignUpTransitCard';
 
+
+// go to storybook/stories/button/Button.stories.js to add components
 export { default } from './storybook';
 
 // export default function App() {
-
-
-
-
 //   return (
 //     <View style={styles.container}>
 //       {/* <LinkCompassCard />
