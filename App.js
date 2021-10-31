@@ -9,26 +9,26 @@ import LinkCompassCard from './comps/LinkCompassCard';
 import RideCard from './comps/RideCardCont';
 import SignUpTransitCard from './comps/SignUpTransitCard';
 
-// export { default } from './storybook';
+export { default } from './storybook';
 
-export default function App() {
-
-
+// export default function App() {
 
 
-  return (
-    <View style={styles.container}>
-      {/* <LinkCompassCard />
-      <RideCard />
-      <SignUpTransitCard /> */}
 
-      {/* <MobileCard /> */}
-      {/* <TransferBalanceTab /> */}
-      <AddFundsTab />
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+
+//   return (
+//     <View style={styles.container}>
+//       {/* <LinkCompassCard />
+//       <RideCard />
+//       <SignUpTransitCard /> */}
+
+//       {/* <MobileCard /> */}
+//       {/* <TransferBalanceTab /> */}
+//       <AddFundsTab />
+//       <StatusBar style="auto" />
+//     </View>
+//   );
+// }
 
 const styles = StyleSheet.create({
   container: {
