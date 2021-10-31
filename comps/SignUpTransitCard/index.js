@@ -1,9 +1,8 @@
 import styled from "styled-components/native";
-import React from 'react';
+import React, {useState} from 'react';
 import { SafeAreaView, StyleSheet, TextInput, Pressable, Text } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-// still need to add icons to this
+import { position } from "polished";
 
 const TransitCardCont = styled.View`
     width: 303px;
@@ -51,17 +50,32 @@ const RouteInfo = styled.View`
     width: 165px;
 `;
 
-const SignUpTransitCard = ({
+const SaveRouteButton = styled.Pressable`
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+`;
+
+
+export default function SignUpTransitCard({
     typeOfRideText = "Bus",
     routeIconText = "019",
     stopNameText = "Metrotown Stn",
     locationText = "Eastbound W Pender @ Nicola St"
-}) => {
+}) {
+
+    const [fillHeart, setFillHeart] = useState(false);
+    const ToggleFillHeart = () => setFillHeart(previousState => !previousState);
+    const PressHeart = () => {
+        ToggleFillHeart();
+    }
+    
     return <SafeAreaView>
         <TransitCardCont>
             <Trapezoid>
                 <Icon name="bus" size={10} color="#fff" />
-                <Text style={styles.text_bold}>{typeOfRideText}</Text>
+                <Text style={styles.type_of_ride}>{typeOfRideText}</Text>
             </Trapezoid>
             <TransitCard>
                 <RouteIconCont>
@@ -71,9 +85,9 @@ const SignUpTransitCard = ({
                     <Text style={styles.text_bold}>{stopNameText}</Text>
                     <Text style={styles.text_regular}>{locationText}</Text>
                 </RouteInfo>
-                <Icon name="heart-o" size={30} color="#fff" />
-                {/* Onpress
-                <Icon name="heart" size={30} color="#fff" /> */}
+                <SaveRouteButton onPress={PressHeart}>
+                    <Icon name={fillHeart ? "heart" : "heart-o"} size={40} color="#fff" />
+                </SaveRouteButton>
             </TransitCard>
         </TransitCardCont>
     </SafeAreaView>
@@ -84,9 +98,13 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold'
     },
+    type_of_ride: {
+        color: '#fff',
+        fontWeight: 'bold',
+        position: 'relative',
+        right: 10
+    },
     text_regular: {
         color: '#fff'
     }
 });
-
-export default SignUpTransitCard;

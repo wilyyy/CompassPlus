@@ -16,17 +16,15 @@ const DisplayCard = styled.View`
     background-color: #009DDC;
 `;
 
-const RideCard = () => {
+export default function TripPlannerTab() {
 
-return <ThemeProvider>
-        <RideCardCont>
-            <Tab>
-                <Tab.Item title="Nearby Rides" />
-                <Tab.Item title="Shared Rides" />
-            </Tab>
-            <DisplayCard />
-        </RideCardCont>
-    </ThemeProvider>
+    return <ThemeProvider>
+            <RideCardCont>
+                <Tab>
+                    <Tab.Item title="Nearby Rides" />
+                    <Tab.Item title="Shared Rides" />
+                </Tab>
+                <DisplayCard />
+            </RideCardCont>
+        </ThemeProvider>
 }
-
-export default RideCard;

@@ -31,7 +31,7 @@ const Header = styled.Text`
     color: #000000;
 `;
 
-const LinkCompassCard = () => {
+export default function LinkCompassCard() {
     return <SafeAreaView>
         <TransferCardCont>
             <Header>Add a Compass Card</Header>
@@ -77,5 +77,3 @@ const styles = StyleSheet.create({
         color: '#fff'
     }
 });
-
-export default LinkCompassCard;

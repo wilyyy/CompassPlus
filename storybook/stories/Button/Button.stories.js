@@ -9,7 +9,7 @@ import CenterView from '../CenterView';
 //IMPORT COMPS FIRST
 import LinkCompassCard from '../../../comps/LinkCompassCard';
 import SignUpTransitCard from '../../../comps/SignUpTransitCard';
-import RideCard from '../../../comps/RideCardCont';
+import TripPlannerTab from '../../../comps/TripPlannerTab';
 import MobileCard from '../../../comps/CompassCardParent/CardManager';
 import AddFundsTab from '../../../comps/CompassCardParent/CardManager/AddFunds';
 import TransferBalanceTab from '../../../comps/CompassCardParent/TransferFunds';
@@ -19,7 +19,7 @@ storiesOf('Button', module)
   //USUALLY GOES .add('label', () => <Comp />)
   .add('Add Compass Card', () => <LinkCompassCard />)
   .add('Transit Sign Up Card', () => <SignUpTransitCard />)
-  .add('Trip Planner Tab', () => <RideCard />)
+  .add('Trip Planner Tab', () => <TripPlannerTab />)
   .add('Mobile Card', () => <MobileCard />)
   .add('Add Funds Tab', () => <AddFundsTab />)
   .add('Transfer Balance Tab', () => <TransferBalanceTab />)
