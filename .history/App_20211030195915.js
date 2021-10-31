@@ -23,7 +23,7 @@ export default function App() {
       <SignUpTransitCard /> */}
 
       {/* <MobileCard /> */}
-      {/* <TransferBalanceTab /> */}
+      <TransferBalanceTab />
       <AddFundsTab />
       <StatusBar style="auto" />
     </View>

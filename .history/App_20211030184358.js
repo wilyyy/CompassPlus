@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 import MobileCard from './comps/CompassCardParent/CardManager';
-import AddFundsTab from './comps/CompassCardParent/CardManager/AddFunds';
 import TransferBalanceTab from './comps/CompassCardParent/TransferFunds';
 import LinkCompassCard from './comps/LinkCompassCard';
 import RideCard from './comps/RideCardCont';
@@ -23,8 +22,7 @@ export default function App() {
       <SignUpTransitCard /> */}
 
       {/* <MobileCard /> */}
-      {/* <TransferBalanceTab /> */}
-      <AddFundsTab />
+      <TransferBalanceTab />
       <StatusBar style="auto" />
     </View>
   );
