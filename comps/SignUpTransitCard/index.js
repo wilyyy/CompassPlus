@@ -1,7 +1,6 @@
 import styled from "styled-components/native";
 import React from 'react';
 import { SafeAreaView, StyleSheet, TextInput, Pressable, Text } from "react-native";
-import style from "../../storybook/stories/CenterView/style";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 // still need to add icons to this
