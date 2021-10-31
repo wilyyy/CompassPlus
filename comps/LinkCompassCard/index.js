@@ -35,7 +35,7 @@ const LinkCompassCard = () => {
     return <SafeAreaView>
         <TransferCardCont>
             <Header>Add a Compass Card</Header>
-            <TextInput 
+            <TextInput
                 style={styles.input}
                 placeholder='Compass Card Number'
                 underlineColorAndroid="transparent"
@@ -47,7 +47,7 @@ const LinkCompassCard = () => {
             />
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => console.log("hello world")} 
+                onPress={() => console.log("hello world")}
             >
                 <Text style={styles.text}>Add Card</Text>
             </TouchableOpacity>
