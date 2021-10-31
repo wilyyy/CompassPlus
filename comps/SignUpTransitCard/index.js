@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import React from 'react';
 import { SafeAreaView, StyleSheet, TextInput, Pressable, Text } from "react-native";
 import style from "../../storybook/stories/CenterView/style";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // still need to add icons to this
 
@@ -11,12 +12,13 @@ const TransitCardCont = styled.View`
 `;
 
 const Trapezoid = styled.View`
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
     width: 77px;
     height: 20px;
     background-color: #575759;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
 `;
 
 const TransitCard = styled.View`
@@ -45,7 +47,8 @@ const RouteH1 = styled.Text`
 `;
 
 const RouteInfo = styled.View`
-    height: 28px;
+    justify-content: space-evenly;
+    height: auto;
     width: 165px;
 `;
 
@@ -58,26 +61,31 @@ const SignUpTransitCard = ({
     return <SafeAreaView>
         <TransitCardCont>
             <Trapezoid>
-                <Text style={styles.text}>{typeOfRideText}</Text>
+                <Icon name="bus" size={10} color="#fff" />
+                <Text style={styles.text_bold}>{typeOfRideText}</Text>
             </Trapezoid>
             <TransitCard>
                 <RouteIconCont>
                     <RouteH1>{routeIconText}</RouteH1>
                 </RouteIconCont>
                 <RouteInfo>
-                    <RouteH1 style={styles.h1_white}>{stopNameText}</RouteH1>
-                    <Text style={styles.text}>{locationText}</Text>
+                    <Text style={styles.text_bold}>{stopNameText}</Text>
+                    <Text style={styles.text_regular}>{locationText}</Text>
                 </RouteInfo>
+                <Icon name="heart-o" size={30} color="#fff" />
+                {/* Onpress
+                <Icon name="heart" size={30} color="#fff" /> */}
             </TransitCard>
         </TransitCardCont>
     </SafeAreaView>
 }
 
 const styles = StyleSheet.create({
-    text: {
-        color: '#fff'
+    text_bold: {
+        color: '#fff',
+        fontWeight: 'bold'
     },
-    h1_white: {
+    text_regular: {
         color: '#fff'
     }
 });

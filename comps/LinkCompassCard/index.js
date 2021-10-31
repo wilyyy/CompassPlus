@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import React from 'react';
 import { Button, ThemeProvider } from 'react-native-elements';
-import { SafeAreaView, StyleSheet, TextInput, Pressable, Text } from "react-native";
+import { SafeAreaView, StyleSheet, TextInput, Pressable, TouchableOpacity, Text } from "react-native";
 
 // If i figure out elements or native base theming
 // const theme = {
@@ -45,12 +45,12 @@ const LinkCompassCard = () => {
                 placeholder='CVN'
                 underlineColorAndroid="transparent"
             />
-            <Pressable
+            <TouchableOpacity
                 style={styles.button}
                 onPress={() => console.log("hello world")} 
             >
                 <Text style={styles.text}>Add Card</Text>
-            </Pressable>
+            </TouchableOpacity>
         </TransferCardCont>
     </SafeAreaView>
 }
