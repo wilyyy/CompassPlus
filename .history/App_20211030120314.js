@@ -1,8 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-
-import MobileCard from './comps/CompassCardParent/CardManager';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import LinkCompassCard from './comps/LinkCompassCard';
 import RideCard from './comps/RideCardCont';
 import SignUpTransitCard from './comps/SignUpTransitCard';
@@ -10,17 +8,11 @@ import SignUpTransitCard from './comps/SignUpTransitCard';
 // export { default } from './storybook';
 
 export default function App() {
-
-
-
-
   return (
     <View style={styles.container}>
-      {/* <LinkCompassCard />
+      <LinkCompassCard />
       <RideCard />
-      <SignUpTransitCard /> */}
-
-      <MobileCard />
+      <SignUpTransitCard />
       <StatusBar style="auto" />
     </View>
   );

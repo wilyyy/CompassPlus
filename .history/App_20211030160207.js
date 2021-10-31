@@ -12,14 +12,16 @@ import SignUpTransitCard from './comps/SignUpTransitCard';
 export default function App() {
 
 
-
-
   return (
     <View style={styles.container}>
       {/* <LinkCompassCard />
       <RideCard />
       <SignUpTransitCard /> */}
-
+      <Button
+        style={styles.backButton}
+        onPress={goCardFront}
+        title='<'
+      />
       <MobileCard />
       <StatusBar style="auto" />
     </View>

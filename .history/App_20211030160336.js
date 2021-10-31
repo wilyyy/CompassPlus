@@ -11,15 +11,22 @@ import SignUpTransitCard from './comps/SignUpTransitCard';
 
 export default function App() {
 
+  const [cardSide, setCardSide] = useState(false)
 
-
+  const goCardFront = () => {
+    setCardSide(true);
+  }
 
   return (
     <View style={styles.container}>
       {/* <LinkCompassCard />
       <RideCard />
       <SignUpTransitCard /> */}
-
+      <Button
+        style={styles.backButton}
+        onPress={goCardFront}
+        title='<'
+      />
       <MobileCard />
       <StatusBar style="auto" />
     </View>

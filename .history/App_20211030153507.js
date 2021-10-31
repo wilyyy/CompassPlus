@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import MobileCard from './comps/CompassCardParent/CardManager';
 import LinkCompassCard from './comps/LinkCompassCard';
@@ -11,16 +11,20 @@ import SignUpTransitCard from './comps/SignUpTransitCard';
 
 export default function App() {
 
+  const [cardSide, setCardSide] = useState(true)
 
-
+  const goManage = () => {
+    setCardSide(false);
+  }
 
   return (
     <View style={styles.container}>
       {/* <LinkCompassCard />
       <RideCard />
       <SignUpTransitCard /> */}
-
-      <MobileCard />
+      <MobileCard
+        onManagePress={goManage}
+      />
       <StatusBar style="auto" />
     </View>
   );
