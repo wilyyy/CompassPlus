@@ -6,7 +6,7 @@ import MobileCard from './comps/CompassCardParent/CardManager';
 import AddFundsTab from './comps/CompassCardParent/CardManager/AddFunds';
 import TransferBalanceTab from './comps/CompassCardParent/TransferFunds';
 import LinkCompassCard from './comps/LinkCompassCard';
-import RideCard from './comps/RideCardCont';
+import TripPlannerTab from './comps/TripPlannerTab';
 import SignUpTransitCard from './comps/SignUpTransitCard';
 
 
@@ -17,7 +17,7 @@ export { default } from './storybook';
 //   return (
 //     <View style={styles.container}>
 //       {/* <LinkCompassCard />
-//       <RideCard />
+//       <TripPlannerTab />
 //       <SignUpTransitCard /> */}
 
 //       {/* <MobileCard /> */}
