@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import React from 'react';
 import { SafeAreaView, StyleSheet, TextInput, Pressable, Text } from "react-native";
 import style from "../../storybook/stories/CenterView/style";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // still need to add icons to this
 
@@ -45,8 +46,9 @@ const RouteH1 = styled.Text`
 `;
 
 const RouteInfo = styled.View`
-    height: 28px;
-    width: 165px;
+    justify-content: space-evenly;
+    height: auto;
+    width: 303px;
 `;
 
 const SignUpTransitCard = ({
@@ -65,9 +67,10 @@ const SignUpTransitCard = ({
                     <RouteH1>{routeIconText}</RouteH1>
                 </RouteIconCont>
                 <RouteInfo>
-                    <RouteH1 style={styles.h1_white}>{stopNameText}</RouteH1>
+                    <Text>{stopNameText}</Text>
                     <Text style={styles.text}>{locationText}</Text>
                 </RouteInfo>
+                <Icon name="fa-duotone fa-bus" size={30} color="#900" />
             </TransitCard>
         </TransitCardCont>
     </SafeAreaView>
@@ -75,7 +78,8 @@ const SignUpTransitCard = ({
 
 const styles = StyleSheet.create({
     text: {
-        color: '#fff'
+        color: '#fff',
+        fontWeight: 'bold'
     },
     h1_white: {
         color: '#fff'
