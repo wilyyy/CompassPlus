@@ -2,7 +2,9 @@ import styled from "styled-components/native";
 import React, {useState} from 'react';
 import { SafeAreaView, StyleSheet, TextInput, Pressable, Text } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { COLORS } from '../../constants/styles.js';
 import { position } from "polished";
+
 
 // Play with animations and make 
 // it so it turns from grey to green but faded in over 0.5s
@@ -45,7 +47,7 @@ const RouteIconCont = styled.View`
 `;
 
 const RouteH1 = styled.Text`
-    color: #5BCF49;
+    color: ${props=>props.h1color};
     font-size: 24px;
     font-weight: bold;
 `;
@@ -84,13 +86,13 @@ export default function SignUpTransitCard({
     
     return <SafeAreaView>
         <TransitCardCont>
-            <Trapezoid bgcolor={greenCard ? "#5BCF49" : "#575759"}>
+            <Trapezoid bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.DAVYSGREY}>
                 <Icon name="bus" size={10} color="#fff" />
                 <Text style={styles.type_of_ride}>{typeOfRideText}</Text>
             </Trapezoid>
-            <TransitCard bgcolor={greenCard ? "#5BCF49" : "#575759"}>
+            <TransitCard bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.DAVYSGREY}>
                 <RouteIconCont>
-                    <RouteH1>{routeIconText}</RouteH1>
+                    <RouteH1 h1color={greenCard ? COLORS.LIMEGREEN : COLORS.DAVYSGREY}>{routeIconText}</RouteH1>
                 </RouteIconCont>
                 <RouteInfo>
                     <Text style={styles.text_bold}>{stopNameText}</Text>

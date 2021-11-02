@@ -1,17 +1,7 @@
 import styled from "styled-components/native";
-import React from 'react';
-import { Button, ThemeProvider } from 'react-native-elements';
+import React, {useState} from 'react';
 import { SafeAreaView, StyleSheet, TextInput, Pressable, TouchableOpacity, Text } from "react-native";
-
-// If i figure out elements or native base theming
-// const theme = {
-//     colors: {
-//         primary: '#009DDC', //mess with this later
-//     },
-//     Button: {
-//       raised: true,
-//     },
-//   };
+import { COLORS } from "../../constants/styles";
 
 const TransferCardCont = styled.View`
     flex-direction: column;
@@ -32,16 +22,34 @@ const Header = styled.Text`
 `;
 
 export default function LinkCompassCard() {
+
+    /*idk was thinking of 
+    add a confirmation state screen on this card like 
+    "gratz ur card has been added" with a nice graphic
+    then a button that redirects user home or back
+    to compass screen
+    up to you
+    */
+    
+    const [confirmPage, setConfirmPage] = useState(false);
+
+    const PressAddCard = () => {
+        setConfirmPage(true);
+        console.log("hello world");
+    }
+
     return <SafeAreaView>
         <TransferCardCont>
             <Header>Add a Compass Card</Header>
             <TextInput
                 style={styles.input}
+                keyboardType='numeric'
                 placeholder='Compass Card Number'
                 underlineColorAndroid="transparent"
             />
             <TextInput
                 style={styles.input}
+                keyboardType='numeric'
                 placeholder='CVN'
                 underlineColorAndroid="transparent"
             />
@@ -59,8 +67,8 @@ const styles = StyleSheet.create({
     input: {
         width: 294,
         height: 55,
-        borderWidth: 2,
-        borderColor: '#009DDC',
+        borderWidth: 3,
+        borderColor: COLORS.CAROLINABLUE,
         borderRadius: 8,
         padding: 10,
     },
@@ -68,7 +76,7 @@ const styles = StyleSheet.create({
         width: 294,
         height: 55,
         borderRadius: 30,
-        backgroundColor: '#009DDC',
+        backgroundColor: COLORS.CAROLINABLUE,
         justifyContent: 'center',
         alignItems: 'center'
     },
