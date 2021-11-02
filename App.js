@@ -10,7 +10,7 @@ import TripPlannerTab from './comps/TripPlannerTab';
 import SignUpTransitCard from './comps/SignUpTransitCard';
 import NotificationCard from './comps/Profile/notificationCard';
 
-// go to storybook/stories/button/Button.stories.js to add components
+// go to storybook/stories/Button/Button.stories.js to add components
 export { default } from './storybook';
 
 // export default function App() {
