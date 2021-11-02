@@ -13,6 +13,8 @@ import TripPlannerTab from '../../../comps/TripPlannerTab';
 import MobileCard from '../../../comps/CompassCardParent/CardManager';
 import AddFundsTab from '../../../comps/CompassCardParent/CardManager/AddFunds';
 import TransferBalanceTab from '../../../comps/CompassCardParent/TransferFunds';
+import NotificationCard from '../../../comps/Profile/notificationCard';
+import SupportCard from '../../../comps/Profile/supportCard';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Button', module)
@@ -23,6 +25,8 @@ storiesOf('Button', module)
   .add('Mobile Card', () => <MobileCard />)
   .add('Add Funds Tab', () => <AddFundsTab />)
   .add('Transfer Balance Tab', () => <TransferBalanceTab />)
+  .add('Notification Card', () => <NotificationCard />)
+  .add('Support Card', () => <SupportCard />)
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   // .add('with text', () => (
