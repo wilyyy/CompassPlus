@@ -4,7 +4,9 @@ import { SafeAreaView, StyleSheet, TextInput, Pressable, Text } from "react-nati
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { position } from "polished";
 
-//might remove props later once bus route api is added
+// Play with animations and make 
+// it so it turns from grey to green but faded in over 0.5s
+// after heart is clicked
 
 const TransitCardCont = styled.View`
     width: 303px;
@@ -13,13 +15,15 @@ const TransitCardCont = styled.View`
 
 const Trapezoid = styled.View`
     flex-direction: row;
+    width: 90px;
+    height: 20px;
     justify-content: space-evenly;
     align-items: center;
-    width: 77px;
-    height: 20px;
-    background-color: #575759;
+    background-color: ${props=>props.bgcolor};
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
 `;
+
+// background-color: #575759;
 
 const TransitCard = styled.View`
     flex-direction: row;
@@ -27,7 +31,7 @@ const TransitCard = styled.View`
     align-items: center;
     width: 303px;
     height: 89px;
-    background-color: #575759;
+    background-color: ${props=>props.bgcolor};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 `;
 
@@ -41,7 +45,7 @@ const RouteIconCont = styled.View`
 `;
 
 const RouteH1 = styled.Text`
-    color: #575759;
+    color: #5BCF49;
     font-size: 24px;
     font-weight: bold;
 `;
@@ -64,22 +68,27 @@ export default function SignUpTransitCard({
     typeOfRideText = "Bus",
     routeIconText = "019",
     stopNameText = "Metrotown Stn",
-    locationText = "Eastbound W Pender @ Nicola St"
+    locationText = "Eastbound W Pender @ Nicola St",
+    bgcolor = ""
 }) {
 
     const [fillHeart, setFillHeart] = useState(false);
     const ToggleFillHeart = () => setFillHeart(previousState => !previousState);
+    const [greenCard, setGreenCard] = useState(false);
+    const ToggleGreenCard = () => setGreenCard (previousState => !previousState)
+    
     const PressHeart = () => {
         ToggleFillHeart();
+        ToggleGreenCard();
     }
     
     return <SafeAreaView>
         <TransitCardCont>
-            <Trapezoid>
+            <Trapezoid bgcolor={greenCard ? "#5BCF49" : "#575759"}>
                 <Icon name="bus" size={10} color="#fff" />
                 <Text style={styles.type_of_ride}>{typeOfRideText}</Text>
             </Trapezoid>
-            <TransitCard>
+            <TransitCard bgcolor={greenCard ? "#5BCF49" : "#575759"}>
                 <RouteIconCont>
                     <RouteH1>{routeIconText}</RouteH1>
                 </RouteIconCont>
