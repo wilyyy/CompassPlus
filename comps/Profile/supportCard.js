@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Linking } from 'react-native';
+import { View, Dimensions, Text, TouchableOpacity, Linking } from 'react-native';
 import { Icon, Divider } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '/Users/sarahhusslein/Desktop/CompassCard/CompassPlus/constants/styles.js';
@@ -26,7 +26,7 @@ const ItemRow = styled.View`
 `;
 
 const TitleText = styled.Text`
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     padding-left: 15;
     color: #ffffff;

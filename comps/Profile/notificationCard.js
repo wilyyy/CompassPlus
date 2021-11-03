@@ -29,7 +29,7 @@ const ItemRow = styled.View`
 `;
 
 const TitleText = styled.Text`
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     padding-left: 15;
     color: #ffffff;
