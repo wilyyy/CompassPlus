@@ -11,7 +11,7 @@ import LinkCompassCard from '../../../comps/LinkCompassCard';
 import SignUpTransitCard from '../../../comps/SignUpTransitCard';
 import TripPlannerTab from '../../../comps/TripPlannerTab';
 import MobileCard from '../../../comps/CompassCardParent/CardManager';
-import AddFundsTab from '../../../comps/CompassCardParent/CardManager/AddFunds';
+import AddFundsTab from '../../../comps/CompassCardParent/AddFunds';
 import TransferBalanceTab from '../../../comps/CompassCardParent/TransferFunds';
 import NotificationCard from '../../../comps/Profile/notificationCard';
 import SupportCard from '../../../comps/Profile/supportCard';
