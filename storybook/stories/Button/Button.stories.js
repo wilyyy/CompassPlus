@@ -17,6 +17,7 @@ import NotificationCard from '../../../comps/Profile/notificationCard';
 import SupportCard from '../../../comps/Profile/supportCard';
 import ProfileCard from '../../../comps/Profile/profileCard';
 import ProfileScreen from '../../../comps/Profile/ProfileScreen';
+import ProfileCardUpdate from '../../../comps/Profile/ProfileCardUpdate';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Button', module)
@@ -31,6 +32,7 @@ storiesOf('Button', module)
   .add('Support Card', () => <SupportCard />)
   .add('Profile Card', () => <ProfileCard />)
   .add('Profile Screen', () => <ProfileScreen />)
+  .add('Profile Card Update', () => <ProfileCardUpdate />)
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   // .add('with text', () => (
