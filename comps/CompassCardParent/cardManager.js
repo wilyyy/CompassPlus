@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Image, StyleSheet, Switch, Text, TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
+import { COLORS } from "../../constants/styles";
+
 
 const Container = styled.View`
     width: 350px;
     height: 585px;
-    background-color: #C4C4C4;
+    background-color: #fff;
     border-radius: 15px;
 `;
 
@@ -15,6 +17,7 @@ const CompassPlaceHolder = styled.View`
     border-color: red;
     border-width: 2px;
     align-self: center;
+    background-color: ${COLORS.CAROLINABLUE};
 `;
 
 const Expiration = styled.Text`
