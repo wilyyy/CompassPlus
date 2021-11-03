@@ -42,18 +42,18 @@ const Page = styled.View`
     justify-content: center;
 `;
 
-const Skip = styled.Pressable`
-    font-size: 16px;
-    font-weight: 700;
-    align-self: flex-end;
-`;
-
 const Container = styled.View`
     width: 90%;
     height: 700px;
     align-items: center;
     justify-content: space-evenly;
 `
+
+const Skip = styled.Pressable`
+    font-size: 16px;
+    font-weight: 700;
+    align-self: flex-end;
+`;
 
 const BusTrackerCont = styled.View`
     width: 100%;
