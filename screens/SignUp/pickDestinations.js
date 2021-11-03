@@ -20,7 +20,7 @@ const windowHeight = Dimensions.get('window').height;
 const Page = styled.View`
     width: ${windowWidth};
     height: ${windowHeight};
-    background-color: ${COLORS.CAROLINABLUE}
+    background-color: ${COLORS.CAROLINABLUE};
     align-items: center;
     justify-content: center;
 `;
@@ -42,13 +42,13 @@ const PickDestinations = () => {
             <Skip>
                 <Text style={styles.text_bold_white}>Skip</Text>
             </Skip>
-            <MaterialIcon 
-            name="bus-side" 
-            size={40}
-            color="#fff"
+            <MaterialIcon
+                name="bus-side"
+                size={40}
+                color="#fff"
             />
-            <Divider 
-                orientation="horizontal" 
+            <Divider
+                orientation="horizontal"
                 width={2}
                 color={'#fff'}
             />
