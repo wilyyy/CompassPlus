@@ -11,6 +11,8 @@ import { COLORS } from '../../constants/styles.js';
 import SignUpCheckBox from '../../comps/SignUp/checkbox.js';
 import SignUpTransitCard from '../../comps/SignUp/signUpTransitCard.js';
 
+//put bus on its own component ting, make position a prop and add a position absolute circle on the divider
+
 /* CHECKBOX ALGORITHM
 4 return states for confirm select : home, school, work, other
 if corresponding checkbox selected = return appropriate screens
