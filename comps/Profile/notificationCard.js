@@ -5,6 +5,7 @@ import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 
 
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -51,7 +52,7 @@ const DescriptionText = styled.Text`
     font-weight: normal;
     padding-top: 15;
     padding-left: 20;
-    color: ${COLORS.DAVYSGREY}
+    color: ${COLORS.DAVYSGREY};
     padding-bottom: 25;
     max-width: 380;
 `;
