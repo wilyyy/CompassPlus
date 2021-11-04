@@ -184,7 +184,7 @@ const PickDestinations = () => {
                 <H1 style={styles.text_down}>Where do you go to school?</H1>
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
-                <H2 style={styles.text_ridescreen}>Add some routes home to your collection</H2>
+                <H2 style={styles.text_ridescreen}>Don’t be late to class! Catch the fastest rides to school below!</H2>
                 <SignUpTransitCard icon="train" typeOfRideText="Train"/>
                 <SignUpTransitCard />
                 <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
@@ -207,7 +207,7 @@ const PickDestinations = () => {
                 <H1 style={styles.text_down}>Where do you work?</H1>
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
-                <H2 style={styles.text_ridescreen}>Add some routes home to your collection</H2>
+                <H2 style={styles.text_ridescreen}>Punch in to work on time! Catch these rides to help you get there faster!</H2>
                 <SignUpTransitCard icon="train" typeOfRideText="Train"/>
                 <SignUpTransitCard />
                 <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
@@ -230,7 +230,7 @@ const PickDestinations = () => {
                 <H1 style={styles.text_down}>Another place to go? No problem!</H1>
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
-                <H2 style={styles.text_ridescreen}>Add some routes home to your collection</H2>
+                <H2 style={styles.text_ridescreen}>Time is money! Get there faster using these rides below!</H2>
                 <SignUpTransitCard icon="train" typeOfRideText="Train"/>
                 <SignUpTransitCard />
                 <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
