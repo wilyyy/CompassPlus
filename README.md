@@ -50,7 +50,7 @@ While making sure you are on your branch, put the following command into your te
 If there have been any new dependencies installed since you last pulled from master, remember that you can use the 'yarn install' command to install all that is missing from your local version of the app.
 
 ### Resetting a branch after making a mistake
-If you made a mistake or installed a bad library you want to remove you can reset your branch using the line below
+If you made a mistake or installed a bad library you want to remove you can reset your branch using the line below. This will reset your branch to what it was the last commit you made
 
 	git reset --hard origin/branch-name
 
@@ -65,4 +65,4 @@ const FunctionName = () => {}
 
 #### Component Props
 
-#### Objects and Arrays
+#### File Structure for Comps and Screens
