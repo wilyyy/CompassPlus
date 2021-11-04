@@ -54,8 +54,8 @@ If you made a mistake or installed a bad library you want to remove you can rese
 
 	git reset --hard origin/branch-name
 
-## Naming Conventions
-Everyone should use the same naving conventions in our code as we are being marked on the consistency of our code.
+## Naming Conventions & Consistent Directory Structure
+Everyone should use the same naving conventions in our code as we are being marked on the consistency of our code and directory structure.
 
 #### Variable
 const variableName
