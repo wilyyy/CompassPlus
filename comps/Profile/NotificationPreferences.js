@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, ScrollView, Switch } from 'react-native';
+import { View, Dimensions, StyleSheet, ScrollView, Switch, SafeAreaView } from 'react-native';
 import { Header, Divider } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
@@ -65,73 +65,75 @@ const NotificationPreferences = () => {
     const textNewsSwitch = () => setTextNewsEnabled(previousState => !previousState);
 
     return (
-        <ScrollView>
-            <Header
-                leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: '#fff' } }}
-                centerComponent={{ text: 'Notification Preferences', style: { color: '#fff', fontWeight: 'bold', fontSize: 20 } }}
-                containerStyle={{backgroundColor: '#009DDC', height: 80}}
-                />
-            <Box />
-            <SectionContainer>
-                <SectionText>Route Updates</SectionText>
-            </SectionContainer>
-            <Row>
-                <Column>
-                    <EditContent>Push Notifications</EditContent>
-                    <EditContent>Text Messages via Email</EditContent>
-                </Column>
-                <Column>
-                    <View style={{paddingRight: 15}}>
-                        <Switch
-                            trackColor={{ false: "red", true: "#009DDC"}}
-                            thumbColor={setPushRoutesEnabled ? "white" : "grey"}
-                            ios_backgroundColor="DAVYSGREY"
-                            onValueChange={pushRoutesSwitch}
-                            value={pushRoutesEnabled}
-                        />
-                        <Box />
-                        <Switch
-                            trackColor={{ false: "white", true: "#009DDC" }}
-                            thumbColor={setTextRoutesEnabled ? "white" : "grey"}
-                            ios_backgroundColor="DAVYSGREY"
-                            onValueChange={textRoutesSwitch}
-                            value={textRoutesEnabled}
-                        />
-                    </View>
-                </Column>
-            </Row>
-            <Divider orientation="horizontal" color="DAVYSGREY"/>
-            <Box />
-            <SectionContainer>
-                <SectionText>News Updates</SectionText>
-            </SectionContainer>
-            <Row>
-                <Column>
-                    <EditContent>Push Notifications</EditContent>
-                    <EditContent>Text Messages via Email</EditContent>
-                </Column>
-                <Column>
-                    <View style={{paddingRight: 15}}>
-                        <Switch
-                            trackColor={{ false: "red", true: "#009DDC"}}
-                            thumbColor={setPushNewsEnabled ? "white" : "grey"}
-                            ios_backgroundColor="DAVYSGREY"
-                            onValueChange={pushNewsSwitch}
-                            value={pushNewsEnabled}
-                        />
-                        <Box />
-                        <Switch
-                            trackColor={{ false: "white", true: "#009DDC" }}
-                            thumbColor={setTextNewsEnabled ? "white" : "grey"}
-                            ios_backgroundColor="DAVYSGREY"
-                            onValueChange={textNewsSwitch}
-                            value={textNewsEnabled}
-                        />
-                    </View>
-                </Column>
-            </Row>
-            <Divider orientation="horizontal" color="DAVYSGREY"/>
-        </ScrollView>
+        <SafeAreaView>
+            <ScrollView>
+                <Header
+                    leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: '#fff' } }}
+                    centerComponent={{ text: 'Notification Preferences', style: { color: '#fff', fontWeight: 'bold', fontSize: 20 } }}
+                    containerStyle={{backgroundColor: '#009DDC', height: 80}}
+                    />
+                <Box />
+                <SectionContainer>
+                    <SectionText>Route Updates</SectionText>
+                </SectionContainer>
+                <Row>
+                    <Column>
+                        <EditContent>Push Notifications</EditContent>
+                        <EditContent>Text Messages via Email</EditContent>
+                    </Column>
+                    <Column>
+                        <View style={{paddingRight: 15}}>
+                            <Switch
+                                trackColor={{ false: "red", true: "#009DDC"}}
+                                thumbColor={setPushRoutesEnabled ? "white" : "grey"}
+                                ios_backgroundColor="DAVYSGREY"
+                                onValueChange={pushRoutesSwitch}
+                                value={pushRoutesEnabled}
+                            />
+                            <Box />
+                            <Switch
+                                trackColor={{ false: "white", true: "#009DDC" }}
+                                thumbColor={setTextRoutesEnabled ? "white" : "grey"}
+                                ios_backgroundColor="DAVYSGREY"
+                                onValueChange={textRoutesSwitch}
+                                value={textRoutesEnabled}
+                            />
+                        </View>
+                    </Column>
+                </Row>
+                <Divider orientation="horizontal" color="DAVYSGREY"/>
+                <Box />
+                <SectionContainer>
+                    <SectionText>News Updates</SectionText>
+                </SectionContainer>
+                <Row>
+                    <Column>
+                        <EditContent>Push Notifications</EditContent>
+                        <EditContent>Text Messages via Email</EditContent>
+                    </Column>
+                    <Column>
+                        <View style={{paddingRight: 15}}>
+                            <Switch
+                                trackColor={{ false: "red", true: "#009DDC"}}
+                                thumbColor={setPushNewsEnabled ? "white" : "grey"}
+                                ios_backgroundColor="DAVYSGREY"
+                                onValueChange={pushNewsSwitch}
+                                value={pushNewsEnabled}
+                            />
+                            <Box />
+                            <Switch
+                                trackColor={{ false: "white", true: "#009DDC" }}
+                                thumbColor={setTextNewsEnabled ? "white" : "grey"}
+                                ios_backgroundColor="DAVYSGREY"
+                                onValueChange={textNewsSwitch}
+                                value={textNewsEnabled}
+                            />
+                        </View>
+                    </Column>
+                </Row>
+                <Divider orientation="horizontal" color="DAVYSGREY"/>
+            </ScrollView>
+        </SafeAreaView>
     );
   };
   
