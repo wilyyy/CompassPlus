@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
+<<<<<<< HEAD
 // import MobileCard from './comps/CompassCardParent/CardManager';
 // import AddFundsTab from './comps/CompassCardParent/CardManager/AddFunds';
 // import TransferBalanceTab from './comps/CompassCardParent/TransferFunds';
@@ -9,6 +10,9 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 // import TripPlannerTab from './comps/TripPlannerTab';
 // import SignUpTransitCard from './comps/SignUpTransitCard';
 // import NotificationCard from './comps/Profile/notificationCard';
+=======
+
+>>>>>>> a67526d66a14f4b0065ce40e035c6da306fb6621
 
 // go to storybook/stories/Button/Button.stories.js to add components
 export { default } from './storybook';
