@@ -157,7 +157,6 @@ const BalanceHistoryCard = () => {
             <FareRow>
                 <Image
                     style={styles.transportIcon}
-                    // replace with Bus.png
                     source={require('../../../CompassPlus/assets/TransportIcons/Bus.png')}
                 />
                 <Time>{"05:06pm > 05:32pm"}</Time>
