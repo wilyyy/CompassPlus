@@ -7,7 +7,7 @@ import AddFundsTab from './comps/CompassCardParent/CardManager/AddFunds';
 import TransferBalanceTab from './comps/CompassCardParent/TransferFunds';
 import LinkCompassCard from './comps/LinkCompassCard';
 import TripPlannerTab from './comps/TripPlannerTab';
-import SignUpTransitCard from './comps/SignUpTransitCard';
+import SignUpTransitCard from './comps/SignUp/signUpTransitCard';
 import NotificationCard from './comps/Profile/notificationCard';
 
 // go to storybook/stories/Button/Button.stories.js to add components
