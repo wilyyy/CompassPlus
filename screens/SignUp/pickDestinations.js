@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import styled from "styled-components/native";
-import { Input } from 'react-native-elements';
-import { View, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity } from 'react-native';
+// import { Input } from 'react-native-elements';
+import { View, TextInput, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity } from 'react-native';
 import { Divider } from 'react-native-elements';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -11,6 +11,7 @@ import { COLORS } from '../../constants/styles.js';
 import SignUpCheckBox from '../../comps/SignUp/checkbox.js';
 import SignUpTransitCard from '../../comps/SignUp/signUpTransitCard.js';
 import BusProgressBar from '../../comps/SignUp/busProgressBar.js';
+import SignUpInput from '../../comps/SignUp/signUpInput.js';
 
 //put bus on its own component ting, make position a prop and add a position absolute circle on the divider
 
@@ -105,7 +106,7 @@ const PickDestinations = () => {
     const [pageCounter, setPageCounter] = useState(0);
 
     const IncrementCount = () => {
-        if (pageCounter < 2){
+        if (pageCounter < 4){
             setPageCounter(prevState => prevState + 1);
             console.log(pageCounter);
           } else{
@@ -154,17 +155,80 @@ const PickDestinations = () => {
                 <Skip>
                     <Text style={styles.text_bold_white}>Skip</Text>
                 </Skip>
-                <BusProgressBar busPosition="20%" circlePosition="23%"/>
+                <BusProgressBar busPosition="22.5%" circlePosition="25%"/>
             </TopContainer>
             <Container>
                 <H1 style={styles.text_down}>Where do you live?</H1>
-                <Input
-                    placeholder='Search for street address'
-                    leftIcon={{ type: 'evil-icons', name: 'search', color: '#fff' }}
-                    inputStyle={{'color': '#fff'}}
-                    containerStyle={{'color': '#fff'}}
-                    rightIcon={{ type: 'evil-icons', name: 'close', color: '#fff' }}
-                />
+                <SignUpInput />
+                {/* add props and maybe think about putting these 3 in a scroll view */}
+                <H2 style={styles.text_ridescreen}>Add some routes home to your collection</H2>
+                <SignUpTransitCard icon="train" typeOfRideText="Train"/>
+                <SignUpTransitCard />
+                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
+                <ContinueButton onPress={IncrementCount}>
+                    <H2 style={styles.button_text}>Continue</H2>
+                </ContinueButton>
+            </Container>
+        </Page>
+    }
+
+    if(pageCounter === 2){
+        return <Page>
+            <TopContainer>
+                <Skip>
+                    <Text style={styles.text_bold_white}>Skip</Text>
+                </Skip>
+                <BusProgressBar busPosition="45%" circlePosition="47.5%"/>
+            </TopContainer>
+            <Container>
+                <H1 style={styles.text_down}>Where do you go to school?</H1>
+                <SignUpInput />
+                {/* add props and maybe think about putting these 3 in a scroll view */}
+                <H2 style={styles.text_ridescreen}>Add some routes home to your collection</H2>
+                <SignUpTransitCard icon="train" typeOfRideText="Train"/>
+                <SignUpTransitCard />
+                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
+                <ContinueButton onPress={IncrementCount}>
+                    <H2 style={styles.button_text}>Continue</H2>
+                </ContinueButton>
+            </Container>
+        </Page>
+    }
+
+    if(pageCounter === 3){
+        return <Page>
+            <TopContainer>
+                <Skip>
+                    <Text style={styles.text_bold_white}>Skip</Text>
+                </Skip>
+                <BusProgressBar busPosition="90%" circlePosition="93%"/>
+            </TopContainer>
+            <Container>
+                <H1 style={styles.text_down}>Where do you work?</H1>
+                <SignUpInput />
+                {/* add props and maybe think about putting these 3 in a scroll view */}
+                <H2 style={styles.text_ridescreen}>Add some routes home to your collection</H2>
+                <SignUpTransitCard icon="train" typeOfRideText="Train"/>
+                <SignUpTransitCard />
+                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
+                <ContinueButton onPress={IncrementCount}>
+                    <H2 style={styles.button_text}>Continue</H2>
+                </ContinueButton>
+            </Container>
+        </Page>
+    }
+
+    if(pageCounter === 4){
+        return <Page>
+            <TopContainer>
+                <Skip>
+                    <Text style={styles.text_bold_white}>Skip</Text>
+                </Skip>
+                <BusProgressBar busPosition="45%" circlePosition="47.5%"/>
+            </TopContainer>
+            <Container>
+                <H1 style={styles.text_down}>Another place to go? No problem!</H1>
+                <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
                 <H2 style={styles.text_ridescreen}>Add some routes home to your collection</H2>
                 <SignUpTransitCard icon="train" typeOfRideText="Train"/>
@@ -196,7 +260,6 @@ const styles = StyleSheet.create({
     },
     text_ridescreen: {
         position: 'relative',
-        top: -20,
         textAlign: 'center',
         fontStyle: 'italic'
     }

@@ -5,7 +5,6 @@ import { Icon } from 'react-native-elements';
 import { COLORS } from '../../constants/styles.js';
 import { position } from "polished";
 
-
 // Play with animations and make 
 // it so it turns from grey to green but faded in over 0.5s
 // after heart is clicked
@@ -24,8 +23,6 @@ const Trapezoid = styled.View`
     background-color: ${props=>props.bgcolor};
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
 `;
-
-// background-color: #575759;
 
 const TransitCard = styled.View`
     flex-direction: row;
@@ -64,7 +61,6 @@ const SaveRouteButton = styled.Pressable`
     justify-content: center;
     align-items: center;
 `;
-
 
 export default function SignUpTransitCard({
     typeOfRideText = "Bus",
