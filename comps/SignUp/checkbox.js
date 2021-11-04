@@ -9,8 +9,8 @@ const Checkbox = styled.Pressable`
     border: 3px solid #fff;
     justify-content: center;
     border-radius: 7px;
-
     align-items: center;
+    margin-right: 10px;
 `;
 
 const CheckboxSelected = styled.Pressable`
