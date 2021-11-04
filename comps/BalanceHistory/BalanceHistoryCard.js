@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Pressable, TextInput, ScrollView, Image } from 'react-native';
 import { Avatar, Header, Divider, Icon } from 'react-native-elements'
 import styled from "styled-components/native";
-import { COLORS } from '/Users/sarahhusslein/Desktop/CompassCard/CompassPlus/constants/styles.js';
+import { COLORS } from '../../constants/styles.js';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -42,14 +42,14 @@ const DateText = styled.Text`
     font-size: 18px;
     font-weight: normal;
     padding-left: 15;
-    color: ${COLORS.DAVYSGREY}
+    color: ${COLORS.DAVYSGREY};
 `;
 
 const Money = styled.Text`
     font-size: 18px;
     font-weight: bold;
     padding-right: 15;
-    color: ${COLORS.DAVYSGREY}
+    color: ${COLORS.DAVYSGREY};
 `;
 
 const FareRow = styled.View`
@@ -144,7 +144,7 @@ const BalanceHistoryCard = () => {
                 <SubContainer>
                     <Image
                         style={styles.compassCardImage}
-                        source={require('/Users/sarahhusslein/Desktop/CompassCard/CompassPlus/assets/CompassCard.jpg')}
+                        source={require('../../../CompassPlus/assets/CompassCard.jpg')}
                     />
                     <InfoText>Card ****** *3455</InfoText>
                     <InfoText>Transactions may take up to 24h to update.</InfoText>
@@ -157,7 +157,8 @@ const BalanceHistoryCard = () => {
             <FareRow>
                 <Image
                     style={styles.transportIcon}
-                    source={require('/Users/sarahhusslein/Desktop/CompassCard/CompassPlus/assets/TransportIcons/Bus.png')}
+                    // replace with Bus.png
+                    source={require('../../../CompassPlus/assets/TransportIcons/Bus.png')}
                 />
                 <Time>{"05:06pm > 05:32pm"}</Time>
                 <Money>-$2.08</Money>
@@ -166,7 +167,7 @@ const BalanceHistoryCard = () => {
             <FareRow>
                 <Image
                     style={styles.transportIcon}
-                    source={require('/Users/sarahhusslein/Desktop/CompassCard/CompassPlus/assets/TransportIcons/Metro.png')}
+                    source={require('../../../CompassPlus/assets/TransportIcons/Metro.png')}
                 />
                 <Time>{"11:47am > 11:52am"}</Time>
                 <Money>-$0.00</Money>
@@ -175,7 +176,7 @@ const BalanceHistoryCard = () => {
             <FareRow>
                 <Image
                     style={styles.transportIcon}
-                    source={require('/Users/sarahhusslein/Desktop/CompassCard/CompassPlus/assets/TransportIcons/Seabus.png')}
+                    source={require('../../../CompassPlus/assets/TransportIcons/Seabus.png')}
                 />
                 <Time>{"11:05am > 11:45am"}</Time>
                 <Money>-$4.20</Money>
@@ -188,7 +189,7 @@ const BalanceHistoryCard = () => {
             <FareRow>
                 <Image
                     style={styles.transportIcon}
-                    source={require('/Users/sarahhusslein/Desktop/CompassCard/CompassPlus/assets/TransportIcons/Metro.png')}
+                    source={require('../../../CompassPlus/assets/TransportIcons/Metro.png')}
                 />
                 <Time>{"08:12pm > 08:52pm"}</Time>
                 <Money>-$3.50</Money>
@@ -197,7 +198,7 @@ const BalanceHistoryCard = () => {
             <FareRow>
                 <Image
                     style={styles.transportIcon}
-                    source={require('/Users/sarahhusslein/Desktop/CompassCard/CompassPlus/assets/TransportIcons/Metro.png')}
+                    source={require('../../../CompassPlus/assets/TransportIcons/Metro.png')}
                 />
                 <Time>{"03:06pm > 03:45pm"}</Time>
                 <Money>-$3.50</Money>
@@ -206,7 +207,7 @@ const BalanceHistoryCard = () => {
             <FareRow>
                 <Image
                     style={styles.transportIcon}
-                    source={require('/Users/sarahhusslein/Desktop/CompassCard/CompassPlus/assets/TransportIcons/Bus.png')}
+                    source={require('../../../CompassPlus/assets/TransportIcons/Bus.png')}
                 />
                 <Time>{"11:15am > 11:38am"}</Time>
                 <Money>-$2.25</Money>
@@ -215,7 +216,7 @@ const BalanceHistoryCard = () => {
             <FareRow>
                 <Image
                     style={styles.transportIcon}
-                    source={require('/Users/sarahhusslein/Desktop/CompassCard/CompassPlus/assets/TransportIcons/Bus.png')}
+                    source={require('../../../CompassPlus/assets/TransportIcons/Bus.png')}
                 />
                 <Time>{"09:15am > 10:02am"}</Time>
                 <Money>-$3.50</Money>

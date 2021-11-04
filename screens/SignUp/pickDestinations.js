@@ -201,7 +201,7 @@ const PickDestinations = () => {
                 <Skip>
                     <Text style={styles.text_bold_white}>Skip</Text>
                 </Skip>
-                <BusProgressBar busPosition="90%" circlePosition="93%"/>
+                <BusProgressBar busPosition="67.5%" circlePosition="70%"/>
             </TopContainer>
             <Container>
                 <H1 style={styles.text_down}>Where do you work?</H1>
@@ -224,7 +224,7 @@ const PickDestinations = () => {
                 <Skip>
                     <Text style={styles.text_bold_white}>Skip</Text>
                 </Skip>
-                <BusProgressBar busPosition="45%" circlePosition="47.5%"/>
+                <BusProgressBar busPosition="90%" circlePosition="93%"/>
             </TopContainer>
             <Container>
                 <H1 style={styles.text_down}>Another place to go? No problem!</H1>

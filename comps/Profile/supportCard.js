@@ -48,7 +48,7 @@ const DescriptionText = styled.Text`
     font-weight: normal;
     padding-top: 15;
     padding-left: 20;
-    color: ${COLORS.DAVYSGREY}
+    color: ${COLORS.DAVYSGREY};
     padding-bottom: 25;
     max-width: 365;
 `;
