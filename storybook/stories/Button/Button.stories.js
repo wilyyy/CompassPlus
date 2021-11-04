@@ -8,10 +8,10 @@ import CenterView from '../CenterView';
 
 //IMPORT COMPS FIRST
 import LinkCompassCard from '../../../comps/LinkCompassCard';
-import SignUpTransitCard from '../../../comps/SignUpTransitCard';
+import SignUpTransitCard from '../../../comps/SignUp/signUpTransitCard';
 import TripPlannerTab from '../../../comps/TripPlannerTab';
 import MobileCard from '../../../comps/CompassCardParent/CardManager';
-import AddFundsTab from '../../../comps/CompassCardParent/CardManager/AddFunds';
+import AddFundsTab from '../../../comps/CompassCardParent/AddFunds';
 import TransferBalanceTab from '../../../comps/CompassCardParent/TransferFunds';
 import NotificationCard from '../../../comps/Profile/notificationCard';
 import SupportCard from '../../../comps/Profile/supportCard';
@@ -20,6 +20,7 @@ import ProfileScreen from '../../../comps/Profile/ProfileScreen';
 import ProfileCardUpdate from '../../../comps/Profile/ProfileCardUpdate';
 import NotificationPreferences from '../../../comps/Profile/NotificationPreferences';
 import BalanceHistoryCard from '../../../comps/BalanceHistory/BalanceHistoryCard';
+import PickDestinations from '../../../screens/SignUp/pickDestinations';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Button', module)
@@ -37,6 +38,7 @@ storiesOf('Button', module)
   .add('Profile Card Update', () => <ProfileCardUpdate />)
   .add('Notification Preferences', () => <NotificationPreferences />)
   .add('Balance History Card', () => <BalanceHistoryCard />)
+  .add('Pick Destinations', () => <PickDestinations />)
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   // .add('with text', () => (
