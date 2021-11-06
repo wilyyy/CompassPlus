@@ -9,13 +9,15 @@ const Container = styled.View`
     height: 585px;
     background-color: #fff;
     border-radius: 15px;
+    margin: 0 400px;
+    box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const CompassPlaceHolder = styled.View`
-    width: 340px;
+    width: 350px;
     height: 215px;
-    border-color: red;
-    border-width: 2px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
     align-self: center;
     background-color: ${COLORS.CAROLINABLUE};
 `;

@@ -23,6 +23,7 @@ import ProfileCardUpdate from '../../../comps/Profile/ProfileCardUpdate';
 import NotificationPreferences from '../../../comps/Profile/NotificationPreferences';
 import BalanceHistoryCard from '../../../comps/BalanceHistory/BalanceHistoryCard';
 import PickDestinations from '../../../screens/SignUp/pickDestinations';
+import CompassCardScreen from '../../../screens/CompassCardScreen/mobileCard';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Button', module)
@@ -41,6 +42,7 @@ storiesOf('Button', module)
   .add('Notification Preferences', () => <NotificationPreferences />)
   .add('Balance History Card', () => <BalanceHistoryCard />)
   .add('Pick Destinations', () => <PickDestinations />)
+  .add('Compass Card Screen', () => <CompassCardScreen />)
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   // .add('with text', () => (
