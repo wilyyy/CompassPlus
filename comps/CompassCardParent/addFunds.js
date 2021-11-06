@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
+import { MaterialIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const Container = styled.View`
     width: 375px;
     height: 600px;
     background-color: #fff;
     border-radius: 15px;
-    border-color: red;
-    border-width: 2px;
+    
+    /* border-color: red;
+    border-width: 2px; */
     
 `;
 
@@ -137,9 +140,8 @@ export default function AddFundsTab({
                         <Amount>{FromCardBalance}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <Arrow
-                    source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                />
+                <AntDesign name="down" size={30} color="#222222" />
+
             </SettingCont>
 
             <Line />
@@ -156,9 +158,8 @@ export default function AddFundsTab({
                         <Amount>{loadAmount}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <Arrow
-                    source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                />
+                <AntDesign name="down" size={30} color="#222222" />
+
 
             </SettingCont>
             <Line />
@@ -175,9 +176,8 @@ export default function AddFundsTab({
                         <Amount>{paymentType}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <Arrow
-                    source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                />
+                <AntDesign name="down" size={30} color="#222222" />
+
 
             </SettingCont>
             <Line />

@@ -22,6 +22,11 @@ import ProfileScreen from '../../../comps/Profile/ProfileScreen';
 import ProfileCardUpdate from '../../../comps/Profile/ProfileCardUpdate';
 import NotificationPreferences from '../../../comps/Profile/NotificationPreferences';
 import BalanceHistoryCard from '../../../comps/BalanceHistory/BalanceHistoryCard';
+import TicketTab from '../../../comps/CompassCardParent/ticketSelTab';
+import AmountTab from '../../../comps/CompassCardParent/amountSelTab';
+import PaymentTab from '../../../comps/CompassCardParent/paymentSelTab';
+
+//SCREENS
 import PickDestinations from '../../../screens/SignUp/pickDestinations';
 import CompassCardScreen from '../../../screens/CompassCardScreen/mobileCard';
 
@@ -41,6 +46,11 @@ storiesOf('Button', module)
   .add('Profile Card Update', () => <ProfileCardUpdate />)
   .add('Notification Preferences', () => <NotificationPreferences />)
   .add('Balance History Card', () => <BalanceHistoryCard />)
+  .add('Ticket Tabs', () => <TicketTab />)
+  .add('Amount Tabs', () => <AmountTab />)
+  .add('Payment Tabs', () => <PaymentTab />)
+
+  //screens
   .add('Pick Destinations', () => <PickDestinations />)
   .add('Compass Card Screen', () => <CompassCardScreen />)
 
