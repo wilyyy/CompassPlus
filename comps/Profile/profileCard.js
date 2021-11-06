@@ -95,6 +95,6 @@ const ProfileCard = () => {
     text: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#009DDC'
+        color: COLORS.CAROLINABLUE
     },
 });

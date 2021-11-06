@@ -21,6 +21,7 @@ import ProfileCardUpdate from '../../../comps/Profile/ProfileCardUpdate';
 import NotificationPreferences from '../../../comps/Profile/NotificationPreferences';
 import BalanceHistoryCard from '../../../comps/BalanceHistory/BalanceHistoryCard';
 import PickDestinations from '../../../screens/SignUp/pickDestinations';
+import PasswordChange from '../../../comps/Profile/PasswordChange';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Button', module)
@@ -39,6 +40,7 @@ storiesOf('Button', module)
   .add('Notification Preferences', () => <NotificationPreferences />)
   .add('Balance History Card', () => <BalanceHistoryCard />)
   .add('Pick Destinations', () => <PickDestinations />)
+  .add('Change Password', () => <PasswordChange />)
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   // .add('with text', () => (
