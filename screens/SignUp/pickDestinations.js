@@ -33,7 +33,7 @@ if no checkbox clicked, counter is still 0, add a modal that says
 allocate checkbox to each page by making seperate functions if pressed odd number
 of times, make counter = whatever page its allocated to
 for example if school checkbox pressed odd number of times, make counter = 2
-
+asd
 skip will bring up a modal are u sure which pressing yes to will route to home page
 */
 
