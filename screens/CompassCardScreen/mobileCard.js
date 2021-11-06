@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import styled from "styled-components/native";
-import { View, TextInput, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity } from 'react-native';
+import { Tab, ThemeProvider } from 'react-native-elements';
+import { View, TextInput, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity, ScrollView } from 'react-native';
 
 
 import { COLORS } from '../../constants/styles.js';
@@ -31,7 +32,7 @@ const TopContainer = styled.View`
     border-color: lightgrey; */
 `;
 
-const Container = styled.View`
+const Container = styled.ScrollView`
     position: relative;
     width: 90%;
     height: 85%;
@@ -75,22 +76,24 @@ const H2 = styled.Text`
 const CompassCardScreen = () => {
 
     return (
-        <Page>
-            <TopContainer>
-                <H1>My Cards</H1>
-                <Payment>
-                    <Text style={styles.payment}>Add Payment</Text>
-                </Payment>
-            </TopContainer>
-            <Container>
-                {/* <H1>Your Cards</H1> */}
-                <MobileCard />
-                <MobileCard />
-                <MobileCard />
+        <ThemeProvider>
+            <Page>
+                <TopContainer>
+                    <H1>My Cards</H1>
+                    <Payment>
+                        <Text style={styles.payment}>Add Payment</Text>
+                    </Payment>
+                </TopContainer>
+                <ScrollView style={styles.scrollview} horizontal={true}>
+                    {/* <H1>Your Cards</H1> */}
+                    <MobileCard />
+                    <MobileCard />
+                    <MobileCard />
 
 
-            </Container>
-        </Page>
+                </ScrollView>
+            </Page>
+        </ThemeProvider>
     )
 }
 
@@ -102,17 +105,7 @@ const styles = StyleSheet.create({
         color: COLORS.DAVYSGREY,
         fontWeight: 'bold',
     },
-    button_text: {
-        fontWeight: 'bold',
-        color: COLORS.CAROLINABLUE
-    },
-    text_down: {
-        position: 'relative',
-        top: 30
-    },
-    text_ridescreen: {
-        position: 'relative',
-        textAlign: 'center',
-        fontStyle: 'italic'
+    scrollView: {
+        flexDirection: 'row',
     }
 });

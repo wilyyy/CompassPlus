@@ -9,7 +9,7 @@ const Container = styled.View`
     height: 585px;
     background-color: #fff;
     border-radius: 15px;
-    margin: 0 400px;
+    margin: 100px 15px 0px 25px;
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
@@ -120,7 +120,8 @@ export default function MobileCard({
     onTransferPress = () => { },
     onWalletPress = () => { },
     onRemoveTicketPress = () => { },
-    BarcodeId = "ak-18-15 Compass No: 016372 9281 9273 CVN 459",
+    barcodeId = "ak-18-15 Compass No: 016372 9281 9273 CVN 459",
+    cardType = "December Pass",
     // onManagePress = () => { },
     onAddFundsPress = () => { }
 }) {
@@ -138,7 +139,7 @@ export default function MobileCard({
 
 
     //set card expiration date / month
-    const [expiration, setExpiration] = useState('December Pass');
+    // const [expiration, setExpiration] = useState('December Pass');
 
     //for SWITCH (set card to/disable default status)
     const [defaultCard, setDefaultCard] = useState(false);
@@ -151,11 +152,11 @@ export default function MobileCard({
         return (
             <Container>
                 <CompassPlaceHolder />
-                <Expiration>{expiration}</Expiration>
+                <Expiration>{cardType}</Expiration>
                 {/* <CompassCardBarcode
                     source={require('#')}
                 /> */}
-                <CompassCardNo>{BarcodeId}</CompassCardNo>
+                <CompassCardNo>{barcodeId}</CompassCardNo>
 
                 <CardFooter>
 
@@ -197,7 +198,7 @@ export default function MobileCard({
                     title='<'
                 />
                 <CompassPlaceHolder />
-                <Expiration>{expiration}</Expiration>
+                <Expiration>{cardType}</Expiration>
                 <SettingCont>
                     <SettingsContLeft>
                         <IconBack
@@ -274,6 +275,5 @@ const styles = StyleSheet.create({
         zIndex: 2,
         height: '30px',
         position: 'absolute',
-
     }
 })
