@@ -12,6 +12,7 @@ import { position } from "polished";
 const TransitCardCont = styled.View`
     width: 303px;
     height: 105px;
+    margin-bottom: 25px;
 `;
 
 const Trapezoid = styled.View`
