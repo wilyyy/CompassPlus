@@ -36,6 +36,9 @@ for example if school checkbox pressed odd number of times, make counter = 2
 skip will bring up a modal are u sure which pressing yes to will route to home page
 */
 
+//think about using https://docs.expo.dev/versions/latest/react-native/usewindowdimensions/#width
+// turn h2 below text input into smaller h3 for consistency
+//make a bottom contaienr just fo rbutton so its in the same place every time
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -77,6 +80,14 @@ const H1 = styled.Text`
 const H2 = styled.Text`
     font-size: 24px;
     color: #fff;
+`;
+
+const H3 = styled.Text`
+    font-size: 18px;
+    color: #fff;
+    position: relative;
+    text-align: center;
+    font-style: italic;
 `;
 
 const ContinueButton = styled.TouchableOpacity`
@@ -161,7 +172,7 @@ const PickDestinations = () => {
                 <H1 style={styles.text_down}>Where do you live?</H1>
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
-                <H2 style={styles.text_ridescreen}>Add some routes home to your collection</H2>
+                <H3>Get home quick and safely! Here are some of the fastest ways home!</H3>
                 <SignUpTransitCard icon="train" typeOfRideText="Train"/>
                 <SignUpTransitCard />
                 <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
@@ -181,10 +192,10 @@ const PickDestinations = () => {
                 <BusProgressBar busPosition="45%" circlePosition="47.5%"/>
             </TopContainer>
             <Container>
-                <H1 style={styles.text_down}>Where do you go to school?</H1>
+                <H1 style={styles.text_down}>Where is school?</H1>
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
-                <H2 style={styles.text_ridescreen}>Don’t be late to class! Catch the fastest rides to school below!</H2>
+                <H3>Don’t be late to class! Catch the fastest rides to school below!</H3>
                 <SignUpTransitCard icon="train" typeOfRideText="Train"/>
                 <SignUpTransitCard />
                 <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
@@ -207,7 +218,7 @@ const PickDestinations = () => {
                 <H1 style={styles.text_down}>Where do you work?</H1>
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
-                <H2 style={styles.text_ridescreen}>Punch in to work on time! Catch these rides to help you get there faster!</H2>
+                <H3>Punch in to work on time! Catch these rides to help you get there faster!</H3>
                 <SignUpTransitCard icon="train" typeOfRideText="Train"/>
                 <SignUpTransitCard />
                 <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
@@ -227,10 +238,10 @@ const PickDestinations = () => {
                 <BusProgressBar busPosition="90%" circlePosition="93%"/>
             </TopContainer>
             <Container>
-                <H1 style={styles.text_down}>Another place to go? No problem!</H1>
+                <H1 style={styles.text_down}>Another place to go?</H1>
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
-                <H2 style={styles.text_ridescreen}>Time is money! Get there faster using these rides below!</H2>
+                <H3>Time is money! Get there faster using these rides below!</H3>
                 <SignUpTransitCard icon="train" typeOfRideText="Train"/>
                 <SignUpTransitCard />
                 <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
@@ -257,10 +268,5 @@ const styles = StyleSheet.create({
     text_down: {
         position: 'relative',
         top: 30
-    },
-    text_ridescreen: {
-        position: 'relative',
-        textAlign: 'center',
-        fontStyle: 'italic'
     }
 });
