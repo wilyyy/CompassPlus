@@ -9,7 +9,7 @@ import CenterView from '../CenterView';
 //IMPORT COMPS FIRST
 import LinkCompassCard from '../../../comps/LinkCompassCard';
 import SignUpTransitCard from '../../../comps/SignUp/signUpTransitCard';
-import TripPlannerTab from '../../../comps/TripPlannerTab';
+import TripPlannerTab from '../../../comps/TripPlanner/tripPlannerTab';
 
 import MobileCard from '../../../comps/CompassCardParent/cardManager';
 import AddFundsTab from '../../../comps/CompassCardParent/addFunds';

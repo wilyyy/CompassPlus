@@ -47,8 +47,6 @@ const Page = styled.View`
     width: ${windowWidth};
     height: ${windowHeight};
     background-color: ${COLORS.CAROLINABLUE};
-<<<<<<< HEAD
-=======
     align-items: center;
 `;
 
@@ -65,7 +63,6 @@ const Container = styled.View`
     width: 90%;
     height: 85%;
     justify-content: space-evenly;
->>>>>>> a67526d66a14f4b0065ce40e035c6da306fb6621
     align-items: center;
 `;
 
@@ -118,25 +115,6 @@ const CheckboxCont = styled.View`
 `;
 
 const PickDestinations = () => {
-<<<<<<< HEAD
-    return <Page>
-        <Container>
-            <Skip>
-                <Text style={styles.text_bold_white}>Skip</Text>
-            </Skip>
-            <MaterialIcon
-                name="bus-side"
-                size={40}
-                color="#fff"
-            />
-            <Divider
-                orientation="horizontal"
-                width={2}
-                color={'#fff'}
-            />
-        </Container>
-    </Page>
-=======
     const [pageCounter, setPageCounter] = useState(0);
 
     const IncrementCount = () => {
@@ -266,7 +244,6 @@ const PickDestinations = () => {
         </Page>
     }
     
->>>>>>> a67526d66a14f4b0065ce40e035c6da306fb6621
 }
 
 export default PickDestinations;
