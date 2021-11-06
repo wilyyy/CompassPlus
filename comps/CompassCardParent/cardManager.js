@@ -150,9 +150,9 @@ export default function MobileCard({
             <Container>
                 <CompassPlaceHolder />
                 <Expiration>{expiration}</Expiration>
-                <CompassCardBarcode
-                    source={require('../../../assets/mockupBarcode.png')}
-                />
+                {/* <CompassCardBarcode
+                    source={require('#')}
+                /> */}
                 <CompassCardNo>{BarcodeId}</CompassCardNo>
 
                 <CardFooter>

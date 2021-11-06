@@ -10,9 +10,11 @@ import CenterView from '../CenterView';
 import LinkCompassCard from '../../../comps/LinkCompassCard';
 import SignUpTransitCard from '../../../comps/SignUpTransitCard';
 import TripPlannerTab from '../../../comps/TripPlannerTab';
+
 import MobileCard from '../../../comps/CompassCardParent/cardManager';
 import AddFundsTab from '../../../comps/CompassCardParent/addFunds';
 import TransferBalanceTab from '../../../comps/CompassCardParent/transferFunds';
+
 import NotificationCard from '../../../comps/Profile/notificationCard';
 import SupportCard from '../../../comps/Profile/supportCard';
 import PickDestinations from '../../../screens/SignUp/pickDestinations';
