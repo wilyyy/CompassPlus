@@ -12,6 +12,7 @@ import SignUpCheckBox from '../../comps/SignUp/checkbox.js';
 import SignUpTransitCard from '../../comps/SignUp/signUpTransitCard.js';
 import BusProgressBar from '../../comps/SignUp/busProgressBar.js';
 import SignUpInput from '../../comps/SignUp/signUpInput.js';
+import SignUpTransitCardScroll from '../../comps/SignUp/signUpTransitCardScroll.js';
 
 //put bus on its own component ting, make position a prop and add a position absolute circle on the divider
 
@@ -173,9 +174,7 @@ const PickDestinations = () => {
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
                 <H3>Get home quick and safely! Here are some of the fastest ways home!</H3>
-                <SignUpTransitCard icon="train" typeOfRideText="Train"/>
-                <SignUpTransitCard />
-                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
+                <SignUpTransitCardScroll />
                 <ContinueButton onPress={IncrementCount}>
                     <H2 style={styles.button_text}>Continue</H2>
                 </ContinueButton>
@@ -196,9 +195,7 @@ const PickDestinations = () => {
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
                 <H3>Don’t be late to class! Catch the fastest rides to school below!</H3>
-                <SignUpTransitCard icon="train" typeOfRideText="Train"/>
-                <SignUpTransitCard />
-                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
+                <SignUpTransitCardScroll />
                 <ContinueButton onPress={IncrementCount}>
                     <H2 style={styles.button_text}>Continue</H2>
                 </ContinueButton>
@@ -219,9 +216,7 @@ const PickDestinations = () => {
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
                 <H3>Punch in to work on time! Catch these rides to help you get there faster!</H3>
-                <SignUpTransitCard icon="train" typeOfRideText="Train"/>
-                <SignUpTransitCard />
-                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
+                <SignUpTransitCardScroll />
                 <ContinueButton onPress={IncrementCount}>
                     <H2 style={styles.button_text}>Continue</H2>
                 </ContinueButton>
@@ -240,11 +235,8 @@ const PickDestinations = () => {
             <Container>
                 <H1 style={styles.text_down}>Another place to go?</H1>
                 <SignUpInput />
-                {/* add props and maybe think about putting these 3 in a scroll view */}
                 <H3>Time is money! Get there faster using these rides below!</H3>
-                <SignUpTransitCard icon="train" typeOfRideText="Train"/>
-                <SignUpTransitCard />
-                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
+                <SignUpTransitCardScroll />
                 <ContinueButton onPress={IncrementCount}>
                     <H2 style={styles.button_text}>Continue</H2>
                 </ContinueButton>
