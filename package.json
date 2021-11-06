@@ -10,10 +10,13 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@eva-design/eva": "^2.1.1",
     "@expo-google-fonts/inter": "^0.2.0",
     "@expo-google-fonts/ubuntu": "^0.2.0",
+    "@ui-kitten/components": "^5.1.1",
     "expo": "~42.0.1",
     "expo-app-loading": "^1.2.1",
+    "expo-checkbox": "~1.0.3",
     "expo-font": "~9.2.1",
     "expo-status-bar": "~1.0.4",
     "ngrok": "^4.2.2",
@@ -21,6 +24,7 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-elements": "^3.4.2",
+    "react-native-svg": "^12.1.1",
     "react-native-vector-icons": "^9.0.0",
     "react-native-web": "~0.13.12",
     "styled-components": "^5.3.3"

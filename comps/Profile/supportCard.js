@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Linking } from 'react-native';
+import { View, Dimensions, Text, TouchableOpacity, Linking } from 'react-native';
 import { Icon, Divider } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
@@ -23,10 +23,11 @@ const ItemRow = styled.View`
     flex-direction: row;
     align-items: center;
     background-color: #ffffff;
+    justify-content: space-between;
 `;
 
 const TitleText = styled.Text`
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     padding-left: 15;
     color: #ffffff;
@@ -47,7 +48,7 @@ const DescriptionText = styled.Text`
     font-weight: normal;
     padding-top: 15;
     padding-left: 20;
-    color: ${COLORS.DAVYSGREY}
+    color: ${COLORS.DAVYSGREY};
     padding-bottom: 25;
     max-width: 365;
 `;
@@ -59,7 +60,7 @@ const SupportCard = () => {
                 <Row>
                     <Icon 
                         style={{paddingLeft: 15}} 
-                        name='question' 
+                        name='help' 
                         color='white'
                         size={24}
                     />
@@ -74,7 +75,7 @@ const SupportCard = () => {
                             <DescriptionText>General contact information for Translink and operating companies.</DescriptionText>
                         </SubContainer>
                         <Icon 
-                            style={{alignSelf:'flex-end', paddingLeft: 10,}} 
+                            style={{alignSelf:'flex-end', paddingRight: 15,}} 
                             name='link' 
                             color={COLORS.DAVYSGREY}
                             size={30}
@@ -91,7 +92,7 @@ const SupportCard = () => {
                             <DescriptionText>Did you loose your compass card or another item? Click here to report it.</DescriptionText>
                         </SubContainer>
                         <Icon 
-                            style={{alignSelf:'flex-end', paddingLeft: 10,}} 
+                            style={{paddingRight: 15,}} 
                             name='link' 
                             color={COLORS.DAVYSGREY}
                             size={30}
@@ -108,7 +109,7 @@ const SupportCard = () => {
                             <DescriptionText>From time to time, incidents occur in our system.</DescriptionText>
                         </SubContainer>
                         <Icon 
-                            style={{alignSelf:'flex-end', marginRight:0, paddingLeft: 10,}} 
+                            style={{paddingRight: 15,}} 
                             name='link' 
                             color={COLORS.DAVYSGREY}
                             size={30}
@@ -125,7 +126,7 @@ const SupportCard = () => {
                             <DescriptionText>Have a question? Chat with our virtual assistant.</DescriptionText>
                         </SubContainer>
                         <Icon 
-                            style={{alignSelf:'flex-end', marginRight:0, paddingLeft: 10,}} 
+                            style={{paddingRight: 15,}} 
                             name='link' 
                             color={COLORS.DAVYSGREY}
                             size={30}

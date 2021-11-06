@@ -5,6 +5,7 @@ import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 
 
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -29,7 +30,7 @@ const ItemRow = styled.View`
 `;
 
 const TitleText = styled.Text`
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     padding-left: 15;
     color: #ffffff;

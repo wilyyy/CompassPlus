@@ -1,10 +1,9 @@
 import styled from "styled-components/native";
 import React, {useState} from 'react';
 import { SafeAreaView, StyleSheet, TextInput, Pressable, Text } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from 'react-native-elements';
 import { COLORS } from '../../constants/styles.js';
 import { position } from "polished";
-
 
 // Play with animations and make 
 // it so it turns from grey to green but faded in over 0.5s
@@ -24,8 +23,6 @@ const Trapezoid = styled.View`
     background-color: ${props=>props.bgcolor};
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
 `;
-
-// background-color: #575759;
 
 const TransitCard = styled.View`
     flex-direction: row;
@@ -65,13 +62,13 @@ const SaveRouteButton = styled.Pressable`
     align-items: center;
 `;
 
-
 export default function SignUpTransitCard({
     typeOfRideText = "Bus",
+    icon = "bus",
+    icon_type = "font-awesome",
     routeIconText = "019",
     stopNameText = "Metrotown Stn",
-    locationText = "Eastbound W Pender @ Nicola St",
-    bgcolor = ""
+    locationText = "Eastbound W Pender @ Nicola St"
 }) {
 
     const [fillHeart, setFillHeart] = useState(false);
@@ -87,7 +84,7 @@ export default function SignUpTransitCard({
     return <SafeAreaView>
         <TransitCardCont>
             <Trapezoid bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.DAVYSGREY}>
-                <Icon name="bus" size={10} color="#fff" />
+                <Icon name={icon} type={icon_type} size={10} color="#fff" />
                 <Text style={styles.type_of_ride}>{typeOfRideText}</Text>
             </Trapezoid>
             <TransitCard bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.DAVYSGREY}>
@@ -99,7 +96,7 @@ export default function SignUpTransitCard({
                     <Text style={styles.text_regular}>{locationText}</Text>
                 </RouteInfo>
                 <SaveRouteButton onPress={PressHeart}>
-                    <Icon name={fillHeart ? "heart" : "heart-o"} size={40} color="#fff" />
+                    <Icon name={fillHeart ? "heart" : "heart-o"} type="font-awesome" size={40} color="#fff" />
                 </SaveRouteButton>
             </TransitCard>
         </TransitCardCont>
@@ -114,8 +111,7 @@ const styles = StyleSheet.create({
     type_of_ride: {
         color: '#fff',
         fontWeight: 'bold',
-        position: 'relative',
-        right: 10
+        marginRight: 5
     },
     text_regular: {
         color: '#fff'
