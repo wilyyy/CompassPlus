@@ -43,8 +43,6 @@ const Page = styled.View`
     width: ${windowWidth};
     height: ${windowHeight};
     background-color: ${COLORS.CAROLINABLUE};
-<<<<<<< HEAD
-=======
     align-items: center;
 `;
 
@@ -61,7 +59,6 @@ const Container = styled.View`
     width: 90%;
     height: 85%;
     justify-content: space-evenly;
->>>>>>> a67526d66a14f4b0065ce40e035c6da306fb6621
     align-items: center;
 `;
 
@@ -106,37 +103,19 @@ const CheckboxCont = styled.View`
 `;
 
 const PickDestinations = () => {
-<<<<<<< HEAD
-    return <Page>
-        <Container>
-            <Skip>
-                <Text style={styles.text_bold_white}>Skip</Text>
-            </Skip>
-            <MaterialIcon
-                name="bus-side"
-                size={40}
-                color="#fff"
-            />
-            <Divider
-                orientation="horizontal"
-                width={2}
-                color={'#fff'}
-            />
-        </Container>
-    </Page>
-=======
+
     const [pageCounter, setPageCounter] = useState(0);
 
     const IncrementCount = () => {
-        if (pageCounter < 4){
+        if (pageCounter < 4) {
             setPageCounter(prevState => prevState + 1);
             console.log(pageCounter);
-          } else{
+        } else {
             setPageCounter(0);
-          }
+        }
     }
 
-    if(pageCounter === 0){
+    if (pageCounter === 0) {
         return <Page>
             <TopContainer>
                 <Skip>
@@ -171,22 +150,22 @@ const PickDestinations = () => {
         </Page>
     }
 
-    if(pageCounter === 1){
+    if (pageCounter === 1) {
         return <Page>
             <TopContainer>
                 <Skip>
                     <Text style={styles.text_bold_white}>Skip</Text>
                 </Skip>
-                <BusProgressBar busPosition="22.5%" circlePosition="25%"/>
+                <BusProgressBar busPosition="22.5%" circlePosition="25%" />
             </TopContainer>
             <Container>
                 <H1 style={styles.text_down}>Where do you live?</H1>
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
                 <H2 style={styles.text_ridescreen}>Add some routes home to your collection</H2>
-                <SignUpTransitCard icon="train" typeOfRideText="Train"/>
+                <SignUpTransitCard icon="train" typeOfRideText="Train" />
                 <SignUpTransitCard />
-                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
+                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus" />
                 <ContinueButton onPress={IncrementCount}>
                     <H2 style={styles.button_text}>Continue</H2>
                 </ContinueButton>
@@ -194,22 +173,22 @@ const PickDestinations = () => {
         </Page>
     }
 
-    if(pageCounter === 2){
+    if (pageCounter === 2) {
         return <Page>
             <TopContainer>
                 <Skip>
                     <Text style={styles.text_bold_white}>Skip</Text>
                 </Skip>
-                <BusProgressBar busPosition="45%" circlePosition="47.5%"/>
+                <BusProgressBar busPosition="45%" circlePosition="47.5%" />
             </TopContainer>
             <Container>
                 <H1 style={styles.text_down}>Where do you go to school?</H1>
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
                 <H2 style={styles.text_ridescreen}>Don’t be late to class! Catch the fastest rides to school below!</H2>
-                <SignUpTransitCard icon="train" typeOfRideText="Train"/>
+                <SignUpTransitCard icon="train" typeOfRideText="Train" />
                 <SignUpTransitCard />
-                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
+                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus" />
                 <ContinueButton onPress={IncrementCount}>
                     <H2 style={styles.button_text}>Continue</H2>
                 </ContinueButton>
@@ -217,22 +196,22 @@ const PickDestinations = () => {
         </Page>
     }
 
-    if(pageCounter === 3){
+    if (pageCounter === 3) {
         return <Page>
             <TopContainer>
                 <Skip>
                     <Text style={styles.text_bold_white}>Skip</Text>
                 </Skip>
-                <BusProgressBar busPosition="67.5%" circlePosition="70%"/>
+                <BusProgressBar busPosition="67.5%" circlePosition="70%" />
             </TopContainer>
             <Container>
                 <H1 style={styles.text_down}>Where do you work?</H1>
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
                 <H2 style={styles.text_ridescreen}>Punch in to work on time! Catch these rides to help you get there faster!</H2>
-                <SignUpTransitCard icon="train" typeOfRideText="Train"/>
+                <SignUpTransitCard icon="train" typeOfRideText="Train" />
                 <SignUpTransitCard />
-                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
+                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus" />
                 <ContinueButton onPress={IncrementCount}>
                     <H2 style={styles.button_text}>Continue</H2>
                 </ContinueButton>
@@ -240,30 +219,30 @@ const PickDestinations = () => {
         </Page>
     }
 
-    if(pageCounter === 4){
+    if (pageCounter === 4) {
         return <Page>
             <TopContainer>
                 <Skip>
                     <Text style={styles.text_bold_white}>Skip</Text>
                 </Skip>
-                <BusProgressBar busPosition="90%" circlePosition="93%"/>
+                <BusProgressBar busPosition="90%" circlePosition="93%" />
             </TopContainer>
             <Container>
                 <H1 style={styles.text_down}>Another place to go? No problem!</H1>
                 <SignUpInput />
                 {/* add props and maybe think about putting these 3 in a scroll view */}
                 <H2 style={styles.text_ridescreen}>Time is money! Get there faster using these rides below!</H2>
-                <SignUpTransitCard icon="train" typeOfRideText="Train"/>
+                <SignUpTransitCard icon="train" typeOfRideText="Train" />
                 <SignUpTransitCard />
-                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus"/>
+                <SignUpTransitCard icon="boat" icon_type="ionicon" typeOfRideText="Seabus" />
                 <ContinueButton onPress={IncrementCount}>
                     <H2 style={styles.button_text}>Continue</H2>
                 </ContinueButton>
             </Container>
         </Page>
     }
-    
->>>>>>> a67526d66a14f4b0065ce40e035c6da306fb6621
+
+
 }
 
 export default PickDestinations;
@@ -273,7 +252,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold'
     },
-    button_text:{
+    button_text: {
         fontWeight: 'bold',
         color: COLORS.CAROLINABLUE
     },
