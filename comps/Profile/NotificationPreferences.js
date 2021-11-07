@@ -68,9 +68,9 @@ const NotificationPreferences = () => {
         <SafeAreaView>
             <ScrollView>
                 <Header
-                    leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: '#fff' } }}
-                    centerComponent={{ text: 'Notification Preferences', style: { color: '#fff', fontWeight: 'bold', fontSize: 20 } }}
-                    containerStyle={{backgroundColor: '#009DDC', height: 80}}
+                    leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: 'white' } }}
+                    centerComponent={{ text: 'Notification Preferences', style: { color: 'white', fontWeight: 'bold', fontSize: 20 } }}
+                    containerStyle={{backgroundColor: COLORS.CAROLINABLUE, height: 80}}
                     />
                 <Box />
                 <SectionContainer>
@@ -84,7 +84,7 @@ const NotificationPreferences = () => {
                     <Column>
                         <View style={{paddingRight: 15}}>
                             <Switch
-                                trackColor={{ false: "red", true: "#009DDC"}}
+                                trackColor={{ false: "red", true: COLORS.CAROLINABLUE}}
                                 thumbColor={setPushRoutesEnabled ? "white" : "grey"}
                                 ios_backgroundColor="DAVYSGREY"
                                 onValueChange={pushRoutesSwitch}
@@ -92,7 +92,7 @@ const NotificationPreferences = () => {
                             />
                             <Box />
                             <Switch
-                                trackColor={{ false: "white", true: "#009DDC" }}
+                                trackColor={{ false: "white", true: COLORS.CAROLINABLUE}}
                                 thumbColor={setTextRoutesEnabled ? "white" : "grey"}
                                 ios_backgroundColor="DAVYSGREY"
                                 onValueChange={textRoutesSwitch}
@@ -114,7 +114,7 @@ const NotificationPreferences = () => {
                     <Column>
                         <View style={{paddingRight: 15}}>
                             <Switch
-                                trackColor={{ false: "red", true: "#009DDC"}}
+                                trackColor={{ false: "red", true: COLORS.CAROLINABLUE}}
                                 thumbColor={setPushNewsEnabled ? "white" : "grey"}
                                 ios_backgroundColor="DAVYSGREY"
                                 onValueChange={pushNewsSwitch}
@@ -122,7 +122,7 @@ const NotificationPreferences = () => {
                             />
                             <Box />
                             <Switch
-                                trackColor={{ false: "white", true: "#009DDC" }}
+                                trackColor={{ false: "white", true: COLORS.CAROLINABLUE}}
                                 thumbColor={setTextNewsEnabled ? "white" : "grey"}
                                 ios_backgroundColor="DAVYSGREY"
                                 onValueChange={textNewsSwitch}
@@ -153,13 +153,13 @@ const NotificationPreferences = () => {
     text: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#009DDC'
+        color: COLORS.CAROLINABLUE
     },
     input: {
         width: 185,
         height: 55,
         borderWidth: 2,
-        borderColor: '#C4C4C4',
+        borderColor: COLORS.LIGHTGREY,
         borderRadius: 8,
         padding: 10,
     },

@@ -98,9 +98,9 @@ const ProfileCardUpdate = () => {
         <SafeAreaView>
             <ScrollView>
                 <Header
-                    leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: '#fff' } }}
-                    centerComponent={{ text: 'Update Account Details', style: { color: '#fff', fontWeight: 'bold', fontSize: 20 } }}
-                    containerStyle={{backgroundColor: '#009DDC', height: 80}}
+                    leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: 'white' } }}
+                    centerComponent={{ text: 'Update Account Details', style: { color: 'white', fontWeight: 'bold', fontSize: 20 } }}
+                    containerStyle={{backgroundColor: COLORS.CAROLINABLUE, height: 80}}
                     />
                 <ImageContainer>
                     <SubContainer>
@@ -210,13 +210,13 @@ const ProfileCardUpdate = () => {
     text: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#009DDC'
+        color: COLORS.CAROLINABLUE
     },
     input: {
         width: 185,
         height: 55,
         borderWidth: 2,
-        borderColor: '#C4C4C4',
+        borderColor: COLORS.LIGHTGREY,
         borderRadius: 8,
         padding: 10,
     },

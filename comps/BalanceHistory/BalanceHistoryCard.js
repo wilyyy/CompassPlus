@@ -242,13 +242,13 @@ const BalanceHistoryCard = () => {
     text: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#009DDC'
+        color: COLORS.CAROLINABLUE
     },
     input: {
         width: 185,
         height: 55,
         borderWidth: 2,
-        borderColor: '#C4C4C4',
+        borderColor: COLORS.LIGHTGREY,
         borderRadius: 8,
         padding: 10,
     },

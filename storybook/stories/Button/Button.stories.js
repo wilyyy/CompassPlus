@@ -28,6 +28,7 @@ import PaymentTab from '../../../comps/CompassCardParent/paymentSelTab';
 
 //SCREENS
 import PickDestinations from '../../../screens/SignUp/pickDestinations';
+import PasswordChange from '../../../comps/Profile/PasswordChange';
 import CompassCardScreen from '../../../screens/CompassCardScreen/mobileCard';
 import SignUpTransitCardScroll from '../../../comps/SignUp/signUpTransitCardScroll';
 
@@ -47,6 +48,7 @@ storiesOf('Comps', module)
   .add('Amount Tabs', () => <AmountTab />)
   .add('Payment Tabs', () => <PaymentTab />)
   .add('Pick Destinations', () => <PickDestinations />)
+  .add('Change Password', () => <PasswordChange />)
   .add('Compass Card Screen', () => <CompassCardScreen />)
   .add('Sign Up - Transit Card Scroll', () => <SignUpTransitCardScroll />)
   .add('Transit Sign Up Card', () => <SignUpTransitCard />)
