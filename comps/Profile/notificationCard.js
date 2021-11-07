@@ -59,38 +59,38 @@ const DescriptionText = styled.Text`
 
 const NotificationCard = () => {
 
-  return (
-      <View>
-        <Container>
-            <Row>
-                <Icon 
-                    style={{paddingLeft: 15}} 
-                    name='notifications' 
-                    color='white'
-                    size={24}
-                />
-                <TitleText>Notifications</TitleText>
-            </Row>
-        </Container>
-        <View >
-            <TouchableOpacity onPress={()=>{}}>
-                <ItemRow>
-                    <SubContainer>
-                        <SubtitleText>Edit Your Notification Settings</SubtitleText>
-                        <DescriptionText>Change your settings about disruption alerts, COVID safe travel notifications and others.</DescriptionText>
-                    </SubContainer>
-                    <Icon 
-                        style={{alignSelf:'flex-end', paddingLeft: 10,}} 
-                        name='keyboard-arrow-right' 
-                        color={COLORS.DAVYSGREY}
-                        size={40}
+    return (
+        <View>
+            <Container>
+                <Row>
+                    <Icon
+                        style={{ paddingLeft: 15 }}
+                        name='notifications'
+                        color='white'
+                        size={24}
                     />
-                </ItemRow>
-            </TouchableOpacity>
-            <Divider orientation="horizontal" color={COLORS.DAVYSGREY}/>
+                    <TitleText>Notifications</TitleText>
+                </Row>
+            </Container>
+            <View >
+                <TouchableOpacity onPress={() => { }}>
+                    <ItemRow>
+                        <SubContainer>
+                            <SubtitleText>Edit Your Notification Settings</SubtitleText>
+                            <DescriptionText>Change your settings about disruption alerts, COVID safe travel notifications and others.</DescriptionText>
+                        </SubContainer>
+                        <Icon
+                            style={{ alignSelf: 'flex-end', paddingLeft: 10, }}
+                            name='keyboard-arrow-right'
+                            color={COLORS.DAVYSGREY}
+                            size={40}
+                        />
+                    </ItemRow>
+                </TouchableOpacity>
+                <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
+            </View>
         </View>
-    </View>
-  );
+    );
 };
 
 export default NotificationCard;

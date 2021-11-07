@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import { Button, Image, StyleSheet, Switch, Text, TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
+import { COLORS } from "../../constants/styles";
+
 
 const Container = styled.View`
     width: 350px;
     height: 585px;
-    background-color: #C4C4C4;
+    background-color: #fff;
     border-radius: 15px;
+    margin: 100px 15px 0px 25px;
+    box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const CompassPlaceHolder = styled.View`
-    width: 340px;
+    width: 350px;
     height: 215px;
-    border-color: red;
-    border-width: 2px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
     align-self: center;
+    background-color: ${COLORS.CAROLINABLUE};
 `;
 
 const Expiration = styled.Text`
@@ -115,7 +120,8 @@ export default function MobileCard({
     onTransferPress = () => { },
     onWalletPress = () => { },
     onRemoveTicketPress = () => { },
-    BarcodeId = "ak-18-15 Compass No: 016372 9281 9273 CVN 459",
+    barcodeId = "ak-18-15 Compass No: 016372 9281 9273 CVN 459",
+    cardType = "December Pass",
     // onManagePress = () => { },
     onAddFundsPress = () => { }
 }) {
@@ -133,7 +139,7 @@ export default function MobileCard({
 
 
     //set card expiration date / month
-    const [expiration, setExpiration] = useState('December Pass');
+    // const [expiration, setExpiration] = useState('December Pass');
 
     //for SWITCH (set card to/disable default status)
     const [defaultCard, setDefaultCard] = useState(false);
@@ -146,11 +152,11 @@ export default function MobileCard({
         return (
             <Container>
                 <CompassPlaceHolder />
-                <Expiration>{expiration}</Expiration>
-                <CompassCardBarcode
-                    source={require('../../../assets/mockupBarcode.png')}
-                />
-                <CompassCardNo>{BarcodeId}</CompassCardNo>
+                <Expiration>{cardType}</Expiration>
+                {/* <CompassCardBarcode
+                    source={require('#')}
+                /> */}
+                <CompassCardNo>{barcodeId}</CompassCardNo>
 
                 <CardFooter>
 
@@ -192,7 +198,7 @@ export default function MobileCard({
                     title='<'
                 />
                 <CompassPlaceHolder />
-                <Expiration>{expiration}</Expiration>
+                <Expiration>{cardType}</Expiration>
                 <SettingCont>
                     <SettingsContLeft>
                         <IconBack
@@ -269,6 +275,5 @@ const styles = StyleSheet.create({
         zIndex: 2,
         height: '30px',
         position: 'absolute',
-
     }
 })

@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
+import { MaterialIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const Container = styled.View`
     width: 375px;
-    height: 400px;
+    height: 600px;
     background-color: #fff;
     border-radius: 15px;
+    
+    /* border-color: red;
+    border-width: 2px; */
     
 `;
 
@@ -68,7 +73,8 @@ const TextColumn = styled.View`
 `;
 
 const SmallTitle = styled.Text`
-
+    font-size: 10px;
+    margin: 5px 0px;
 `;
 
 const Amount = styled.Text`
@@ -91,7 +97,7 @@ const Line = styled.View`
     width:70%;
     height:2px;
     background-color: #c4c4c4;
-    margin: 0px 20px 30px 50px;
+    margin: 0px 20px 15px 50px;
     align-self: flex-end;
 `;
 
@@ -106,19 +112,23 @@ const ButtonText = styled.Text`
 
 
 
-export default function TransferBalanceTab({
+export default function AddFundsTab({
     FromCardBalance = "$4.05",
     ToCardBalance = "$0.00",
-    TransferFundsVisability = () => { },
+    cardType = 'Pass',
+    loadAmount = '$10.00',
+    paymentType = 'Visa',
+    AddFundsVisability = () => { },
 }) {
+
 
     return (
         <Container>
             <Notch />
-            <Title>Transfer balance</Title>
+            <Title>Add money to Compass {cardType}</Title>
             <Divider />
 
-            {/* FROM this ticket: */}
+            {/* TO this ticket: */}
 
             <SettingCont>
                 <SettingsContLeft>
@@ -126,27 +136,66 @@ export default function TransferBalanceTab({
                         source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
                     />
                     <TextColumn>
-                        <SmallTitle>From this ticket</SmallTitle>
+                        <SmallTitle>My Ticket</SmallTitle>
                         <Amount>{FromCardBalance}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <Arrow
-                    source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                />
+                <AntDesign name="down" size={30} color="#222222" />
+
             </SettingCont>
 
             <Line />
 
-            {/* TO this ticket */}
+            {/* AMOUNT */}
 
             <SettingCont>
                 <SettingsContLeft>
                     <SmallCardIcon
-                        source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
+                        source={{ uri: '#', }}
                     />
                     <TextColumn>
-                        <SmallTitle>To this ticket</SmallTitle>
-                        <Amount>{ToCardBalance}</Amount>
+                        <SmallTitle>Amount</SmallTitle>
+                        <Amount>{loadAmount}</Amount>
+                    </TextColumn>
+                </SettingsContLeft>
+                <AntDesign name="down" size={30} color="#222222" />
+
+
+            </SettingCont>
+            <Line />
+
+            {/* PAYMENT */}
+
+            <SettingCont>
+                <SettingsContLeft>
+                    <SmallCardIcon
+                        source={{ uri: '#', }}
+                    />
+                    <TextColumn>
+                        <SmallTitle>Payment</SmallTitle>
+                        <Amount>{paymentType}</Amount>
+                    </TextColumn>
+                </SettingsContLeft>
+                <AntDesign name="down" size={30} color="#222222" />
+
+
+            </SettingCont>
+            <Line />
+
+            {/* AUTO RELOAD */}
+
+            {/* PAYMENT */}
+
+            <SettingCont
+                style={{ marginTop: 20 }}
+            >
+                <SettingsContLeft>
+                    <SmallCardIcon
+                        source={{ uri: '#', }}
+                    />
+                    <TextColumn>
+                        <Amount>Auto reload</Amount>
+                        <SmallTitle>$10 when balance is below $10</SmallTitle>
                     </TextColumn>
                 </SettingsContLeft>
                 <Arrow
@@ -154,12 +203,12 @@ export default function TransferBalanceTab({
                 />
 
             </SettingCont>
-            <Line />
+
             <TouchableOpacity
-                onPress={TransferFundsVisability}
+                onPress={AddFundsVisability}
                 style={styles.TransferButton}
             >
-                <ButtonText>Transfer {FromCardBalance}</ButtonText>
+                <ButtonText>Add {loadAmount}</ButtonText>
             </TouchableOpacity>
 
         </Container>
@@ -173,11 +222,14 @@ const styles = StyleSheet.create({
     TransferButton: {
         backgroundColor: '#009DDc',
         color: 'blue',
-        width: 220,
+        width: 150,
         height: 55,
         borderRadius: 50,
         alignSelf: 'flex-end',
         right: 15,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 50,
+
+
     }
 })
