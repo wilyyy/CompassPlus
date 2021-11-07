@@ -2,6 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
+// import MobileCard from './comps/CompassCardParent/CardManager';
+// import AddFundsTab from './comps/CompassCardParent/CardManager/AddFunds';
+// import TransferBalanceTab from './comps/CompassCardParent/TransferFunds';
+// import LinkCompassCard from './comps/LinkCompassCard';
+// import TripPlannerTab from './comps/TripPlannerTab';
+// import SignUpTransitCard from './comps/SignUpTransitCard';
+// import NotificationCard from './comps/Profile/notificationCard';
 
 // import MobileCard from './comps/CompassCardParent/cardManager';
 // import AddFundsTab from './comps/CompassCardParent/addFunds';

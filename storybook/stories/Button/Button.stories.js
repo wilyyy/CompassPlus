@@ -31,6 +31,8 @@ import PickDestinations from '../../../screens/SignUp/pickDestinations';
 import PasswordChange from '../../../comps/Profile/PasswordChange';
 import CompassCardScreen from '../../../screens/CompassCardScreen/mobileCard';
 import SignUpTransitCardScroll from '../../../comps/SignUp/signUpTransitCardScroll';
+import WhiteButton from '../../../comps/Global/whiteButton';
+import HomeCard from '../../../comps/Home/homeCard';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Comps', module)
@@ -53,6 +55,8 @@ storiesOf('Comps', module)
   .add('Sign Up - Transit Card Scroll', () => <SignUpTransitCardScroll />)
   .add('Transit Sign Up Card', () => <SignUpTransitCard />)
   .add('Trip Planner Tab', () => <TripPlannerTab />)
+  .add('White Button', () => <WhiteButton />)
+  .add('Home Card', () => <HomeCard />)
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   // .add('with text', () => (
