@@ -14,6 +14,8 @@ import BusProgressBar from '../../comps/SignUp/busProgressBar.js';
 import SignUpInput from '../../comps/SignUp/signUpInput.js';
 import SignUpTransitCardScroll from '../../comps/SignUp/signUpTransitCardScroll.js';
 
+import { Video, AVPlaybackStatus } from 'expo-av';
+
 //put bus on its own component ting, make position a prop and add a position absolute circle on the divider
 
 /* CHECKBOX ALGORITHM
@@ -128,6 +130,7 @@ const PickDestinations = () => {
 
     if(pageCounter === 0){
         return <Page>
+            <Video />
             <TopContainer>
                 <Skip>
                     <Text style={styles.text_bold_white}>Skip</Text>
