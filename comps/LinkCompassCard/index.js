@@ -23,12 +23,8 @@ const Header = styled.Text`
 
 export default function LinkCompassCard() {
 
-    /*idk was thinking of 
-    add a confirmation state screen on this card like 
-    "gratz ur card has been added" with a nice graphic
-    then a button that redirects user home or back
-    to compass screen
-    up to you
+    /*make this a modal
+    add close button, align-self: flex-end
     */
     
     const [confirmPage, setConfirmPage] = useState(false);
