@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
+import { MaterialIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+
 
 const Container = styled.View`
     width: 375px;
@@ -110,6 +113,8 @@ export default function TransferBalanceTab({
     FromCardBalance = "$4.05",
     ToCardBalance = "$0.00",
     TransferFundsVisability = () => { },
+    ActivateFromModal = () => { },
+    ActivateToModal = () => { }
 }) {
 
     return (
@@ -130,9 +135,7 @@ export default function TransferBalanceTab({
                         <Amount>{FromCardBalance}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <Arrow
-                    source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                />
+                <AntDesign name="down" size={30} color="#222222" />
             </SettingCont>
 
             <Line />
@@ -149,8 +152,8 @@ export default function TransferBalanceTab({
                         <Amount>{ToCardBalance}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <Arrow
-                    source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
+                <AntDesign name="down" size={30} color="#222222"
+                    onPress={ActivateToModal}
                 />
 
             </SettingCont>

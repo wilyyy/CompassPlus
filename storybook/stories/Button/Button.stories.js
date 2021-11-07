@@ -22,7 +22,13 @@ import ProfileScreen from '../../../comps/Profile/ProfileScreen';
 import ProfileCardUpdate from '../../../comps/Profile/ProfileCardUpdate';
 import NotificationPreferences from '../../../comps/Profile/NotificationPreferences';
 import BalanceHistoryCard from '../../../comps/BalanceHistory/BalanceHistoryCard';
+import TicketTab from '../../../comps/CompassCardParent/ticketSelTab';
+import AmountTab from '../../../comps/CompassCardParent/amountSelTab';
+import PaymentTab from '../../../comps/CompassCardParent/paymentSelTab';
+
+//SCREENS
 import PickDestinations from '../../../screens/SignUp/pickDestinations';
+import CompassCardScreen from '../../../screens/CompassCardScreen/mobileCard';
 import SignUpTransitCardScroll from '../../../comps/SignUp/signUpTransitCardScroll';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
@@ -37,6 +43,11 @@ storiesOf('Comps', module)
   .add('Profile Card', () => <ProfileCard />)
   .add('Notification Preferences', () => <NotificationPreferences />)
   .add('Balance History Card', () => <BalanceHistoryCard />)
+  .add('Ticket Tabs', () => <TicketTab />)
+  .add('Amount Tabs', () => <AmountTab />)
+  .add('Payment Tabs', () => <PaymentTab />)
+  .add('Pick Destinations', () => <PickDestinations />)
+  .add('Compass Card Screen', () => <CompassCardScreen />)
   .add('Sign Up - Transit Card Scroll', () => <SignUpTransitCardScroll />)
   .add('Transit Sign Up Card', () => <SignUpTransitCard />)
   .add('Trip Planner Tab', () => <TripPlannerTab />)
