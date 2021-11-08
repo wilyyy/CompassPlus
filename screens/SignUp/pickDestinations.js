@@ -1,11 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import styled from "styled-components/native";
-// import { Input } from 'react-native-elements';
-import { View, TextInput, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity } from 'react-native';
-import { Divider } from 'react-native-elements';
-import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, TextInput, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity, ImageBackground } from 'react-native';
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+} from '@expo-google-fonts/ubuntu';
+import AppLoading from 'expo-app-loading';
 
 import { COLORS } from '../../constants/styles.js';
 import SignUpCheckBox from '../../comps/SignUp/checkbox.js';
@@ -17,7 +25,7 @@ import SignUpTransitCardScroll from '../../comps/SignUp/signUpTransitCardScroll.
 import { Video, AVPlaybackStatus } from 'expo-av';
 
 //put bus on its own component ting, make position a prop and add a position absolute circle on the divider
-
+//back button
 /* CHECKBOX ALGORITHM
 4 return states for confirm select : home, school, work, other
 if corresponding checkbox selected = return appropriate screens
@@ -75,22 +83,24 @@ const Skip = styled.Pressable`
 `;
 
 const H1 = styled.Text`
-    font-size: 40px;
+    font-size: 38px;
+    font-family: 'Ubuntu_400Regular';
     text-align: center;
     color: #fff;
 `;
 
 const H2 = styled.Text`
     font-size: 24px;
+    font-family: 'Ubuntu_400Regular';
     color: #fff;
 `;
 
 const H3 = styled.Text`
     font-size: 18px;
+    font-family: 'Ubuntu_400Regular_Italic';
     color: #fff;
     position: relative;
     text-align: center;
-    font-style: italic;
 `;
 
 const ContinueButton = styled.TouchableOpacity`
@@ -117,6 +127,17 @@ const CheckboxCont = styled.View`
 `;
 
 const PickDestinations = () => {
+    let [fontsLoaded] = useFonts({
+        Ubuntu_300Light,
+        Ubuntu_300Light_Italic,
+        Ubuntu_400Regular,
+        Ubuntu_400Regular_Italic,
+        Ubuntu_500Medium,
+        Ubuntu_500Medium_Italic,
+        Ubuntu_700Bold,
+        Ubuntu_700Bold_Italic,
+    });
+
     const [pageCounter, setPageCounter] = useState(0);
 
     const IncrementCount = () => {
@@ -128,124 +149,138 @@ const PickDestinations = () => {
           }
     }
 
-    if(pageCounter === 0){
-        return <Page>
-            <Video />
-            <TopContainer>
-                <Skip>
-                    <Text style={styles.text_bold_white}>Skip</Text>
-                </Skip>
-                <BusProgressBar />
-            </TopContainer>
-            <Container>
-                <H1>Pick your transit destinations</H1>
-                <AllTheCheckboxes>
-                    <CheckboxCont>
-                        <SignUpCheckBox />
-                        <H2>Home</H2>
-                    </CheckboxCont>
-                    <CheckboxCont>
-                        <SignUpCheckBox />
-                        <H2>School</H2>
-                    </CheckboxCont>
-                    <CheckboxCont>
-                        <SignUpCheckBox />
-                        <H2>Work</H2>
-                    </CheckboxCont>
-                    <CheckboxCont>
-                        <SignUpCheckBox />
-                        <H2>Other</H2>
-                    </CheckboxCont>
-                </AllTheCheckboxes>
-                <ContinueButton onPress={IncrementCount}>
-                    <H2 style={styles.button_text}>Continue</H2>
-                </ContinueButton>
-            </Container>
-        </Page>
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    } else {
+        if(pageCounter === 0){
+            return <Page>
+                <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
+                    <TopContainer>
+                        <Skip>
+                            <Text style={styles.text_bold_white}>Skip</Text>
+                        </Skip>
+                        <BusProgressBar />
+                    </TopContainer>
+                    <Container>
+                        <H1>Pick your transit destinations</H1>
+                        <AllTheCheckboxes>
+                            <CheckboxCont>
+                                <SignUpCheckBox />
+                                <H2>Home</H2>
+                            </CheckboxCont>
+                            <CheckboxCont>
+                                <SignUpCheckBox />
+                                <H2>School</H2>
+                            </CheckboxCont>
+                            <CheckboxCont>
+                                <SignUpCheckBox />
+                                <H2>Work</H2>
+                            </CheckboxCont>
+                            <CheckboxCont>
+                                <SignUpCheckBox />
+                                <H2>Other</H2>
+                            </CheckboxCont>
+                        </AllTheCheckboxes>
+                        <ContinueButton onPress={IncrementCount}>
+                            <H2 style={styles.button_text}>Continue</H2>
+                        </ContinueButton>
+                    </Container>
+                </ImageBackground>
+            </Page>
+        }
+    
+        if(pageCounter === 1){
+            return <Page>
+                <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
+                    <TopContainer>
+                        <Skip>
+                            <Text style={styles.text_bold_white}>Skip</Text>
+                        </Skip>
+                        <BusProgressBar busPosition="22.5%" circlePosition="25%"/>
+                    </TopContainer>
+                    <Container>
+                        <H1 style={styles.text_down}>Where do you live?</H1>
+                        <SignUpInput />
+                        {/* add props and maybe think about putting these 3 in a scroll view */}
+                        <H3>Get home quick and safely! Here are some of the fastest ways home!</H3>
+                        <SignUpTransitCardScroll />
+                        <ContinueButton onPress={IncrementCount}>
+                            <H2 style={styles.button_text}>Continue</H2>
+                        </ContinueButton>
+                    </Container>
+                </ImageBackground>
+            </Page>
+        }
+    
+        if(pageCounter === 2){
+            return <Page>
+                <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
+                    <TopContainer>
+                        <Skip>
+                            <Text style={styles.text_bold_white}>Skip</Text>
+                        </Skip>
+                        <BusProgressBar busPosition="45%" circlePosition="47.5%"/>
+                    </TopContainer>
+                    <Container>
+                        <H1 style={styles.text_down}>Where is school?</H1>
+                        <SignUpInput />
+                        {/* add props and maybe think about putting these 3 in a scroll view */}
+                        <H3>Don’t be late to class! Catch the fastest rides to school below!</H3>
+                        <SignUpTransitCardScroll />
+                        <ContinueButton onPress={IncrementCount}>
+                            <H2 style={styles.button_text}>Continue</H2>
+                        </ContinueButton>
+                    </Container>
+                </ImageBackground>
+            </Page>
+        }
+    
+        if(pageCounter === 3){
+            return <Page>
+                <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
+                    <TopContainer>
+                        <Skip>
+                            <Text style={styles.text_bold_white}>Skip</Text>
+                        </Skip>
+                        <BusProgressBar busPosition="67.5%" circlePosition="70%"/>
+                    </TopContainer>
+                    <Container>
+                        <H1 style={styles.text_down}>Where do you work?</H1>
+                        <SignUpInput />
+                        {/* add props and maybe think about putting these 3 in a scroll view */}
+                        <H3>Punch in to work on time! Catch these rides to help you get there faster!</H3>
+                        <SignUpTransitCardScroll />
+                        <ContinueButton onPress={IncrementCount}>
+                            <H2 style={styles.button_text}>Continue</H2>
+                        </ContinueButton>
+                    </Container>
+                </ImageBackground>
+            </Page>
+        }
+    
+        if(pageCounter === 4){
+            return <Page>
+                <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
+                    <TopContainer>
+                        <Skip>
+                            <Text style={styles.text_bold_white}>Skip</Text>
+                        </Skip>
+                        <BusProgressBar busPosition="90%" circlePosition="93%"/>
+                    </TopContainer>
+                    <Container>
+                        <H1 style={styles.text_down}>Another place to go?</H1>
+                        <SignUpInput />
+                        <H3>Time is money! Get there faster using these rides below!</H3>
+                        <SignUpTransitCardScroll />
+                        <ContinueButton onPress={IncrementCount}>
+                            <H2 style={styles.button_text}>Continue</H2>
+                        </ContinueButton>
+                    </Container>
+                </ImageBackground>
+            </Page>
+        }
     }
-
-    if(pageCounter === 1){
-        return <Page>
-            <TopContainer>
-                <Skip>
-                    <Text style={styles.text_bold_white}>Skip</Text>
-                </Skip>
-                <BusProgressBar busPosition="22.5%" circlePosition="25%"/>
-            </TopContainer>
-            <Container>
-                <H1 style={styles.text_down}>Where do you live?</H1>
-                <SignUpInput />
-                {/* add props and maybe think about putting these 3 in a scroll view */}
-                <H3>Get home quick and safely! Here are some of the fastest ways home!</H3>
-                <SignUpTransitCardScroll />
-                <ContinueButton onPress={IncrementCount}>
-                    <H2 style={styles.button_text}>Continue</H2>
-                </ContinueButton>
-            </Container>
-        </Page>
-    }
-
-    if(pageCounter === 2){
-        return <Page>
-            <TopContainer>
-                <Skip>
-                    <Text style={styles.text_bold_white}>Skip</Text>
-                </Skip>
-                <BusProgressBar busPosition="45%" circlePosition="47.5%"/>
-            </TopContainer>
-            <Container>
-                <H1 style={styles.text_down}>Where is school?</H1>
-                <SignUpInput />
-                {/* add props and maybe think about putting these 3 in a scroll view */}
-                <H3>Don’t be late to class! Catch the fastest rides to school below!</H3>
-                <SignUpTransitCardScroll />
-                <ContinueButton onPress={IncrementCount}>
-                    <H2 style={styles.button_text}>Continue</H2>
-                </ContinueButton>
-            </Container>
-        </Page>
-    }
-
-    if(pageCounter === 3){
-        return <Page>
-            <TopContainer>
-                <Skip>
-                    <Text style={styles.text_bold_white}>Skip</Text>
-                </Skip>
-                <BusProgressBar busPosition="67.5%" circlePosition="70%"/>
-            </TopContainer>
-            <Container>
-                <H1 style={styles.text_down}>Where do you work?</H1>
-                <SignUpInput />
-                {/* add props and maybe think about putting these 3 in a scroll view */}
-                <H3>Punch in to work on time! Catch these rides to help you get there faster!</H3>
-                <SignUpTransitCardScroll />
-                <ContinueButton onPress={IncrementCount}>
-                    <H2 style={styles.button_text}>Continue</H2>
-                </ContinueButton>
-            </Container>
-        </Page>
-    }
-
-    if(pageCounter === 4){
-        return <Page>
-            <TopContainer>
-                <Skip>
-                    <Text style={styles.text_bold_white}>Skip</Text>
-                </Skip>
-                <BusProgressBar busPosition="90%" circlePosition="93%"/>
-            </TopContainer>
-            <Container>
-                <H1 style={styles.text_down}>Another place to go?</H1>
-                <SignUpInput />
-                <H3>Time is money! Get there faster using these rides below!</H3>
-                <SignUpTransitCardScroll />
-                <ContinueButton onPress={IncrementCount}>
-                    <H2 style={styles.button_text}>Continue</H2>
-                </ContinueButton>
-            </Container>
-        </Page>
-    }
+    
     
 }
 
@@ -258,10 +293,16 @@ const styles = StyleSheet.create({
     },
     button_text:{
         fontWeight: 'bold',
-        color: COLORS.CAROLINABLUE
+        color: COLORS.CAROLINABLUE,
+        fontFamily: 'Ubuntu_700Bold'
     },
     text_down: {
         position: 'relative',
         top: 30
+    },
+    image: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: windowWidth
     }
 });
