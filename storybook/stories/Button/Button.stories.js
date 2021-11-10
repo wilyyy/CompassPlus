@@ -25,6 +25,7 @@ import BalanceHistoryCard from '../../../comps/BalanceHistory/BalanceHistoryCard
 import TicketTab from '../../../comps/CompassCardParent/ticketSelTab';
 import AmountTab from '../../../comps/CompassCardParent/amountSelTab';
 import PaymentTab from '../../../comps/CompassCardParent/paymentSelTab';
+import HomeCompassCard from '../../../comps/Home/homeCompassCard';
 
 //SCREENS
 import PickDestinations from '../../../screens/SignUp/pickDestinations';
@@ -33,6 +34,8 @@ import CompassCardScreen from '../../../screens/CompassCardScreen/mobileCard';
 import SignUpTransitCardScroll from '../../../comps/SignUp/signUpTransitCardScroll';
 import WhiteButton from '../../../comps/Global/whiteButton';
 import HomeCard from '../../../comps/Home/homeCard';
+import MapHomeScreen from '../../../screens/TripPlanner/mapHome';
+import HomeScreen  from '../../../screens/Home/home';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Comps', module)
@@ -56,6 +59,7 @@ storiesOf('Comps', module)
   .add('Trip Planner Tab', () => <TripPlannerTab />)
   .add('White Button', () => <WhiteButton />)
   .add('Home Card', () => <HomeCard />)
+  .add('Home Compass Card Container', () => <HomeCompassCard />)
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   // .add('with text', () => (
@@ -75,5 +79,7 @@ storiesOf('Screens', module)
   .add('Profile Screen', () => <ProfileScreen />)
   .add('Pick Destinations', () => <PickDestinations />)
   .add('Compass Card Screen', () => <CompassCardScreen />)
+  .add('TripPlanner - Map Home', () => <MapHomeScreen />)
+  .add('Home Screen', () => <HomeScreen />)
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)

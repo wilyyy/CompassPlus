@@ -111,13 +111,13 @@ export default function SignUpTransitCard({
     } else {
         return <SafeAreaView>
             <TransitCardCont>
-                <Trapezoid bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.DAVYSGREY}>
+                <Trapezoid bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.SPACECADET}>
                     <Icon name={icon} type={icon_type} size={10} color="#fff" />
                     <Text style={styles.type_of_ride}>{typeOfRideText}</Text>
                 </Trapezoid>
-                <TransitCard bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.DAVYSGREY}>
+                <TransitCard bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.SPACECADET}>
                     <RouteIconCont>
-                        <RouteH1 h1color={greenCard ? COLORS.LIMEGREEN : COLORS.DAVYSGREY}>{routeIconText}</RouteH1>
+                        <RouteH1 h1color={greenCard ? COLORS.LIMEGREEN : COLORS.SPACECADET}>{routeIconText}</RouteH1>
                     </RouteIconCont>
                     <RouteInfo>
                         <Text style={styles.text_bold}>{stopNameText}</Text>
