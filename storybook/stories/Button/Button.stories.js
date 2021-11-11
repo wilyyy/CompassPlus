@@ -36,6 +36,7 @@ import WhiteButton from '../../../comps/Global/whiteButton';
 import HomeCard from '../../../comps/Home/homeCard';
 import MapHomeScreen from '../../../screens/TripPlanner/mapHome';
 import HomeScreen  from '../../../screens/Home/home';
+import LoginPage  from '../../../screens/LoginScreen/loginScreen';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Comps', module)
@@ -81,5 +82,7 @@ storiesOf('Screens', module)
   .add('Compass Card Screen', () => <CompassCardScreen />)
   .add('TripPlanner - Map Home', () => <MapHomeScreen />)
   .add('Home Screen', () => <HomeScreen />)
+  .add('Login Screen', () => <LoginPage />)
+  
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
