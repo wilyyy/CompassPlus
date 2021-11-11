@@ -4,10 +4,12 @@ import { Tab, ThemeProvider } from 'react-native-elements';
 import { SafeAreaView, ScrollView, StyleSheet, Text } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import RideIcon from "./rideIcon";
+
 
 //started, finish later
 
-const RideCardCont = styled.View`
+const Container = styled.View`
     width: 100%;
     height: 190px;
     flex-direction: column;
@@ -21,82 +23,27 @@ const DisplayCard = styled.View`
     background-color: #009DDC;
 `;
 
-const DisplayItemCont = styled.View`
-    width: 102px;
-    height: 37px;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 10px;
-`;
+const TripPlannerTab = () => {
 
-const DisplayIcon = styled.View`
-    width: 73px;
-    height: 73px;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 16px;
-
-`;
-
-const RideText = styled.Text`
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    text-align: center;
-`;
-
-export default function TripPlannerTab() {
-
-    return <ThemeProvider>
-            <RideCardCont>
-                <Tab>
-                    <Tab.Item title="Nearby Rides" />
-                    <Tab.Item title="Shared Rides" />
-                </Tab>
-                <DisplayCard>
-                    <ScrollView style={styles.scrollview} horizontal={true}>
-                        <DisplayItemCont>
-                            <DisplayIcon>
-                                <Icon name="bus" size={35} color="#23A6F0" />
-                            </DisplayIcon>
-                            <RideText>019</RideText>
-                            <RideText>Metrotown</RideText>
-                        </DisplayItemCont>
-                        <DisplayItemCont>
-                            <DisplayIcon>
-                                <Icon name="bus" size={35} color="#23A6F0" />
-                            </DisplayIcon>
-                            <RideText>019</RideText>
-                            <RideText>Metrotown</RideText>
-                        </DisplayItemCont>
-                        <DisplayItemCont>
-                            <DisplayIcon>
-                                <Icon name="bus" size={35} color="#23A6F0" />
-                            </DisplayIcon>
-                            <RideText>019</RideText>
-                            <RideText>Metrotown</RideText>
-                        </DisplayItemCont>
-                        <DisplayItemCont>
-                            <DisplayIcon>
-                                <Icon name="bus" size={35} color="#23A6F0" />
-                            </DisplayIcon>
-                            <RideText>019</RideText>
-                            <RideText>Metrotown</RideText>
-                        </DisplayItemCont>
-                        <DisplayItemCont>
-                            <DisplayIcon>
-                                <Icon name="bus" size={35} color="#23A6F0" />
-                            </DisplayIcon>
-                            <RideText>019</RideText>
-                            <RideText>Metrotown</RideText>
-                        </DisplayItemCont>
-                    </ScrollView>
-                </DisplayCard>
-            </RideCardCont>
-        </ThemeProvider>
+    return (
+        <Container>
+            <DisplayCard>
+                <ScrollView style={styles.scrollview} horizontal={true}>
+                <RideIcon />
+                <RideIcon icon="train" ride_text="Broadway City Hall" />
+                <RideIcon icon="boat" ride_text="Lonsdale Quay" icon_type="ionicon"/>
+                <RideIcon />
+                <RideIcon />
+                <RideIcon />
+                <RideIcon />
+                <RideIcon />
+                </ScrollView>
+            </DisplayCard>
+        </Container>
+    );
 }
+
+export default TripPlannerTab;
 
 const styles = StyleSheet.create({
     scrollview: {
