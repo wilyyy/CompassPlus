@@ -14,6 +14,7 @@
     "@expo-google-fonts/inter": "^0.2.0",
     "@expo-google-fonts/ubuntu": "^0.2.0",
     "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
     "@ui-kitten/components": "^5.1.1",
     "axios": "^0.24.0",
     "expo": "~42.0.1",
