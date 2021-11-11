@@ -39,6 +39,7 @@ const Container = styled.View`
 const TextCont = styled.View`
     width: 300px;
     height: 120px;
+    justify-content: space-between;
 `;
 
 const ButtonCont = styled.View`
@@ -48,7 +49,7 @@ const ButtonCont = styled.View`
 `;
 const H1 = styled.Text`
     font-family: 'Ubuntu_400Regular';
-    font-size: 50px;
+    font-size: 40px;
     color: #fff;
     align-self: flex-start;
 `;
@@ -79,7 +80,7 @@ const LoginPage = () => {
     return <Page>
         <Container>
             <H1>
-                Welcome to <Text styles={styles.bigtext}>CompassPlus</Text>
+                Welcome to <Text style={styles.text_bold}>CompassPlus</Text>
             </H1>
             <TextCont>
             <TextInput
@@ -91,6 +92,8 @@ const LoginPage = () => {
                 style={styles.text_input}
                 placeholderTextColor="616161"
                 placeholder="Password ..."
+                secureTextEntry={true}
+                autoCorrect={false}
             />
             </TextCont>
             <ButtonCont>
@@ -105,16 +108,17 @@ export default LoginPage;
 
 const styles = StyleSheet.create({
     text_input: {
-        height: 40,
+        height: 55,
         width: 300,
         borderWidth: 2,
         borderColor: '#009DDC',
+        backgroundColor: 'white',
         borderRadius: 8,
         padding: 16,
-        margin: 10,
         fontSize: 20
     },
-    bigtext: {
+    text_bold: {
+        color: '#fff',
         fontFamily: 'Ubuntu_500Medium',
         fontSize: 48
     }
