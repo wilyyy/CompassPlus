@@ -5,10 +5,10 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
 const Container = styled.View`
-    width: 375px;
+    width: 390px;
     height: 600px;
     background-color: #fff;
-    border-radius: 15px;
+    border-radius: 30px;
     
     /* border-color: red;
     border-width: 2px; */

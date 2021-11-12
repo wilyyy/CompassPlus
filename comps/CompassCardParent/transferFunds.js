@@ -6,10 +6,10 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 const Container = styled.View`
-    width: 375px;
-    height: 400px;
+    width: 390px;
+    height: 500px;
     background-color: #fff;
-    border-radius: 15px;
+    border-radius: 30px;
     
 `;
 
@@ -114,7 +114,8 @@ export default function TransferBalanceTab({
     ToCardBalance = "$0.00",
     TransferFundsVisability = () => { },
     ActivateFromModal = () => { },
-    ActivateToModal = () => { }
+    ActivateToModal = () => { },
+    TransferAction = () => { },
 }) {
 
     return (
@@ -162,7 +163,7 @@ export default function TransferBalanceTab({
                 onPress={TransferFundsVisability}
                 style={styles.TransferButton}
             >
-                <ButtonText>Transfer {FromCardBalance}</ButtonText>
+                <ButtonText onPress={TransferAction}>Transfer {FromCardBalance}</ButtonText>
             </TouchableOpacity>
 
         </Container>
