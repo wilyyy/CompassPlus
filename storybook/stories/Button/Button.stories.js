@@ -7,13 +7,17 @@ import Button from '.';
 import CenterView from '../CenterView';
 
 //IMPORT COMPS FIRST
-import LinkCompassCard from '../../../comps/LinkCompassCard';
+import LinkCompassCard from '../../../comps/Home/linkCompassCard';
 import SignUpTransitCard from '../../../comps/SignUp/signUpTransitCard';
 import TripPlannerTab from '../../../comps/TripPlanner/tripPlannerTab';
 
 import MobileCard from '../../../comps/CompassCardParent/cardManager';
 import AddFundsTab from '../../../comps/CompassCardParent/addFunds';
 import TransferBalanceTab from '../../../comps/CompassCardParent/transferFunds';
+import AutoReloadTab from '../../../comps/CompassCardParent/autoReload';
+import MergeTab from '../../../comps/CompassCardParent/mergeCards';
+import DeleteCard from '../../../comps/CompassCardParent/deleteCard';
+import AddCardManager from '../../../comps/CompassCardParent/addCardManager';
 
 import NotificationCard from '../../../comps/Profile/notificationCard';
 import SupportCard from '../../../comps/Profile/supportCard';
@@ -25,6 +29,9 @@ import BalanceHistoryCard from '../../../comps/BalanceHistory/BalanceHistoryCard
 import TicketTab from '../../../comps/CompassCardParent/ticketSelTab';
 import AmountTab from '../../../comps/CompassCardParent/amountSelTab';
 import PaymentTab from '../../../comps/CompassCardParent/paymentSelTab';
+import HomeCompassCard from '../../../comps/Home/homeCompassCard';
+import SavedRidesIcon from '../../../comps/Home/savedRidesIcon';
+import SavedRidesScroll from '../../../comps/Home/savedRidesScroll';
 
 //SCREENS
 import PickDestinations from '../../../screens/SignUp/pickDestinations';
@@ -33,7 +40,11 @@ import CompassCardScreen from '../../../screens/CompassCardScreen/mobileCard';
 import SignUpTransitCardScroll from '../../../comps/SignUp/signUpTransitCardScroll';
 import WhiteButton from '../../../comps/Global/whiteButton';
 import HomeCard from '../../../comps/Home/homeCard';
-import BalanceContainer from '../../../comps/Home/balanceContainer'
+import BalanceContainer from '../../../comps/Home/balanceContainer';
+import MapHomeScreen from '../../../screens/TripPlanner/mapHome';
+import HomeScreen from '../../../screens/Home/home';
+import CardSwipeTest from '../../../screens/testSwipe';
+import LoginPage  from '../../../screens/LoginScreen/loginScreen';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Comps', module)
@@ -42,6 +53,10 @@ storiesOf('Comps', module)
   .add('Mobile Card', () => <MobileCard />)
   .add('Add Funds Tab', () => <AddFundsTab />)
   .add('Transfer Balance Tab', () => <TransferBalanceTab />)
+  .add('AutoReload Tab', () => <AutoReloadTab />)
+  .add('Merge Cards Tab', () => <MergeTab />)
+  .add('Delete Card', () => <DeleteCard />)
+  .add('Add Card Manager', () => <AddCardManager />)
   .add('Notification Card', () => <NotificationCard />)
   .add('Support Card', () => <SupportCard />)
   .add('Profile Card', () => <ProfileCard />)
@@ -52,30 +67,40 @@ storiesOf('Comps', module)
   .add('Payment Tabs', () => <PaymentTab />)
   .add('Pick Destinations', () => <PickDestinations />)
   .add('Change Password', () => <PasswordChange />)
-  .add('Compass Card Screen', () => <CompassCardScreen />)
   .add('Sign Up - Transit Card Scroll', () => <SignUpTransitCardScroll />)
   .add('Transit Sign Up Card', () => <SignUpTransitCard />)
   .add('Trip Planner Tab', () => <TripPlannerTab />)
   .add('White Button', () => <WhiteButton />)
   .add('Home Card', () => <HomeCard />)
   .add('Button Container', () => <BalanceContainer />)
+  .add('Home Compass Card Container', () => <HomeCompassCard />)
+  .add('Home - Saved Rides Icon', () => <SavedRidesIcon />)
+  .add('Home - Saved Rides Scroll', () => <SavedRidesScroll />)
+
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  // .add('with text', () => (
-  //   <Button onPress={action('clicked-text')}>
-  //     <Text>{text('Button text', 'Hello Button')}</Text>
-  //   </Button>
-  // ))
-  // .add('with some emoji', () => (
-  //   <Button onPress={action('clicked-emoji')}>
-  //     <Text>😀 😎 👍 💯</Text>
-  //   </Button>
-  // ));
+// .add('with text', () => (
+//   <Button onPress={action('clicked-text')}>
+//     <Text>{text('Button text', 'Hello Button')}</Text>
+//   </Button>
+// ))
+// .add('with some emoji', () => (
+//   <Button onPress={action('clicked-emoji')}>
+//     <Text>😀 😎 👍 💯</Text>
+//   </Button>
+// ));
 
 storiesOf('Screens', module)
   //USUALLY GOES .add('label', () => <Comp />)
   .add('Profile Card Update', () => <ProfileCardUpdate />)
   .add('Profile Screen', () => <ProfileScreen />)
   .add('Pick Destinations', () => <PickDestinations />)
+  .add('Compass Card Screen', () => <CompassCardScreen />)
+  .add('TripPlanner - Map Home', () => <MapHomeScreen />)
+  .add('Home Screen', () => <HomeScreen />)
+  .add('Test Card Swipe', () => <CardSwipeTest />)
+  .add('Login Screen', () => <LoginPage />)
+  
+
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)

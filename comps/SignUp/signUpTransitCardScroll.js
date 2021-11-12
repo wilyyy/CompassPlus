@@ -10,7 +10,7 @@ const Container = styled.View`
     padding: 5px 10px 0px 10px;
     justify-content: space-between;
     align-items: center;
-    background-color: #0069A4;
+    background-color: rgba(0, 105, 164, 0.65);
     border-radius: 10px;
 `;
 
@@ -34,7 +34,6 @@ export default SignUpTransitCardScroll;
 
 const styles = StyleSheet.create({
     scrollView: {
-        backgroundColor: 'pink',
-        marginHorizontal: 20,
+        marginHorizontal: 20
     }    
 });

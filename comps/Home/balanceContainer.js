@@ -59,3 +59,4 @@ const BalanceText = styled.Text`
     font-size: 30px;
     font-weight: 700;
 `
+
