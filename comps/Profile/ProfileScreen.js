@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
 import NotificationCard from './NotificationCard';
-import ProfileCard from './ProfileCard';
+import ProfileCard from './profileCard';
 import SupportCard from './SupportCard';
 
 

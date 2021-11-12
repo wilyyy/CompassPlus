@@ -5,6 +5,19 @@ import { Icon } from 'react-native-elements';
 import { COLORS } from '../../constants/styles.js';
 import { position } from "polished";
 
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+} from '@expo-google-fonts/ubuntu';
+import AppLoading from 'expo-app-loading';
+
 // Play with animations and make 
 // it so it turns from grey to green but faded in over 0.5s
 // after heart is clicked
@@ -12,6 +25,7 @@ import { position } from "polished";
 const TransitCardCont = styled.View`
     width: 303px;
     height: 105px;
+    margin-bottom: 25px;
 `;
 
 const Trapezoid = styled.View`
@@ -47,6 +61,7 @@ const RouteH1 = styled.Text`
     color: ${props=>props.h1color};
     font-size: 24px;
     font-weight: bold;
+    font-family: 'Ubuntu_700Bold';
 `;
 
 const RouteInfo = styled.View`
@@ -70,6 +85,16 @@ export default function SignUpTransitCard({
     stopNameText = "Metrotown Stn",
     locationText = "Eastbound W Pender @ Nicola St"
 }) {
+    let [fontsLoaded] = useFonts({
+        Ubuntu_300Light,
+        Ubuntu_300Light_Italic,
+        Ubuntu_400Regular,
+        Ubuntu_400Regular_Italic,
+        Ubuntu_500Medium,
+        Ubuntu_500Medium_Italic,
+        Ubuntu_700Bold,
+        Ubuntu_700Bold_Italic,
+    });
 
     const [fillHeart, setFillHeart] = useState(false);
     const ToggleFillHeart = () => setFillHeart(previousState => !previousState);
@@ -81,39 +106,44 @@ export default function SignUpTransitCard({
         ToggleGreenCard();
     }
     
-    return <SafeAreaView>
-        <TransitCardCont>
-            <Trapezoid bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.DAVYSGREY}>
-                <Icon name={icon} type={icon_type} size={10} color="#fff" />
-                <Text style={styles.type_of_ride}>{typeOfRideText}</Text>
-            </Trapezoid>
-            <TransitCard bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.DAVYSGREY}>
-                <RouteIconCont>
-                    <RouteH1 h1color={greenCard ? COLORS.LIMEGREEN : COLORS.DAVYSGREY}>{routeIconText}</RouteH1>
-                </RouteIconCont>
-                <RouteInfo>
-                    <Text style={styles.text_bold}>{stopNameText}</Text>
-                    <Text style={styles.text_regular}>{locationText}</Text>
-                </RouteInfo>
-                <SaveRouteButton onPress={PressHeart}>
-                    <Icon name={fillHeart ? "heart" : "heart-o"} type="font-awesome" size={40} color="#fff" />
-                </SaveRouteButton>
-            </TransitCard>
-        </TransitCardCont>
-    </SafeAreaView>
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    } else {
+        return <SafeAreaView>
+            <TransitCardCont>
+                <Trapezoid bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.SPACECADET}>
+                    <Icon name={icon} type={icon_type} size={10} color="#fff" />
+                    <Text style={styles.type_of_ride}>{typeOfRideText}</Text>
+                </Trapezoid>
+                <TransitCard bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.SPACECADET}>
+                    <RouteIconCont>
+                        <RouteH1 h1color={greenCard ? COLORS.LIMEGREEN : COLORS.SPACECADET}>{routeIconText}</RouteH1>
+                    </RouteIconCont>
+                    <RouteInfo>
+                        <Text style={styles.text_bold}>{stopNameText}</Text>
+                        <Text style={styles.text_regular}>{locationText}</Text>
+                    </RouteInfo>
+                    <SaveRouteButton onPress={PressHeart}>
+                        <Icon name={fillHeart ? "heart" : "heart-o"} type="font-awesome" size={40} color="#fff" />
+                    </SaveRouteButton>
+                </TransitCard>
+            </TransitCardCont>
+        </SafeAreaView>
+    }
 }
 
 const styles = StyleSheet.create({
     text_bold: {
         color: '#fff',
-        fontWeight: 'bold'
+        fontFamily: 'Ubuntu_700Bold'
     },
     type_of_ride: {
         color: '#fff',
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu_700Bold',
         marginRight: 5
     },
     text_regular: {
-        color: '#fff'
+        color: '#fff',
+        fontFamily: 'Ubuntu_400Regular'
     }
 });
