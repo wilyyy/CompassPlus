@@ -40,6 +40,7 @@ import CompassCardScreen from '../../../screens/CompassCardScreen/mobileCard';
 import SignUpTransitCardScroll from '../../../comps/SignUp/signUpTransitCardScroll';
 import WhiteButton from '../../../comps/Global/whiteButton';
 import HomeCard from '../../../comps/Home/homeCard';
+import BalanceContainer from '../../../comps/Home/balanceContainer';
 import MapHomeScreen from '../../../screens/TripPlanner/mapHome';
 import HomeScreen from '../../../screens/Home/home';
 import CardSwipeTest from '../../../screens/testSwipe';
@@ -71,6 +72,7 @@ storiesOf('Comps', module)
   .add('Trip Planner Tab', () => <TripPlannerTab />)
   .add('White Button', () => <WhiteButton />)
   .add('Home Card', () => <HomeCard />)
+  .add('Button Container', () => <BalanceContainer />)
   .add('Home Compass Card Container', () => <HomeCompassCard />)
   .add('Home - Saved Rides Icon', () => <SavedRidesIcon />)
   .add('Home - Saved Rides Scroll', () => <SavedRidesScroll />)
