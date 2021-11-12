@@ -45,6 +45,7 @@ import MapHomeScreen from '../../../screens/TripPlanner/mapHome';
 import HomeScreen from '../../../screens/Home/home';
 import CardSwipeTest from '../../../screens/testSwipe';
 import LoginPage  from '../../../screens/LoginScreen/loginScreen';
+import CreateAccount from '../../../screens/CreateAccount/createAccount';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Comps', module)
@@ -100,6 +101,7 @@ storiesOf('Screens', module)
   .add('Home Screen', () => <HomeScreen />)
   .add('Test Card Swipe', () => <CardSwipeTest />)
   .add('Login Screen', () => <LoginPage />)
+  .add('Create Account', () => <CreateAccount />)
   
 
 
