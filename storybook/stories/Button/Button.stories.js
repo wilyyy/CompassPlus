@@ -14,6 +14,10 @@ import TripPlannerTab from '../../../comps/TripPlanner/tripPlannerTab';
 import MobileCard from '../../../comps/CompassCardParent/cardManager';
 import AddFundsTab from '../../../comps/CompassCardParent/addFunds';
 import TransferBalanceTab from '../../../comps/CompassCardParent/transferFunds';
+import AutoReloadTab from '../../../comps/CompassCardParent/autoReload';
+import MergeTab from '../../../comps/CompassCardParent/mergeCards';
+import DeleteCard from '../../../comps/CompassCardParent/deleteCard';
+import AddCardManager from '../../../comps/CompassCardParent/addCardManager';
 
 import NotificationCard from '../../../comps/Profile/notificationCard';
 import SupportCard from '../../../comps/Profile/supportCard';
@@ -35,7 +39,8 @@ import SignUpTransitCardScroll from '../../../comps/SignUp/signUpTransitCardScro
 import WhiteButton from '../../../comps/Global/whiteButton';
 import HomeCard from '../../../comps/Home/homeCard';
 import MapHomeScreen from '../../../screens/TripPlanner/mapHome';
-import HomeScreen  from '../../../screens/Home/home';
+=import HomeScreen from '../../../screens/Home/home';
+import CardSwipeTest from '../../../screens/testSwipe';
 import LoginPage  from '../../../screens/LoginScreen/loginScreen';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
@@ -45,6 +50,10 @@ storiesOf('Comps', module)
   .add('Mobile Card', () => <MobileCard />)
   .add('Add Funds Tab', () => <AddFundsTab />)
   .add('Transfer Balance Tab', () => <TransferBalanceTab />)
+  .add('AutoReload Tab', () => <AutoReloadTab />)
+  .add('Merge Cards Tab', () => <MergeTab />)
+  .add('Delete Card', () => <DeleteCard />)
+  .add('Add Card Manager', () => <AddCardManager />)
   .add('Notification Card', () => <NotificationCard />)
   .add('Support Card', () => <SupportCard />)
   .add('Profile Card', () => <ProfileCard />)
@@ -62,17 +71,18 @@ storiesOf('Comps', module)
   .add('Home Card', () => <HomeCard />)
   .add('Home Compass Card Container', () => <HomeCompassCard />)
 
+
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  // .add('with text', () => (
-  //   <Button onPress={action('clicked-text')}>
-  //     <Text>{text('Button text', 'Hello Button')}</Text>
-  //   </Button>
-  // ))
-  // .add('with some emoji', () => (
-  //   <Button onPress={action('clicked-emoji')}>
-  //     <Text>😀 😎 👍 💯</Text>
-  //   </Button>
-  // ));
+// .add('with text', () => (
+//   <Button onPress={action('clicked-text')}>
+//     <Text>{text('Button text', 'Hello Button')}</Text>
+//   </Button>
+// ))
+// .add('with some emoji', () => (
+//   <Button onPress={action('clicked-emoji')}>
+//     <Text>😀 😎 👍 💯</Text>
+//   </Button>
+// ));
 
 storiesOf('Screens', module)
   //USUALLY GOES .add('label', () => <Comp />)
@@ -82,7 +92,9 @@ storiesOf('Screens', module)
   .add('Compass Card Screen', () => <CompassCardScreen />)
   .add('TripPlanner - Map Home', () => <MapHomeScreen />)
   .add('Home Screen', () => <HomeScreen />)
+  .add('Test Card Swipe', () => <CardSwipeTest />)
   .add('Login Screen', () => <LoginPage />)
   
+
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
