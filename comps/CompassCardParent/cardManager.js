@@ -12,7 +12,6 @@ const Container = styled.View`
     margin: 100px 15px 0px 25px;
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
-
 const CompassPlaceHolder = styled.View`
     width: 350px;
     height: 215px;
@@ -21,7 +20,6 @@ const CompassPlaceHolder = styled.View`
     align-self: center;
     background-color: ${COLORS.CAROLINABLUE};
 `;
-
 const Expiration = styled.Text`
     font-size: 18px;
     color: #222222;
@@ -44,7 +42,6 @@ const SettingCont = styled.View`
     padding: 5px 15px;
     
 `;
-
 const SettingsContLeft = styled.View`
     flex-direction: row;
     justify-content: space-between;
@@ -53,15 +50,12 @@ const SettingsContLeft = styled.View`
     /* border-width: 2px;
     border-color: blue; */
 `;
-
 const MenuItem = styled.Text`
     font-size: 18px;
     color: #222222;
     margin: 0px 5px;
     left: -50px;
 `;
-
-
 const IconBack = styled.Image`
     width:50px;
     height:50px;
@@ -69,7 +63,6 @@ const IconBack = styled.Image`
 `;
 
 // start - items for card front
-
 const CompassCardBarcode = styled.Image`
 width:90%;
 height:100px;
@@ -81,12 +74,10 @@ border-radius: 15px;
 /* border-color: red;
 border-width: 2px; */
 `;
-
 const CompassCardNo = styled.Text`
     font-size: 10px;
     align-self: center;
 `;
-
 const CardFooter = styled.View`
     align-self: center;
     justify-content: space-around;
@@ -94,7 +85,6 @@ const CardFooter = styled.View`
     padding: 65px 0px 0px 0px;
     flex-direction: row;
 `;
-
 const IconsFrontCont = styled.View`
     width: auto;
     align-items: center;
@@ -102,14 +92,11 @@ const IconsFrontCont = styled.View`
     /* border-width: 2px;
     border-color:green; */
 `;
-
-
 const IconFront = styled.Image`
     width:50px;
     height:50px;
     margin: 5px;
 `;
-
 // end - items for card front
 
 
@@ -126,13 +113,11 @@ export default function MobileCard({
     onAddFundsPress = () => { }
 }) {
 
-
+    //to manage toggling between front and back of card
     const [cardSide, setCardSide] = useState(true)
-
     const goManage = () => {
         setCardSide(false);
     }
-
     const goCardFront = () => {
         setCardSide(true);
     }
@@ -259,9 +244,6 @@ export default function MobileCard({
                         </SettingsContLeft>
                     </TouchableWithoutFeedback>
                 </SettingCont>
-
-
-
             </Container>
 
         );

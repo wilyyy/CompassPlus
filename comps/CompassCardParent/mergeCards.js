@@ -112,23 +112,20 @@ const ButtonText = styled.Text`
 
 
 
-export default function AddFundsTab({
-    FromCardBalance = "$4.05",
-    ToCardBalance = "$0.00",
-    cardType = 'Pass',
-    loadAmount = '$10.00',
-    paymentType = 'Visa',
-    AddFundsVisability = () => { },
+export default function MergeTab({
+    fromAmount = '$10.00',
+    toAmount = '$4.30',
+    saveMerge = () => { },
 }) {
 
 
     return (
         <Container>
             <Notch />
-            <Title>Add money to Compass {cardType}</Title>
+            <Title>Merge Tickets</Title>
             <Divider />
 
-            {/* TO this ticket: */}
+            {/* from this ticket: */}
 
             <SettingCont>
                 <SettingsContLeft>
@@ -136,26 +133,27 @@ export default function AddFundsTab({
                         source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
                     />
                     <TextColumn>
-                        <SmallTitle>My Ticket</SmallTitle>
-                        <Amount>{FromCardBalance}</Amount>
+                        <SmallTitle>From this ticket</SmallTitle>
+                        <Amount>{fromAmount}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
                 <AntDesign name="down" size={30} color="#222222" />
+
 
             </SettingCont>
 
             <Line />
 
-            {/* AMOUNT */}
+            {/* to ticket */}
 
             <SettingCont>
                 <SettingsContLeft>
                     <SmallCardIcon
-                        source={{ uri: '#', }}
+                        source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
                     />
                     <TextColumn>
-                        <SmallTitle>Amount</SmallTitle>
-                        <Amount>{loadAmount}</Amount>
+                        <SmallTitle>To this ticket</SmallTitle>
+                        <Amount>{toAmount}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
                 <AntDesign name="down" size={30} color="#222222" />
@@ -164,51 +162,12 @@ export default function AddFundsTab({
             </SettingCont>
             <Line />
 
-            {/* PAYMENT */}
-
-            <SettingCont>
-                <SettingsContLeft>
-                    <SmallCardIcon
-                        source={{ uri: '#', }}
-                    />
-                    <TextColumn>
-                        <SmallTitle>Payment</SmallTitle>
-                        <Amount>{paymentType}</Amount>
-                    </TextColumn>
-                </SettingsContLeft>
-                <AntDesign name="down" size={30} color="#222222" />
-
-
-            </SettingCont>
-            <Line />
-
-            {/* AUTO RELOAD */}
-
-            {/* PAYMENT */}
-
-            <SettingCont
-                style={{ marginTop: 20 }}
-            >
-                <SettingsContLeft>
-                    <SmallCardIcon
-                        source={{ uri: '#', }}
-                    />
-                    <TextColumn>
-                        <Amount>Auto reload</Amount>
-                        <SmallTitle>$10 when balance is below $10</SmallTitle>
-                    </TextColumn>
-                </SettingsContLeft>
-                <Arrow
-                    source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                />
-
-            </SettingCont>
 
             <TouchableOpacity
-                onPress={AddFundsVisability}
-                style={styles.TransferButton}
+                onPress={saveMerge}
+                style={styles.MergeButton}
             >
-                <ButtonText>Add {loadAmount}</ButtonText>
+                <ButtonText>Merge</ButtonText>
             </TouchableOpacity>
 
         </Container>
@@ -219,7 +178,7 @@ export default function AddFundsTab({
 
 
 const styles = StyleSheet.create({
-    TransferButton: {
+    MergeButton: {
         backgroundColor: '#009DDc',
         color: 'blue',
         width: 150,

@@ -112,20 +112,18 @@ const ButtonText = styled.Text`
 
 
 
-export default function AddFundsTab({
-    FromCardBalance = "$4.05",
-    ToCardBalance = "$0.00",
-    cardType = 'Pass',
+export default function AutoReloadTab({
+    ifbalancebelow = '$10.00',
     loadAmount = '$10.00',
     paymentType = 'Visa',
-    AddFundsVisability = () => { },
+    saveAutoReload = () => { },
 }) {
 
 
     return (
         <Container>
             <Notch />
-            <Title>Add money to Compass {cardType}</Title>
+            <Title>Edit Auto reload</Title>
             <Divider />
 
             {/* TO this ticket: */}
@@ -133,14 +131,15 @@ export default function AddFundsTab({
             <SettingCont>
                 <SettingsContLeft>
                     <SmallCardIcon
-                        source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
+                        source={{ uri: '#', }}
                     />
                     <TextColumn>
-                        <SmallTitle>My Ticket</SmallTitle>
-                        <Amount>{FromCardBalance}</Amount>
+                        <SmallTitle>Amount</SmallTitle>
+                        <Amount>{loadAmount}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
                 <AntDesign name="down" size={30} color="#222222" />
+
 
             </SettingCont>
 
@@ -154,8 +153,8 @@ export default function AddFundsTab({
                         source={{ uri: '#', }}
                     />
                     <TextColumn>
-                        <SmallTitle>Amount</SmallTitle>
-                        <Amount>{loadAmount}</Amount>
+                        <SmallTitle>When balance is below</SmallTitle>
+                        <Amount>{ifbalancebelow}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
                 <AntDesign name="down" size={30} color="#222222" />
@@ -186,29 +185,13 @@ export default function AddFundsTab({
 
             {/* PAYMENT */}
 
-            <SettingCont
-                style={{ marginTop: 20 }}
-            >
-                <SettingsContLeft>
-                    <SmallCardIcon
-                        source={{ uri: '#', }}
-                    />
-                    <TextColumn>
-                        <Amount>Auto reload</Amount>
-                        <SmallTitle>$10 when balance is below $10</SmallTitle>
-                    </TextColumn>
-                </SettingsContLeft>
-                <Arrow
-                    source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                />
 
-            </SettingCont>
 
             <TouchableOpacity
-                onPress={AddFundsVisability}
+                onPress={saveAutoReload}
                 style={styles.TransferButton}
             >
-                <ButtonText>Add {loadAmount}</ButtonText>
+                <ButtonText>Save</ButtonText>
             </TouchableOpacity>
 
         </Container>
