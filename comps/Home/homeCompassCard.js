@@ -51,8 +51,8 @@ const HomeCompassCard = ({
 }) => {
     return <Container>
         <H1>Hello {username}!</H1>
-        <CardPlaceholder>
-            <PlaceholderContent onPress={onButtonPress}>
+        <CardPlaceholder onPress={onButtonPress}>
+            <PlaceholderContent >
                 <Icon 
                     name='add'
                     type='material'

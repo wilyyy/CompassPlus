@@ -54,7 +54,8 @@ const BusText = styled.Text`
 const SavedRidesIcon = ({
     icon_type="seabus",
     bus_text="250",
-    ride_text="Lonsdale Quay to Waterfront"
+    ride_text="Lonsdale Quay to Waterfront",
+    onButtonPress = () => {},
 }) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
@@ -73,7 +74,7 @@ const SavedRidesIcon = ({
         if (!fontsLoaded) {
             return <AppLoading />;
         } else {
-            return <ContWithText>
+            return <ContWithText onPress={onButtonPress}>
                 <Container>
                     <RideIcon>
                         <Icon
@@ -93,7 +94,7 @@ const SavedRidesIcon = ({
         if (!fontsLoaded) {
             return <AppLoading />;
         } else {
-            return <ContWithText>
+            return <ContWithText onPress={onButtonPress}>
                 <Container>
                         <BusText>{bus_text}</BusText>
                 </Container>
@@ -106,7 +107,7 @@ const SavedRidesIcon = ({
         if (!fontsLoaded) {
             return <AppLoading />;
         } else {
-            return <ContWithText>
+            return <ContWithText onPress={onButtonPress}>
                 <Container>
                     <RideIcon>
                         <Icon

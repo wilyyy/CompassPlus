@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import React, {useState} from 'react';
 import { SafeAreaView, StyleSheet, TextInput, Pressable, TouchableOpacity, Text } from "react-native";
 import { COLORS } from "../../constants/styles";
+import { Icon } from "react-native-elements";
 
 const TransferCardCont = styled.View`
     flex-direction: column;
@@ -11,6 +12,8 @@ const TransferCardCont = styled.View`
     height: 380px;
     background-color: #fff;
     border-radius: 16px;
+    border: 3px solid ${COLORS.CAROLINABLUE};
+    box-shadow: 0px 4px 4px rgba(37, 43, 66, 0.5);
 `;
 
 const Header = styled.Text`
@@ -21,11 +24,19 @@ const Header = styled.Text`
     color: #000000;
 `;
 
-export default function LinkCompassCard() {
+const Close = styled.TouchableOpacity`
+    width: 41px;
+    height: 41px;
+    align-self: flex-end;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+`;
 
-    /*make this a modal
-    add close button, align-self: flex-end
-    */
+const LinkCompassCard = ({
+    onButtonPress = () => {},
+    onClosePress = () => {}
+}) => {
     
     const [confirmPage, setConfirmPage] = useState(false);
 
@@ -36,6 +47,14 @@ export default function LinkCompassCard() {
 
     return <SafeAreaView>
         <TransferCardCont>
+            <Close onPress={onClosePress}>
+                <Icon 
+                    name="closecircle" 
+                    type='antdesign'
+                    size={40}
+                    color={COLORS.CAROLINABLUE}
+                />
+            </Close>
             <Header>Add a Compass Card</Header>
             <TextInput
                 style={styles.input}
@@ -51,13 +70,15 @@ export default function LinkCompassCard() {
             />
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => console.log("hello world")}
+                onPress={onButtonPress}
             >
                 <Text style={styles.text}>Add Card</Text>
             </TouchableOpacity>
         </TransferCardCont>
     </SafeAreaView>
 }
+
+export default LinkCompassCard;
 
 const styles = StyleSheet.create({
     input: {

@@ -1,6 +1,8 @@
 import styled from "styled-components/native";
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Icon } from 'react-native-elements'
+
 import {
     useFonts,
     Ubuntu_300Light,
@@ -13,14 +15,26 @@ import {
     Ubuntu_700Bold_Italic,
 } from '@expo-google-fonts/ubuntu';
 import AppLoading from 'expo-app-loading';
+const windowWidth = Dimensions.get('window').width;
+
 
 import { COLORS } from "../../constants/styles";
 import SavedRidesIcon from "./savedRidesIcon";
 
 const Container = styled.View`
     width: 100%;
+    margin-left: 10%;
     height: 251px;
     justify-content: space-evenly;
+`;
+
+const Row = styled.View`
+    flex-direction: row;
+`;
+
+const TextColumn = styled.View`
+    justify-content: space-between;
+    height: 60px;
 `;
 
 const H1 = styled.Text`
@@ -35,11 +49,19 @@ const H2 = styled.Text`
 `;
 
 const ScrollCont = styled.View`
-    width: 100%;
+    width: ${windowWidth};
     height: 150px;
 `;
 
-const SavedRidesScroll = () => {
+const Minimize = styled.TouchableOpacity`
+    width: 60px;
+    height: 60px;
+    align-self: flex-end;
+`;
+
+const SavedRidesScroll = ({
+    onMinimizePress = () => {}
+}) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -55,8 +77,20 @@ const SavedRidesScroll = () => {
         return <AppLoading />;
     } else {
         return <Container>
-            <H1>Saved Trips</H1>
-            <H2>All of your favourite places</H2>
+            <Row>
+                <Minimize onPress={onMinimizePress}>
+                    <Icon 
+                        name="arrow-back-circle"
+                        type="ionicon"
+                        color={COLORS.CAROLINABLUE}
+                        size={60}
+                    />
+                </Minimize>
+                <TextColumn>
+                    <H1>Saved Trips</H1>
+                    <H2>All of your favourite places</H2>
+                </TextColumn>
+            </Row>
             <ScrollCont>
                 <ScrollView horizontal={true}>
                     <SavedRidesIcon icon_type="train" ride_text="Waterfront to Yaletown"/>
