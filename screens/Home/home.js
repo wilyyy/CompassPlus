@@ -32,10 +32,9 @@ const HomeElement = styled.View`
     margin: 10px 0;
 `;
 
-const HomeScreen = ({
-    compass_on = true
-}) => {
+const HomeScreen = () => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [linkedCard, setLinkedCard] = useState("no")
 
     const OpenModal = () => {
         setModalVisible(true);
@@ -45,24 +44,30 @@ const HomeScreen = ({
         setModalVisible(!modalVisible);
     }
 
+    const LinkCompass = () => {
+        setModalVisible(!modalVisible);
+        setLinkedCard("yes");
+        console.log(linkedCard);
+    }
+
     return <Page>
         <Modal
             animationType="fade"
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
+                // Alert.alert('Modal has been closed.');
                 setModalVisible(!modalVisible);
             }}
         >
             <View style={styles.modal_center}>
-            <LinkCompassCard 
-                // onButtonPress={} function that adds compasscard
-                onClosePress={CloseModal}
-            />
+                <LinkCompassCard 
+                    onButtonPress={LinkCompass}
+                    onClosePress={CloseModal}
+                />
             </View>
         </Modal>
-        <HomeCompassCard onButtonPress={OpenModal}/>
+        <HomeCompassCard onButtonPress={OpenModal} compass_linked={linkedCard}/>
         <BottomContainer>
             <ScrollView style={styles.scroll_cont}>
                 <HomeElement>

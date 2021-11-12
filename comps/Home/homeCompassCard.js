@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import styled from "styled-components/native";
 import { Icon } from 'react-native-elements';
 
@@ -47,22 +47,44 @@ const H2 = styled.Text`
 
 const HomeCompassCard = ({
     username = "User",
+    compass_linked = "no",
     onButtonPress = () => {}
 }) => {
-    return <Container>
-        <H1>Hello {username}!</H1>
-        <CardPlaceholder onPress={onButtonPress}>
-            <PlaceholderContent >
-                <Icon 
-                    name='add'
-                    type='material'
-                    color={COLORS.CAROLINABLUE}
-                    size={40}
-                />
-                <H2>Add your compass card or debit/credit card</H2>
-            </PlaceholderContent>
-        </CardPlaceholder>
-    </Container>
+
+    const [linkedCard, setLinkedCard] = useState(compass_linked);
+
+    if (linkedCard === "no") {
+        return <Container>
+            <H1>Hello {username}!</H1>
+            <CardPlaceholder onPress={onButtonPress}>
+                <PlaceholderContent >
+                    <Icon 
+                        name='add'
+                        type='material'
+                        color={COLORS.CAROLINABLUE}
+                        size={40}
+                    />
+                    <H2>Add your compass card or debit/credit card</H2>
+                </PlaceholderContent>
+            </CardPlaceholder>
+        </Container>
+    }
+
+    if (linkedCard === "yes") {
+        return <Container>
+            <H1>Hello {username}!</H1>
+            <CardPlaceholder onPress={onButtonPress}>
+                <Image style={styles.compass} source={require('../../assets/compass_card.png')} />
+            </CardPlaceholder>
+        </Container>
+    }
 }
 
 export default HomeCompassCard;
+
+const styles = StyleSheet.create({
+    compass: {
+        width: 308,
+        height: 193
+    }
+});
