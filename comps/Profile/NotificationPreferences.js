@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, ScrollView, Switch, SafeAreaView } from 'react-native';
+import { View, Dimensions, StyleSheet, ScrollView, Switch } from 'react-native';
+import {
+    SafeAreaView,
+    SafeAreaProvider,
+    SafeAreaInsetsContext,
+    useSafeAreaInsets,
+    initialWindowMetrics,
+  } from 'react-native-safe-area-context';
 import { Header, Divider } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
@@ -65,7 +72,7 @@ const NotificationPreferences = () => {
     const textNewsSwitch = () => setTextNewsEnabled(previousState => !previousState);
 
     return (
-        <SafeAreaView>
+        
             <ScrollView>
                 <Header
                     leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: 'white' } }}
@@ -133,7 +140,6 @@ const NotificationPreferences = () => {
                 </Row>
                 <Divider orientation="horizontal" color="DAVYSGREY"/>
             </ScrollView>
-        </SafeAreaView>
     );
   };
   

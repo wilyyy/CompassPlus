@@ -11,7 +11,7 @@ const windowHeight = Dimensions.get('window').height;
 const BackgroundContainer = styled.View`
     width: ${windowWidth};
     height: 300px;
-    background-color: ${COLORS.DAVYSGREY};
+    background-color: ${COLORS.SPACECADET};
 `;
 
 const TitleText = styled.Text`

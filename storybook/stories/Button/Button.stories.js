@@ -19,9 +19,9 @@ import MergeTab from '../../../comps/CompassCardParent/mergeCards';
 import DeleteCard from '../../../comps/CompassCardParent/deleteCard';
 import AddCardManager from '../../../comps/CompassCardParent/addCardManager';
 
-import NotificationCard from '../../../comps/Profile/notificationCard';
-import SupportCard from '../../../comps/Profile/supportCard';
-import ProfileCard from '../../../comps/Profile/profileCard';
+import NotificationCard from '../../../comps/Profile/NotificationCard';
+import SupportCard from '../../../comps/Profile/SupportCard';
+import ProfileCard from '../../../comps/Profile/ProfileCard';
 import ProfileScreen from '../../../comps/Profile/ProfileScreen';
 import ProfileCardUpdate from '../../../comps/Profile/ProfileCardUpdate';
 import NotificationPreferences from '../../../comps/Profile/NotificationPreferences';
