@@ -33,6 +33,7 @@ import CompassCardScreen from '../../../screens/CompassCardScreen/mobileCard';
 import SignUpTransitCardScroll from '../../../comps/SignUp/signUpTransitCardScroll';
 import WhiteButton from '../../../comps/Global/whiteButton';
 import HomeCard from '../../../comps/Home/homeCard';
+import BalanceContainer from '../../../comps/Home/balanceContainer'
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Comps', module)
@@ -57,6 +58,7 @@ storiesOf('Comps', module)
   .add('Trip Planner Tab', () => <TripPlannerTab />)
   .add('White Button', () => <WhiteButton />)
   .add('Home Card', () => <HomeCard />)
+  .add('Button Container', () => <BalanceContainer />)
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   // .add('with text', () => (
