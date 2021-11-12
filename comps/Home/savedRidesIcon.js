@@ -20,7 +20,7 @@ import { COLORS } from "../../constants/styles";
 const ContWithText = styled.TouchableOpacity`
     width: 102px;
     height: 120px;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 `;
 
@@ -54,7 +54,7 @@ const BusText = styled.Text`
 const SavedRidesIcon = ({
     icon_type="seabus",
     bus_text="250",
-    ride_text="Expo Line Waterfront"
+    ride_text="Lonsdale Quay to Waterfront"
 }) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
