@@ -7,7 +7,7 @@ import Button from '.';
 import CenterView from '../CenterView';
 
 //IMPORT COMPS FIRST
-import LinkCompassCard from '../../../comps/LinkCompassCard';
+import LinkCompassCard from '../../../comps/Home/linkCompassCard';
 import SignUpTransitCard from '../../../comps/SignUp/signUpTransitCard';
 import TripPlannerTab from '../../../comps/TripPlanner/tripPlannerTab';
 
@@ -26,6 +26,7 @@ import TicketTab from '../../../comps/CompassCardParent/ticketSelTab';
 import AmountTab from '../../../comps/CompassCardParent/amountSelTab';
 import PaymentTab from '../../../comps/CompassCardParent/paymentSelTab';
 import HomeCompassCard from '../../../comps/Home/homeCompassCard';
+import SavedRidesIcon from '../../../comps/Home/savedRidesIcon';
 
 //SCREENS
 import PickDestinations from '../../../screens/SignUp/pickDestinations';
@@ -61,6 +62,7 @@ storiesOf('Comps', module)
   .add('White Button', () => <WhiteButton />)
   .add('Home Card', () => <HomeCard />)
   .add('Home Compass Card Container', () => <HomeCompassCard />)
+  .add('Home Ride Icon', () => <SavedRidesIcon />)
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   // .add('with text', () => (
