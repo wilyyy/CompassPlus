@@ -41,7 +41,7 @@ import SignUpTransitCardScroll from '../../../comps/SignUp/signUpTransitCardScro
 import WhiteButton from '../../../comps/Global/whiteButton';
 import HomeCard from '../../../comps/Home/homeCard';
 import MapHomeScreen from '../../../screens/TripPlanner/mapHome';
-=import HomeScreen from '../../../screens/Home/home';
+import HomeScreen from '../../../screens/Home/home';
 import CardSwipeTest from '../../../screens/testSwipe';
 import LoginPage  from '../../../screens/LoginScreen/loginScreen';
 
