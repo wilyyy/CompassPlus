@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Pressable, TextInput, ScrollView, SafeAreaView } from 'react-native';
+import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Pressable, TextInput, ScrollView} from 'react-native';
 import { Avatar, Header, Divider, Icon } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
@@ -12,7 +12,7 @@ const windowHeight = Dimensions.get('window').height;
 const ImageContainer = styled.View`
     width: ${windowWidth};
     height: 200px;
-    background-color: ${COLORS.DAVYSGREY};
+    background-color: ${COLORS.SPACECADET};
     justify-content: space-evenly;
 `;
 
@@ -95,7 +95,6 @@ const SectionContainerRow = styled.View`
 const ProfileCardUpdate = () => {
 
     return (
-        <SafeAreaView>
             <ScrollView>
                 <Header
                     leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: 'white' } }}
@@ -191,7 +190,6 @@ const ProfileCardUpdate = () => {
                     />
                 </SectionContainerRow>
             </ScrollView>
-        </SafeAreaView>
     );
   };
   
