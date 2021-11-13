@@ -2,6 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 // import MobileCard from './comps/CompassCardParent/CardManager';
 // import AddFundsTab from './comps/CompassCardParent/CardManager/AddFunds';
 // import TransferBalanceTab from './comps/CompassCardParent/TransferFunds';
@@ -20,22 +23,33 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 
 
 // go to storybook/stories/Button/Button.stories.js to add components
-export { default } from './storybook';
+// export { default } from './storybook';
 
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       {/* <LinkCompassCard />
-//       <TripPlannerTab />
-//       <SignUpTransitCard /> */}
+//import screens
+import PickDestinations from './screens/SignUp/pickDestinations';
+import HomeScreen from './screens/Home/home';
+import CompassCardScreen from './screens/CompassCardScreen/mobileCard';
+import MapHomeScreen from './screens/TripPlanner/mapHome';
+import LoginPage from './screens/LoginScreen/loginScreen';
+import CreateAccount from './screens/CreateAccount/createAccount';
+//missing pages from doing hard reset
 
-//       {/* <MobileCard /> */}
-//       {/* <TransferBalanceTab /> */}
-//       <AddFundsTab />
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
+export default function App() {
+  const Stack = createNativeStackNavigator();
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home'>
+        <Stack.Screen name='Login' component={LoginPage} />
+        <Stack.Screen name='CreateAccount' component={CreateAccount} />
+        <Stack.Screen name='Onboarding' component={PickDestinations} />
+        <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Screen name='MobileCard' component={CompassCardScreen} />
+        <Stack.Screen name='Map' component={MapHomeScreen} />
+        {/* <Stack.Screen name='Account' component={} /> */}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
