@@ -64,7 +64,7 @@ const NotificationCard = () => {
             <Container>
                 <Row>
                     <Icon
-                        style={{ paddingLeft: 15 }}
+                        style={{ paddingLeft: 15, size: 24 }}
                         name='notifications'
                         color='white'
                         size={24}

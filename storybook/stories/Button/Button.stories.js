@@ -19,9 +19,9 @@ import MergeTab from '../../../comps/CompassCardParent/mergeCards';
 import DeleteCard from '../../../comps/CompassCardParent/deleteCard';
 import AddCardManager from '../../../comps/CompassCardParent/addCardManager';
 
-import NotificationCard from '../../../comps/Profile/notificationCard';
-import SupportCard from '../../../comps/Profile/supportCard';
-import ProfileCard from '../../../comps/Profile/profileCard';
+import NotificationCard from '../../../comps/Profile/NotificationCard';
+import SupportCard from '../../../comps/Profile/SupportCard';
+import ProfileCard from '../../../comps/Profile/ProfileCard';
 import ProfileScreen from '../../../comps/Profile/ProfileScreen';
 import ProfileCardUpdate from '../../../comps/Profile/ProfileCardUpdate';
 import NotificationPreferences from '../../../comps/Profile/NotificationPreferences';
@@ -40,10 +40,12 @@ import CompassCardScreen from '../../../screens/CompassCardScreen/mobileCard';
 import SignUpTransitCardScroll from '../../../comps/SignUp/signUpTransitCardScroll';
 import WhiteButton from '../../../comps/Global/whiteButton';
 import HomeCard from '../../../comps/Home/homeCard';
+import BalanceContainer from '../../../comps/Home/balanceContainer';
 import MapHomeScreen from '../../../screens/TripPlanner/mapHome';
 import HomeScreen from '../../../screens/Home/home';
 import CardSwipeTest from '../../../screens/testSwipe';
 import LoginPage  from '../../../screens/LoginScreen/loginScreen';
+import CreateAccount from '../../../screens/CreateAccount/createAccount';
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Comps', module)
@@ -71,6 +73,7 @@ storiesOf('Comps', module)
   .add('Trip Planner Tab', () => <TripPlannerTab />)
   .add('White Button', () => <WhiteButton />)
   .add('Home Card', () => <HomeCard />)
+  .add('Button Container', () => <BalanceContainer />)
   .add('Home Compass Card Container', () => <HomeCompassCard />)
   .add('Home - Saved Rides Icon', () => <SavedRidesIcon />)
   .add('Home - Saved Rides Scroll', () => <SavedRidesScroll />)
@@ -98,6 +101,7 @@ storiesOf('Screens', module)
   .add('Home Screen', () => <HomeScreen />)
   .add('Test Card Swipe', () => <CardSwipeTest />)
   .add('Login Screen', () => <LoginPage />)
+  .add('Create Account', () => <CreateAccount />)
   
 
 

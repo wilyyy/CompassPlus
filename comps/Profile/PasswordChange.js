@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Pressable, TextInput, ScrollView, SafeAreaView } from 'react-native';
+import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Pressable, TextInput, ScrollView } from 'react-native';
+import {
+    SafeAreaView,
+    SafeAreaProvider,
+    SafeAreaInsetsContext,
+    useSafeAreaInsets,
+    initialWindowMetrics,
+  } from 'react-native-safe-area-context';
 import { Avatar, Header, Divider, Icon } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
@@ -34,7 +41,6 @@ const EditContent = styled.Text`
 const PasswordChange = () => {
 
     return (
-        <SafeAreaView>
             <ScrollView>
                 <Header
                     leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: 'white' } }}
@@ -71,7 +77,6 @@ const PasswordChange = () => {
                         <Text style={styles.text}>Change Password</Text>
                     </TouchableOpacity>
             </ScrollView>
-        </SafeAreaView>
     );
   };
   
