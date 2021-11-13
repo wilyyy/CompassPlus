@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Pressable, TextInput, ScrollView, Image } from 'react-native';
-import { Avatar, Header, Divider, Icon } from 'react-native-elements'
+import { Dimensions, StyleSheet, ScrollView, Image } from 'react-native';
+import { Header } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 
@@ -11,7 +11,7 @@ const windowHeight = Dimensions.get('window').height;
 const ImageContainer = styled.View`
     width: ${windowWidth};
     height: 200px;
-    background-color: ${COLORS.DAVYSGREY};
+    background-color: ${COLORS.SPACECADET};
     justify-content: space-evenly;
 `;
 
@@ -20,14 +20,6 @@ const InfoText = styled.Text`
     font-weight: normal;
     color: #fff;
     text-align: center;
-`;
-
-const TitleText = styled.Text`
-    font-size: 24px;
-    font-weight: bold;
-    color: #ffffff;
-    text-align: center;
-    padding-top: 60px; 
 `;
 
 const DateRow = styled.View`
@@ -81,54 +73,6 @@ const Box = styled.View `
 const BoxSmall = styled.View `
     height: 2px;
     background-color: #F6F6F6;
-`;
-
-const SectionContainer = styled.View`
-    width: ${windowWidth};
-    height: 70px;
-    background-color: ${COLORS.CAROLINABLUE};
-    justify-content: center;
-`;
-
-const SectionText = styled.Text`
-    font-size: 20px;
-    font-weight: bold;
-    padding-left: 15;
-    color: #ffffff;
-`;
-
-const EditRow = styled.View`
-    flex-direction: row;
-    width: ${windowWidth};
-    background-color: white;
-    justify-content: space-evenly;
-`;
-
-
-
-const EditContent = styled.Text`
-    font-size: 16px;
-    font-weight: bold;
-    padding-left: 5px;
-    padding-top: 20px;
-    padding-bottom: 15px;
-    text-align: left;
-    align-self: flex-start;
-`;
-
-const BackgroundContainer = styled.View`
-    width: ${windowWidth};
-    height: 100x;
-    background-color: ${COLORS.DAVYSGREY};
-`;
-
-const SectionContainerRow = styled.View`
-    width: ${windowWidth};
-    height: 70px;
-    background-color: ${COLORS.CAROLINABLUE};
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
 `;
 
 const BalanceHistoryCard = () => {
