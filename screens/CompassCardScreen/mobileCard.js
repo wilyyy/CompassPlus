@@ -9,6 +9,7 @@ import { COLORS } from '../../constants/styles.js';
 
 import MobileCard from '../../comps/CompassCardParent/cardManager.js';
 import { Button } from 'react-native-elements/dist/buttons/Button';
+import NavBar from '../../comps/NavBar/index.js';
 
 //for animations
 import { PanGestureHandler } from 'react-native-gesture-handler';
@@ -245,7 +246,9 @@ const CompassCardScreen = () => {
                     <TransferBalanceTab />
                 </Animated.View>
             </PanGestureHandler>
-
+            <View style={styles.NavCont}>
+                <NavBar />
+            </View>
 
         </ThemeProvider>
     )
@@ -261,5 +264,9 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         flexDirection: 'row',
+    },
+    NavCont: {
+        position: 'absolute',
+        bottom: 0,
     }
 });
