@@ -1,8 +1,11 @@
-import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { View, Dimensions, StyleSheet, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from "styled-components/native";
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -20,24 +23,21 @@ const NavCont = styled.View`
 `;
 
 export default function NavBar({
-    goHome = () => { },
-    goCard = () => { },
-    goMap = () => { },
-    goAccount = () => { },
+    navigation
 }) {
 
     return (
         <NavCont>
-            <TouchableOpacity onPress={goHome}>
+            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                 <Text>Home</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={goCard}>
+            <TouchableOpacity onPress={() => navigation.navigate('MobileCard')}>
                 <Text>Card</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={goMap}>
+            <TouchableOpacity onPress={() => navigation.navigate('Map')}>
                 <Text>Map</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={goAccount}>
+            <TouchableOpacity onPress={() => navigation.navigate('Account')}>
                 <Text>Account</Text>
             </TouchableOpacity>
         </NavCont>
