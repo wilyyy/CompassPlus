@@ -22,7 +22,6 @@ import AddCardManager from '../../../comps/CompassCardParent/addCardManager';
 import NotificationCard from '../../../comps/Profile/NotificationCard';
 import SupportCard from '../../../comps/Profile/SupportCard';
 import ProfileCard from '../../../comps/Profile/ProfileCard';
-import ProfileScreen from '../../../comps/Profile/ProfileScreen';
 import ProfileCardUpdate from '../../../comps/Profile/ProfileCardUpdate';
 import NotificationPreferences from '../../../comps/Profile/NotificationPreferences';
 import BalanceHistoryCard from '../../../comps/BalanceHistory/BalanceHistoryCard';
@@ -46,6 +45,8 @@ import HomeScreen from '../../../screens/Home/home';
 import CardSwipeTest from '../../../screens/testSwipe';
 import LoginPage  from '../../../screens/LoginScreen/loginScreen';
 import CreateAccount from '../../../screens/CreateAccount/createAccount';
+import ProfileScreenNew from '../../../screens/Profile/ProfileScreenNew';
+
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Comps', module)
@@ -94,7 +95,7 @@ storiesOf('Comps', module)
 storiesOf('Screens', module)
   //USUALLY GOES .add('label', () => <Comp />)
   .add('Profile Card Update', () => <ProfileCardUpdate />)
-  .add('Profile Screen', () => <ProfileScreen />)
+  .add('Profile Screen', () => <ProfileScreenNew />)
   .add('Pick Destinations', () => <PickDestinations />)
   .add('Compass Card Screen', () => <CompassCardScreen />)
   .add('TripPlanner - Map Home', () => <MapHomeScreen />)
