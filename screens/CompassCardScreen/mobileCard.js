@@ -36,7 +36,7 @@ const TopContainer = styled.View`
     position: relative;
     top: 15%;
     width: 90%;
-    height: 50px;
+    height: 50px; 
     justify-content: space-between;
     flex-direction: row;
 

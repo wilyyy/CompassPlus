@@ -10,15 +10,25 @@ const windowHeight = Dimensions.get('window').height;
 
 const Container = styled.View`
     width: ${windowWidth};
-    height: 40%;
-    background-color: ${COLORS.SPACECADET};
+    height: 350px;
     justify-content: space-evenly;
     align-items: center;
 `;
 
+const Overlay = styled.View`
+    height: 100%;
+    width: 120%;
+    align-items: center;
+    background-color: ${COLORS.SPACECADET};
+    border-bottom-right-radius: 220px;
+    border-bottom-left-radius: 220px;
+`
+
 const CardPlaceholder = styled.TouchableOpacity`
     width: 308px;
     height: 193px;
+    position: relative;
+    top: 40;
     border: 3px dashed ${COLORS.CAROLINABLUE};
     justify-content: space-evenly;
     align-items: center;
@@ -34,6 +44,7 @@ const H1 = styled.Text`
     color: #fff;
     font-size: 24px;
     font-weight: 700;
+    line-height: 0px;
     position: relative;
     top: 15px;
 `;
@@ -50,18 +61,20 @@ const HomeCompassCard = ({
     onButtonPress = () => {}
 }) => {
     return <Container>
-        <H1>Hello {username}!</H1>
-        <CardPlaceholder onPress={onButtonPress}>
-            <PlaceholderContent >
-                <Icon 
-                    name='add'
-                    type='material'
-                    color={COLORS.CAROLINABLUE}
-                    size={40}
-                />
-                <H2>Add your compass card or debit/credit card</H2>
-            </PlaceholderContent>
-        </CardPlaceholder>
+        <Overlay>
+            <H1>Hello {username}!</H1>
+            <CardPlaceholder onPress={onButtonPress}>
+                <PlaceholderContent >
+                    <Icon 
+                        name='add'
+                        type='material'
+                        color={COLORS.CAROLINABLUE}
+                        size={40}
+                    />
+                    <H2>Add your Compass Card or debit/credit card</H2>
+                </PlaceholderContent>
+            </CardPlaceholder>
+        </Overlay>
     </Container>
 }
 

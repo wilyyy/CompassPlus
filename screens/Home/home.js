@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { View, Dimensions, StyleSheet, Text, ScrollView, Alert, Modal } from 'react-native';
 import styled from "styled-components/native";
-import { Divider } from 'react-native-elements';
 
 import { COLORS } from '../../constants/styles.js';
 import HomeCompassCard from '../../comps/Home/homeCompassCard.js';
@@ -66,9 +65,8 @@ const HomeScreen = ({
         <BottomContainer>
             <ScrollView style={styles.scroll_cont}>
                 <HomeElement>
-                    <WelcomeMessage />
+                    <WelcomeMessage style={{position: 'relative', top: 10,}}/>
                 </HomeElement>
-                <Divider width={2} color={COLORS.CAROLINABLUE}/>
                 <HomeElement><HomeCard style={styles.margin_r}/></HomeElement>
                 <HomeElement><HomeCard card_type="manageCard" style={styles.margin_r}/></HomeElement>
             </ScrollView>

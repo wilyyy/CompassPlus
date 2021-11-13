@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { Button, Image, StyleSheet, Switch, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Button, Image, StyleSheet, Switch, Pressable, Text, TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
 
 
 const Container = styled.View`
-    width: 350px;
-    height: 585px;
+    width: 375px;
+    height: 600px;
     background-color: #fff;
     border-radius: 15px;
-    margin: 100px 15px 0px 25px;
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 const CompassPlaceHolder = styled.View`
@@ -20,11 +19,27 @@ const CompassPlaceHolder = styled.View`
     align-self: center;
     background-color: ${COLORS.CAROLINABLUE};
 `;
+
+const ButtonCont = styled.View`
+    display: flex;
+    margin: 0;
+    top: 30;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 55%;
+    flex-direction: column;
+`;
+
 const Expiration = styled.Text`
-    font-size: 18px;
-    color: #222222;
+    color: #252b42;
     align-self: center;
-    margin: 10px 0px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 16px;
+    text-align: center;
+    top: 20;
+
 `;
 
 /* setting cont will hold:
@@ -64,19 +79,17 @@ const IconBack = styled.Image`
 
 // start - items for card front
 const CompassCardBarcode = styled.Image`
-width:90%;
-height:100px;
-align-self: center;
-margin: 30px 0px 10px 0px;
-resizeMode:cover;
-border-radius: 15px;
+    width:90%;
+    height:100px;
+    align-self: center;
+    resizeMode:cover;
+    border-radius: 15px;
 
-/* border-color: red;
-border-width: 2px; */
 `;
 const CompassCardNo = styled.Text`
-    font-size: 10px;
+    font-size: 12px;
     align-self: center;
+    top: 20;
 `;
 const CardFooter = styled.View`
     align-self: center;
@@ -144,29 +157,14 @@ export default function MobileCard({
                 <CompassCardNo>{barcodeId}</CompassCardNo>
 
                 <CardFooter>
-
-                    <IconsFrontCont>
-                        <TouchableWithoutFeedback
-                            onPress={goManage}
-                        >
-                            <IconFront
-                                source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                            />
-                        </TouchableWithoutFeedback>
-                        <Text onPress={goManage}>Manage</Text>
-                    </IconsFrontCont>
-
-                    <IconsFrontCont>
-                        <TouchableWithoutFeedback
-                            onPress={onAddFundsPress}
-                        >
-                            <IconFront
-                                source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                            />
-                        </TouchableWithoutFeedback>
-                        <Text onPress={onAddFundsPress}>Add Funds</Text>
-                    </IconsFrontCont>
-
+                    <ButtonCont>
+                        <Pressable style={styles.button} onPress={goManage}>
+                            <Text style={styles.buttonText}>Manage</Text>
+                        </Pressable>
+                        <Pressable style={styles.button} onPress={onAddFundsPress}>
+                            <Text style={styles.buttonText}>Add Funds</Text>
+                        </Pressable>
+                    </ButtonCont>
                 </CardFooter>
 
             </Container>
@@ -257,5 +255,30 @@ const styles = StyleSheet.create({
         zIndex: 2,
         height: '30px',
         position: 'absolute',
-    }
+    },
+    button: {
+        display: 'flex',
+        margin: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 250,
+        height: 55,
+        backgroundColor: '#fff',
+        borderColor: '#009ddc',
+        borderWidth: 2,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        shadowColor: '#252B42',
+        shadowOpacity: 0.5,
+        shadowOffset:{width: 0,height: 4},
+    },
+    buttonText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        lineHeight: 24,
+        letterSpacing: 0,
+        color: '#009ddc',
+    },
 })

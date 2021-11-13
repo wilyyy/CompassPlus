@@ -5,83 +5,84 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
 const Container = styled.View`
-    width: 390px;
-    height: 600px;
+    width: 375px;
+    height: 425px;
     background-color: #fff;
-    border-radius: 30px;
-    
-    /* border-color: red;
-    border-width: 2px; */
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(37, 43, 66, 0.5);
     
 `;
 
 const Notch = styled.View`
-    width: 50px;
+    width: 80px;
     height: 10px;
-    background-color: #C4C4C4;
-    margin: 20px 0px 0px;
+    position: relative;
+    top: 25;
+    background-color: #EFEFF0;
     align-self: center;
     border-radius: 50px;
 `;
 
 const Title = styled.Text`
-    font-size: 18px;
-    color: #222222;
-    align-self: center;
-    margin: 20px 0px;
-    font-weight: 700;
-`;
-
-const Divider = styled.View`
-    width:100%;
-    height:7px;
-    background-color: #9BCCE0;
-    margin: 0px 0px 30px 0px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0.1px;
+    text-align: center;
+    color: #252b42;
+    top: 60;
+    padding-bottom: 40;
 `;
 
 const SettingCont = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width:100%;
-    /* border-width: 2px;
-    border-color: red; */
-    padding: 5px 15px;
-    
+    width: 100%;
 `;
 
 const SettingsContLeft = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-    /* border-width: 2px;
-    border-color: blue; */
+    padding-top: 30;
+    position: relative;
+    top: 10;
 `;
 
 const SmallCardIcon = styled.Image`
     width:50px;
     height:50px;
-    margin: 5px;
+    position: relative;
+    left: 30;
+    top: 10;
 `;
 
 const TextColumn = styled.View`
     width: 200px;
-    margin-left:15px;
-    /* border-color: red;
-    border-width: 2px; */
+    position: relative;
+    left: 35;
 `;
 
 const SmallTitle = styled.Text`
-    font-size: 10px;
-    margin: 5px 0px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    text-align: left;
+    color: #009ddc;
 `;
 
 const Amount = styled.Text`
-    font-size: 18px;
-    color: #222222;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    text-align: left;
     align-self: flex-start;
-    font-weight: 700;
+    top: 20;
 `;
 
 const Arrow = styled.Image`
@@ -94,18 +95,23 @@ const Arrow = styled.Image`
 `;
 
 const Line = styled.View`
-    width:70%;
-    height:2px;
-    background-color: #c4c4c4;
-    margin: 0px 20px 15px 50px;
+    display: flex;
+    width: 65%;
+    height: 2px;
+    position: relative;
+    top: 30;
+    right: 45;
+    background-color: #575759;
     align-self: flex-end;
 `;
 
 const ButtonText = styled.Text`
-    font-size: 18px;
+    font-size: 24;
+    font-weight: bold;
+    line-height: 24;
+    letter-spacing: 0;
     color: #fff;
-    align-self: center;
-    font-weight: 700;
+    text-align: center;
 `;
 
 
@@ -123,7 +129,6 @@ export default function MergeTab({
         <Container>
             <Notch />
             <Title>Merge Tickets</Title>
-            <Divider />
 
             {/* from this ticket: */}
 
@@ -137,7 +142,7 @@ export default function MergeTab({
                         <Amount>{fromAmount}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <AntDesign name="down" size={30} color="#222222" />
+                <AntDesign name="down" size={30} style={styles.arrow} />
 
 
             </SettingCont>
@@ -156,9 +161,7 @@ export default function MergeTab({
                         <Amount>{toAmount}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <AntDesign name="down" size={30} color="#222222" />
-
-
+                <AntDesign name="down" size={30} style={styles.arrow} />
             </SettingCont>
             <Line />
 
@@ -180,15 +183,32 @@ export default function MergeTab({
 const styles = StyleSheet.create({
     MergeButton: {
         backgroundColor: '#009DDc',
-        color: 'blue',
         width: 150,
         height: 55,
-        borderRadius: 50,
+        display: 'flex',
+        position: 'relative',
+        right: 40,
+        top: 80,
+        borderRadius: 10,
         alignSelf: 'flex-end',
-        right: 15,
         justifyContent: 'center',
-        marginTop: 50,
-
+        shadowColor: '#252B42',
+        shadowOpacity: 0.5,
+        shadowOffset:{width: 0, height: 4},
+    },
+    editButtonText: {
+        textAlign: 'center',
+        fontSize: 18,
+        fontWeight: 'bold',
+        lineHeight: 24,
+        letterSpacing: 0,
+        color: '#009ddc'
+    },
+    arrow: {
+        color: "#252b42",
+        position: 'relative',
+        top: 55,
+        right: 45,
 
     }
 })
