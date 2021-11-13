@@ -10,6 +10,8 @@ import HomeCard from '../../comps/Home/homeCard.js';
 import WelcomeMessage from '../../comps/Home/welcomeMessage.js';
 import LinkCompassCard from '../../comps/Home/linkCompassCard.js';
 import NavBar from '../../comps/NavBar/index.js';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -70,12 +72,11 @@ const HomeScreen = () => {
             </View>
         </Modal>
         <HomeCompassCard onButtonPress={OpenModal} compass_linked={linkedCard} />
+
         <NavBar
-            goHome={RouteHome}
-            goCard={RouteCard}
-            goMap={RouteMap}
-            goAccount={RouteAccount}
+            navigation={this.props.navigation}
         />
+
         <BottomContainer>
             <ScrollView style={styles.scroll_cont}>
                 <HomeElement>
