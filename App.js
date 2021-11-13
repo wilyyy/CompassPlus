@@ -1,12 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Stack = createNativeStackNavigator();
-import LoginPage from './screens/LoginScreen/loginScreen';
-import PickDestinations from './screens/SignUp/pickDestinations';
 // import MobileCard from './comps/CompassCardParent/CardManager';
 // import AddFundsTab from './comps/CompassCardParent/CardManager/AddFunds';
 // import TransferBalanceTab from './comps/CompassCardParent/TransferFunds';
@@ -27,16 +25,32 @@ import PickDestinations from './screens/SignUp/pickDestinations';
 // go to storybook/stories/Button/Button.stories.js to add components
 // export { default } from './storybook';
 
+//import screens
+import PickDestinations from './screens/SignUp/pickDestinations';
+import HomeScreen from './screens/Home/home';
+import CompassCardScreen from './screens/CompassCardScreen/mobileCard';
+import MapHomeScreen from './screens/TripPlanner/mapHome';
+import LoginPage from './screens/LoginScreen/loginScreen';
+import CreateAccount from './screens/CreateAccount/createAccount';
+import ProfileScreenNew from './screens/Profile/ProfileScreenNew';
+//missing pages from doing hard reset
+
 export default function App() {
+  const Stack = createNativeStackNavigator();
   return (
-    <NavigationContainer >
-      <Stack.Navigator screenOptions={{
-        headerShown: false
-      }}
-      initialRouteName="Login" 
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home'
+        screenOptions={{
+          headerShown: false
+        }}
       >
-        <Stack.Screen name="Login" component={LoginPage} />
-        <Stack.Screen name="PickDestinations" component={PickDestinations} />
+        <Stack.Screen name='Login' component={LoginPage} />
+        <Stack.Screen name='CreateAccount' component={CreateAccount} />
+        <Stack.Screen name='Onboarding' component={PickDestinations} />
+        <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Screen name='MobileCard' component={CompassCardScreen} />
+        <Stack.Screen name='Map' component={MapHomeScreen} />
+        <Stack.Screen name='Account' component={ProfileScreenNew} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -49,7 +63,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  centerCont: {
-    alignItems: 'center'
-  }
 });
