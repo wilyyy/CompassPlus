@@ -7,6 +7,7 @@ import Button from '.';
 import CenterView from '../CenterView';
 
 //IMPORT COMPS FIRST
+import NavBar from '../../../comps/NavBar';
 import LinkCompassCard from '../../../comps/Home/linkCompassCard';
 import SignUpTransitCard from '../../../comps/SignUp/signUpTransitCard';
 import TripPlannerTab from '../../../comps/TripPlanner/tripPlannerTab';
@@ -43,13 +44,15 @@ import BalanceContainer from '../../../comps/Home/balanceContainer';
 import MapHomeScreen from '../../../screens/TripPlanner/mapHome';
 import HomeScreen from '../../../screens/Home/home';
 import CardSwipeTest from '../../../screens/testSwipe';
-import LoginPage  from '../../../screens/LoginScreen/loginScreen';
+import LoginPage from '../../../screens/LoginScreen/loginScreen';
 import ProfileScreenNew from '../../../screens/Profile/ProfileScreenNew';
+import CreateAccount from '../../../screens/CreateAccount/createAccount';
 
 
 //ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Comps', module)
   //USUALLY GOES .add('label', () => <Comp />)
+  .add('NavBar', () => <NavBar />)
   .add('Add Compass Card', () => <LinkCompassCard />)
   .add('Mobile Card', () => <MobileCard />)
   .add('Add Funds Tab', () => <AddFundsTab />)
@@ -101,7 +104,8 @@ storiesOf('Screens', module)
   .add('Home Screen', () => <HomeScreen />)
   .add('Test Card Swipe', () => <CardSwipeTest />)
   .add('Login Screen', () => <LoginPage />)
-  
+  .add('Create Account', () => <CreateAccount />)
+
 
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)

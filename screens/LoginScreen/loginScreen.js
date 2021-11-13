@@ -63,7 +63,7 @@ const Button = styled.TouchableOpacity`
     border-radius: 20px;
 `;
 
-const LoginPage = () => {
+const LoginPage = ({navigation}) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -97,7 +97,7 @@ const LoginPage = () => {
             />
             </TextCont>
             <ButtonCont>
-            <Button/>
+            <Button  onPress={() => navigation.navigate('PickDestinations')}/>
             <Button/>
             </ButtonCont>
         </Container>

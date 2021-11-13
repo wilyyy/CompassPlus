@@ -1,7 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+const Stack = createNativeStackNavigator();
+import LoginPage from './screens/LoginScreen/loginScreen';
+import PickDestinations from './screens/SignUp/pickDestinations';
 // import MobileCard from './comps/CompassCardParent/CardManager';
 // import AddFundsTab from './comps/CompassCardParent/CardManager/AddFunds';
 // import TransferBalanceTab from './comps/CompassCardParent/TransferFunds';
@@ -20,22 +25,22 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 
 
 // go to storybook/stories/Button/Button.stories.js to add components
-export { default } from './storybook';
+// export { default } from './storybook';
 
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       {/* <LinkCompassCard />
-//       <TripPlannerTab />
-//       <SignUpTransitCard /> */}
-
-//       {/* <MobileCard /> */}
-//       {/* <TransferBalanceTab /> */}
-//       <AddFundsTab />
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
+export default function App() {
+  return (
+    <NavigationContainer >
+      <Stack.Navigator screenOptions={{
+        headerShown: false
+      }}
+      initialRouteName="Login" 
+      >
+        <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Screen name="PickDestinations" component={PickDestinations} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -44,4 +49,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  centerCont: {
+    alignItems: 'center'
+  }
 });
