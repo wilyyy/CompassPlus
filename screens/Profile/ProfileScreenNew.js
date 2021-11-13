@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
-import NotificationCard from '../../comps/Profile/NotificationCard';
-import ProfileCard from "../../comps/Profile/ProfileCard"
-import SupportCard from '../../comps/Profile/SupportCard';
+import NotificationCard from '../../comps/Profile/notificationCard';
+import ProfileCard from "../../comps/Profile/profileCard"
+import SupportCard from '../../comps/Profile/supportCard';
 
 
 
