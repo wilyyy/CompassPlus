@@ -4,6 +4,8 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+
 
 // import MobileCard from './comps/CompassCardParent/CardManager';
 // import AddFundsTab from './comps/CompassCardParent/CardManager/AddFunds';
@@ -35,8 +37,10 @@ import CreateAccount from './screens/CreateAccount/createAccount';
 import ProfileScreenNew from './screens/Profile/ProfileScreenNew';
 //missing pages from doing hard reset
 
+const Stack = createNativeStackNavigator();
+
 export default function App() {
-  const Stack = createNativeStackNavigator();
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'

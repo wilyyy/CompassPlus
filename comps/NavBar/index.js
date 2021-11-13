@@ -5,6 +5,8 @@ import styled from "styled-components/native";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 
@@ -22,8 +24,10 @@ const NavCont = styled.View`
     background-color: #fff;
 `;
 
+
+
 export default function NavBar({
-    navigation
+    navigation = useNavigation(),
 }) {
 
     return (
