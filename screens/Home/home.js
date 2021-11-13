@@ -9,6 +9,7 @@ import HomeCompassCard from '../../comps/Home/homeCompassCard.js';
 import HomeCard from '../../comps/Home/homeCard.js';
 import WelcomeMessage from '../../comps/Home/welcomeMessage.js';
 import LinkCompassCard from '../../comps/Home/linkCompassCard.js';
+import NavBar from '../../comps/NavBar/index.js';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -50,6 +51,7 @@ const HomeScreen = () => {
         console.log(linkedCard);
     }
 
+
     return <Page>
         <Modal
             animationType="fade"
@@ -61,23 +63,30 @@ const HomeScreen = () => {
             }}
         >
             <View style={styles.modal_center}>
-                <LinkCompassCard 
+                <LinkCompassCard
                     onButtonPress={LinkCompass}
                     onClosePress={CloseModal}
                 />
             </View>
         </Modal>
-        <HomeCompassCard onButtonPress={OpenModal} compass_linked={linkedCard}/>
+        <HomeCompassCard onButtonPress={OpenModal} compass_linked={linkedCard} />
+        <NavBar
+            goHome={RouteHome}
+            goCard={RouteCard}
+            goMap={RouteMap}
+            goAccount={RouteAccount}
+        />
         <BottomContainer>
             <ScrollView style={styles.scroll_cont}>
                 <HomeElement>
                     <WelcomeMessage />
                 </HomeElement>
-                <Divider width={2} color={COLORS.CAROLINABLUE}/>
-                <HomeElement><HomeCard style={styles.margin_r}/></HomeElement>
-                <HomeElement><HomeCard card_type="manageCard" style={styles.margin_r}/></HomeElement>
+                <Divider width={2} color={COLORS.CAROLINABLUE} />
+                <HomeElement><HomeCard style={styles.margin_r} /></HomeElement>
+                <HomeElement><HomeCard card_type="manageCard" style={styles.margin_r} /></HomeElement>
             </ScrollView>
         </BottomContainer>
+
     </Page>
 }
 
