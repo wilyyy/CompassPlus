@@ -101,7 +101,6 @@ storiesOf('Screens', module)
   .add('Home Screen', () => <HomeScreen />)
   .add('Test Card Swipe', () => <CardSwipeTest />)
   .add('Login Screen', () => <LoginPage />)
-  .add('Create Account', () => <CreateAccount />)
   
 
 
