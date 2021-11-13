@@ -86,6 +86,9 @@ const HomeScreen = () => {
                 <HomeElement><HomeCard card_type="manageCard" style={styles.margin_r} /></HomeElement>
             </ScrollView>
         </BottomContainer>
+        <View style={styles.NavCont}>
+            <NavBar />
+        </View>
     </Page>
 }
 
@@ -100,5 +103,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    NavCont: {
+        position: 'absolute',
+        bottom: 0,
+    }
 
 });
