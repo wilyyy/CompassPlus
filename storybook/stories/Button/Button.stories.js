@@ -49,9 +49,7 @@ import ProfileScreenNew from '../../../screens/Profile/ProfileScreenNew';
 import CreateAccount from '../../../screens/CreateAccount/createAccount';
 
 
-//ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Comps', module)
-  //USUALLY GOES .add('label', () => <Comp />)
   .add('NavBar', () => <NavBar />)
   .add('Add Compass Card', () => <LinkCompassCard />)
   .add('Mobile Card', () => <MobileCard />)
@@ -83,19 +81,8 @@ storiesOf('Comps', module)
 
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-// .add('with text', () => (
-//   <Button onPress={action('clicked-text')}>
-//     <Text>{text('Button text', 'Hello Button')}</Text>
-//   </Button>
-// ))
-// .add('with some emoji', () => (
-//   <Button onPress={action('clicked-emoji')}>
-//     <Text>😀 😎 👍 💯</Text>
-//   </Button>
-// ));
 
 storiesOf('Screens', module)
-  //USUALLY GOES .add('label', () => <Comp />)
   .add('Profile Card Update', () => <ProfileCardUpdate />)
   .add('Profile Screen', () => <ProfileScreenNew />)
   .add('Pick Destinations', () => <PickDestinations />)

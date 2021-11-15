@@ -2,72 +2,60 @@ import styled from "styled-components/native";
 import React, { useState }  from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 
-// import * as Font from 'expo-font';
-// import AppLoading from "expo-app-loading";
+import { COLORS } from "../../constants/styles";
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+} from '@expo-google-fonts/ubuntu';
+import AppLoading from 'expo-app-loading';
 
-// const fetchFonts = () => {
-//     return Font.loadAsync({
-//     'Ubuntu-Bold': require('../../assets/Fonts/Ubuntu/Ubuntu-Bold.ttf'),
-//     'Ubuntu-Italic': require('../../assets/Fonts/Ubuntu-Italic.ttf'),
-//     'Ubuntu-Regular': require('../../assets/Fonts/Ubuntu-Regular.ttf')
-//     });
-//     };
+const ContinueButton = styled.TouchableOpacity`
+    background-color: #fff;
+    width: 244px;
+    height: 58px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+`;
 
-// const [dataLoaded, setDataLoaded] = useState(false);
-
-// if (!dataLoaded) {
-//     return (
-//         <AppLoading
-//             startAsync={fetchFonts}
-//             onFinish={() => setDataLoaded(true)}
-//         />
-//     );
-// }
+const H2 = styled.Text`
+    font-size: 20px;
+    font-family: 'Ubuntu_700Bold';
+    color: ${COLORS.CAROLINABLUE};
+`;
 
 const WhiteButton = ({
     text = 'Continue',
     onButtonPress = () => { },
-
 }) => {
-    return (
-        <View style={styles.container}>
-            <Pressable title={text} style={styles.buttonCont} onPress={onButtonPress}>
-                <Text  style={{/*fontFamily: 'Ubuntu-Regular',*/ fontSize: 24,
-                           fontWeight: 'bold',
-                           lineHeight: 24,
-                           letterSpacing: 0,
-                           color: '#009ddc',}}>{text}</Text>
-            </Pressable>
-        </View>
-    )
+    let [fontsLoaded] = useFonts({
+        Ubuntu_300Light,
+        Ubuntu_300Light_Italic,
+        Ubuntu_400Regular,
+        Ubuntu_400Regular_Italic,
+        Ubuntu_500Medium,
+        Ubuntu_500Medium_Italic,
+        Ubuntu_700Bold,
+        Ubuntu_700Bold_Italic,
+    });
+
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    } else {
+        return (
+            <ContinueButton onPress={onButtonPress}>
+                <H2>{text}</H2>
+            </ContinueButton>
+        )
+    }
 }
 
 export default WhiteButton;
 
-const styles = StyleSheet.create({
-    container: {
-        display: 'flex',
-        margin: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100%',
-    },
-    buttonCont: {
-        display: 'flex',
-        margin: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 300,
-        height: 55,
-        backgroundColor: '#fff',
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10,
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        shadowColor: '#252B42',
-        shadowOpacity: 0.5,
-        shadowOffset:{width: 0,height: 4},
-        padding: 10,
-    },
-});

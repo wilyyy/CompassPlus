@@ -21,6 +21,7 @@ import SignUpTransitCard from '../../comps/SignUp/signUpTransitCard.js';
 import BusProgressBar from '../../comps/SignUp/busProgressBar.js';
 import SignUpInput from '../../comps/SignUp/signUpInput.js';
 import SignUpTransitCardScroll from '../../comps/SignUp/signUpTransitCardScroll.js';
+import WhiteButton from '../../comps/Global/whiteButton.js';
 
 import { Video, AVPlaybackStatus } from 'expo-av';
 
@@ -103,15 +104,6 @@ const H3 = styled.Text`
     text-align: center;
 `;
 
-const ContinueButton = styled.TouchableOpacity`
-    background-color: #fff;
-    width: 244px;
-    height: 58px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-`;
-
 // First Screen
 const AllTheCheckboxes = styled.View`
     width: 120px;
@@ -143,9 +135,16 @@ const PickDestinations = () => {
     const IncrementCount = () => {
         if (pageCounter < 4){
             setPageCounter(prevState => prevState + 1);
-            console.log(pageCounter);
           } else{
             setPageCounter(0);
+          }
+    }
+
+    const DecrementCount = () => {
+        if (pageCounter > 4){
+            setPageCounter(prevState => prevState - 1);
+          } else{
+            setPageCounter(4);
           }
     }
 
@@ -181,9 +180,10 @@ const PickDestinations = () => {
                                 <H2>Other</H2>
                             </CheckboxCont>
                         </AllTheCheckboxes>
-                        <ContinueButton onPress={IncrementCount}>
-                            <H2 style={styles.button_text}>Continue</H2>
-                        </ContinueButton>
+                        <WhiteButton 
+                            text="Continue"
+                            onButtonPress={IncrementCount}
+                        />
                     </Container>
                 </ImageBackground>
             </Page>
@@ -204,9 +204,10 @@ const PickDestinations = () => {
                         {/* add props and maybe think about putting these 3 in a scroll view */}
                         <H3>Get home quick and safely! Here are some of the fastest ways home!</H3>
                         <SignUpTransitCardScroll />
-                        <ContinueButton onPress={IncrementCount}>
-                            <H2 style={styles.button_text}>Continue</H2>
-                        </ContinueButton>
+                        <WhiteButton 
+                            text="Continue"
+                            onButtonPress={IncrementCount}
+                        />
                     </Container>
                 </ImageBackground>
             </Page>
@@ -227,9 +228,10 @@ const PickDestinations = () => {
                         {/* add props and maybe think about putting these 3 in a scroll view */}
                         <H3>Don’t be late to class! Catch the fastest rides to school below!</H3>
                         <SignUpTransitCardScroll />
-                        <ContinueButton onPress={IncrementCount}>
-                            <H2 style={styles.button_text}>Continue</H2>
-                        </ContinueButton>
+                        <WhiteButton 
+                            text="Continue"
+                            onButtonPress={IncrementCount}
+                        />
                     </Container>
                 </ImageBackground>
             </Page>
@@ -250,9 +252,10 @@ const PickDestinations = () => {
                         {/* add props and maybe think about putting these 3 in a scroll view */}
                         <H3>Punch in to work on time! Catch these rides to help you get there faster!</H3>
                         <SignUpTransitCardScroll />
-                        <ContinueButton onPress={IncrementCount}>
-                            <H2 style={styles.button_text}>Continue</H2>
-                        </ContinueButton>
+                        <WhiteButton 
+                            text="Continue"
+                            onButtonPress={IncrementCount}
+                        />
                     </Container>
                 </ImageBackground>
             </Page>
@@ -272,9 +275,10 @@ const PickDestinations = () => {
                         <SignUpInput />
                         <H3>Time is money! Get there faster using these rides below!</H3>
                         <SignUpTransitCardScroll />
-                        <ContinueButton onPress={IncrementCount}>
-                            <H2 style={styles.button_text}>Continue</H2>
-                        </ContinueButton>
+                        <WhiteButton 
+                            text="Continue"
+                            onButtonPress={IncrementCount}
+                        />
                     </Container>
                 </ImageBackground>
             </Page>
