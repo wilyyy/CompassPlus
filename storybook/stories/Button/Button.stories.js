@@ -20,7 +20,7 @@ import MergeTab from '../../../comps/CompassCardParent/mergeCards';
 import DeleteCard from '../../../comps/CompassCardParent/deleteCard';
 import AddCardManager from '../../../comps/CompassCardParent/addCardManager';
 
-import NotificationCard from '../../../comps/Profile/notificationCard';
+import NotificationCard from '../../../comps/Profile/NotificationCard';
 import SupportCard from '../../../comps/Profile/supportCard';
 import ProfileCard from '../../../comps/Profile/profileCard';
 import ProfileCardUpdate from '../../../comps/Profile/ProfileCardUpdate';
