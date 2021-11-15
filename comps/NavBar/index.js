@@ -27,7 +27,7 @@ const NavCont = styled.View`
 
 
 export default function NavBar({
-    navigation = useNavigation(),
+    // navigation = useNavigation(),
 }) {
 
     return (
