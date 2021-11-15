@@ -6,36 +6,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 
-
-// import MobileCard from './comps/CompassCardParent/CardManager';
-// import AddFundsTab from './comps/CompassCardParent/CardManager/AddFunds';
-// import TransferBalanceTab from './comps/CompassCardParent/TransferFunds';
-// import LinkCompassCard from './comps/LinkCompassCard';
-// import TripPlannerTab from './comps/TripPlannerTab';
-// import SignUpTransitCard from './comps/SignUpTransitCard';
-// import NotificationCard from './comps/Profile/notificationCard';
-
-// import MobileCard from './comps/CompassCardParent/cardManager';
-// import AddFundsTab from './comps/CompassCardParent/addFunds';
-// import TransferBalanceTab from './comps/CompassCardParent/transferFunds';
-// import LinkCompassCard from './comps/LinkCompassCard';
-// import TripPlannerTab from './comps/TripPlannerTab';
-// import SignUpTransitCard from './comps/SignUp/signUpTransitCard';
-// import NotificationCard from './comps/Profile/notificationCard';
-
-
 // go to storybook/stories/Button/Button.stories.js to add components
 // export { default } from './storybook';
 
 //import screens
-import PickDestinations from './screens/SignUp/pickDestinations';
+import PickDestinations from './screens/Authentication/pickDestinations';
 import HomeScreen from './screens/Home/home';
 import CompassCardScreen from './screens/CompassCardScreen/mobileCard';
 import MapHomeScreen from './screens/TripPlanner/mapHome';
-import LoginPage from './screens/LoginScreen/loginScreen';
-import CreateAccount from './screens/CreateAccount/createAccount';
+import CreateAccount from './screens/Authentication/createAccount';
 import ProfileScreenNew from './screens/Profile/ProfileScreenNew';
-//missing pages from doing hard reset
+import LoginScreen from './screens/Authentication/loginScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,12 +24,12 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'
+      <Stack.Navigator initialRouteName='Login'
         screenOptions={{
           headerShown: false
         }}
       >
-        <Stack.Screen name='Login' component={LoginPage} />
+        <Stack.Screen name='Login' component={LoginScreen} />
         <Stack.Screen name='CreateAccount' component={CreateAccount} />
         <Stack.Screen name='Onboarding' component={PickDestinations} />
         <Stack.Screen name='Home' component={HomeScreen} />
