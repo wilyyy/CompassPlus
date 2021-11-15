@@ -27,21 +27,39 @@ const NavCont = styled.View`
 
 
 export default function NavBar({
-    navigation = useNavigation(),
+    // navigation = useNavigation(),
 }) {
+
+    // return (
+    //     <NavCont>
+    //         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+    //             <Text>Home</Text>
+    //         </TouchableOpacity>
+    //         <TouchableOpacity onPress={() => navigation.navigate('MobileCard')}>
+    //             <Text>Card</Text>
+    //         </TouchableOpacity>
+    //         <TouchableOpacity onPress={() => navigation.navigate('Map')}>
+    //             <Text>Map</Text>
+    //         </TouchableOpacity>
+    //         <TouchableOpacity onPress={() => navigation.navigate('Account')}>
+    //             <Text>Account</Text>
+    //         </TouchableOpacity>
+    //     </NavCont>
+    // );
+
 
     return (
         <NavCont>
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+            <TouchableOpacity>
                 <Text>Home</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('MobileCard')}>
+            <TouchableOpacity>
                 <Text>Card</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Map')}>
+            <TouchableOpacity>
                 <Text>Map</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Account')}>
+            <TouchableOpacity>
                 <Text>Account</Text>
             </TouchableOpacity>
         </NavCont>
