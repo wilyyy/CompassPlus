@@ -34,7 +34,7 @@ import SavedRidesIcon from '../../../comps/Home/savedRidesIcon';
 import SavedRidesScroll from '../../../comps/Home/savedRidesScroll';
 
 //SCREENS
-import PickDestinations from '../../../screens/SignUp/pickDestinations';
+import PickDestinations from '../../../screens/Authentication/pickDestinations';
 import PasswordChange from '../../../comps/Profile/PasswordChange';
 import CompassCardScreen from '../../../screens/CompassCardScreen/mobileCard';
 import SignUpTransitCardScroll from '../../../comps/SignUp/signUpTransitCardScroll';
@@ -44,9 +44,9 @@ import BalanceContainer from '../../../comps/Home/balanceContainer';
 import MapHomeScreen from '../../../screens/TripPlanner/mapHome';
 import HomeScreen from '../../../screens/Home/home';
 import CardSwipeTest from '../../../screens/testSwipe';
-import LoginPage  from '../../../screens/LoginScreen/loginScreen';
+import LoginPage from '../../../screens/Authentication/loginScreen';
 import ProfileScreenNew from '../../../screens/Profile/ProfileScreenNew';
-import CreateAccount from '../../../screens/CreateAccount/createAccount';
+import CreateAccount from '../../../screens/Authentication/createAccount';
 
 
 storiesOf('Comps', module)
