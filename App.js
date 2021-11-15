@@ -2,40 +2,44 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-// import MobileCard from './comps/CompassCardParent/CardManager';
-// import AddFundsTab from './comps/CompassCardParent/CardManager/AddFunds';
-// import TransferBalanceTab from './comps/CompassCardParent/TransferFunds';
-// import LinkCompassCard from './comps/LinkCompassCard';
-// import TripPlannerTab from './comps/TripPlannerTab';
-// import SignUpTransitCard from './comps/SignUpTransitCard';
-// import NotificationCard from './comps/Profile/notificationCard';
-
-// import MobileCard from './comps/CompassCardParent/cardManager';
-// import AddFundsTab from './comps/CompassCardParent/addFunds';
-// import TransferBalanceTab from './comps/CompassCardParent/transferFunds';
-// import LinkCompassCard from './comps/LinkCompassCard';
-// import TripPlannerTab from './comps/TripPlannerTab';
-// import SignUpTransitCard from './comps/SignUp/signUpTransitCard';
-// import NotificationCard from './comps/Profile/notificationCard';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 // go to storybook/stories/Button/Button.stories.js to add components
-export { default } from './storybook';
+// export { default } from './storybook';
 
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       {/* <LinkCompassCard />
-//       <TripPlannerTab />
-//       <SignUpTransitCard /> */}
+//import screens
+import PickDestinations from './screens/Authentication/pickDestinations';
+import HomeScreen from './screens/Home/home';
+import CompassCardScreen from './screens/CompassCardScreen/mobileCard';
+import MapHomeScreen from './screens/TripPlanner/mapHome';
+import CreateAccount from './screens/Authentication/createAccount';
+import ProfileScreenNew from './screens/Profile/ProfileScreenNew';
+import LoginScreen from './screens/Authentication/loginScreen';
 
-//       {/* <MobileCard /> */}
-//       {/* <TransferBalanceTab /> */}
-//       <AddFundsTab />
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Login'
+        screenOptions={{
+          headerShown: false
+        }}
+      >
+        <Stack.Screen name='Login' component={LoginScreen} />
+        <Stack.Screen name='CreateAccount' component={CreateAccount} />
+        <Stack.Screen name='Onboarding' component={PickDestinations} />
+        <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Screen name='MobileCard' component={CompassCardScreen} />
+        <Stack.Screen name='Map' component={MapHomeScreen} />
+        <Stack.Screen name='Account' component={ProfileScreenNew} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {

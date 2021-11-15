@@ -1,13 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, ScrollView, Alert, Modal } from 'react-native';
+import { View, Dimensions, StyleSheet, Text, ScrollView, Alert, Modal, Pressable } from 'react-native';
 import styled from "styled-components/native";
+import { Divider } from 'react-native-elements';
 
 import { COLORS } from '../../constants/styles.js';
 import HomeCompassCard from '../../comps/Home/homeCompassCard.js';
 import HomeCard from '../../comps/Home/homeCard.js';
 import WelcomeMessage from '../../comps/Home/welcomeMessage.js';
 import LinkCompassCard from '../../comps/Home/linkCompassCard.js';
+import NavBar from '../../comps/NavBar/index.js';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -27,7 +33,7 @@ const BottomContainer = styled.View`
     height: 60%;
 `;
 
-const HomeElement = styled.View`
+const HomeElement = styled.Pressable`
     margin: 10px 0;
 `;
 
@@ -49,6 +55,7 @@ const HomeScreen = () => {
         console.log(linkedCard);
     }
 
+
     return <Page>
         <Modal
             animationType="fade"
@@ -60,22 +67,28 @@ const HomeScreen = () => {
             }}
         >
             <View style={styles.modal_center}>
-                <LinkCompassCard 
+                <LinkCompassCard
                     onButtonPress={LinkCompass}
                     onClosePress={CloseModal}
                 />
             </View>
         </Modal>
-        <HomeCompassCard onButtonPress={OpenModal} compass_linked={linkedCard}/>
+        <HomeCompassCard onButtonPress={OpenModal} compass_linked={linkedCard} />
+
+
         <BottomContainer>
             <ScrollView style={styles.scroll_cont}>
                 <HomeElement>
-                    <WelcomeMessage style={{position: 'relative', top: 10,}}/>
+                    <WelcomeMessage />
                 </HomeElement>
-                <HomeElement><HomeCard style={styles.margin_r}/></HomeElement>
-                <HomeElement><HomeCard card_type="manageCard" style={styles.margin_r}/></HomeElement>
+                <Divider width={2} color={COLORS.CAROLINABLUE} />
+                <HomeElement><HomeCard style={styles.margin_r} /></HomeElement>
+                <HomeElement><HomeCard card_type="manageCard" style={styles.margin_r} /></HomeElement>
             </ScrollView>
         </BottomContainer>
+        <View style={styles.NavCont}>
+            <NavBar />
+        </View>
     </Page>
 }
 
@@ -90,5 +103,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    NavCont: {
+        position: 'absolute',
+        bottom: 0,
+    }
 
 });
