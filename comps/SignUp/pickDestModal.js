@@ -109,10 +109,10 @@ const PickDestModal = ({
             <InnerCont>
                 <H1>Ready to setup your account?</H1>
                 <H2>This can be done later, or modified at anytime through the Trip Planner. </H2>
-                <ButtonWBorder onPress={() => navigation.navigate('Home')}>
+                <ButtonWBorder onPress={onLaterPress}>
                     <ButtonText style={styles.blue_text}>Later</ButtonText>
                 </ButtonWBorder>
-                <BlueButton onPress={() => navigation.navigate('Onboarding')}>
+                <BlueButton onPress={onYesPress}>
                     <ButtonText style={styles.white_text}>Yes</ButtonText>
                 </BlueButton>
             </InnerCont>
