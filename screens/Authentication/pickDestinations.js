@@ -14,6 +14,8 @@ import {
     Ubuntu_700Bold_Italic,
 } from '@expo-google-fonts/ubuntu';
 import AppLoading from 'expo-app-loading';
+import { useNavigation } from '@react-navigation/native';
+
 
 import { COLORS } from '../../constants/styles.js';
 import SignUpCheckBox from '../../comps/SignUp/checkbox.js';
@@ -118,7 +120,9 @@ const CheckboxCont = styled.View`
     align-items: center;
 `;
 
-const PickDestinations = () => {
+const PickDestinations = ({
+    navigation = useNavigation()
+}) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -277,7 +281,7 @@ const PickDestinations = () => {
                         <SignUpTransitCardScroll />
                         <WhiteButton 
                             text="Continue"
-                            onButtonPress={IncrementCount}
+                            onButtonPress={() => navigation.navigate('Home')}
                         />
                     </Container>
                 </ImageBackground>
