@@ -71,7 +71,7 @@ export default function NavBar({
                     color={COLORS.SPACECADET}
                     size={35}
                 />
-                <NavText>Home</NavText>
+                <NavText>Trip Planner</NavText>
             </Section>
             <Section onPress={() => navigation.navigate('Account')}>
                 <Icon
