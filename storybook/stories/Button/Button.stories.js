@@ -32,6 +32,7 @@ import PaymentTab from '../../../comps/CompassCardParent/paymentSelTab';
 import HomeCompassCard from '../../../comps/Home/homeCompassCard';
 import SavedRidesIcon from '../../../comps/Home/savedRidesIcon';
 import SavedRidesScroll from '../../../comps/Home/savedRidesScroll';
+import SavedTripsCard from '../../../comps/TripPlanner/savedTripsCard';
 
 //SCREENS
 import PickDestinations from '../../../screens/Authentication/pickDestinations';
@@ -78,6 +79,7 @@ storiesOf('Comps', module)
   .add('Home Compass Card Container', () => <HomeCompassCard />)
   .add('Home - Saved Rides Icon', () => <SavedRidesIcon />)
   .add('Home - Saved Rides Scroll', () => <SavedRidesScroll />)
+  .add('Saved Trips Card', () => <SavedTripsCard />)
 
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
