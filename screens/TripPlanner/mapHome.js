@@ -30,19 +30,9 @@ const Container = styled.View`
     top: -10px;
 `;
 
-const SearchCont = styled.View`
-    width: 330px;
-    height: 40px;
-    position: absolute;
-    top: 0;
-`;
-
-
+//search bar
 const MapHomeScreen = () => {
     return <Page>
-        <SearchCont>
-            <MapSearchBar />
-        </SearchCont>
         <MapComp />
         <Container>
             <TripPlannerTab />
