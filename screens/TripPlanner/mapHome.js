@@ -2,12 +2,15 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { View, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity, ImageBackground } from 'react-native';
 import styled from "styled-components/native";
-import NavBar from '../../comps/NavBar/index.js';
+import MapView from 'react-native-maps';
 
 import { COLORS } from '../../constants/styles.js';
+
+import NavBar from '../../comps/NavBar/index.js';
 import TripPlannerTab from '../../comps/TripPlanner/tripPlannerTab'
 import MapComp from '../../comps/TripPlanner/mapComp';
-import MapView from 'react-native-maps';
+import MapSearchBar from '../../comps/TripPlanner/mapSearchBar.js';
+
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -21,16 +24,19 @@ const Page = styled.View`
 `;
 
 const Container = styled.View`
-    width: 100%;
-    height: auto;
-    justify-content: space-between;
+    width: ${windowWidth};
+    height: 217px;
+    position: relative;
+    top: -10px;
 `;
 
-
+//search bar
 const MapHomeScreen = () => {
     return <Page>
         <MapComp />
-        <TripPlannerTab />
+        <Container>
+            <TripPlannerTab />
+        </Container>
         <View style={styles.NavCont}>
             <NavBar />
         </View>

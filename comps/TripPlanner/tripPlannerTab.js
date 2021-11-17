@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { COLORS } from "../../constants/styles";
 
 import RideIcon from "./rideIcon";
+import SavedRidesIcon from "../Home/savedRidesIcon";
 import {
     useFonts,
     Ubuntu_300Light,
@@ -35,7 +36,7 @@ const TabCont = styled.View`
     width: 100%;
 `;
 
-const BigTab = styled.TouchableOpacity`
+const BigTab = styled.TouchableHighlight`
     width: 50%;
     height: 47px;
     background-color: ${props=>props.bigtab_color};
@@ -45,7 +46,7 @@ const BigTab = styled.TouchableOpacity`
     align-items: center;
 `;
 
-const SmallTab = styled.TouchableOpacity`
+const SmallTab = styled.TouchableHighlight`
     width: 50%;
     height: 40px;
     background-color: ${props=>props.smtab_color};
@@ -57,13 +58,13 @@ const SmallTab = styled.TouchableOpacity`
 
 const TabText = styled.Text`
     font-size: 20px;
-    color: #fff;
+    color: ${props=>props.bigtab_text};
     font-family: 'Ubuntu_700Bold';
 `;
 
 const SmTabText = styled.Text`
     font-size: 16px;
-    color: #fff;
+    color: ${props=>props.smtab_text};
     font-family: 'Ubuntu_400Regular';
 `;
 
@@ -106,15 +107,33 @@ const TripPlannerTab = ({
             return (
                 <Container>
                     <TabCont>
-                        <BigTab bigtab_color={carolinablue} onPress={PressLeftTab}>
-                            <TabText>Nearby Rides</TabText>
+                        <BigTab 
+                            bigtab_color={carolinablue} 
+                            onPress={PressLeftTab}
+                            underlayColor={COLORS.CAROLINABLUE}
+                        >
+                            <TabText bigtab_text="#fff">Nearby Rides</TabText>
                         </BigTab>
-                        <SmallTab smtab_color={spacecadet} onPress={PressRightTab}>
-                            <SmTabText>Saved Rides</SmTabText>
+                        <SmallTab 
+                            smtab_color={spacecadet} 
+                            onPress={PressRightTab}
+                            underlayColor={COLORS.CAROLINABLUE}
+                        >
+                            <SmTabText smtab_text={carolinablue}>Saved Rides</SmTabText>
                         </SmallTab>
                     </TabCont>
                     <Display bg_color={carolinablue}>
-                        <TabText>Nearbu Rides</TabText>
+                        <ScrollView 
+                            horizontal={true}
+                            contentContainerStyle={styles.contentContainer}
+                        >
+                            <RideIcon />
+                            <RideIcon />
+                            <RideIcon />
+                            <RideIcon />
+                            <RideIcon />
+                            <RideIcon />
+                        </ScrollView>
                     </Display>
                 </Container>
             );
@@ -128,15 +147,57 @@ const TripPlannerTab = ({
             return (
                 <Container>
                     <TabCont>
-                        <SmallTab smtab_color={carolinablue} onPress={PressLeftTab}>
-                            <SmTabText>Nearby Rides</SmTabText>
+                        <SmallTab 
+                            smtab_color={carolinablue} 
+                            onPress={PressLeftTab}
+                            underlayColor={COLORS.SPACECADET}
+                        >
+                            <SmTabText smtab_text="#fff">Nearby Rides</SmTabText>
                         </SmallTab>
-                        <BigTab bigtab_color={spacecadet} onPress={PressRightTab}>
-                            <TabText>Saved Rides</TabText>
+                        <BigTab 
+                            bigtab_color={spacecadet} 
+                            onPress={PressRightTab}
+                            underlayColor={COLORS.SPACECADET}
+                        >
+                            <TabText bigtab_text={COLORS.CAROLINABLUE}>Saved Rides</TabText>
                         </BigTab>
                     </TabCont>
                     <Display bg_color={spacecadet}>
-                        <TabText>Saved Rides</TabText>
+                        <ScrollView 
+                            horizontal={true}
+                            contentContainerStyle={styles.contentContainerTwo}
+                        >
+                            <SavedRidesIcon 
+                                text_color={COLORS.CAROLINABLUE}
+                            />
+                            <SavedRidesIcon
+                                text_color={COLORS.CAROLINABLUE}
+                                icon_type="train" 
+                                ride_text="Waterfront to Yaletown"
+                            />
+                            <SavedRidesIcon 
+                                text_color={COLORS.CAROLINABLUE}
+                                icon_type="seabus" 
+                                ride_text="Waterfront to Lonsdale Quay"
+                            />
+                            <SavedRidesIcon 
+                                text_color={COLORS.CAROLINABLUE}
+                                icon_type="bus" 
+                                bus_text="05" 
+                                ride_text="Dunsmuir to Cardero"
+                            />
+                            <SavedRidesIcon 
+                                text_color={COLORS.CAROLINABLUE}
+                                icon_type="seabus" 
+                                ride_text="Waterfront to Lonsdale Quay"
+                            />
+                            <SavedRidesIcon 
+                                text_color={COLORS.CAROLINABLUE}
+                                icon_type="bus" 
+                                bus_text="05" 
+                                ride_text="Dunsmuir to Cardero"
+                            />
+                        </ScrollView>
                     </Display>
                 </Container>
             );
@@ -150,5 +211,16 @@ const styles = StyleSheet.create({
     scrollview: {
         flexDirection: 'row',
         paddingTop: 15
+    },
+    contentContainer: {
+        width: '100%',
+        height: '100%',
+        paddingTop: '3%'
+    },
+    contentContainerTwo: {
+        width: '100%',
+        height: '100%',
+        paddingTop: '3%',
+        paddingLeft: '3%'
     }
 });
