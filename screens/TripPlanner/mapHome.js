@@ -15,25 +15,31 @@ const Page = styled.View`
     height: ${windowHeight};
     background-color: ${COLORS.DAVYSGREY};
     align-items: center;
-    justify-content: space-between;
+`;
+
+const Container = styled.View`
+    width: 100%;
+    height: 90%;
 `;
 
 const Map = styled.View`
     width: 100%;
-    height: 65%;
+    height: 50%;
     justify-content: center;
     align-items: center;
 `;
 
 const MapHomeScreen = () => {
     return <Page>
-        <Map>
-            <Text>Map goes here</Text>
-        </Map>
-        <TripPlannerTab />
+        <Container>
+            <Map>
+                <Text>Map goes here</Text>
+            </Map>
+            <TripPlannerTab />
+        </Container>
         <View style={styles.NavCont}>
-            <NavBar />
-        </View>
+                <NavBar />
+            </View>
     </Page>
 }
 
