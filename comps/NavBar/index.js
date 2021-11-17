@@ -20,6 +20,7 @@ const NavCont = styled.View`
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
+    box-shadow:  10px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const Section = styled.TouchableOpacity`

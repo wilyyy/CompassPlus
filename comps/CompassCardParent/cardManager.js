@@ -5,10 +5,12 @@ import { COLORS } from "../../constants/styles";
 
 
 const Container = styled.View`
-    width: 375px;
-    height: 600px;
+    width: 350px;
+    height: 585px;
     background-color: #fff;
     border-radius: 15px;
+    margin: 100px 0px 0px 25px;
+    top:-5%;
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 const CompassPlaceHolder = styled.View`
@@ -266,13 +268,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderColor: '#009ddc',
         borderWidth: 2,
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10,
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
+        borderRadius: 10,
         shadowColor: '#252B42',
         shadowOpacity: 0.5,
-        shadowOffset:{width: 0,height: 4},
+        shadowOffset: { width: 0, height: 4 },
     },
     buttonText: {
         fontSize: 24,

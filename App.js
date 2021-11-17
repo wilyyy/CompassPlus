@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 
 // go to storybook/stories/Button/Button.stories.js to add components
-// export { default } from './storybook';
+export { default } from './storybook';
 
 //import screens
 import PickDestinations from './screens/Authentication/pickDestinations';
