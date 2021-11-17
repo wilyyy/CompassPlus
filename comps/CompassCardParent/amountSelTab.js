@@ -24,8 +24,8 @@ const AmountTab = ({
     const [selectedId, setSelectedId] = useState(null);
 
     const renderItem = ({ item }) => {
-        const backgroundColor = item.id === selectedId ? "#E3E3E4" : "transparent";
-        const color = item.id === selectedId ? 'black' : 'black';
+        const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
+        const color = item.id === selectedId ? 'white' : 'black';
 
         return (
             <Item
@@ -68,12 +68,12 @@ const styles = StyleSheet.create({
         marginTop: StatusBar.currentHeight || 0,
         overflow: 'hidden',
     },
-    item: {
-        paddingTop: 5,
-    },
     title: {
         fontSize: 18,
-        margin: 10,
+        lineHeight: 28,
+        letterSpacing: 0.1,
+        textAlign: 'left',
+        padding: 10,
     },
 });
 

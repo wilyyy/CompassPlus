@@ -8,11 +8,10 @@ const TransferCardCont = styled.View`
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    width: 343px;
-    height: 380px;
+    width: 340px;
+    height: 340px;
     background-color: #fff;
-    border-radius: 16px;
-    border: 3px solid ${COLORS.CAROLINABLUE};
+    border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(37, 43, 66, 0.5);
 `;
 
@@ -21,8 +20,22 @@ const Header = styled.Text`
     position: relative;
     right: -20px;
     align-self: flex-start;
-    color: #000000;
+    font-size: 24;
+    font-weight: bold;
+    line-height: 24;
+    letter-spacing: 0;
+    color: #252B42;
 `;
+
+const InputCont = styled.View`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 343px;
+    height: 150px;
+
+`
 
 const Close = styled.TouchableOpacity`
     width: 41px;
@@ -56,18 +69,20 @@ const LinkCompassCard = ({
                 />
             </Close>
             <Header>Add a Compass Card</Header>
-            <TextInput
-                style={styles.input}
-                keyboardType='numeric'
-                placeholder='Compass Card Number'
-                underlineColorAndroid="transparent"
-            />
-            <TextInput
-                style={styles.input}
-                keyboardType='numeric'
-                placeholder='CVN'
-                underlineColorAndroid="transparent"
-            />
+            <InputCont>
+                <TextInput
+                    style={styles.input}
+                    keyboardType='numeric'
+                    placeholder='Compass Card Number'
+                    underlineColorAndroid="transparent"
+                />
+                <TextInput
+                    style={styles.input}
+                    keyboardType='numeric'
+                    placeholder='CVN'
+                    underlineColorAndroid="transparent"
+                />
+            </InputCont>
             <TouchableOpacity
                 style={styles.button}
                 onPress={onButtonPress}
@@ -90,15 +105,21 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     button: {
-        width: 294,
+        width: 250,
         height: 55,
-        borderRadius: 30,
+        borderRadius: 10,
+        shadowColor: '#252B42',
+        shadowOpacity: 0.5,
+        shadowOffset:{width: 0,height: 4},
         backgroundColor: COLORS.CAROLINABLUE,
         justifyContent: 'center',
         alignItems: 'center'
     },
     text: {
         fontSize: 24,
-        color: '#fff'
+        fontWeight: 'bold',
+        lineHeight: 24,
+        letterSpacing: 0,
+        color: '#fff',
     }
 });

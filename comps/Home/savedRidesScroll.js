@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import React, { useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Icon } from 'react-native-elements'
+import { useNavigation } from '@react-navigation/native';
 
 import {
     useFonts,
@@ -24,7 +25,7 @@ import SavedRidesIcon from "./savedRidesIcon";
 const Container = styled.View`
     width: 100%;
     margin-left: 10%;
-    height: 251px;
+    height: 281px;
     justify-content: space-evenly;
 `;
 
@@ -59,8 +60,17 @@ const Minimize = styled.TouchableOpacity`
     align-self: flex-end;
 `;
 
+const ViewAll = styled.TouchableOpacity`
+    width: 100px;
+    height: 30px;
+    position: relative;
+    bottom: 20px;
+    left: 65%;
+`;
+
 const SavedRidesScroll = ({
-    onMinimizePress = () => {}
+    onMinimizePress = () => {},
+    navigation = useNavigation()
 }) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
@@ -103,6 +113,9 @@ const SavedRidesScroll = ({
                     <SavedRidesIcon />
                 </ScrollView>
             </ScrollCont>
+            <ViewAll onPress={() => navigation.navigate('SavedTrips')}>
+                <H1>View All</H1>
+            </ViewAll>
         </Container>
     }
 }

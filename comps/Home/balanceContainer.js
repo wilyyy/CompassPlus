@@ -1,30 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/native';
 
-export default function BalanceContainer({
-    CardNumber="",
-    bAmt=""
-}) {
-    return (
-        <Container>
-
-            <TextCont>
-                <TextTitle>
-                    Balance
-                </TextTitle>
-                <TextCard>
-                    Card #{CardNumber}
-                </TextCard>
-            </TextCont>
-
-            <BalanceCont>
-                <BalanceText >${bAmt}</BalanceText>
-            </BalanceCont>
-
-        </Container>
-    )
-}
-
 const Container = styled.View`
     background-color: #ffbb00;
     flex-direction: row;
@@ -59,4 +35,32 @@ const BalanceText = styled.Text`
     font-size: 30px;
     font-weight: 700;
 `;
+
+
+const BalanceContainer = ({
+    CardNumber="",
+    bAmt=""
+}) => {
+    return (
+        <Container>
+
+            <TextCont>
+                <TextTitle>
+                    Balance
+                </TextTitle>
+                <TextCard>
+                    Card #{CardNumber}
+                </TextCard>
+            </TextCont>
+
+            <BalanceCont>
+                <BalanceText >${bAmt}</BalanceText>
+            </BalanceCont>
+
+        </Container>
+    )
+}
+
+export default BalanceContainer;
+
 
