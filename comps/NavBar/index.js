@@ -80,7 +80,7 @@ export default function NavBar({
                     color={COLORS.SPACECADET}
                     size={35}
                 />
-                <NavText>Home</NavText>
+                <NavText>Profile</NavText>
             </Section>
         </NavCont>
     );

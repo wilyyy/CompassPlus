@@ -79,7 +79,7 @@ const LoginScreen = ({navigation}) => {
         return <AppLoading />;
     } else {
     return <Page>
-        <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="fill" style={styles.image}>
+        <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
             <Container>
                 <H1>
                     Welcome to <Text style={styles.text_bold}>CompassPlus</Text>
