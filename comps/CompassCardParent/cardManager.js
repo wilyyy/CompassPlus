@@ -20,29 +20,53 @@ const CompassPlaceHolder = styled.View`
     border-top-left-radius: 15px;
     align-self: center;
     background-color: ${COLORS.CAROLINABLUE};
+    box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.75);
+
+`;
+
+
+const ExpirationCont = styled.View`
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin:15px;
+
+    /* border-width: 2px;
+    border-color: red; */
+`;
+
+const CompassCardNo = styled.Text`
+    font-size: 12px;
+    margin-bottom: 20px;
+`;
+
+const ExpirationTitle = styled.Text`
+    font-size: 24px;
+`;
+
+const ExpirationDate = styled.Text`
+    color: ${COLORS.CAROLINABLUE};
+    font-size: 40px;
 `;
 
 const ButtonCont = styled.View`
-    display: flex;
-    margin: 0;
-    top: 30;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     width: 100%;
-    height: 55%;
+    height: 50%;
     flex-direction: column;
+
+    /* border-width: 2px;
+    border-color: red; */
 `;
 
-const Expiration = styled.Text`
-    color: #252b42;
+const Hr = styled.View`
+    width:80%;
+    background-color: ${COLORS.SPACECADET};
+    height:2px;
     align-self: center;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 16px;
-    text-align: center;
-    top: 20;
-
 `;
+
 
 /* setting cont will hold:
     -> icon
@@ -88,16 +112,11 @@ const CompassCardBarcode = styled.Image`
     border-radius: 15px;
 
 `;
-const CompassCardNo = styled.Text`
-    font-size: 12px;
-    align-self: center;
-    top: 20;
-`;
+
 const CardFooter = styled.View`
     align-self: center;
-    justify-content: space-around;
     width: 90%;
-    padding: 65px 0px 0px 0px;
+    margin-top:40px;
     flex-direction: row;
 `;
 const IconsFrontCont = styled.View`
@@ -123,7 +142,7 @@ export default function MobileCard({
     onWalletPress = () => { },
     onRemoveTicketPress = () => { },
     barcodeId = "ak-18-15 Compass No: 016372 9281 9273 CVN 459",
-    cardType = "December Pass",
+    expiration = "December 30th",
     // onManagePress = () => { },
     onAddFundsPress = () => { }
 }) {
@@ -152,12 +171,13 @@ export default function MobileCard({
         return (
             <Container>
                 <CompassPlaceHolder />
-                <Expiration>{cardType}</Expiration>
-                {/* <CompassCardBarcode
-                    source={require('#')}
-                /> */}
-                <CompassCardNo>{barcodeId}</CompassCardNo>
 
+                <ExpirationCont>
+                    <CompassCardNo>{barcodeId}</CompassCardNo>
+                    <ExpirationTitle>Expires:</ExpirationTitle>
+                    <ExpirationDate>{expiration}</ExpirationDate>
+                </ExpirationCont>
+                <Hr />
                 <CardFooter>
                     <ButtonCont>
                         <Pressable style={styles.button} onPress={goManage}>
@@ -259,8 +279,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     button: {
-        display: 'flex',
-        margin: 0,
+        margin: 10,
         justifyContent: 'center',
         alignItems: 'center',
         width: 250,
