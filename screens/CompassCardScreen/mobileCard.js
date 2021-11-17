@@ -22,6 +22,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import TransferBalanceTab from '../../comps/CompassCardParent/transferFunds.js';
 import AddFundsTab from '../../comps/CompassCardParent/addFunds.js';
+import AddCardManager from '../../comps/CompassCardParent/addCardManager.js';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -198,11 +199,7 @@ const CompassCardScreen = () => {
                         TransferAction={TransferFunds}
                         onAddFundsPress={handleAddSheet}
                     />
-                    <MobileCard
-                        onTransferPress={handleTransferSheet}
-                        TransferAction={TransferFunds}
-                        onAddFundsPress={handleAddSheet}
-                    />
+                    <AddCardManager />
                 </ScrollView>
 
                 {/* <Button
