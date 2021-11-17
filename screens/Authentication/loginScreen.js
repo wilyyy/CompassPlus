@@ -64,10 +64,7 @@ const Button = styled.TouchableOpacity`
     border-radius: 20px;
 `;
 
-// const [email, setEmail] = useState('')
-// const [password, setPassword] = useState('')
-
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ navigation }) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -81,43 +78,39 @@ const LoginScreen = ({navigation}) => {
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
-    return <Page>
-        <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
-            <Container>
-                <H1>
-                    Welcome to <Text style={styles.text_bold}>CompassPlus</Text>
-                </H1>
-                <TextCont>
-                <TextInput
-                    style={styles.text_input}
-                    placeholderTextColor='616161'
-                    placeholder="Email ..."
-                    // value={email}
-                    // onChangeText={text => setEmail(text)}
-                />
-                <TextInput 
-                    style={styles.text_input}
-                    placeholderTextColor="616161"
-                    placeholder="Password ..."
-                    secureTextEntry={true}
-                    autoCorrect={false}
-                    // value={password}
-                    // onChangeText={text => setPassword(text)}
-                />
-                </TextCont>
-                <ButtonCont>
-                    <WhiteButton  
-                        text="Sign In"
-                        onButtonPress={() => navigation.navigate('Home')}
-                    />
-                    <WhiteButton
-                        text="Create An Account"
-                        onButtonPress={() => navigation.navigate('CreateAccount')}
-                    />
-                </ButtonCont>
-            </Container>
-        </ImageBackground>
-    </Page>
+        return <Page>
+            <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
+                <Container>
+                    <H1>
+                        Welcome to <Text style={styles.text_bold}>CompassPlus</Text>
+                    </H1>
+                    <TextCont>
+                        <TextInput
+                            style={styles.text_input}
+                            placeholderTextColor='#616161'
+                            placeholder="Email ..."
+                        />
+                        <TextInput
+                            style={styles.text_input}
+                            placeholderTextColor="#616161"
+                            placeholder="Password ..."
+                            secureTextEntry={true}
+                            autoCorrect={false}
+                        />
+                    </TextCont>
+                    <ButtonCont>
+                        <WhiteButton
+                            text="Sign In"
+                            onButtonPress={() => navigation.navigate('Home')}
+                        />
+                        <WhiteButton
+                            text="Create An Account"
+                            onButtonPress={() => navigation.navigate('CreateAccount')}
+                        />
+                    </ButtonCont>
+                </Container>
+            </ImageBackground>
+        </Page>
     }
 }
 export default LoginScreen;

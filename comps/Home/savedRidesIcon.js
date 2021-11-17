@@ -25,7 +25,7 @@ const ContWithText = styled.TouchableOpacity`
 `;
 
 const RideText = styled.Text`
-    color: ${COLORS.SPACECADET};
+    color: ${props=>props.text_color};
     font-family: 'Ubuntu_400Regular';
     font-size: 12px;
     text-align: center;
@@ -55,6 +55,7 @@ const SavedRidesIcon = ({
     icon_type="seabus",
     bus_text="250",
     ride_text="Lonsdale Quay to Waterfront",
+    text_color = COLORS.SPACECADET,
     onButtonPress = () => {},
 }) => {
     let [fontsLoaded] = useFonts({
@@ -85,7 +86,7 @@ const SavedRidesIcon = ({
                         />
                     </RideIcon>
                 </Container>
-                <RideText>{ride_text}</RideText>
+                <RideText text_color={text_color}>{ride_text}</RideText>
             </ContWithText>
         }
 }
@@ -98,7 +99,7 @@ const SavedRidesIcon = ({
                 <Container>
                         <BusText>{bus_text}</BusText>
                 </Container>
-                <RideText>{ride_text}</RideText>
+                <RideText text_color={text_color}>{ride_text}</RideText>
             </ContWithText>
         }
     }
@@ -118,7 +119,7 @@ const SavedRidesIcon = ({
                         />
                     </RideIcon>
                 </Container>
-                <RideText>{ride_text}</RideText>
+                <RideText text_color={text_color}>{ride_text}</RideText>
             </ContWithText>
         }
     }
