@@ -20,6 +20,7 @@ import AppLoading from 'expo-app-loading';
 const Container = styled.View`
     height: 100px;
     align-items: center;
+    top: 10;
 `;
 
 const TextCont = styled.View`
@@ -36,6 +37,8 @@ const H2 = styled.Text`
     font-size: 16px;
     color: ${COLORS.SPACECADET};
     font-family: 'Ubuntu_400Regular';
+    text-align: justify;
+    top: 5;
 `;
 
 const WelcomeMessage = () => {

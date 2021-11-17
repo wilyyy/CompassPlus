@@ -32,9 +32,10 @@ import PaymentTab from '../../../comps/CompassCardParent/paymentSelTab';
 import HomeCompassCard from '../../../comps/Home/homeCompassCard';
 import SavedRidesIcon from '../../../comps/Home/savedRidesIcon';
 import SavedRidesScroll from '../../../comps/Home/savedRidesScroll';
+import SavedTripsCard from '../../../comps/TripPlanner/savedTripsCard';
 
 //SCREENS
-import PickDestinations from '../../../screens/SignUp/pickDestinations';
+import PickDestinations from '../../../screens/Authentication/pickDestinations';
 import PasswordChange from '../../../comps/Profile/PasswordChange';
 import CompassCardScreen from '../../../screens/CompassCardScreen/mobileCard';
 import SignUpTransitCardScroll from '../../../comps/SignUp/signUpTransitCardScroll';
@@ -44,14 +45,12 @@ import BalanceContainer from '../../../comps/Home/balanceContainer';
 import MapHomeScreen from '../../../screens/TripPlanner/mapHome';
 import HomeScreen from '../../../screens/Home/home';
 import CardSwipeTest from '../../../screens/testSwipe';
-import LoginPage  from '../../../screens/LoginScreen/loginScreen';
+import LoginPage from '../../../screens/Authentication/loginScreen';
 import ProfileScreenNew from '../../../screens/Profile/ProfileScreenNew';
-import CreateAccount from '../../../screens/CreateAccount/createAccount';
+import CreateAccount from '../../../screens/Authentication/createAccount';
 
 
-//ADD COMPS IN STORYBOOK BELOW LIKE THIS
 storiesOf('Comps', module)
-  //USUALLY GOES .add('label', () => <Comp />)
   .add('NavBar', () => <NavBar />)
   .add('Add Compass Card', () => <LinkCompassCard />)
   .add('Mobile Card', () => <MobileCard />)
@@ -80,22 +79,12 @@ storiesOf('Comps', module)
   .add('Home Compass Card Container', () => <HomeCompassCard />)
   .add('Home - Saved Rides Icon', () => <SavedRidesIcon />)
   .add('Home - Saved Rides Scroll', () => <SavedRidesScroll />)
+  .add('Saved Trips Card', () => <SavedTripsCard />)
 
 
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-// .add('with text', () => (
-//   <Button onPress={action('clicked-text')}>
-//     <Text>{text('Button text', 'Hello Button')}</Text>
-//   </Button>
-// ))
-// .add('with some emoji', () => (
-//   <Button onPress={action('clicked-emoji')}>
-//     <Text>😀 😎 👍 💯</Text>
-//   </Button>
-// ));
 
 storiesOf('Screens', module)
-  //USUALLY GOES .add('label', () => <Comp />)
   .add('Profile Card Update', () => <ProfileCardUpdate />)
   .add('Profile Screen', () => <ProfileScreenNew />)
   .add('Pick Destinations', () => <PickDestinations />)

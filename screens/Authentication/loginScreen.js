@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { View, TextInput, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity } from 'react-native';
+import { View, TextInput, Dimensions, StyleSheet, Text, ImageBackground } from 'react-native';
 import styled from "styled-components/native";
-import { COLORS } from '../../constants/styles.js';
 
+import { COLORS } from '../../constants/styles.js';
 import {
     useFonts,
     Ubuntu_300Light,
@@ -15,8 +15,9 @@ import {
     Ubuntu_700Bold,
     Ubuntu_700Bold_Italic,
 } from '@expo-google-fonts/ubuntu';
-
 import AppLoading from 'expo-app-loading';
+
+import WhiteButton from '../../comps/Global/whiteButton.js';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -63,7 +64,7 @@ const Button = styled.TouchableOpacity`
     border-radius: 20px;
 `;
 
-const LoginPage = () => {
+const LoginScreen = ({navigation}) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -78,33 +79,41 @@ const LoginPage = () => {
         return <AppLoading />;
     } else {
     return <Page>
-        <Container>
-            <H1>
-                Welcome to <Text style={styles.text_bold}>CompassPlus</Text>
-            </H1>
-            <TextCont>
-            <TextInput
-                style={styles.text_input}
-                placeholderTextColor='616161'
-                placeholder="Email ..."
-            />
-            <TextInput 
-                style={styles.text_input}
-                placeholderTextColor="616161"
-                placeholder="Password ..."
-                secureTextEntry={true}
-                autoCorrect={false}
-            />
-            </TextCont>
-            <ButtonCont>
-            <Button/>
-            <Button/>
-            </ButtonCont>
-        </Container>
+        <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
+            <Container>
+                <H1>
+                    Welcome to <Text style={styles.text_bold}>CompassPlus</Text>
+                </H1>
+                <TextCont>
+                <TextInput
+                    style={styles.text_input}
+                    placeholderTextColor='616161'
+                    placeholder="Email ..."
+                />
+                <TextInput 
+                    style={styles.text_input}
+                    placeholderTextColor="616161"
+                    placeholder="Password ..."
+                    secureTextEntry={true}
+                    autoCorrect={false}
+                />
+                </TextCont>
+                <ButtonCont>
+                    <WhiteButton  
+                        text="Sign In"
+                        onButtonPress={() => navigation.navigate('Home')}
+                    />
+                    <WhiteButton
+                        text="Create An Account"
+                        onButtonPress={() => navigation.navigate('CreateAccount')}
+                    />
+                </ButtonCont>
+            </Container>
+        </ImageBackground>
     </Page>
     }
 }
-export default LoginPage;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
     text_input: {
@@ -121,5 +130,10 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontFamily: 'Ubuntu_500Medium',
         fontSize: 48
+    },
+    image: {
+        alignItems: 'center',
+        width: windowWidth,
+        height: windowHeight
     }
 });
