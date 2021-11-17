@@ -6,16 +6,16 @@ import { COLORS } from "../../constants/styles";
 
 const Container = styled.View`
     width: 350px;
-    height: 585px;
+    height: 550px;
     background-color: #fff;
     border-radius: 15px;
     margin: 100px 0px 0px 25px;
-    top:-5%;
+    top:-6%;
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 const CompassPlaceHolder = styled.View`
     width: 350px;
-    height: 215px;
+    height: 200px;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     align-self: center;
