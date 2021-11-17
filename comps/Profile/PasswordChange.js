@@ -10,6 +10,8 @@ import {
 import { Avatar, Header, Divider, Icon } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 
@@ -38,14 +40,27 @@ const EditContent = styled.Text`
     text-align: left;
 `;
 
-const PasswordChange = () => {
-
+const PasswordChange = ({navigation}) => {
+    navigation = useNavigation()
     return (
             <ScrollView>
                 <Header
-                    leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: 'white' } }}
-                    centerComponent={{ text: 'Change Password', style: { color: 'white', fontWeight: 'bold', fontSize: 20 } }}
-                    containerStyle={{backgroundColor: COLORS.CAROLINABLUE, height: 80}}
+                    leftComponent={{ 
+                        icon: 'arrow-back', 
+                        color: 'white', 
+                        onPress: () => {navigation.navigate('Account')}, 
+                        iconStyle: { color: 'white' } 
+                    }}
+                    centerComponent={{ 
+                        text: 'Change Password', 
+                        style: { 
+                            color: 'white', 
+                            fontWeight: 'bold', 
+                            fontSize: 20 } 
+                        }}
+                    containerStyle={{
+                        backgroundColor: COLORS.CAROLINABLUE, 
+                        height: 80}}
                     />
                 <Box />
                     <EditColumn>
