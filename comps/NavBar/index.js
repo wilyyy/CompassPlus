@@ -10,18 +10,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS } from '../../constants/styles';
 
-
-
-
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const navBarTop = windowHeight;
-
 
 const NavCont = styled.View`
     width: ${windowWidth}px;
-    height:85px;
+    height: ${windowHeight / 10}px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
