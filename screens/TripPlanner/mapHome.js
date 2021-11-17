@@ -22,36 +22,18 @@ const Page = styled.View`
 
 const Container = styled.View`
     width: 100%;
-    height: 90%;
+    height: auto;
     justify-content: space-between;
 `;
 
-const Map = styled.View`
-    width: 100%;
-    height: 50%;
-    justify-content: center;
-    align-items: center;
-`;
 
 const MapHomeScreen = () => {
     return <Page>
-        <Container>
-            <Map>
-                <MapView
-                    initialRegion={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                    }}
-                    style={styles.map}
-                />
-            </Map>
-            <TripPlannerTab />
-        </Container>
+        <MapComp />
+        <TripPlannerTab />
         <View style={styles.NavCont}>
-                <NavBar />
-            </View>
+            <NavBar />
+        </View>
     </Page>
 }
 
