@@ -26,6 +26,7 @@ const NavCont = styled.View`
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
+    box-shadow:  10px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const Section = styled.TouchableOpacity`
@@ -41,7 +42,7 @@ const NavText = styled.Text`
 `;
 
 export default function NavBar({
-    // navigation = useNavigation(),
+    navigation = useNavigation(),
 }) {
 
     return (
