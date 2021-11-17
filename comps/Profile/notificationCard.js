@@ -6,8 +6,6 @@ import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
 
 
-
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
