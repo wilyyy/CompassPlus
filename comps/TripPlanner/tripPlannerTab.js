@@ -1,11 +1,22 @@
 import styled from "styled-components/native";
 import React, { useState } from 'react';
-import { Tab, ThemeProvider } from 'react-native-elements';
 import { Dimensions, TouchableOpacity, SafeAreaView, ScrollView, StyleSheet, Text } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { COLORS } from "../../constants/styles";
 
 import RideIcon from "./rideIcon";
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+} from '@expo-google-fonts/ubuntu';
+import AppLoading from 'expo-app-loading';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -47,11 +58,13 @@ const SmallTab = styled.TouchableOpacity`
 const TabText = styled.Text`
     font-size: 20px;
     color: #fff;
+    font-family: 'Ubuntu_700Bold';
 `;
 
 const SmTabText = styled.Text`
     font-size: 16px;
     color: #fff;
+    font-family: 'Ubuntu_400Regular';
 `;
 
 const Display = styled.View`
@@ -65,6 +78,17 @@ const TripPlannerTab = ({
     carolinablue = COLORS.CAROLINABLUE,
     spacecadet = COLORS.SPACECADET
 }) => {
+    let [fontsLoaded] = useFonts({
+        Ubuntu_300Light,
+        Ubuntu_300Light_Italic,
+        Ubuntu_400Regular,
+        Ubuntu_400Regular_Italic,
+        Ubuntu_500Medium,
+        Ubuntu_500Medium_Italic,
+        Ubuntu_700Bold,
+        Ubuntu_700Bold_Italic,
+    });
+
     const [tabSwitch, setTabSwitch] = useState(false);
 
     const PressLeftTab = () => {
@@ -76,39 +100,47 @@ const TripPlannerTab = ({
     }
     
     if(tabSwitch === false){
-        return (
-            <Container>
-                <TabCont>
-                    <BigTab bigtab_color={carolinablue} onPress={PressLeftTab}>
-                        <TabText>Nearby Rides</TabText>
-                    </BigTab>
-                    <SmallTab smtab_color={spacecadet} onPress={PressRightTab}>
-                        <SmTabText>Saved Rides</SmTabText>
-                    </SmallTab>
-                </TabCont>
-                <Display bg_color={carolinablue}>
-                    <TabText>Nearbu Rides</TabText>
-                </Display>
-            </Container>
-        );
+        if (!fontsLoaded) {
+            return <AppLoading />;
+        } else {
+            return (
+                <Container>
+                    <TabCont>
+                        <BigTab bigtab_color={carolinablue} onPress={PressLeftTab}>
+                            <TabText>Nearby Rides</TabText>
+                        </BigTab>
+                        <SmallTab smtab_color={spacecadet} onPress={PressRightTab}>
+                            <SmTabText>Saved Rides</SmTabText>
+                        </SmallTab>
+                    </TabCont>
+                    <Display bg_color={carolinablue}>
+                        <TabText>Nearbu Rides</TabText>
+                    </Display>
+                </Container>
+            );
+        }
     }
 
     if(tabSwitch === true){
-        return (
-            <Container>
-                <TabCont>
-                    <SmallTab smtab_color={carolinablue} onPress={PressLeftTab}>
-                        <SmTabText>Nearby Rides</SmTabText>
-                    </SmallTab>
-                    <BigTab bigtab_color={spacecadet} onPress={PressRightTab}>
+        if (!fontsLoaded) {
+            return <AppLoading />;
+        } else {
+            return (
+                <Container>
+                    <TabCont>
+                        <SmallTab smtab_color={carolinablue} onPress={PressLeftTab}>
+                            <SmTabText>Nearby Rides</SmTabText>
+                        </SmallTab>
+                        <BigTab bigtab_color={spacecadet} onPress={PressRightTab}>
+                            <TabText>Saved Rides</TabText>
+                        </BigTab>
+                    </TabCont>
+                    <Display bg_color={spacecadet}>
                         <TabText>Saved Rides</TabText>
-                    </BigTab>
-                </TabCont>
-                <Display bg_color={spacecadet}>
-                    <TabText>Saved Rides</TabText>
-                </Display>
-            </Container>
-        );
+                    </Display>
+                </Container>
+            );
+        }
     }
 }
 
