@@ -7,7 +7,7 @@ import { COLORS } from "../../constants/styles";
 const Container = styled.View`
     width: 350px;
     height: 550px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
     border-radius: 15px;
     margin: 100px 0px 0px 25px;
     top:-6%;
@@ -142,7 +142,9 @@ export default function MobileCard({
     onWalletPress = () => { },
     onRemoveTicketPress = () => { },
     barcodeId = "ak-18-15 Compass No: 016372 9281 9273 CVN 459",
+    cardType = "Pass",
     expiration = "December 30th",
+    phrasing = "on",
     // onManagePress = () => { },
     onAddFundsPress = () => { }
 }) {
@@ -174,7 +176,7 @@ export default function MobileCard({
 
                 <ExpirationCont>
                     <CompassCardNo>{barcodeId}</CompassCardNo>
-                    <ExpirationTitle>Expires:</ExpirationTitle>
+                    <ExpirationTitle>{cardType} Expires {phrasing}:</ExpirationTitle>
                     <ExpirationDate>{expiration}</ExpirationDate>
                 </ExpirationCont>
                 <Hr />
@@ -203,7 +205,7 @@ export default function MobileCard({
                     title='<'
                 />
                 <CompassPlaceHolder />
-                <Expiration>{cardType}</Expiration>
+                <ExpirationDate>{expiration}</ExpirationDate>
                 <SettingCont>
                     <SettingsContLeft>
                         <IconBack
