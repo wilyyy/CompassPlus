@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useState} from 'react';
 import { View, TextInput, Dimensions, StyleSheet, Text, ImageBackground } from 'react-native';
 import styled from "styled-components/native";
 
@@ -64,6 +64,9 @@ const Button = styled.TouchableOpacity`
     border-radius: 20px;
 `;
 
+// const [email, setEmail] = useState('')
+// const [password, setPassword] = useState('')
+
 const LoginScreen = ({navigation}) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
@@ -89,6 +92,8 @@ const LoginScreen = ({navigation}) => {
                     style={styles.text_input}
                     placeholderTextColor='616161'
                     placeholder="Email ..."
+                    // value={email}
+                    // onChangeText={text => setEmail(text)}
                 />
                 <TextInput 
                     style={styles.text_input}
@@ -96,6 +101,8 @@ const LoginScreen = ({navigation}) => {
                     placeholder="Password ..."
                     secureTextEntry={true}
                     autoCorrect={false}
+                    // value={password}
+                    // onChangeText={text => setPassword(text)}
                 />
                 </TextCont>
                 <ButtonCont>
