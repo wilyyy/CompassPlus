@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useRef } from 'react';
 import styled from "styled-components/native";
-import { Tab, ThemeProvider } from 'react-native-elements';
+import { Tab, ThemeProvider, Icon } from 'react-native-elements';
 import { Dimensions, ImageBackground, Pressable, SafeAreaView, SafeViewArea, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, useWindowDimensions, View, } from 'react-native';
+
 
 
 import { COLORS } from '../../constants/styles.js';
@@ -31,6 +32,16 @@ const Page = styled.View`
     height: ${windowHeight}px;
     background-color: ${COLORS.ALICEBLUE};
     align-items: center;
+`;
+
+const BgCircle = styled.View`
+    position:absolute;
+    z-index: -2;
+    width: 400px;
+    height: 400px;
+    background-color: ${COLORS.SPACECADET};
+    border-radius: 100;
+    top:-100px;
 `;
 
 const TopContainer = styled.View`
@@ -62,9 +73,10 @@ const Container = styled.ScrollView`
 const Payment = styled.Pressable`
     font-size: 16px;
     font-weight: 700;
-    height:100%;
     align-self: flex-end;
-    justify-content: center;
+    height: 100%;
+    flex-direction: row;
+    top:10px
 
     /* border-width: 2px;
     border-color: red; */
@@ -72,7 +84,7 @@ const Payment = styled.Pressable`
 
 const H1 = styled.Text`
     font-size: 40px;
-    color: ${COLORS.DAVYSGREY};
+    color: #fff;
     align-self: flex-start;
 
     /* border-width: 2px;
@@ -156,21 +168,41 @@ const CompassCardScreen = () => {
     return (
         <ThemeProvider>
             <Page>
+                <BgCircle />
                 <TopContainer>
                     <H1>My Cards</H1>
                     <Payment>
                         <Text style={styles.payment}>Add Payment</Text>
+                        <Icon
+                            name='pluscircleo'
+                            type='antdesign'
+                            color='#fff'
+                            size={15}
+                            style={styles.plusIcon}
+                        />
                     </Payment>
-
                 </TopContainer>
-                <ScrollView style={styles.scrollview} horizontal={true}>
+                <Text style={styles.TapQueue}>Tap Card to Pay</Text>
+                <ScrollView
+                    contentContainerStyle={styles.scrollview}
+                    horizontal={true}
+                    alwaysBounceHorizontal={true}
+                >
                     <MobileCard
                         onTransferPress={handleTransferSheet}
                         TransferAction={TransferFunds}
                         onAddFundsPress={handleAddSheet}
                     />
-                    <MobileCard />
-                    <MobileCard />
+                    <MobileCard
+                        onTransferPress={handleTransferSheet}
+                        TransferAction={TransferFunds}
+                        onAddFundsPress={handleAddSheet}
+                    />
+                    <MobileCard
+                        onTransferPress={handleTransferSheet}
+                        TransferAction={TransferFunds}
+                        onAddFundsPress={handleAddSheet}
+                    />
                 </ScrollView>
 
                 {/* <Button
@@ -259,11 +291,24 @@ export default CompassCardScreen;
 
 const styles = StyleSheet.create({
     payment: {
-        color: COLORS.DAVYSGREY,
+        color: '#fff',
         fontWeight: 'bold',
+    },
+    plusIcon: {
+        paddingLeft: 5,
+    },
+    TapQueue: {
+        alignSelf: 'flex-start',
+        marginTop: '16%',
+        marginLeft: '5%',
+        color: '#fff',
+        fontStyle: 'italic',
     },
     scrollView: {
         flexDirection: 'row',
+        borderColor: 'red',
+        borderRadius: 10,
+        backgroundColor: 'red',
     },
     NavCont: {
         position: 'absolute',
