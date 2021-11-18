@@ -28,44 +28,62 @@ const CompassPlaceHolder = styled.View`
 
 `;
 
-const ButtonCont = styled.View`
-    display: flex;
-    margin: 0;
-    /* top: 50; */
+const ParentButtonCont = styled.View`
+    height:100px;
+    justify-content: center;
+    align-items: center;
+
+    /* border-width: 2px;
+    border-color: red; */
+`;
+
+const TicketsCont = styled.View`
     align-items: center;
     justify-content: center;
-    height:350px;
+    height:250px;
     flex-direction: column;
     
     /* border-width: 2px;
     border-color: red; */
 `;
 
-const Overlay = styled.View`
-    height: 50%;
-    width: 100%;
-    align-items: center;
+const Hr = styled.View`
+    width:80%;
     background-color: ${COLORS.SPACECADET};
-    border-bottom-right-radius: 220px;
-    border-bottom-left-radius: 220px;
-`
+    height:2px;
+    align-self: center;
+`;
+
 
 export default function AddCardManager({
     AddTicket = () => { },
-    AddPass = () => { },
+    countdown1 = '90mins...',
+    countdown2 = '55mins...',
+    countdown3 = '10mins...',
 
 }) {
     return (
         <Container>
             <CompassPlaceHolder />
-            <ButtonCont>
+
+            <ParentButtonCont>
                 <Pressable style={styles.button}>
-                    <Text style={styles.buttonText}>Add Ticket</Text>
+                    <Text style={styles.buttonText}>Add Tickets</Text>
+                </Pressable>
+            </ParentButtonCont>
+            <Hr />
+            <TicketsCont>
+                <Pressable style={styles.button}>
+                    <Text style={styles.buttonText}>Ticket 1 | {countdown1}</Text>
                 </Pressable>
                 <Pressable style={styles.button}>
-                    <Text style={styles.buttonText}>Add Pass</Text>
+                    <Text style={styles.buttonText}>Ticket 2 | {countdown2}</Text>
                 </Pressable>
-            </ButtonCont>
+                <Pressable style={styles.button}>
+                    <Text style={styles.buttonText}>Ticket 3 | {countdown3}</Text>
+                </Pressable>
+
+            </TicketsCont>
 
         </Container>
     );
