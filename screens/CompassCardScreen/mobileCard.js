@@ -77,7 +77,7 @@ const Payment = styled.Pressable`
     align-self: flex-end;
     height: 100%;
     flex-direction: row;
-    top:10px
+    top:10px;
 
     /* border-width: 2px;
     border-color: red; */
