@@ -6,11 +6,12 @@ import { COLORS } from '../../constants/styles.js';
 const Circle = styled.View`
     position:absolute;
     z-index: -2;
-    width: 400px;
-    height: 400px;
+    width: 850px;
+    height: 450px;
     background-color: ${COLORS.SPACECADET};
-    border-radius: 100;
-    top:-100px;
+    border-bottom-left-radius: 800px;
+    border-bottom-right-radius: 800px;
+    top:-95px;
 `;
 
 export default function BgCircle() {
