@@ -34,6 +34,7 @@ const Page = styled.View`
     height: ${windowHeight}px;
     background-color: ${COLORS.ALICEBLUE};
     align-items: center;
+
 `;
 
 // const BgCircle = styled.View`
