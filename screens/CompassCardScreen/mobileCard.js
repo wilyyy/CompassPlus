@@ -11,6 +11,7 @@ import { COLORS } from '../../constants/styles.js';
 import MobileCard from '../../comps/CompassCardParent/cardManager.js';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import NavBar from '../../comps/NavBar/index.js';
+import BgCircle from '../../comps/Global/BgCircleScreens';
 
 //for animations
 import { PanGestureHandler } from 'react-native-gesture-handler';
@@ -35,15 +36,15 @@ const Page = styled.View`
     align-items: center;
 `;
 
-const BgCircle = styled.View`
-    position:absolute;
-    z-index: -2;
-    width: 400px;
-    height: 400px;
-    background-color: ${COLORS.SPACECADET};
-    border-radius: 100;
-    top:-100px;
-`;
+// const BgCircle = styled.View`
+//     position:absolute;
+//     z-index: -2;
+//     width: 400px;
+//     height: 400px;
+//     background-color: ${COLORS.SPACECADET};
+//     border-radius: 100;
+//     top:-100px;
+// `;
 
 const TopContainer = styled.View`
     position: relative;
