@@ -112,7 +112,7 @@ const SPRING_CONFIG = {
 const CompassCardScreen = () => {
     const dimensions = useWindowDimensions();
     const top = useSharedValue(
-        (dimensions.height + 210)
+        (dimensions.height + 400)
     );
     const style = useAnimatedStyle(() => {
         return {
@@ -128,10 +128,10 @@ const CompassCardScreen = () => {
             top.value = context.startTop + event.translationY;
         },
         onEnd() {
-            if (top.value > dimensions.height / 2 + 200) {
-                top.value = dimensions.height + 150;
+            if (top.value > dimensions.height / 2 + 150) {
+                top.value = withSpring(dimensions.height + 300);
             } else {
-                top.value = dimensions.height / 2.25;
+                top.value = withSpring(dimensions.height / 2.25);
             }
         }
     });
@@ -161,9 +161,7 @@ const CompassCardScreen = () => {
     //this doesn't work :( .... YET
     function TransferFunds() {
         // need to set states to save new balances
-        top = useSharedValue(
-            (dimensions.height + 210)
-        );
+        top.value = withSpring(dimensions.height + 300);
     }
 
 
@@ -199,6 +197,11 @@ const CompassCardScreen = () => {
                         onTransferPress={handleTransferSheet}
                         TransferAction={TransferFunds}
                         onAddFundsPress={handleAddSheet}
+                        titleCardType={'Stored Value Ticket'}
+                        cardType="Ticket"
+                        expiration={'90 minutes'}
+                        phrasing={'in'}
+                        buttonTitle={'Add Funds'}
                     />
                     <AddCardManager />
                 </ScrollView>
@@ -217,7 +220,8 @@ const CompassCardScreen = () => {
 
             </Page>
 
-            {/* add funds */}
+
+            {/* ADD FUNDS ANIMATION TAB  */}
             <PanGestureHandler
                 onGestureEvent={gestureHandler}
             >
@@ -243,39 +247,12 @@ const CompassCardScreen = () => {
                         style
                     ]}
                 >
-                    <AddFundsTab />
+                    <AddFundsTab
+                        AddFundsConfirm={TransferFunds}
+                    />
                 </Animated.View>
             </PanGestureHandler>
 
-            {/* transfer stuff  */}
-            <PanGestureHandler
-                onGestureEvent={gestureHandler}
-            >
-                <Animated.View
-                    style={[
-                        {
-                            position: 'absolute',
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundColor: 'transparent',
-                            shadowColor: '#222222',
-                            shadowoffset: {
-                                width: 0,
-                                height: 2,
-                            },
-                            shadowOpacity: 0.25,
-                            shadowRadius: 3.84,
-                            elevation: 5,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        },
-                        style
-                    ]}
-                >
-                    <TransferBalanceTab />
-                </Animated.View>
-            </PanGestureHandler>
             <View style={styles.NavCont}>
                 <NavBar />
             </View>
@@ -311,5 +288,6 @@ const styles = StyleSheet.create({
     NavCont: {
         position: 'absolute',
         bottom: 0,
+
     }
 });

@@ -1,45 +1,54 @@
+
 import React, { useState } from 'react';
 import { Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import CenterView from '../../storybook/stories/CenterView';
+import { COLORS } from "../../constants/styles";
 
 const Container = styled.View`
-    width: 375px;
-    height: 550px;
+    width: 100%;
+    height: 600px;
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(37, 43, 66, 0.5);
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(37, 43, 66, 0.5);    
+    /* border-color: red;
+    border-width: 2px; */
     
 `;
 
 const Notch = styled.View`
     width: 80px;
     height: 10px;
-    position: relative;
-    top: 25;
     background-color: #EFEFF0;
+    margin: 20px;
     align-self: center;
     border-radius: 50px;
 `;
 
 const Title = styled.Text`
     font-size: 24px;
+    color: #222222;
+    align-self: center;
+    margin: 10px 0px 15px 0px;
     font-weight: 500;
-    line-height: 28px;
-    letter-spacing: 0.1px;
-    text-align: center;
-    color: #252b42;
-    top: 60;
-    padding-bottom: 40;
+`;
+
+const Divider = styled.View`
+    width:100%;
+    height:7px;
+    /* background-color: #9BCCE0; */
+    /* margin: 0px 0px 30px 0px; */
 `;
 
 const SettingCont = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width:100%;
+    /* border-width: 2px;
+    border-color: red; */
+    padding: 5px 20px;
     
 `;
 
@@ -47,91 +56,66 @@ const SettingsContLeft = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-top: 30;
-    position: relative;
-    top: 10;
+
+    /* border-width: 2px;
+    border-color: blue; */
 `;
 
-/*const SmallCardIcon = styled.Image`
+const SmallCardIcon = styled.Image`
     width:50px;
     height:50px;
     margin: 5px;
-`;*/
-// source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
+`;
 
 const TextColumn = styled.View`
     width: 200px;
-    position: relative;
-    left: 30;
+    margin-left:15px;
+    justify-content:space-between;
+    /* border-color: red;
+    border-width: 2px; */
 `;
 
 const SmallTitle = styled.Text`
     font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: 0.1px;
-    text-align: left;
-    color: #009ddc;
-`;
-
-const ReloadText = styled.Text`
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 0px;
-    letter-spacing: 0.1px;
-    text-align: left;
-    top: 5;
+    margin: 5px 0;
+    color: ${COLORS.MIDWAYBLUE};
+    /* font-weight:300; */
 `;
 
 const Amount = styled.Text`
     font-size: 20px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 20px;
-    letter-spacing: 0.1px;
-    text-align: left;
+    color: #222222;
+    /* margin-top:5px; */
     align-self: flex-start;
-    top: 20;
+    font-weight: 700;
 `;
 
-const EditButton = styled.View`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 80px;
-    height: 40px;
-    position: relative;
-    left: 55;
-    top: 5;
-    background-color: #fff;
-    border: 2px solid #009DDC;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+const Arrow = styled.Image`
+    width:50px;
+    height:50px;
+    margin: 5px;
     align-self: flex-end;
+    /* border-color: red;
+    border-width: 2px; */
 `;
 
 const Line = styled.View`
-    display: flex;
-    width: 80%;
-    height: 2px;
-    position: relative;
-    top: 30;
-    right: 45;
-    background-color: #575759;
+    width:70%;
+    height:2px;
+    background-color: #c4c4c4;
+    margin: 0px 20px 10px 50px;
     align-self: flex-end;
 `;
 
 const ButtonText = styled.Text`
-    font-size: 24;
-    font-weight: bold;
-    line-height: 24;
-    letter-spacing: 0;
+    font-size: 18px;
     color: #fff;
-    text-align: center;
+    align-self: center;
+    font-weight: 700;
 `;
+
+
+
 
 
 export default function AddFundsTab({
@@ -140,25 +124,29 @@ export default function AddFundsTab({
     cardType = 'Pass',
     loadAmount = '$10.00',
     paymentType = 'Visa',
-    AddFundsVisability = () => { },
+    AddFundsConfirm = () => { },
 }) {
 
 
     return (
         <Container>
             <Notch />
-            <Title>Add money to Compass {cardType}</Title>
+            <Title>Add to Balance</Title>
+            <Divider />
 
             {/* TO this ticket: */}
 
             <SettingCont>
                 <SettingsContLeft>
+                    <SmallCardIcon
+                        source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
+                    />
                     <TextColumn>
                         <SmallTitle>My Ticket</SmallTitle>
                         <Amount>{FromCardBalance}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <AntDesign name="down" size={30} style={styles.arrow} />
+                <AntDesign name="down" size={30} color="#222222" />
 
             </SettingCont>
 
@@ -168,12 +156,15 @@ export default function AddFundsTab({
 
             <SettingCont>
                 <SettingsContLeft>
+                    <SmallCardIcon
+                        source={{ uri: '#', }}
+                    />
                     <TextColumn>
                         <SmallTitle>Amount</SmallTitle>
                         <Amount>{loadAmount}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <AntDesign name="down" size={30} style={styles.arrow} />
+                <AntDesign name="down" size={30} color="#222222" />
 
 
             </SettingCont>
@@ -183,38 +174,24 @@ export default function AddFundsTab({
 
             <SettingCont>
                 <SettingsContLeft>
+                    <SmallCardIcon
+                        source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
+                    />
                     <TextColumn>
                         <SmallTitle>Payment</SmallTitle>
                         <Amount>{paymentType}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <AntDesign name="down" size={30} style={styles.arrow} />
+                <AntDesign name="down" size={30} color="#222222" />
 
 
             </SettingCont>
             <Line />
 
-            {/* AUTO RELOAD */}
 
-            {/* PAYMENT */}
-
-            <SettingCont
-                style={{ paddingTop: 40 }}
-            >
-                <SettingsContLeft>
-                    <TextColumn>
-                        <Amount style={{paddingBottom: 15}}>Auto reload</Amount>
-                        <ReloadText>Reload when balance is below $10</ReloadText>
-                    </TextColumn>
-                    <EditButton>
-                        <SmallTitle style={styles.editButtonText}>Edit</SmallTitle>
-                    </EditButton>
-                </SettingsContLeft>
-
-            </SettingCont>
 
             <TouchableOpacity
-                onPress={AddFundsVisability}
+                onPress={AddFundsConfirm}
                 style={styles.TransferButton}
             >
                 <ButtonText>Add {loadAmount}</ButtonText>
@@ -229,33 +206,18 @@ export default function AddFundsTab({
 
 const styles = StyleSheet.create({
     TransferButton: {
-        backgroundColor: '#009DDc',
-        width: 150,
+        backgroundColor: COLORS.CAROLINABLUE,
+        width: '60%',
         height: 55,
-        display: 'flex',
-        position: 'relative',
-        right: 40,
-        top: 45,
         borderRadius: 10,
         alignSelf: 'flex-end',
         justifyContent: 'center',
-        shadowColor: '#252B42',
+        marginTop: 15,
+        marginRight: 20,
+        shadowColor: COLORS.SPACECADET,
         shadowOpacity: 0.5,
-        shadowOffset:{width: 0, height: 4},
-    },
-    editButtonText: {
-        textAlign: 'center',
-        fontSize: 18,
-        fontWeight: 'bold',
-        lineHeight: 24,
-        letterSpacing: 0,
-        color: '#009ddc'
-    },
-    arrow: {
-        color: "#252b42",
-        position: 'relative',
-        top: 55,
-        right: 45,
+        shadowOffset: { width: 0, height: 4 },
+
 
     }
 })
