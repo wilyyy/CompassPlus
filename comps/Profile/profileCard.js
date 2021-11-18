@@ -3,6 +3,9 @@ import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Pressable } from 
 import { Avatar } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
+import { useNavigation } from '@react-navigation/native';
+import ChangePasswordScreen from '../../screens/Profile/ChangePasswordScreen.js';
+
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -46,8 +49,8 @@ const Box = styled.View `
 `;
 
 
-const ProfileCard = () => {
-
+const ProfileCard = ({navigation}) => {
+    navigation = useNavigation()
     return (
         <View>
           <BackgroundContainer>
@@ -66,11 +69,11 @@ const ProfileCard = () => {
                     <NameText>Jenny Clark</NameText>
                   </SubContainer>
                   <SubContainer>
-                    <TouchableOpacity style={styles.button} onPress={() => console.log("hello world")}> 
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ChangePassword')}> 
                         <Text style={styles.text}>Update Account Details</Text>
                     </TouchableOpacity>
                     <Box />
-                    <TouchableOpacity style={styles.button} onPress={() => console.log("hello world")}> 
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BalanceHistory')}> 
                         <Text style={styles.text}>View Balance History</Text>
                     </TouchableOpacity>
                   </SubContainer>
