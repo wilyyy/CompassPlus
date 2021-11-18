@@ -22,11 +22,13 @@ import Animated, {
 } from 'react-native-reanimated';
 import TransferBalanceTab from '../../comps/CompassCardParent/transferFunds.js';
 import AddFundsTab from '../../comps/CompassCardParent/addFunds.js';
+import AddCardManager from '../../comps/CompassCardParent/addCardManager.js';
 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+//page elements 
 const Page = styled.View`
     width: ${windowWidth}px;
     height: ${windowHeight}px;
@@ -76,7 +78,7 @@ const Payment = styled.Pressable`
     align-self: flex-end;
     height: 100%;
     flex-direction: row;
-    top:10px
+    top:10px;
 
     /* border-width: 2px;
     border-color: red; */
@@ -96,73 +98,27 @@ const H2 = styled.Text`
     
 `;
 
-// === reUsable animations ===
-// tabs animation
-const SPRING_CONFIG = {
-    damping: 80,
-    overshootClamping: true,
-    restDisplacementThreshold: 0.1,
-    restSpeedThreshold: 0.1,
-    stiffness: 500,
-};
+//ANIMATIONS
 
+//tab animations
+function handleTransferSheet() {
+
+}
+
+function handleAddSheet() {
+
+}
+
+
+
+// when tab confirm buttons clicked
+
+function TransferFunds() {
+    // need to set states to save new balances
+
+}
 
 const CompassCardScreen = () => {
-    const dimensions = useWindowDimensions();
-    const top = useSharedValue(
-        (dimensions.height + 210)
-    );
-    const style = useAnimatedStyle(() => {
-        return {
-            top: withSpring(top.value, SPRING_CONFIG),
-        };
-    });
-
-    const gestureHandler = useAnimatedGestureHandler({
-        onStart(_, context) {
-            context.startTop = top.value;
-        },
-        onActive(event, context) {
-            top.value = context.startTop + event.translationY;
-        },
-        onEnd() {
-            if (top.value > dimensions.height / 2 + 200) {
-                top.value = dimensions.height + 150;
-            } else {
-                top.value = dimensions.height / 2.25;
-            }
-        }
-    });
-
-    //transfer funds
-    function handleTransferSheet() {
-        top.value = withSpring(
-            dimensions.height / 2.25,
-            SPRING_CONFIG
-        );
-    }
-
-    function handleAddSheet() {
-        top.value = withSpring(
-            dimensions.height / 2.25,
-            SPRING_CONFIG
-        );
-    }
-
-    function handleTransferSheet() {
-        top.value = withSpring(
-            dimensions.height / 2.25,
-            SPRING_CONFIG
-        );
-    }
-
-    //this doesn't work :( .... YET
-    function TransferFunds() {
-        // need to set states to save new balances
-        top = useSharedValue(
-            (dimensions.height + 210)
-        );
-    }
 
 
     return (
@@ -198,86 +154,12 @@ const CompassCardScreen = () => {
                         TransferAction={TransferFunds}
                         onAddFundsPress={handleAddSheet}
                     />
-                    <MobileCard
-                        onTransferPress={handleTransferSheet}
-                        TransferAction={TransferFunds}
-                        onAddFundsPress={handleAddSheet}
-                    />
+                    <AddCardManager />
                 </ScrollView>
-
-                {/* <Button
-                    title="Open sheet"
-                    style={{ backgroundColor: 'blue', alignSelf: 'center' }}
-                    onPress={() => {
-                        top.value = withSpring(
-                            dimensions.height / 2.25,
-                            SPRING_CONFIG
-                        );
-                    }}
-                /> */}
-
 
             </Page>
 
-            {/* add funds */}
-            <PanGestureHandler
-                onGestureEvent={gestureHandler}
-            >
-                <Animated.View
-                    style={[
-                        {
-                            position: 'absolute',
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundColor: 'transparent',
-                            shadowColor: '#222222',
-                            shadowoffset: {
-                                width: 0,
-                                height: 2,
-                            },
-                            shadowOpacity: 0.25,
-                            shadowRadius: 3.84,
-                            elevation: 5,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        },
-                        style
-                    ]}
-                >
-                    <AddFundsTab />
-                </Animated.View>
-            </PanGestureHandler>
 
-            {/* transfer stuff  */}
-            <PanGestureHandler
-                onGestureEvent={gestureHandler}
-            >
-                <Animated.View
-                    style={[
-                        {
-                            position: 'absolute',
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundColor: 'transparent',
-                            shadowColor: '#222222',
-                            shadowoffset: {
-                                width: 0,
-                                height: 2,
-                            },
-                            shadowOpacity: 0.25,
-                            shadowRadius: 3.84,
-                            elevation: 5,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        },
-                        style
-                    ]}
-                >
-                    <TransferBalanceTab />
-                </Animated.View>
-            </PanGestureHandler>
             <View style={styles.NavCont}>
                 <NavBar />
             </View>
@@ -285,6 +167,7 @@ const CompassCardScreen = () => {
         </ThemeProvider>
     )
 }
+
 
 
 export default CompassCardScreen;
