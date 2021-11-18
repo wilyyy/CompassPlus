@@ -12,7 +12,6 @@ import LinkCompassCard from '../../comps/Home/linkCompassCard.js';
 import NavBar from '../../comps/NavBar/index.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import BgCircle from '../../comps/Global/BgCircleScreens.js';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -56,7 +55,6 @@ const HomeScreen = () => {
 
 
     return <Page>
-        <BgCircle />
         <Modal
             animationType="fade"
             transparent={true}

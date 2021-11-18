@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
+import { Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 
 const Circle = styled.View`
@@ -19,3 +23,4 @@ export default function BgCircle() {
         <Circle />
     )
 }
+
