@@ -2,47 +2,73 @@ import React, { useState } from 'react';
 import { Button, Image, StyleSheet, Switch, Pressable, Text, TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
+import { Icon } from 'react-native-elements'
+
 
 
 const Container = styled.View`
     width: 350px;
-    height: 585px;
-    background-color: #fff;
+    height: 550px;
+    background-color: rgba(255, 255, 255, 1);
     border-radius: 15px;
     margin: 100px 0px 0px 25px;
-    top:-5%;
+    top:-6%;
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 const CompassPlaceHolder = styled.View`
     width: 350px;
-    height: 215px;
+    height: 200px;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     align-self: center;
     background-color: ${COLORS.CAROLINABLUE};
+    box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.75);
+
 `;
 
-const ButtonCont = styled.View`
-    display: flex;
-    margin: 0;
-    top: 30;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    height: 55%;
+
+const ExpirationCont = styled.View`
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin:15px;
+
+    /* border-width: 2px;
+    border-color: red; */
 `;
 
-const Expiration = styled.Text`
-    color: #252b42;
+const CompassCardNo = styled.Text`
+    font-size: 12px;
+    margin-bottom: 20px;
+`;
+
+const ExpirationTitle = styled.Text`
+    font-size: 24px;
+`;
+
+const ExpirationDateFront = styled.Text`
+    color: ${COLORS.CAROLINABLUE};
+    font-size: 40px;
+`;
+
+// const ButtonCont = styled.View`
+//     justify-content: center;
+//     align-items: center;
+//     width: 100%;
+//     height: 50%;
+//     flex-direction: column;
+
+//     /* border-width: 2px;
+//     border-color: red; */
+// `;
+
+const Hr = styled.View`
+    width:80%;
+    background-color: ${COLORS.SPACECADET};
+    height:2px;
     align-self: center;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 16px;
-    text-align: center;
-    top: 20;
-
 `;
+
 
 /* setting cont will hold:
     -> icon
@@ -56,7 +82,7 @@ const SettingCont = styled.View`
     width:100%;
     /* border-width: 2px;
     border-color: red; */
-    padding: 5px 15px;
+    margin-top: 6%;
     
 `;
 const SettingsContLeft = styled.View`
@@ -71,7 +97,7 @@ const MenuItem = styled.Text`
     font-size: 18px;
     color: #222222;
     margin: 0px 5px;
-    left: -50px;
+    
 `;
 const IconBack = styled.Image`
     width:50px;
@@ -88,17 +114,25 @@ const CompassCardBarcode = styled.Image`
     border-radius: 15px;
 
 `;
-const CompassCardNo = styled.Text`
-    font-size: 12px;
-    align-self: center;
-    top: 20;
+
+const BackBodyCont = styled.View`
+    padding: 0 20px;
+    height: 44%;
+
+    /* border-width: 2px;
+    border-color:green; */
 `;
+
 const CardFooter = styled.View`
     align-self: center;
-    justify-content: space-around;
     width: 90%;
-    padding: 65px 0px 0px 0px;
-    flex-direction: row;
+    /* margin-top:12%; */
+    height: 15%;
+
+    /* flex-direction: row; */
+
+    /* border-width: 2px;
+    border-color:red; */
 `;
 const IconsFrontCont = styled.View`
     width: auto;
@@ -115,6 +149,13 @@ const IconFront = styled.Image`
 // end - items for card front
 
 
+const H2 = styled.Text`
+    color: #222222;
+    font-style: italic;
+    margin:15px;
+    font-size: 14px;
+    text-align: center;
+`;
 
 export default function MobileCard({
     // cardSide = true, // need to put state for this in app.js?
@@ -122,8 +163,12 @@ export default function MobileCard({
     onTransferPress = () => { },
     onWalletPress = () => { },
     onRemoveTicketPress = () => { },
-    barcodeId = "ak-18-15 Compass No: 016372 9281 9273 CVN 459",
-    cardType = "December Pass",
+    barcodeId = "Compass No: 016372 9281 9273 CVN 459",
+    cardType = "Pass",
+    titleCardType = "December Pass",
+    expiration = "December",
+    phrasing = "on",
+    buttonTitle = "Reload",
     // onManagePress = () => { },
     onAddFundsPress = () => { }
 }) {
@@ -151,22 +196,36 @@ export default function MobileCard({
     if (cardSide === true) {
         return (
             <Container>
+                <Pressable
+                    onPress={goManage}
+                    style={styles.toggleSideIcon}
+                >
+                    <Icon
+                        name='setting'
+                        type='antdesign'
+                        color={COLORS.SPACECADET}
+                        size={25}
+                        reverse={true}
+                    />
+                </Pressable>
                 <CompassPlaceHolder />
-                <Expiration>{cardType}</Expiration>
-                {/* <CompassCardBarcode
-                    source={require('#')}
-                /> */}
-                <CompassCardNo>{barcodeId}</CompassCardNo>
-
+                <BackBodyCont>
+                    <ExpirationCont>
+                        <H2>{titleCardType}</H2>
+                        <ExpirationTitle>Expires {phrasing}: </ExpirationTitle>
+                        <ExpirationDateFront>{expiration}</ExpirationDateFront>
+                    </ExpirationCont>
+                    <Hr />
+                </BackBodyCont>
                 <CardFooter>
-                    <ButtonCont>
-                        <Pressable style={styles.button} onPress={goManage}>
+                    {/* <ButtonCont> */}
+                    {/* <Pressable style={styles.button} onPress={goManage}>
                             <Text style={styles.buttonText}>Manage</Text>
-                        </Pressable>
-                        <Pressable style={styles.button} onPress={onAddFundsPress}>
-                            <Text style={styles.buttonText}>Add Funds</Text>
-                        </Pressable>
-                    </ButtonCont>
+                        </Pressable> */}
+                    <Pressable style={styles.frontFundsButton} onPress={onAddFundsPress}>
+                        <Text style={styles.buttonText}>{buttonTitle}</Text>
+                    </Pressable>
+                    {/* </ButtonCont> */}
                 </CardFooter>
 
             </Container>
@@ -177,73 +236,83 @@ export default function MobileCard({
     if (cardSide === false) {
         return (
             <Container>
-                <Button
+                {/* <Button
                     style={styles.backButton}
                     onPress={goCardFront}
                     title='<'
-                />
-                <CompassPlaceHolder />
-                <Expiration>{cardType}</Expiration>
-                <SettingCont>
-                    <SettingsContLeft>
-                        <IconBack
-                            source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                        />
-                        <MenuItem>Make default</MenuItem>
-                    </SettingsContLeft>
-                    <Switch
-                        trackColor={{ false: '#222222', true: '#009DDC' }}
-                        thumbColor={defaultCard ? '#fff' : '#fff'}
-                        ios_backgroundColor='#222222'
-                        onValueChange={toggleDefaultCard}
-                        value={defaultCard}
-                        style={styles.switch}
+                /> */}
+                <Pressable
+                    style={styles.toggleSideIcon}
+                    onPress={goCardFront}
+                >
+                    <Icon
+                        name='retweet'
+                        type='antdesign'
+                        color={COLORS.SPACECADET}
+                        size={25}
+                        reverse={true}
                     />
-                </SettingCont>
-                <SettingCont>
-                    <SettingsContLeft>
-                        <IconBack
-                            source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                        />
-                        <MenuItem>Auto reload</MenuItem>
-                    </SettingsContLeft>
-                    <Button
-                        onPress={onAutoReloadPress}
-                        title="Edit"
-                        color="blue"
-                    />
-                </SettingCont>
-                <SettingCont>
-                    <TouchableWithoutFeedback onPress={onTransferPress}>
-                        <SettingsContLeft>
-                            <IconBack
-                                source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                            />
-                            <MenuItem>Transfer balance</MenuItem>
-                        </SettingsContLeft>
-                    </TouchableWithoutFeedback>
+                </Pressable>
 
-                </SettingCont>
-                <SettingCont>
-                    <TouchableWithoutFeedback onPress={onWalletPress}>
+                <CompassPlaceHolder />
+
+                <BackBodyCont>
+                    <H2>{barcodeId}</H2>
+                    <SettingCont>
                         <SettingsContLeft>
-                            <IconBack
-                                source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
+                            <Icon
+                                name='add-task'
+                                type='materialicons'
+                                color={COLORS.SPACECADET}
+                                size={30}
                             />
-                            <MenuItem>View in Apple Wallet</MenuItem>
+                            <MenuItem>Make default</MenuItem>
                         </SettingsContLeft>
-                    </TouchableWithoutFeedback>
-                </SettingCont>
-                <SettingCont>
-                    <TouchableWithoutFeedback onPress={onRemoveTicketPress}>
+                        <Switch
+                            trackColor={{ false: '#222222', true: '#009DDC' }}
+                            thumbColor={defaultCard ? '#fff' : '#fff'}
+                            ios_backgroundColor='#222222'
+                            onValueChange={toggleDefaultCard}
+                            value={defaultCard}
+                            style={styles.switch}
+                        />
+                    </SettingCont>
+                    <SettingCont>
                         <SettingsContLeft>
-                            <IconBack
-                                source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
+                            <Icon
+                                name='reload1'
+                                type='antdesign'
+                                color={COLORS.SPACECADET}
+                                size={30}
                             />
-                            <MenuItem>Remove ticket</MenuItem>
+                            <MenuItem>Auto reload</MenuItem>
                         </SettingsContLeft>
-                    </TouchableWithoutFeedback>
-                </SettingCont>
+                        <Button
+                            onPress={onAutoReloadPress}
+                            title="Edit"
+                            color="blue"
+                        />
+                    </SettingCont>
+
+                    <SettingCont>
+                        <TouchableWithoutFeedback onPress={onWalletPress}>
+                            <SettingsContLeft>
+                                <Icon
+                                    name='wallet'
+                                    type='antdesign'
+                                    color={COLORS.SPACECADET}
+                                    size={30}
+                                />
+                                <MenuItem>View in Apple Wallet</MenuItem>
+                            </SettingsContLeft>
+                        </TouchableWithoutFeedback>
+                    </SettingCont>
+                </BackBodyCont>
+                <CardFooter>
+                    <Pressable style={styles.backFundsButton} onPress={onAddFundsPress}>
+                        <Text style={styles.buttonText}>Add Funds</Text>
+                    </Pressable>
+                </CardFooter>
             </Container>
 
         );
@@ -253,14 +322,8 @@ export default function MobileCard({
 const styles = StyleSheet.create({
     switch: {
     },
-    backButton: {
-        zIndex: 2,
-        height: '30px',
-        position: 'absolute',
-    },
     button: {
-        display: 'flex',
-        margin: 0,
+        margin: 10,
         justifyContent: 'center',
         alignItems: 'center',
         width: 250,
@@ -280,4 +343,73 @@ const styles = StyleSheet.create({
         letterSpacing: 0,
         color: '#009ddc',
     },
+    toggleSideIcon: {
+        alignItems: 'flex-end',
+        width: '100%',
+        zIndex: 2,
+        height: 'auto',
+        position: 'absolute',
+    },
+    backFundsButton: {
+        alignSelf: 'flex-end',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '60%',
+        height: '75%',
+        backgroundColor: '#fff',
+        borderColor: '#009ddc',
+        borderWidth: 2,
+        borderRadius: 10,
+        shadowColor: '#252B42',
+        shadowOpacity: 0.5,
+        shadowOffset: { width: 0, height: 4 },
+    },
+    frontFundsButton: {
+        alignSelf: 'flex-end',
+        // marginRight: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '60%',
+        height: 55,
+        backgroundColor: '#fff',
+        borderColor: '#009ddc',
+        borderWidth: 2,
+        borderRadius: 10,
+        shadowColor: '#252B42',
+        shadowOpacity: 0.5,
+        shadowOffset: { width: 0, height: 4 },
+        // top: '80%'
+    }
 })
+
+
+
+
+// think this stuff is unnecessary w how we should setup 
+
+
+{/* TRANSFER */ }
+
+{/* <SettingCont>
+                    <TouchableWithoutFeedback onPress={onTransferPress}>
+                        <SettingsContLeft>
+                            <IconBack
+                                source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
+                            />
+                            <MenuItem>Transfer balance</MenuItem>
+                        </SettingsContLeft>
+                    </TouchableWithoutFeedback>
+
+                </SettingCont> */}
+
+{/* REMOVE */ }
+{/* <SettingCont>
+                    <TouchableWithoutFeedback onPress={onRemoveTicketPress}>
+                        <SettingsContLeft>
+                            <IconBack
+                                source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
+                            />
+                            <MenuItem>Remove ticket</MenuItem>
+                        </SettingsContLeft>
+                    </TouchableWithoutFeedback>
+                </SettingCont> */}

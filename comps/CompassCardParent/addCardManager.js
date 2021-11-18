@@ -5,49 +5,85 @@ import { COLORS } from "../../constants/styles";
 
 
 const Container = styled.View`
-    width: 375px;
-    height: 300px;
+    width: 350px;
+    height: 550px;
     background-color: #fff;
     border-radius: 15px;
-    margin: 100px 15px 0px 25px;
+    margin: 100px 0px 0px 25px;
+    top:-6%;
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const ButtonCont = styled.View`
-    display: flex;
-    margin: 0;
-    top: 50;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    height: 50%;
-    flex-direction: column;
+const CompassPlaceHolder = styled.View`
+    width: 350px;
+    height: 200px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    align-self: center;
+    background-color: ${COLORS.ALICEBLUE};
+    border-width: 4px;
+    border-style: dotted;
+    border-color: ${COLORS.CAROLINABLUE};
+    box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.75);
+
 `;
 
-const Overlay = styled.View`
-    height: 50%;
-    width: 100%;
+const ParentButtonCont = styled.View`
+    height:100px;
+    justify-content: center;
     align-items: center;
+
+    /* border-width: 2px;
+    border-color: red; */
+`;
+
+const TicketsCont = styled.View`
+    align-items: center;
+    justify-content: center;
+    height:250px;
+    flex-direction: column;
+    
+    /* border-width: 2px;
+    border-color: red; */
+`;
+
+const Hr = styled.View`
+    width:80%;
     background-color: ${COLORS.SPACECADET};
-    border-bottom-right-radius: 220px;
-    border-bottom-left-radius: 220px;
-`
+    height:2px;
+    align-self: center;
+`;
+
 
 export default function AddCardManager({
     AddTicket = () => { },
-    AddPass = () => { },
+    countdown1 = '90mins...',
+    countdown2 = '55mins...',
+    countdown3 = '10mins...',
 
 }) {
     return (
         <Container>
-            <ButtonCont>
+            <CompassPlaceHolder />
+
+            <ParentButtonCont>
                 <Pressable style={styles.button}>
-                    <Text style={styles.buttonText}>Add Ticket</Text>
+                    <Text style={styles.buttonText}>Add Tickets</Text>
+                </Pressable>
+            </ParentButtonCont>
+            <Hr />
+            <TicketsCont>
+                <Pressable style={styles.button}>
+                    <Text style={styles.buttonText}>Ticket 1 | {countdown1}</Text>
                 </Pressable>
                 <Pressable style={styles.button}>
-                    <Text style={styles.buttonText}>Add Pass</Text>
+                    <Text style={styles.buttonText}>Ticket 2 | {countdown2}</Text>
                 </Pressable>
-            </ButtonCont>
+                <Pressable style={styles.button}>
+                    <Text style={styles.buttonText}>Ticket 3 | {countdown3}</Text>
+                </Pressable>
+
+            </TicketsCont>
 
         </Container>
     );
@@ -56,8 +92,7 @@ export default function AddCardManager({
 const styles = StyleSheet.create({
 
     button: {
-        display: 'flex',
-        margin: 0,
+        margin: 10,
         justifyContent: 'center',
         alignItems: 'center',
         width: 250,
@@ -65,13 +100,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderColor: '#009ddc',
         borderWidth: 2,
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10,
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
+        borderRadius: 10,
         shadowColor: '#252B42',
         shadowOpacity: 0.5,
-        shadowOffset:{width: 0,height: 4},
+        shadowOffset: { width: 0, height: 4 },
     },
     buttonText: {
         fontSize: 24,

@@ -29,14 +29,18 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'
         screenOptions={{
-          headerShown: false
+          headerShown: false,
         }}
       >
         <Stack.Screen name='Login' component={LoginScreen} />
         <Stack.Screen name='CreateAccount' component={CreateAccount} />
         <Stack.Screen name='Onboarding' component={PickDestinations} />
         <Stack.Screen name='Home' component={HomeScreen} />
-        <Stack.Screen name='MobileCard' component={CompassCardScreen} />
+        <Stack.Screen name='MobileCard' component={CompassCardScreen}
+          options={{
+            animationEnabled: false,
+          }}
+        />
         <Stack.Screen name='Map' component={MapHomeScreen} />
         <Stack.Screen name='SavedTrips' component={SavedTrips} />
         <Stack.Screen name='Account' component={ProfileScreenNew} />
