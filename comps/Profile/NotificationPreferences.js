@@ -10,6 +10,8 @@ import {
 import { Header, Divider } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 
@@ -59,7 +61,7 @@ const EditContent = styled.Text`
 `;
 
 
-const NotificationPreferences = () => {
+const NotificationPreferences = ({navigation}) => {
 
     const [pushRoutesEnabled, setPushRoutesEnabled] = useState(false)
     const [textRoutesEnabled, setTextRoutesEnabled] = useState(false)
@@ -71,13 +73,26 @@ const NotificationPreferences = () => {
     const pushNewsSwitch = () => setPushNewsEnabled(previousState => !previousState);
     const textNewsSwitch = () => setTextNewsEnabled(previousState => !previousState);
 
+    navigation = useNavigation()
+
     return (
         
             <ScrollView>
                 <Header
-                    leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: 'white' } }}
-                    centerComponent={{ text: 'Notification Preferences', style: { color: 'white', fontWeight: 'bold', fontSize: 20 } }}
-                    containerStyle={{backgroundColor: COLORS.CAROLINABLUE, height: 80}}
+                    leftComponent={{ 
+                        icon: 'arrow-back', 
+                        color: 'white', 
+                        onPress: () => {navigation.navigate('Account')}, 
+                        iconStyle: { color: 'white' } }}
+                    centerComponent={{ 
+                        text: 'Notification Preferences', 
+                        style: { 
+                            color: 'white', 
+                            fontWeight: 'bold', 
+                            fontSize: 20 } }}
+                    containerStyle={{
+                        backgroundColor: COLORS.CAROLINABLUE, 
+                        height: 80}}
                     />
                 <Box />
                 <SectionContainer>

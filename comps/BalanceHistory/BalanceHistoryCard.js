@@ -3,6 +3,8 @@ import { Dimensions, StyleSheet, ScrollView, Image } from 'react-native';
 import { Header } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -75,14 +77,27 @@ const BoxSmall = styled.View `
     background-color: #F6F6F6;
 `;
 
-const BalanceHistoryCard = () => {
-
+const BalanceHistoryCard = ({navigation}) => {
+    navigation = useNavigation()
     return (
         <ScrollView>
             <Header
-                leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: '#fff' } }}
-                centerComponent={{ text: 'Balance History', style: { color: '#fff', fontWeight: 'bold', fontSize: 20 } }}
-                containerStyle={{backgroundColor: '#009DDC', height: 80}}
+                leftComponent={{ 
+                    icon: 'arrow-back', 
+                    color: 'white', 
+                    onPress: () => {navigation.navigate('Account')}, 
+                    iconStyle: { color: '#fff' } 
+                }}
+                centerComponent={{ 
+                    text: 'Balance History', 
+                    style: { 
+                        color: '#fff', 
+                        fontWeight: 'bold', 
+                        fontSize: 20 } 
+                    }}
+                containerStyle={{
+                    backgroundColor: '#009DDC', 
+                    height: 80}}
                 />
             <ImageContainer>
                 <SubContainer>

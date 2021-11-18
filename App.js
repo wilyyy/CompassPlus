@@ -18,6 +18,9 @@ import SavedTrips from './screens/TripPlanner/savedTrips';
 import CreateAccount from './screens/Authentication/createAccount';
 import ProfileScreenNew from './screens/Profile/ProfileScreenNew';
 import LoginScreen from './screens/Authentication/loginScreen';
+import ChangePasswordScreen from './screens/Profile/ChangePasswordScreen';
+import BalanceHistoryCard from './comps/BalanceHistory/BalanceHistoryCard';
+import NotificationPreferencesScreen from './screens/Profile/NotificationPreferencesScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +40,9 @@ export default function App() {
         <Stack.Screen name='Map' component={MapHomeScreen} />
         <Stack.Screen name='SavedTrips' component={SavedTrips} />
         <Stack.Screen name='Account' component={ProfileScreenNew} />
+        <Stack.Screen name='ChangePassword' component={ChangePasswordScreen} />
+        <Stack.Screen name='BalanceHistory' component={BalanceHistoryCard} />
+        <Stack.Screen name='NotificationPreferences' component={NotificationPreferencesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
