@@ -20,11 +20,11 @@ import MergeTab from '../../../comps/CompassCardParent/mergeCards';
 import DeleteCard from '../../../comps/CompassCardParent/deleteCard';
 import AddCardManager from '../../../comps/CompassCardParent/addCardManager';
 
-import NotificationCard from '../../../comps/Profile/NotificationCard';
-import SupportCard from '../../../comps/Profile/supportCard';
-import ProfileCard from '../../../comps/Profile/profileCard';
-import ProfileCardUpdate from '../../../comps/Profile/ProfileCardUpdate';
-import NotificationPreferences from '../../../comps/Profile/NotificationPreferences';
+// import NotificationCard from '../../../comps/Profile/NotificationCard';
+// import SupportCard from '../../../comps/Profile/supportCard';
+// import ProfileCard from '../../../comps/Profile/profileCard';
+// import ProfileCardUpdate from '../../../comps/Profile/ProfileCardUpdate';
+// import NotificationPreferences from '../../../comps/Profile/NotificationPreferences';
 import BalanceHistoryCard from '../../../comps/BalanceHistory/BalanceHistoryCard';
 import TicketTab from '../../../comps/CompassCardParent/ticketSelTab';
 import AmountTab from '../../../comps/CompassCardParent/amountSelTab';
@@ -44,7 +44,6 @@ import HomeCard from '../../../comps/Home/homeCard';
 import BalanceContainer from '../../../comps/Home/balanceContainer';
 import MapHomeScreen from '../../../screens/TripPlanner/mapHome';
 import HomeScreen from '../../../screens/Home/home';
-import CardSwipeTest from '../../../screens/testSwipe';
 import LoginPage from '../../../screens/Authentication/loginScreen';
 import ProfileScreenNew from '../../../screens/Profile/ProfileScreenNew';
 import CreateAccount from '../../../screens/Authentication/createAccount';
@@ -62,7 +61,7 @@ storiesOf('Comps', module)
   .add('Add Card Manager', () => <AddCardManager />)
   .add('Notification Card', () => <NotificationCard />)
   .add('Support Card', () => <SupportCard />)
-  .add('Profile Card', () => <ProfileCard />)
+  // .add('Profile Card', () => <ProfileCard />)
   .add('Notification Preferences', () => <NotificationPreferences />)
   .add('Balance History Card', () => <BalanceHistoryCard />)
   .add('Ticket Tabs', () => <TicketTab />)
@@ -85,13 +84,12 @@ storiesOf('Comps', module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
 
 storiesOf('Screens', module)
-  .add('Profile Card Update', () => <ProfileCardUpdate />)
-  .add('Profile Screen', () => <ProfileScreenNew />)
+  // .add('Profile Card Update', () => <ProfileCardUpdate />)
+  // .add('Profile Screen', () => <ProfileScreenNew />)
   .add('Pick Destinations', () => <PickDestinations />)
   .add('Compass Card Screen', () => <CompassCardScreen />)
   .add('TripPlanner - Map Home', () => <MapHomeScreen />)
   .add('Home Screen', () => <HomeScreen />)
-  .add('Test Card Swipe', () => <CardSwipeTest />)
   .add('Login Screen', () => <LoginPage />)
   .add('Create Account', () => <CreateAccount />)
 
