@@ -24,6 +24,7 @@ import Animated, {
 import TransferBalanceTab from '../../comps/CompassCardParent/transferFunds.js';
 import AddFundsTab from '../../comps/CompassCardParent/addFunds.js';
 import AddCardManager from '../../comps/CompassCardParent/addCardManager.js';
+import CardSwipeTest from '../../comps/CompassCardParent/cardsInSwipe';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -36,17 +37,6 @@ const Page = styled.View`
     align-items: center;
 
 `;
-
-// const BgCircle = styled.View`
-//     position:absolute;
-//     z-index: -2;
-//     width: 400px;
-//     height: 400px;
-//     background-color: ${COLORS.SPACECADET};
-//     border-radius: 100;
-//     top:-100px;
-// `;
-
 const TopContainer = styled.View`
     position: relative;
     top: 15%;
@@ -58,7 +48,6 @@ const TopContainer = styled.View`
     /* border-width: 2px;
     border-color: lightgrey; */
 `;
-
 const Container = styled.ScrollView`
     position: relative;
     width: 90%;
@@ -71,20 +60,14 @@ const Container = styled.ScrollView`
     /* border-width: 2px;
     border-color: lightgrey; */
 `;
-
-//make this add payment
-const Payment = styled.Pressable`
+const AddPayment = styled.Pressable`
     font-size: 16px;
     font-weight: 700;
     align-self: flex-end;
     height: 100%;
     flex-direction: row;
     top:10px;
-
-    /* border-width: 2px;
-    border-color: red; */
 `;
-
 const H1 = styled.Text`
     font-size: 40px;
     color: #fff;
@@ -93,7 +76,6 @@ const H1 = styled.Text`
     /* border-width: 2px;
     border-color: blue; */
 `;
-
 const H2 = styled.Text`
     font-size: 24px;
     
@@ -137,13 +119,7 @@ const CompassCardScreen = () => {
         }
     });
 
-    //transfer funds
-    function handleTransferSheet() {
-        top.value = withSpring(
-            dimensions.height / 2.25,
-            SPRING_CONFIG
-        );
-    }
+
 
     function handleAddSheet() {
         top.value = withSpring(
@@ -152,14 +128,8 @@ const CompassCardScreen = () => {
         );
     }
 
-    function handleTransferSheet() {
-        top.value = withSpring(
-            dimensions.height / 2.25,
-            SPRING_CONFIG
-        );
-    }
 
-    //this doesn't work :( .... YET
+
     function TransferFunds() {
         // need to set states to save new balances
         top.value = withSpring(dimensions.height + 300);
@@ -172,7 +142,7 @@ const CompassCardScreen = () => {
                 <BgCircle />
                 <TopContainer>
                     <H1>My Cards</H1>
-                    <Payment>
+                    <AddPayment>
                         <Text style={styles.payment}>Add Payment</Text>
                         <Icon
                             name='pluscircleo'
@@ -181,22 +151,22 @@ const CompassCardScreen = () => {
                             size={15}
                             style={styles.plusIcon}
                         />
-                    </Payment>
+                    </AddPayment>
                 </TopContainer>
                 <Text style={styles.TapQueue}>Tap Card to Pay</Text>
-                <ScrollView
+                <CardSwipeTest
+                    handleAddSheetONE={handleAddSheet}
+                    handleAddSheetTWO={handleAddSheet}
+                />
+                {/* <ScrollView
                     contentContainerStyle={styles.scrollview}
                     horizontal={true}
                     alwaysBounceHorizontal={true}
                 >
                     <MobileCard
-                        onTransferPress={handleTransferSheet}
-                        TransferAction={TransferFunds}
                         onAddFundsPress={handleAddSheet}
                     />
                     <MobileCard
-                        onTransferPress={handleTransferSheet}
-                        TransferAction={TransferFunds}
                         onAddFundsPress={handleAddSheet}
                         titleCardType={'Stored Value Ticket'}
                         cardType="Ticket"
@@ -205,18 +175,7 @@ const CompassCardScreen = () => {
                         buttonTitle={'Add Funds'}
                     />
                     <AddCardManager />
-                </ScrollView>
-
-                {/* <Button
-                    title="Open sheet"
-                    style={{ backgroundColor: 'blue', alignSelf: 'center' }}
-                    onPress={() => {
-                        top.value = withSpring(
-                            dimensions.height / 2.25,
-                            SPRING_CONFIG
-                        );
-                    }}
-                /> */}
+                </ScrollView> */}
 
 
             </Page>
@@ -281,10 +240,7 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
     },
     scrollView: {
-        flexDirection: 'row',
-        borderColor: 'red',
-        borderRadius: 10,
-        backgroundColor: 'red',
+
     },
     NavCont: {
         position: 'absolute',

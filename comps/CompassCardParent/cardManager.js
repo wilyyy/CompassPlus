@@ -11,7 +11,7 @@ const Container = styled.View`
     height: 550px;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 15px;
-    margin: 100px 0px 0px 25px;
+    margin: 80px 10px 0px 10px;
     top:-6%;
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
