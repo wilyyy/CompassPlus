@@ -27,7 +27,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='MobileCard'
+      <Stack.Navigator initialRouteName='Login'
         screenOptions={{
           headerShown: false,
         }}
