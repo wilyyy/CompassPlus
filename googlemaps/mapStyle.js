@@ -1,4 +1,4 @@
-const MapStyleDefault = [
+export const MapStyleDefault = [
     {
         "elementType": "geometry",
         "stylers": [
@@ -159,7 +159,7 @@ const MapStyleDefault = [
     }
 ];
 
-const MapStyleDark = [
+export const MapStyleDark = [
     {
         "elementType": "geometry",
         "stylers": [
@@ -346,7 +346,7 @@ const MapStyleDark = [
     }
 ];
 
-const MapStyleAub = [
+export const MapStyleAub = [
     {
       "elementType": "geometry",
       "stylers": [
@@ -579,7 +579,3 @@ const MapStyleAub = [
       ]
     }
 ];
-
-export const MapStyleDefault;
-export const MapStyleDark;
-export const MapStyleAub;

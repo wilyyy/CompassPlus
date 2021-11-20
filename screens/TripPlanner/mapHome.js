@@ -4,7 +4,9 @@ import { View, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity, ImageB
 import styled from "styled-components/native";
 import MapView, { Marker } from 'react-native-maps';
 
+//styles
 import { COLORS } from '../../constants/styles.js';
+import { MapStyleAub, MapStyleDefault, MapStyleDark } from '../../googlemaps/mapStyle.js';
 
 import NavBar from '../../comps/NavBar/index.js';
 import TripPlannerTab from '../../comps/TripPlanner/tripPlannerTab'
