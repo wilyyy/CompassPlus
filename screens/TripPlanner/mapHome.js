@@ -2,16 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { View, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity, ImageBackground } from 'react-native';
 import styled from "styled-components/native";
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 
 import { COLORS } from '../../constants/styles.js';
 
 import NavBar from '../../comps/NavBar/index.js';
 import TripPlannerTab from '../../comps/TripPlanner/tripPlannerTab'
 import MapComp from '../../comps/TripPlanner/mapComp';
-import MapSearchBar from '../../comps/TripPlanner/mapSearchBar.js';
-
-
+// import MapSearchBar from '../../comps/TripPlanner/mapSearchBar.js';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -24,16 +22,29 @@ const Page = styled.View`
 `;
 
 const Container = styled.View`
-    width: ${windowWidth};
+    width: ${windowWidth}px;
     height: 217px;
-    position: relative;
-    top: -10px;
+    position: absolute;
+    bottom: ${windowHeight / 15}px;
 `;
 
 //search bar
 const MapHomeScreen = () => {
     return <Page>
-        <MapComp />
+        <MapView
+            provider="google"
+            initialRegion={{
+                latitude: 49.246292,
+                longitude: -123.116226,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+            }}
+            style={styles.map}
+        >
+            <Marker
+
+            />
+        </MapView>
         <Container>
             <TripPlannerTab />
         </Container>
@@ -52,7 +63,9 @@ const styles = StyleSheet.create({
     },
     map: {
         width: windowWidth,
-        height: windowHeight
+        height: windowHeight,
+        position: 'absolute',
+        zIndex: -2
     }
 
 });
