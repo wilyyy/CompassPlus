@@ -81,7 +81,11 @@ const PickDestModal = ({
     navigation = useNavigation(),
     onLaterPress = () => {},
     onYesPress = () => {},
-    onClosePress = () => {}
+    onClosePress = () => {},
+    h1text="Ready to setup your account?",
+    h2text="This can be done later, or modified at anytime through the Trip Planner.",
+    yes_text="Yes",
+    no_text="Later"
 }) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
@@ -107,14 +111,15 @@ const PickDestModal = ({
                 />
             </Close>
             <InnerCont>
-                <H1>Ready to setup your account?</H1>
-                <H2>This can be done later, or modified at anytime through the Trip Planner. </H2>
-                <ButtonWBorder onPress={onLaterPress}>
-                    <ButtonText style={styles.blue_text}>Later</ButtonText>
-                </ButtonWBorder>
+                <H1>{h1text}</H1>
+                <H2>{h2text}</H2>
                 <BlueButton onPress={onYesPress}>
-                    <ButtonText style={styles.white_text}>Yes</ButtonText>
+                    <ButtonText style={styles.white_text}>{yes_text}</ButtonText>
                 </BlueButton>
+                <ButtonWBorder onPress={onLaterPress}>
+                    <ButtonText style={styles.blue_text}>{no_text}</ButtonText>
+                </ButtonWBorder>
+                
             </InnerCont>
         </Container>
     }

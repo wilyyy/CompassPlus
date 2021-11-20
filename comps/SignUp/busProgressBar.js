@@ -1,55 +1,61 @@
 import React, { useState } from 'react';
 import styled from "styled-components/native";
-import { Divider } from 'react-native-elements';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { position } from 'polished';
 
 
-const BusTrackerCont = styled.View`
+const Container = styled.View`
     width: 100%;
-    height: 51px;
+    height: 62px;
+    justify-content: space-between;
+    margin-bottom: 20px;
 `;
 
 const IconCont = styled.View`
     width: 40px;
-    height: 40px;
+    height: 60px;
+    justify-content: space-evenly;
+    align-items: center;
     position: relative;
-    left: ${props=>props.busPosition};
+    left: ${props=>props.position};
+`;
+
+const Icon = styled.View`
+    width: 40px;
+    height: 40px;
 `;
 
 const BusCircle = styled.View`
     width: 20px;
     height: 20px;
     background-color: #fff;
-    position: absolute;
-    top: -10px;
     border-radius: 30px;
-    left: ${props=>props.circlePosition};
+`;
+
+const Divider = styled.View`
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+    top: 50px;
 `;
 
 const BusProgressBar = ({
-    busPosition = "0px",
-    circlePosition = "10px"
+    position = 0
 }) => {
-    return <BusTrackerCont>
-        <IconCont
-            busPosition={busPosition}
-        >
-            <MaterialIcon 
-                name="bus-side" 
-                size={40}
-                color="#fff"
-            />
+    return <Container>
+        <IconCont position={position}>
+            <Icon>
+                <MaterialIcon 
+                    name="bus-side" 
+                    size={40}
+                    color="#fff"
+                />
+            </Icon>
+            <BusCircle />
         </IconCont>
-        <Divider 
-            orientation="horizontal" 
-            width={2}
-            color={'#fff'}
-        >
-            <BusCircle 
-                circlePosition={circlePosition}
-            />
-        </Divider>
-    </BusTrackerCont>
+        <Divider />
+    </Container>
 }
 
 export default BusProgressBar;
