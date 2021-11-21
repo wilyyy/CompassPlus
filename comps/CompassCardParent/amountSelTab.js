@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 
 
@@ -12,6 +12,8 @@ const Tickets = [
     { title: '$100.00', id: '6' },
 ];
 
+
+
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
     <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
         <Text style={[styles.title, textColor]}>{item.title}</Text>
@@ -19,6 +21,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 );
 
 const AmountTab = ({
+    amount,
     selectThis = () => { },
 }) => {
     const [selectedId, setSelectedId] = useState(null);
@@ -27,10 +30,16 @@ const AmountTab = ({
         const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
         const color = item.id === selectedId ? 'white' : 'black';
 
+
+
         return (
             <Item
                 item={item}
-                onPress={() => setSelectedId(item.id)}
+                // onPress={() => setSelectedId(item.id)}
+                onPress={() => {
+                    setSelectedId(item.id);
+                    { amount }
+                }}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}
             />
@@ -45,6 +54,8 @@ const AmountTab = ({
                 keyExtractor={(item) => item.id}
                 extraData={selectedId}
                 onPress={selectThis}
+                scrollEnabled={false}
+
             />
         </SafeAreaView>
     );
@@ -53,7 +64,6 @@ const AmountTab = ({
 const styles = StyleSheet.create({
     container: {
         width: 200,
-        height: 'auto',
         backgroundColor: '#fff',
         borderRadius: 15,
         shadowColor: '#000',
@@ -63,16 +73,13 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        elevation: 5,
-        padding: 30,
-        marginTop: StatusBar.currentHeight || 0,
+        // padding: 30,
         overflow: 'hidden',
+        alignSelf: 'center'
     },
     title: {
         fontSize: 18,
         lineHeight: 28,
-        letterSpacing: 0.1,
-        textAlign: 'left',
         padding: 10,
     },
 });

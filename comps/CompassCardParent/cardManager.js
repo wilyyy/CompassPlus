@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Image, StyleSheet, Switch, Pressable, Text, TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
-import { Icon } from 'react-native-elements'
+import { Icon } from 'react-native-elements';
 
 
 
@@ -156,6 +156,7 @@ const H2 = styled.Text`
     font-size: 14px;
     text-align: center;
 `;
+
 
 export default function MobileCard({
     // cardSide = true, // need to put state for this in app.js?

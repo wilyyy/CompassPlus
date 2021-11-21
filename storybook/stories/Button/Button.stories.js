@@ -14,10 +14,7 @@ import TripPlannerTab from '../../../comps/TripPlanner/tripPlannerTab';
 
 import MobileCard from '../../../comps/CompassCardParent/cardManager';
 import AddFundsTab from '../../../comps/CompassCardParent/addFunds';
-import TransferBalanceTab from '../../../comps/CompassCardParent/transferFunds';
 import AutoReloadTab from '../../../comps/CompassCardParent/autoReload';
-import MergeTab from '../../../comps/CompassCardParent/mergeCards';
-import DeleteCard from '../../../comps/CompassCardParent/deleteCard';
 import AddCardManager from '../../../comps/CompassCardParent/addCardManager';
 
 // import NotificationCard from '../../../comps/Profile/NotificationCard';
@@ -48,16 +45,16 @@ import LoginPage from '../../../screens/Authentication/loginScreen';
 import ProfileScreenNew from '../../../screens/Profile/ProfileScreenNew';
 import CreateAccount from '../../../screens/Authentication/createAccount';
 
+import PopUps from '../../../screens/testPopUps';
+
 
 storiesOf('Comps', module)
+  .add('PopUp Tests', () => <PopUps />)
   .add('NavBar', () => <NavBar />)
   .add('Add Compass Card', () => <LinkCompassCard />)
   .add('Mobile Card', () => <MobileCard />)
   .add('Add Funds Tab', () => <AddFundsTab />)
-  .add('Transfer Balance Tab', () => <TransferBalanceTab />)
   .add('AutoReload Tab', () => <AutoReloadTab />)
-  .add('Merge Cards Tab', () => <MergeTab />)
-  .add('Delete Card', () => <DeleteCard />)
   .add('Add Card Manager', () => <AddCardManager />)
   .add('Notification Card', () => <NotificationCard />)
   .add('Support Card', () => <SupportCard />)
