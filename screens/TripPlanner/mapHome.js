@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity, ImageBackground } from 'react-native';
 import styled from "styled-components/native";
 import MapView, { Marker } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import MapViewDirections from 'react-native-maps-directions';
 
 //styles
 import { COLORS } from '../../constants/styles.js';
@@ -16,6 +17,7 @@ import MapComp from '../../comps/TripPlanner/mapComp';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
 
 const Page = styled.View`
     width: ${windowWidth};
@@ -64,7 +66,11 @@ const MapHomeScreen = () => {
         longitudeDelta: 0.0421,
     });
 
-    const [markerDisplay, setMarkerDisplay] = useState("none");
+    const [markerDisplay, setMarkerDisplay] = useState(null);
+
+    useEffect(()=>{
+        setMarkerDisplay(1);
+    }, [region, endRegion])
 
     return <Page>
         <TopSearchBar>
@@ -83,16 +89,14 @@ const MapHomeScreen = () => {
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421
                     });
-                    setMarkerDisplay("flex");
                 }}
                 query={{
                     key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
                     language: 'en',
                     components: "country:can",
-                    // types: "transit_station"
+                    // types: "establishments",
                     radius: 40000,
                     location: `${region.latitude}, ${region.longitude}`
-
                 }}
             />
         </TopSearchBar>
@@ -112,7 +116,6 @@ const MapHomeScreen = () => {
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421
                     });
-                    setMarkerDisplay("flex");
                 }}
                 query={{
                     key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
@@ -136,24 +139,29 @@ const MapHomeScreen = () => {
             style={styles.map}
             customMapStyle={MapStyleDark}
         >
-            <MarkerCont marker_display={markerDisplay}>
-                <Marker
-                    coordinate={{
-                        latitude: region.latitude,
-                        longitude: region.longitude,
-                    }}
-                    pinColor={COLORS.CAROLINABLUE}
-                />
-            </MarkerCont>
-            <MarkerCont marker_display="none">
-                <Marker
-                    coordinate={{
-                        latitude: endRegion.latitude,
-                        longitude: endRegion.longitude,
-                    }}
-                    pinColor={COLORS.LIMEGREEN}
-                />
-            </MarkerCont>
+            <Marker
+                coordinate={{
+                    latitude: region.latitude,
+                    longitude: region.longitude,
+                }}
+                pinColor={COLORS.CAROLINABLUE}
+                opacity={markerDisplay}
+            />
+            <Marker
+                coordinate={{
+                    latitude: endRegion.latitude,
+                    longitude: endRegion.longitude,
+                }}
+                pinColor={COLORS.LIMEGREEN}
+                opacity={markerDisplay}
+            />
+            <MapViewDirections 
+                origin={region}
+                destination={endRegion}
+                apikey='AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U'
+                strokeWidth={3}
+                strokeColor={COLORS.CAROLINABLUE}
+            />
         </MapView>
         <Container>
             <TripPlannerTab />

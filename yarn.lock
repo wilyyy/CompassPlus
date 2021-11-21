@@ -10047,6 +10047,14 @@ react-native-google-places-autocomplete@^2.4.1:
     prop-types "^15.7.2"
     qs "~6.9.1"
 
+react-native-maps-directions@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-maps-directions/-/react-native-maps-directions-1.8.0.tgz#ced452efeb153e54dfb9315480b0ae9539dfbcc7"
+  integrity sha512-7KWfPrvPLU8VP2nEqsnrWlOuylidlRWWDdk3lqT5Nb1q87FeyzNgA7Ib7n6cZlQwH4usTRlJSnzNo/yQ3u4AZw==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    prop-types "^15.6.0"
+
 react-native-maps@0.28.1:
   version "0.28.1"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.28.1.tgz#f3d9a919f403f1103a70e94f651462e65c7ca6db"
