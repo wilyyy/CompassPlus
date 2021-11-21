@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from "styled-components/native";
 import { Tab, ThemeProvider, Icon } from 'react-native-elements';
 import { Dimensions, ImageBackground, Pressable, SafeAreaView, SafeViewArea, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, useWindowDimensions, View, } from 'react-native';
@@ -163,42 +163,44 @@ const CompassCardScreen = () => {
 
     function selectZone() {
         //zone arrow onPress -> open zone selection modal
+        console.log('select your zone!');
 
         //set zoneType state this will happen within the modal
     }
 
     function PassPaySelection() {
         //payment arrow onPress -> open payment selection modal 
+        console.log('select your pass payment!');
 
         //set paymentType state
     }
 
     // -------- RELOAD STATES FOR PASS START --------
-    const [zone, setZone] = useState(1);
+    const [zone, setZone] = useState(3);
 
     if (zone === 1) {
-        zoneType = '1-Zone';
-        zoneAmount = '$100.25';
+        zoneTypeState = '1-Zone';
+        zoneAmountState = '$100.25';
     }
 
     if (zone === 2) {
-        zoneType = '2-Zone';
-        zoneAmount = '$134.00';
+        zoneTypeState = '2-Zone';
+        zoneAmountState = '$134.00';
     }
 
     if (zone === 3) {
-        zoneType = '3-Zone';
-        zoneAmount = '$181.05';
+        zoneTypeState = '3-Zone';
+        zoneAmountState = '$181.05';
     }
 
     const [passPayment, setPassPayment] = useState('Visa');
 
     if (passPayment === 'Visa') {
-        passPaymentType = 'Visa';
+        passPaymentTypeState = 'Visa';
     }
 
     if (passPayment === 'Mastercard') {
-        passPaymentType = 'Mastercard';
+        passPaymentTypeState = 'Mastercard';
     }
 
     // -------- RELOAD STATES FOR PASS END --------
@@ -230,9 +232,48 @@ const CompassCardScreen = () => {
         //set ticketPaymentType state
     }
 
+    // -------- RELOAD STATES FOR TICKET START --------
+
+    const [loadTicket, setLoadTicket] = useEffect('10');
+
+
+    if (loadTicket === '10') {
+        ticketLoadAmountState = '$10.00';
+    }
+
+    if (loadTicket === '20') {
+        ticketLoadAmountState = '$20.00';
+    }
+
+    if (loadTicket === '40') {
+        ticketLoadAmountState = '$40.00';
+    }
+
+    if (loadTicket === '60') {
+        ticketLoadAmountState = '$60.00';
+    }
+
+    if (loadTicket === '80') {
+        ticketLoadAmountState = '$80.00';
+    }
+
+    if (loadTicket === '100') {
+        ticketLoadAmountState = '$100.00';
+    }
+
+    const [ticketPayment, setTicketPayment] = useState('Visa');
+
+    if (ticketPayment === 'Visa') {
+        ticketPaymentTypeState = 'Visa';
+    }
+
+    if (ticketPayment === 'Mastercard') {
+        ticketPaymentTypeState = 'Mastercard';
+    }
 
 
 
+    // -------- RELOAD STATES FOR TICKET END --------
 
 
     //on ticket button confirm reload
@@ -305,9 +346,9 @@ const CompassCardScreen = () => {
                     ]}
                 >
                     <AddFundsTabPass
-                        zoneType="1-Zone"
-                        zoneAmount='$100.25'
-                        passPaymentType='Visa'
+                        zoneType={zoneTypeState}
+                        zoneAmount={zoneAmountState}
+                        passPaymentType={passPaymentTypeState}
                         month='December'
                         selectZone={selectZone}
                         selectPassPayment={PassPaySelection}
@@ -345,8 +386,8 @@ const CompassCardScreen = () => {
                 >
                     <AddFundsTabTicket
                         ticketBalance="$4.05" //this will come from the database
-                        ticketLoadAmount='$10.00'
-                        ticketPaymentType='Visa'
+                        ticketLoadAmount={ticketLoadAmountState}
+                        ticketPaymentType={ticketPaymentState}
                         selectTicketAmount={selectAmount}
                         selectTicketPayment={TicketPaySelection}
                         AddFundsConfirm=
