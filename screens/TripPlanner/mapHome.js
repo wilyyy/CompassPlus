@@ -58,12 +58,21 @@ const MapHomeScreen = () => {
                 onPress={(data, details = null) => {
                     // 'details' is provided when fetchDetails = true
                     console.log(data, details);
+                    setRegion({
+                        latitude: details.geometry.location.lat,
+                        longitude: details.geometry.location.lng,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421
+                    })
                 }}
                 query={{
                     key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
                     language: 'en',
                     components: "country:can",
                     // types: "transit_station"
+                    radius: 40000,
+                    location: `${region.latitude}, ${region.longitude}`
+
                 }}
             />
         </TopSearchBar>
@@ -82,6 +91,13 @@ const MapHomeScreen = () => {
                 coordinate={{
                     latitude: 49.246292,
                     longitude: -123.116226,
+                }}
+                pinColor={COLORS.CAROLINABLUE}
+            />
+            <Marker
+                coordinate={{
+                    latitude: region.latitude,
+                    longitude: region.longitude,
                 }}
                 pinColor={COLORS.CAROLINABLUE}
             />
