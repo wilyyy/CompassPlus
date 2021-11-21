@@ -36,6 +36,7 @@ const Container = styled.View`
 const TopSearchBar = styled.View`
     width: 80%;
     position: absolute;
+    z-index: 3;
     top: 7%;
 `;
 
@@ -43,6 +44,7 @@ const BotSearchBar = styled.View`
     width: 80%;
     position: absolute;
     top: 14%;
+    z-index: 2;
 `;
 
 const MarkerCont = styled.View`
