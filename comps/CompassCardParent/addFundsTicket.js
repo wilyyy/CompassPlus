@@ -116,41 +116,33 @@ const ButtonText = styled.Text`
 
 
 
-
-
-export default function AddFundsTabPass({
-    zoneType = "1-Zone",
-    zoneAmount = '$100.25',
-    passPaymentType = 'Visa',
-    month = 'December',
+export default function AddFundsTabTicket({
+    ticketBalance = "$4.05",
+    ticketLoadAmount = '$10.00',
+    ticketPaymentType = 'Visa',
+    selectTicketAmount = () => { },
+    selectTicketPayment = () => { },
     AddFundsConfirm = () => { },
-    selectZone = () => { },
-    selectPassPayment = () => { },
 }) {
 
 
     return (
         <Container>
             <Notch />
-            <Title>Reload for {month}</Title>
+            <Title>Reload Stored Value</Title>
             <Divider />
 
-            {/* ZONE */}
+            {/* TO this ticket: */}
             <SettingCont>
                 <SettingsContLeft>
                     <SmallCardIcon
                         source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
                     />
                     <TextColumn>
-                        <SmallTitle>Select zone</SmallTitle>
-                        <Amount>{zoneType}</Amount>
+                        <SmallTitle>Current Balance</SmallTitle>
+                        <Amount>{ticketBalance}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <View
-                    onPress={selectZone}>
-                    <AntDesign name="down" size={30} color="#222222" />
-                </View>
-
             </SettingCont>
 
             <Line />
@@ -163,9 +155,13 @@ export default function AddFundsTabPass({
                     />
                     <TextColumn>
                         <SmallTitle>Amount</SmallTitle>
-                        <Amount>{zoneAmount}</Amount>
+                        <Amount>{ticketLoadAmount}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
+                <View
+                    onPress={selectTicketAmount}>
+                    <AntDesign name="down" size={30} color="#222222" />
+                </View>
             </SettingCont>
             <Line />
 
@@ -177,13 +173,15 @@ export default function AddFundsTabPass({
                     />
                     <TextColumn>
                         <SmallTitle>Payment</SmallTitle>
-                        <Amount>{passPaymentType}</Amount>
+                        <Amount>{ticketPaymentType}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
                 <View
-                    onPress={selectPassPayment}>
+                    onPress={selectTicketPayment}>
                     <AntDesign name="down" size={30} color="#222222" />
                 </View>
+
+
             </SettingCont>
             <Line />
 
@@ -193,7 +191,7 @@ export default function AddFundsTabPass({
                 onPress={AddFundsConfirm}
                 style={styles.TransferButton}
             >
-                <ButtonText>Purchase</ButtonText>
+                <ButtonText>Add {ticketLoadAmount}</ButtonText>
             </TouchableOpacity>
 
         </Container>

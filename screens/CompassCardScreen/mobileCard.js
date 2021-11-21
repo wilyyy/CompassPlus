@@ -21,10 +21,12 @@ import Animated, {
     useAnimatedStyle,
     withSpring,
 } from 'react-native-reanimated';
-import TransferBalanceTab from '../../comps/CompassCardParent/transferFunds.js';
+// import TransferBalanceTab from '../../comps/CompassCardParent/NotUsing/transferFunds.js';
 import AddFundsTab from '../../comps/CompassCardParent/addFunds.js';
 import AddCardManager from '../../comps/CompassCardParent/addCardManager.js';
 import CardSwipeTest from '../../comps/CompassCardParent/cardsInSwipe';
+import AddFundsTabPass from '../../comps/CompassCardParent/addFunds.js';
+import AddFundsTabTicket from '../../comps/CompassCardParent/addFundsTicket.js';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -81,7 +83,7 @@ const H2 = styled.Text`
     
 `;
 
-// === reUsable animations ===
+// === reusable animations ===
 // tabs animation
 const SPRING_CONFIG = {
     damping: 80,
@@ -94,46 +96,161 @@ const SPRING_CONFIG = {
 
 const CompassCardScreen = () => {
     const dimensions = useWindowDimensions();
-    const top = useSharedValue(
+
+    //=============PASS & TICKET ANIMATIONS START=============
+    const topTicket = useSharedValue(
         (dimensions.height + 400)
     );
-    const style = useAnimatedStyle(() => {
+    const topPass = useSharedValue(
+        (dimensions.height + 400)
+    );
+    const stylePass = useAnimatedStyle(() => {
         return {
-            top: withSpring(top.value, SPRING_CONFIG),
+            top: withSpring(topPass.value, SPRING_CONFIG),
         };
     });
 
-    const gestureHandler = useAnimatedGestureHandler({
+    const styleTicket = useAnimatedStyle(() => {
+        return {
+            top: withSpring(topTicket.value, SPRING_CONFIG),
+        };
+    });
+
+    const gestureHandlerPass = useAnimatedGestureHandler({
         onStart(_, context) {
-            context.startTop = top.value;
+            context.startTop = topPass.value;
         },
         onActive(event, context) {
-            top.value = context.startTop + event.translationY;
+            topPass.value = context.startTop + event.translationY;
         },
         onEnd() {
-            if (top.value > dimensions.height / 2 + 150) {
-                top.value = withSpring(dimensions.height + 300);
+            if (topPass.value > dimensions.height / 2 + 150) {
+                topPass.value = withSpring(dimensions.height + 300);
             } else {
-                top.value = withSpring(dimensions.height / 2.25);
+                topPass.value = withSpring(dimensions.height / 2.25);
             }
         }
     });
 
+    const gestureHandlerTicket = useAnimatedGestureHandler({
+        onStart(_, context) {
+            context.startTop = topTicket.value;
+        },
+        onActive(event, context) {
+            topTicket.value = context.startTop + event.translationY;
+        },
+        onEnd() {
+            if (topTicket.value > dimensions.height / 2 + 150) {
+                topTicket.value = withSpring(dimensions.height + 300);
+            } else {
+                topTicket.value = withSpring(dimensions.height / 2.25);
+            }
+        }
+    });
+
+    function ReloadPass() {
+        // need to set states to save new balances
+        topPass.value = withSpring(dimensions.height + 300);
+    }
+
+    function ReloadTicket() {
+        // need to set states to save new balances
+        topTicket.value = withSpring(dimensions.height + 300);
+    }
+    //=============PASS & TICKET ANIMATIONS END=============
+
+    //=============RELOAD PASS INTERACTIONS START=============
+
+    function selectZone() {
+        //zone arrow onPress -> open zone selection modal
+
+        //set zoneType state this will happen within the modal
+    }
+
+    function PassPaySelection() {
+        //payment arrow onPress -> open payment selection modal 
+
+        //set paymentType state
+    }
+
+    // -------- RELOAD STATES FOR PASS START --------
+    const [zone, setZone] = useState(1);
+
+    if (zone === 1) {
+        zoneType = '1-Zone';
+        zoneAmount = '$100.25';
+    }
+
+    if (zone === 2) {
+        zoneType = '2-Zone';
+        zoneAmount = '$134.00';
+    }
+
+    if (zone === 3) {
+        zoneType = '3-Zone';
+        zoneAmount = '$181.05';
+    }
+
+    const [passPayment, setPassPayment] = useState('Visa');
+
+    if (passPayment === 'Visa') {
+        passPaymentType = 'Visa';
+    }
+
+    if (passPayment === 'Mastercard') {
+        passPaymentType = 'Mastercard';
+    }
+
+    // -------- RELOAD STATES FOR PASS END --------
 
 
-    function handleAddSheet() {
-        top.value = withSpring(
+    // on pass button confirm reload
+    function handlePassReload() {
+        //tab animation
+        topPass.value = withSpring(
             dimensions.height / 2.25,
             SPRING_CONFIG
         );
+        // i don't think the below is actually necessary? 
+        // setReloadType('Pass');
+    }
+    //=============RELOAD PASS INTERACTIONS END=============
+
+
+    //=============RELOAD TICKET INTERACTIONS START=============
+    function selectAmount() {
+        // amount arrow onPress -> open ticket reload amount modal
+
+        //set ticketLoadAmount state
+    }
+
+    function TicketPaySelection() {
+        // payment arrow onPress -> open payment selection modal
+
+        //set ticketPaymentType state
     }
 
 
 
-    function TransferFunds() {
-        // need to set states to save new balances
-        top.value = withSpring(dimensions.height + 300);
+
+
+
+    //on ticket button confirm reload
+    function handleTicketReload() {
+        topTicket.value = withSpring(
+            dimensions.height / 2.25,
+            SPRING_CONFIG
+        );
+        //don't think the below is actually necessary
+        // setReloadType('Ticket');
     }
+    //=============RELOAD TICKET INTERACTIONS END=============
+
+
+
+
+
+
 
 
     return (
@@ -155,35 +272,15 @@ const CompassCardScreen = () => {
                 </TopContainer>
                 <Text style={styles.TapQueue}>Tap Card to Pay</Text>
                 <CardSwipeTest
-                    handleAddSheetONE={handleAddSheet}
-                    handleAddSheetTWO={handleAddSheet}
+                    handleAddSheetONE={handlePassReload}
+                    handleAddSheetTWO={handleTicketReload}
                 />
-                {/* <ScrollView
-                    contentContainerStyle={styles.scrollview}
-                    horizontal={true}
-                    alwaysBounceHorizontal={true}
-                >
-                    <MobileCard
-                        onAddFundsPress={handleAddSheet}
-                    />
-                    <MobileCard
-                        onAddFundsPress={handleAddSheet}
-                        titleCardType={'Stored Value Ticket'}
-                        cardType="Ticket"
-                        expiration={'90 minutes'}
-                        phrasing={'in'}
-                        buttonTitle={'Add Funds'}
-                    />
-                    <AddCardManager />
-                </ScrollView> */}
-
-
             </Page>
 
 
-            {/* ADD FUNDS ANIMATION TAB  */}
+            {/* RELOAD PASS ANIMATION TAB  */}
             <PanGestureHandler
-                onGestureEvent={gestureHandler}
+                onGestureEvent={gestureHandlerPass}
             >
                 <Animated.View
                     style={[
@@ -204,11 +301,56 @@ const CompassCardScreen = () => {
                             justifyContent: 'center',
                             alignItems: 'center',
                         },
-                        style
+                        stylePass
                     ]}
                 >
-                    <AddFundsTab
-                        AddFundsConfirm={TransferFunds}
+                    <AddFundsTabPass
+                        zoneType="1-Zone"
+                        zoneAmount='$100.25'
+                        passPaymentType='Visa'
+                        month='December'
+                        selectZone={selectZone}
+                        selectPassPayment={PassPaySelection}
+                        AddFundsConfirm={ReloadPass}
+                    />
+                </Animated.View>
+            </PanGestureHandler>
+
+
+            {/* RELOAD TICKET ANIMATION TAB  */}
+            <PanGestureHandler
+                onGestureEvent={gestureHandlerTicket}
+            >
+                <Animated.View
+                    style={[
+                        {
+                            position: 'absolute',
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            backgroundColor: 'transparent',
+                            shadowColor: '#222222',
+                            shadowoffset: {
+                                width: 0,
+                                height: 2,
+                            },
+                            shadowOpacity: 0.25,
+                            shadowRadius: 3.84,
+                            elevation: 5,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        },
+                        styleTicket
+                    ]}
+                >
+                    <AddFundsTabTicket
+                        ticketBalance="$4.05" //this will come from the database
+                        ticketLoadAmount='$10.00'
+                        ticketPaymentType='Visa'
+                        selectTicketAmount={selectAmount}
+                        selectTicketPayment={TicketPaySelection}
+                        AddFundsConfirm=
+                        {ReloadTicket}
                     />
                 </Animated.View>
             </PanGestureHandler>
