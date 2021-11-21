@@ -68,11 +68,13 @@ const MapHomeScreen = () => {
         longitudeDelta: 0.0421,
     });
 
-    const [markerDisplay, setMarkerDisplay] = useState(null);
+    const [markerDisplay, setMarkerDisplay] = useState(0);
+    const [endMarkerDisplay, setEndMarkerDisplay] = useState(0);
+    const [directionOpacity, setDirectionOpacity] = useState(0);
 
-    useEffect(()=>{
-        setMarkerDisplay(1);
-    }, [region, endRegion])
+    // useEffect(()=>{
+    //     setMarkerDisplay(1);
+    // }, [region, endRegion])
 
     return <Page>
         <TopSearchBar>
@@ -91,6 +93,7 @@ const MapHomeScreen = () => {
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421
                     });
+                    setMarkerDisplay(1);
                 }}
                 query={{
                     key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
@@ -118,6 +121,8 @@ const MapHomeScreen = () => {
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421
                     });
+                    setEndMarkerDisplay(1);
+                    setDirectionOpacity(3);
                 }}
                 query={{
                     key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
@@ -155,13 +160,13 @@ const MapHomeScreen = () => {
                     longitude: endRegion.longitude,
                 }}
                 pinColor={COLORS.LIMEGREEN}
-                opacity={markerDisplay}
+                opacity={endMarkerDisplay}
             />
             <MapViewDirections 
                 origin={region}
                 destination={endRegion}
                 apikey='AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U'
-                strokeWidth={3}
+                strokeWidth={directionOpacity}
                 strokeColor={COLORS.CAROLINABLUE}
             />
         </MapView>
