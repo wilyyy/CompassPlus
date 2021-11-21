@@ -93,7 +93,7 @@ const MapHomeScreen = () => {
                     key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
                     language: 'en',
                     components: "country:can",
-                    // types: "transit_station"
+                    // types: "establishments",
                     radius: 40000,
                     location: `${region.latitude}, ${region.longitude}`
                 }}
