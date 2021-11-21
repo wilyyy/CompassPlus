@@ -4,6 +4,7 @@ import { View, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity, ImageB
 import styled from "styled-components/native";
 import MapView, { Marker } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import MapViewDirections from 'react-native-maps-directions';
 
 //styles
 import { COLORS } from '../../constants/styles.js';
@@ -153,6 +154,13 @@ const MapHomeScreen = () => {
                 }}
                 pinColor={COLORS.LIMEGREEN}
                 opacity={markerDisplay}
+            />
+            <MapViewDirections 
+                origin={region}
+                destination={endRegion}
+                apikey='AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U'
+                strokeWidth={3}
+                strokeColor={COLORS.CAROLINABLUE}
             />
         </MapView>
         <Container>
