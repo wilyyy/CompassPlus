@@ -37,6 +37,16 @@ const TopSearchBar = styled.View`
     top: 7%;
 `;
 
+const BotSearchBar = styled.View`
+    width: 80%;
+    position: absolute;
+    top: 14%;
+`;
+
+const MarkerCont = styled.View`
+    display: ${props=>props.marker_display};
+`;
+
 
 //search bar
 const MapHomeScreen = () => {
@@ -45,7 +55,16 @@ const MapHomeScreen = () => {
         longitude: -123.116226,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
-    })
+    });
+
+    const [endRegion, setEndRegion] = useState({
+        latitude: 49.246292,
+        longitude: -123.116226,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+    });
+
+    const [markerDisplay, setMarkerDisplay] = useState("none");
 
     return <Page>
         <TopSearchBar>
@@ -63,7 +82,8 @@ const MapHomeScreen = () => {
                         longitude: details.geometry.location.lng,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421
-                    })
+                    });
+                    setMarkerDisplay("flex");
                 }}
                 query={{
                     key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
@@ -76,6 +96,35 @@ const MapHomeScreen = () => {
                 }}
             />
         </TopSearchBar>
+        <BotSearchBar>
+            <GooglePlacesAutocomplete
+                placeholder='End Address'
+                fetchDetails={true}
+                GooglePlacesSearchQuery={{
+                    rankby: "distance"
+                }}
+                onPress={(data, details = null) => {
+                    // 'details' is provided when fetchDetails = true
+                    console.log(data, details);
+                    setEndRegion({
+                        latitude: details.geometry.location.lat,
+                        longitude: details.geometry.location.lng,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421
+                    });
+                    setMarkerDisplay("flex");
+                }}
+                query={{
+                    key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
+                    language: 'en',
+                    components: "country:can",
+                    // types: "transit_station"
+                    radius: 40000,
+                    location: `${endRegion.latitude}, ${endRegion.longitude}`
+
+                }}
+            />
+        </BotSearchBar>
         <MapView
             provider="google"
             initialRegion={{
@@ -87,20 +136,24 @@ const MapHomeScreen = () => {
             style={styles.map}
             customMapStyle={MapStyleDark}
         >
-            <Marker
-                coordinate={{
-                    latitude: 49.246292,
-                    longitude: -123.116226,
-                }}
-                pinColor={COLORS.CAROLINABLUE}
-            />
-            <Marker
-                coordinate={{
-                    latitude: region.latitude,
-                    longitude: region.longitude,
-                }}
-                pinColor={COLORS.CAROLINABLUE}
-            />
+            <MarkerCont marker_display={markerDisplay}>
+                <Marker
+                    coordinate={{
+                        latitude: region.latitude,
+                        longitude: region.longitude,
+                    }}
+                    pinColor={COLORS.CAROLINABLUE}
+                />
+            </MarkerCont>
+            <MarkerCont marker_display="none">
+                <Marker
+                    coordinate={{
+                        latitude: endRegion.latitude,
+                        longitude: endRegion.longitude,
+                    }}
+                    pinColor={COLORS.LIMEGREEN}
+                />
+            </MarkerCont>
         </MapView>
         <Container>
             <TripPlannerTab />
