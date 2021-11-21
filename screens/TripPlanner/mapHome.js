@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { View, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity, ImageBackground } from 'react-native';
 import styled from "styled-components/native";
 import MapView, { Marker } from 'react-native-maps';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 //styles
 import { COLORS } from '../../constants/styles.js';
@@ -30,9 +31,51 @@ const Container = styled.View`
     bottom: ${windowHeight / 15}px;
 `;
 
+const TopSearchBar = styled.View`
+    width: 80%;
+    position: absolute;
+    top: 7%;
+`;
+
+
 //search bar
 const MapHomeScreen = () => {
+    const [region, setRegion] = useState({
+        latitude: 49.246292,
+        longitude: -123.116226,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+    })
+
     return <Page>
+        <TopSearchBar>
+            <GooglePlacesAutocomplete
+                placeholder='Start Address'
+                fetchDetails={true}
+                GooglePlacesSearchQuery={{
+                    rankby: "distance"
+                }}
+                onPress={(data, details = null) => {
+                    // 'details' is provided when fetchDetails = true
+                    console.log(data, details);
+                    setRegion({
+                        latitude: details.geometry.location.lat,
+                        longitude: details.geometry.location.lng,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421
+                    })
+                }}
+                query={{
+                    key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
+                    language: 'en',
+                    components: "country:can",
+                    // types: "transit_station"
+                    radius: 40000,
+                    location: `${region.latitude}, ${region.longitude}`
+
+                }}
+            />
+        </TopSearchBar>
         <MapView
             provider="google"
             initialRegion={{
@@ -42,9 +85,21 @@ const MapHomeScreen = () => {
                 longitudeDelta: 0.0421,
             }}
             style={styles.map}
+            customMapStyle={MapStyleDark}
         >
             <Marker
-
+                coordinate={{
+                    latitude: 49.246292,
+                    longitude: -123.116226,
+                }}
+                pinColor={COLORS.CAROLINABLUE}
+            />
+            <Marker
+                coordinate={{
+                    latitude: region.latitude,
+                    longitude: region.longitude,
+                }}
+                pinColor={COLORS.CAROLINABLUE}
             />
         </MapView>
         <Container>
