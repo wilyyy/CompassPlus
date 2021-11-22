@@ -12,7 +12,8 @@ import LinkCompassCard from '../../../comps/Home/linkCompassCard';
 import SignUpTransitCard from '../../../comps/SignUp/signUpTransitCard';
 import TripPlannerTab from '../../../comps/TripPlanner/tripPlannerTab';
 
-import MobileCard from '../../../comps/CompassCardParent/cardManager';
+import Pass from '../../../comps/CompassCardParent/Pass';
+import Ticket from '../../../comps/CompassCardParent/Ticket';
 import AddFundsTab from '../../../comps/CompassCardParent/addFunds';
 import AutoReloadTab from '../../../comps/CompassCardParent/autoReload';
 import AddCardManager from '../../../comps/CompassCardParent/addCardManager';
@@ -52,7 +53,8 @@ storiesOf('Comps', module)
   .add('PopUp Tests', () => <PopUps />)
   .add('NavBar', () => <NavBar />)
   .add('Add Compass Card', () => <LinkCompassCard />)
-  .add('Mobile Card', () => <MobileCard />)
+  .add('Mobile Pass', () => <Pass />)
+  .add('Mobile Ticket', () => <Ticket />)
   .add('Add Funds Tab', () => <AddFundsTab />)
   .add('AutoReload Tab', () => <AutoReloadTab />)
   .add('Add Card Manager', () => <AddCardManager />)
