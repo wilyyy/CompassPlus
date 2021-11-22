@@ -240,7 +240,7 @@ export default function AddFundsTabPass({
             </Animated.View>
             <Animated.View style={[styles.animationCont, styles.amountPosition, openZone]}>
                 <TicketTab
-                    closeAmount={closeModalPay}
+                    closeAmount={closeModalBelow}
                 />
             </Animated.View>
             <Notch />

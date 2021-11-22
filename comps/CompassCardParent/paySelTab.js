@@ -22,6 +22,7 @@ const PaymentTab = ({
 }) => {
     const [selectedId, setSelectedId] = useState(null);
 
+
     const renderItem = ({ item }) => {
         const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
         const color = item.id === selectedId ? 'white' : 'black';
