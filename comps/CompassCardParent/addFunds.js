@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { Animated, Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
-import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { COLORS } from "../../constants/styles";
 // 
@@ -53,10 +52,9 @@ const SettingCont = styled.View`
     justify-content: space-between;
     align-items: center;
     width:100%;
+    padding: 5px 20px;
     /* border-width: 2px;
     border-color: red; */
-    padding: 5px 20px;
-
 `;
 
 const SettingsContLeft = styled.View`
@@ -131,13 +129,11 @@ export default function AddFundsTabPass({
     passPaymentType = 'Visa',
     month = 'December',
     AddFundsConfirm = () => { },
-    selectZone = () => { },
-    selectPassPayment = () => { },
+
 }) {
 
 
 
-    // ====== MODAL ANIMATION START ======
     const [animationZone, setAnimationZone] = useState(new Animated.Value(0));
     const [animationPay, setAnimationPay] = useState(new Animated.Value(0));
 
@@ -159,7 +155,7 @@ export default function AddFundsTabPass({
             duration: 100,
             useNativeDriver: false,
         }).start();
-    }
+    };
 
     const modalPayTrigger = () => {
         Animated.timing(animationPay, {
@@ -167,7 +163,7 @@ export default function AddFundsTabPass({
             duration: 100,
             useNativeDriver: false,
         }).start();
-    }
+    };
 
 
     const closeModalZone = () => {
@@ -178,7 +174,7 @@ export default function AddFundsTabPass({
             delay: 500
         }).start();
 
-    }
+    };
 
     const closeModalPay = () => {
         Animated.timing(animationPay, {
@@ -188,7 +184,7 @@ export default function AddFundsTabPass({
             delay: 500
         }).start();
 
-    }
+    };
 
 
     const openZone = {
@@ -203,11 +199,6 @@ export default function AddFundsTabPass({
         ]
     };
 
-
-
-
-
-    // ====== MODAL ANIMATION END ======
 
     return (
         <Container>
@@ -342,6 +333,3 @@ const styles = StyleSheet.create({
         height: 159,
     },
 });
-
-//     
-// }) 
