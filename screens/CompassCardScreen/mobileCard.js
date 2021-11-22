@@ -304,13 +304,7 @@ export default function CompassCardScreen() {
 
 
 
-    const modalPayTrigger = () => {
-        Animated.timing(payScreen, {
-            toValue: 1,
-            duration: 0,
-            useNativeDriver: false,
-        }).start();
-    };
+
 
     const closePayScreen = () => {
         Animated.timing(payScreen, {
