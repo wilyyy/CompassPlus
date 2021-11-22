@@ -86,8 +86,9 @@ const CardSwipeTest = ({
 const styles = StyleSheet.create({
     container: {
         height: 590,
-        marginHorizontal: 2.5
+        paddingHorizontal: '2%',
     },
+
     normalDot: {
         height: 8,
         width: 8,
@@ -102,7 +103,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         // borderWidth: 2,
-        // borderColor: 'purple'
+        // borderColor: 'purple',
+        top: 15
 
     }
 });

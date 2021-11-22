@@ -19,7 +19,6 @@ const Container = styled.View`
     /* border-color: red;
     border-width: 2px; */
     z-index: 8;
-    /* touch-action: auto; */
 
 `;
 
