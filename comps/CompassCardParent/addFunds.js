@@ -1,10 +1,15 @@
 
 import React, { useState } from 'react';
-import { Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { COLORS } from "../../constants/styles";
+// 
+// import PopUps from '../../screens/testPopUps';
+import ZonesTab from './zoneSelTab';
+import PaymentTab from './paySelTab';
+
 
 const Container = styled.View`
     width: 100%;
@@ -14,7 +19,9 @@ const Container = styled.View`
     box-shadow: 0px 4px 4px rgba(37, 43, 66, 0.5);    
     /* border-color: red;
     border-width: 2px; */
-    
+    z-index: 8;
+    /* touch-action: auto; */
+
 `;
 
 const Notch = styled.View`
@@ -49,7 +56,7 @@ const SettingCont = styled.View`
     /* border-width: 2px;
     border-color: red; */
     padding: 5px 20px;
-    
+
 `;
 
 const SettingsContLeft = styled.View`
@@ -129,8 +136,92 @@ export default function AddFundsTabPass({
 }) {
 
 
+
+    // ====== MODAL ANIMATION START ======
+    const [animationZone, setAnimationZone] = useState(new Animated.Value(0));
+    const [animationPay, setAnimationPay] = useState(new Animated.Value(0));
+
+    const openModalZone = animationZone.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 1],
+        extrapolate: "clamp",
+    });
+
+    const openModalPay = animationPay.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 1],
+        extrapolate: "clamp",
+    });
+
+    const modalZoneTrigger = () => {
+        Animated.timing(animationZone, {
+            toValue: 1,
+            duration: 100,
+            useNativeDriver: false,
+        }).start();
+    }
+
+    const modalPayTrigger = () => {
+        Animated.timing(animationPay, {
+            toValue: 1,
+            duration: 100,
+            useNativeDriver: false,
+        }).start();
+    }
+
+
+    const closeModalZone = () => {
+        Animated.timing(animationZone, {
+            toValue: 0,
+            duration: 100,
+            useNativeDriver: false,
+            delay: 500
+        }).start();
+
+    }
+
+    const closeModalPay = () => {
+        Animated.timing(animationPay, {
+            toValue: 0,
+            duration: 100,
+            useNativeDriver: false,
+            delay: 500
+        }).start();
+
+    }
+
+
+    const openZone = {
+        transform: [
+            { scale: openModalZone }
+        ]
+    };
+
+    const openPay = {
+        transform: [
+            { scale: openModalPay }
+        ]
+    };
+
+
+
+
+
+    // ====== MODAL ANIMATION END ======
+
     return (
         <Container>
+            {/* <Button title='open' onPress={modalTrigger}></Button> */}
+            <Animated.View style={[styles.animationCont, styles.zonesPosition, openZone]}>
+                <ZonesTab
+                    closeZone={closeModalZone}
+                />
+            </Animated.View>
+            <Animated.View style={[styles.animationCont, styles.paymentPosition, openPay]}>
+                <PaymentTab
+                    closePay={closeModalPay}
+                />
+            </Animated.View>
             <Notch />
             <Title>Reload for {month}</Title>
             <Divider />
@@ -139,17 +230,20 @@ export default function AddFundsTabPass({
             <SettingCont>
                 <SettingsContLeft>
                     <SmallCardIcon
-                        source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
+                        source={{ uri: '#', }}
                     />
                     <TextColumn>
                         <SmallTitle>Select zone</SmallTitle>
                         <Amount>{zoneType}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <View
-                    onPress={selectZone}>
+                <TouchableOpacity
+                    onPress={modalZoneTrigger}
+                    style={styles.modalButton}
+                // {selectZone}
+                >
                     <AntDesign name="down" size={30} color="#222222" />
-                </View>
+                </TouchableOpacity>
 
             </SettingCont>
 
@@ -180,10 +274,11 @@ export default function AddFundsTabPass({
                         <Amount>{passPaymentType}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <View
-                    onPress={selectPassPayment}>
+                <TouchableOpacity style={styles.modalButton}
+                    onPress={modalPayTrigger}
+                >
                     <AntDesign name="down" size={30} color="#222222" />
-                </View>
+                </TouchableOpacity>
             </SettingCont>
             <Line />
 
@@ -199,9 +294,7 @@ export default function AddFundsTabPass({
         </Container>
     )
 
-};
-
-
+}
 
 const styles = StyleSheet.create({
     TransferButton: {
@@ -216,7 +309,39 @@ const styles = StyleSheet.create({
         shadowColor: COLORS.SPACECADET,
         shadowOpacity: 0.5,
         shadowOffset: { width: 0, height: 4 },
+    },
+    modalButton: {
+        // backgroundColor: COLORS.ALICEBLUE,
+        padding: 10,
+    },
+    animationCont: {
+        alignContent: 'center',
+        alignSelf: 'flex-end',
+        justifyContent: 'center',
+        borderRadius: 16,
+        position: 'absolute',
+        backgroundColor: '#fff',
+        width: 200,
+        zIndex: 10,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+    },
+    zonesPosition: {
+        top: 50,
+        right: 15,
+        height: 144,
+    },
+    paymentPosition: {
+        top: 200,
+        right: 15,
+        height: 159,
+    },
+});
 
-
-    }
-})
+//     
+// }) 

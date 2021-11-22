@@ -1,28 +1,24 @@
 import React, { useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 
 
-const Tickets = [
-    { title: '$10.00', id: '1' },
-    { title: '$15.00', id: '2' },
-    { title: '$20.00', id: '3' },
-    { title: '$50.00', id: '4' },
-    { title: '$75.00', id: '5' },
-    { title: '$100.00', id: '6' },
+const Payment = [
+    { title: 'Mastercard', id: '1' },
+    { title: 'Visa', id: '2' },
+    { title: 'Add Payment', id: '3' },
+
 ];
 
-
-
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+const Item = ({ item, onPress, onPressOut, backgroundColor, textColor }) => (
+    <TouchableOpacity onPress={onPress} onPressOut={onPressOut} style={[styles.item, backgroundColor]}>
         <Text style={[styles.title, textColor]}>{item.title}</Text>
     </TouchableOpacity>
 );
 
-const AmountTab = ({
-    amount,
-    selectThis = () => { },
+const PaymentTab = ({
+    //need to pass item.id
+    closePay = () => { },
 }) => {
     const [selectedId, setSelectedId] = useState(null);
 
@@ -30,16 +26,11 @@ const AmountTab = ({
         const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
         const color = item.id === selectedId ? 'white' : 'black';
 
-
-
         return (
             <Item
                 item={item}
-                // onPress={() => setSelectedId(item.id)}
-                onPress={() => {
-                    setSelectedId(item.id);
-                    { amount }
-                }}
+                onPress={() => setSelectedId(item.id)}
+                onPressOut={closePay}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}
             />
@@ -49,13 +40,10 @@ const AmountTab = ({
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                data={Tickets}
+                data={Payment}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 extraData={selectedId}
-                onPress={selectThis}
-                scrollEnabled={false}
-
             />
         </SafeAreaView>
     );
@@ -64,6 +52,7 @@ const AmountTab = ({
 const styles = StyleSheet.create({
     container: {
         width: 200,
+        height: 'auto',
         backgroundColor: '#fff',
         borderRadius: 15,
         shadowColor: '#000',
@@ -73,15 +62,22 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        // padding: 30,
+        elevation: 5,
+        padding: 30,
         overflow: 'hidden',
-        alignSelf: 'center'
+        // borderColor: 'red',
+        // borderWidth: 2
+    },
+    item: {
+        paddingTop: 5,
     },
     title: {
         fontSize: 18,
         lineHeight: 28,
+        letterSpacing: 0.1,
+        textAlign: 'left',
         padding: 10,
     },
 });
 
-export default AmountTab;
+export default PaymentTab;

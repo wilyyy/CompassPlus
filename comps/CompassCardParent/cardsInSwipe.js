@@ -18,6 +18,8 @@ const dots = new Array(3).fill();
 const CardSwipeTest = ({
     handleAddSheetONE = () => { },
     handleAddSheetTWO = () => { },
+    passAutoReload = () => { },
+    ticketAutoReload = () => { },
 }) => {
     const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -42,6 +44,7 @@ const CardSwipeTest = ({
             >
                 <MobileCard
                     onAddFundsPress={handleAddSheetONE}
+                    onAutoReloadPress={passAutoReload}
                 />
                 <MobileCard
                     onAddFundsPress={handleAddSheetTWO}
@@ -50,6 +53,8 @@ const CardSwipeTest = ({
                     expiration='90 minutes'
                     phrasing='in'
                     buttonTitle='Add Funds'
+                    onAutoReloadPress={ticketAutoReload}
+
                 />
                 <AddCardManager />
 

@@ -1,10 +1,12 @@
 
 import React, { useState } from 'react';
-import { Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { COLORS } from "../../constants/styles";
+import TicketTab from './ticketSelTab';
+import PaymentTab from './paySelTab';
 
 const Container = styled.View`
     width: 100%;
@@ -126,8 +128,91 @@ export default function AddFundsTabTicket({
 }) {
 
 
+
+    // ====== MODAL ANIMATION START ======
+    const [animationAmount, setAnimationAmount] = useState(new Animated.Value(0));
+    const [animationPay, setAnimationPay] = useState(new Animated.Value(0));
+
+    const openModalAmount = animationAmount.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 1],
+        extrapolate: "clamp",
+    });
+
+    const openModalPay = animationPay.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 1],
+        extrapolate: "clamp",
+    });
+
+    const modalAmountTrigger = () => {
+        Animated.timing(animationAmount, {
+            toValue: 1,
+            duration: 100,
+            useNativeDriver: false,
+        }).start();
+    }
+
+    const modalPayTrigger = () => {
+        Animated.timing(animationPay, {
+            toValue: 1,
+            duration: 100,
+            useNativeDriver: false,
+        }).start();
+    }
+
+
+    const closeModalAmount = () => {
+        Animated.timing(animationAmount, {
+            toValue: 0,
+            duration: 100,
+            useNativeDriver: false,
+            delay: 500
+        }).start();
+
+    }
+
+    const closeModalPay = () => {
+        Animated.timing(animationPay, {
+            toValue: 0,
+            duration: 100,
+            useNativeDriver: false,
+            delay: 500
+        }).start();
+
+    }
+
+
+    const openAmount = {
+        transform: [
+            { scale: openModalAmount }
+        ]
+    };
+
+    const openPay = {
+        transform: [
+            { scale: openModalPay }
+        ]
+    };
+
+
+
+
+
+    // ====== MODAL ANIMATION END ======
+
     return (
         <Container>
+            <Animated.View style={[styles.animationCont, styles.amountPosition, openAmount]}>
+                <TicketTab
+                    closeAmount={closeModalAmount}
+                />
+            </Animated.View>
+            <Animated.View style={[styles.animationCont, styles.paymentPosition, openPay]}>
+                <PaymentTab
+                    closePay={closeModalPay}
+                />
+            </Animated.View>
             <Notch />
             <Title>Reload Stored Value</Title>
             <Divider />
@@ -158,10 +243,12 @@ export default function AddFundsTabTicket({
                         <Amount>{ticketLoadAmount}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <View
-                    onPress={selectTicketAmount}>
+                <TouchableOpacity
+                    onPress={modalAmountTrigger}
+                    style={styles.modalButton}
+                >
                     <AntDesign name="down" size={30} color="#222222" />
-                </View>
+                </TouchableOpacity>
             </SettingCont>
             <Line />
 
@@ -176,10 +263,11 @@ export default function AddFundsTabTicket({
                         <Amount>{ticketPaymentType}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <View
-                    onPress={selectTicketPayment}>
+                <TouchableOpacity style={styles.modalButton}
+                    onPress={modalPayTrigger}
+                >
                     <AntDesign name="down" size={30} color="#222222" />
-                </View>
+                </TouchableOpacity>
 
 
             </SettingCont>
@@ -214,7 +302,35 @@ const styles = StyleSheet.create({
         shadowColor: COLORS.SPACECADET,
         shadowOpacity: 0.5,
         shadowOffset: { width: 0, height: 4 },
-
-
+    },
+    modalButton: {
+        // backgroundColor: COLORS.ALICEBLUE,
+        padding: 10,
+    },
+    animationCont: {
+        alignContent: 'center',
+        alignSelf: 'flex-end',
+        justifyContent: 'center',
+        borderRadius: 16,
+        position: 'absolute',
+        width: 200,
+        zIndex: 10,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+    },
+    amountPosition: {
+        top: 50,
+        right: 15,
+        height: 288,
+    },
+    paymentPosition: {
+        top: 200,
+        right: 15,
+        height: 159,
     }
 })

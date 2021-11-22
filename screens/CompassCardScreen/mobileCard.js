@@ -13,6 +13,7 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
 import NavBar from '../../comps/NavBar/index.js';
 import BgCircle from '../../comps/Global/BgCircleScreens';
 
+
 //for animations
 import { PanGestureHandler } from 'react-native-gesture-handler';
 import Animated, {
@@ -22,11 +23,11 @@ import Animated, {
     withSpring,
 } from 'react-native-reanimated';
 // import TransferBalanceTab from '../../comps/CompassCardParent/NotUsing/transferFunds.js';
-import AddFundsTab from '../../comps/CompassCardParent/addFunds.js';
-import AddCardManager from '../../comps/CompassCardParent/addCardManager.js';
+
 import CardSwipeTest from '../../comps/CompassCardParent/cardsInSwipe';
 import AddFundsTabPass from '../../comps/CompassCardParent/addFunds.js';
 import AddFundsTabTicket from '../../comps/CompassCardParent/addFundsTicket.js';
+import AutoReloadTab from '../../comps/CompassCardParent/autoReload.js';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -83,8 +84,14 @@ const H2 = styled.Text`
     
 `;
 
-// === reusable animations ===
-// tabs animation
+
+
+
+
+
+
+
+// reusable spring config
 const SPRING_CONFIG = {
     damping: 80,
     overshootClamping: true,
@@ -94,13 +101,73 @@ const SPRING_CONFIG = {
 };
 
 
-const CompassCardScreen = () => {
+export default function CompassCardScreen() {
     const dimensions = useWindowDimensions();
 
-    //=============PASS & TICKET ANIMATIONS START=============
-    const topTicket = useSharedValue(
-        (dimensions.height + 400)
-    );
+
+    // ====== 🔥🔥🔥 STATES START 🔥🔥🔥 ======
+
+    // -------- RELOAD STATES FOR PASS START --------
+    const [zone, setZone] = useState(3);
+    if (zone === 1) {
+        // zoneTypeState = '1-Zone';
+        // zoneAmountState = '$100.25';
+    }
+    if (zone === 2) {
+        // zoneTypeState = '2-Zone';
+        // zoneAmountState = '$134.00';
+    }
+    if (zone === 3) {
+        // zoneTypeState = '3-Zone';
+        // zoneAmountState = '$181.05';
+    }
+
+    const [passPayment, setPassPayment] = useState('Visa');
+    if (passPayment === 'Visa') {
+        // passPaymentTypeState = 'Visa';
+    }
+    if (passPayment === 'Mastercard') {
+        // passPaymentTypeState = 'Mastercard';
+    }
+    // // -------- RELOAD STATES FOR PASS END --------
+
+    // // -------- RELOAD STATES FOR TICKET START --------
+
+    const [loadTicket, setLoadTicket] = useState(10);
+    if (loadTicket === 10) {
+        // ticketLoadAmountState = '$10.00';
+    }
+    if (loadTicket === 20) {
+        // ticketLoadAmountState = '$20.00';
+    }
+    if (loadTicket === 40) {
+        // ticketLoadAmountState = '$40.00';
+    }
+    if (loadTicket === 60) {
+        // ticketLoadAmountState = '$60.00';
+    }
+    if (loadTicket === 80) {
+        //ticketLoadAmountState = '$80.00';
+    }
+    if (loadTicket === 100) {
+        // ticketLoadAmountState = '$100.00';
+    }
+    const [ticketPayment, setTicketPayment] = useState('Visa');
+    if (ticketPayment === 'Visa') {
+        // ticketPaymentState = 'Visa';
+    }
+    if (ticketPayment === 'Mastercard') {
+        //ticketPaymentState = 'Mastercard';
+    }
+    // -------- RELOAD STATES FOR TICKET END --------
+
+
+    // ====== 🔥🔥🔥 STATES END 🔥🔥🔥 ======
+
+
+    // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS START 🌟🌟🌟🌟🌟🌟 ======
+
+    // ---------- PASS ANIMATIONS START ----------
     const topPass = useSharedValue(
         (dimensions.height + 400)
     );
@@ -109,13 +176,6 @@ const CompassCardScreen = () => {
             top: withSpring(topPass.value, SPRING_CONFIG),
         };
     });
-
-    const styleTicket = useAnimatedStyle(() => {
-        return {
-            top: withSpring(topTicket.value, SPRING_CONFIG),
-        };
-    });
-
     const gestureHandlerPass = useAnimatedGestureHandler({
         onStart(_, context) {
             context.startTop = topPass.value;
@@ -131,7 +191,30 @@ const CompassCardScreen = () => {
             }
         }
     });
+    function ReloadPass() {
+        // need to set states to save new balances
+        topPass.value = withSpring(dimensions.height + 300);
+    }
+    function handlePassReload() {
+        // on pass button confirm reload
+        //tab animation
+        topPass.value = withSpring(
+            dimensions.height / 2.25,
+            SPRING_CONFIG
+        );
 
+    }
+    // ---------- PASS ANIMATIONS END ----------
+
+    // ---------- TICKET ANIMATIONS START ----------
+    const topTicket = useSharedValue(
+        (dimensions.height + 400)
+    );
+    const styleTicket = useAnimatedStyle(() => {
+        return {
+            top: withSpring(topTicket.value, SPRING_CONFIG),
+        };
+    });
     const gestureHandlerTicket = useAnimatedGestureHandler({
         onStart(_, context) {
             context.startTop = topTicket.value;
@@ -147,149 +230,50 @@ const CompassCardScreen = () => {
             }
         }
     });
-
-    function ReloadPass() {
-        // need to set states to save new balances
-        topPass.value = withSpring(dimensions.height + 300);
-    }
-
     function ReloadTicket() {
         // need to set states to save new balances
         topTicket.value = withSpring(dimensions.height + 300);
     }
-    //=============PASS & TICKET ANIMATIONS END=============
-
-    //=============RELOAD PASS INTERACTIONS START=============
-
-    function selectZone() {
-        //zone arrow onPress -> open zone selection modal
-        console.log('select your zone!');
-
-        //set zoneType state this will happen within the modal
-    }
-
-    function PassPaySelection() {
-        //payment arrow onPress -> open payment selection modal 
-        console.log('select your pass payment!');
-
-        //set paymentType state
-    }
-
-    // -------- RELOAD STATES FOR PASS START --------
-    const [zone, setZone] = useState(3);
-
-    if (zone === 1) {
-        zoneTypeState = '1-Zone';
-        zoneAmountState = '$100.25';
-    }
-
-    if (zone === 2) {
-        zoneTypeState = '2-Zone';
-        zoneAmountState = '$134.00';
-    }
-
-    if (zone === 3) {
-        zoneTypeState = '3-Zone';
-        zoneAmountState = '$181.05';
-    }
-
-    const [passPayment, setPassPayment] = useState('Visa');
-
-    if (passPayment === 'Visa') {
-        passPaymentTypeState = 'Visa';
-    }
-
-    if (passPayment === 'Mastercard') {
-        passPaymentTypeState = 'Mastercard';
-    }
-
-    // -------- RELOAD STATES FOR PASS END --------
-
-
-    // on pass button confirm reload
-    function handlePassReload() {
-        //tab animation
-        topPass.value = withSpring(
-            dimensions.height / 2.25,
-            SPRING_CONFIG
-        );
-        // i don't think the below is actually necessary? 
-        // setReloadType('Pass');
-    }
-    //=============RELOAD PASS INTERACTIONS END=============
-
-
-    //=============RELOAD TICKET INTERACTIONS START=============
-    function selectAmount() {
-        // amount arrow onPress -> open ticket reload amount modal
-
-        //set ticketLoadAmount state
-    }
-
-    function TicketPaySelection() {
-        // payment arrow onPress -> open payment selection modal
-
-        //set ticketPaymentType state
-    }
-
-    // -------- RELOAD STATES FOR TICKET START --------
-
-    const [loadTicket, setLoadTicket] = useEffect('10');
-
-
-    if (loadTicket === '10') {
-        ticketLoadAmountState = '$10.00';
-    }
-
-    if (loadTicket === '20') {
-        ticketLoadAmountState = '$20.00';
-    }
-
-    if (loadTicket === '40') {
-        ticketLoadAmountState = '$40.00';
-    }
-
-    if (loadTicket === '60') {
-        ticketLoadAmountState = '$60.00';
-    }
-
-    if (loadTicket === '80') {
-        ticketLoadAmountState = '$80.00';
-    }
-
-    if (loadTicket === '100') {
-        ticketLoadAmountState = '$100.00';
-    }
-
-    const [ticketPayment, setTicketPayment] = useState('Visa');
-
-    if (ticketPayment === 'Visa') {
-        ticketPaymentTypeState = 'Visa';
-    }
-
-    if (ticketPayment === 'Mastercard') {
-        ticketPaymentTypeState = 'Mastercard';
-    }
-
-
-
-    // -------- RELOAD STATES FOR TICKET END --------
-
-
-    //on ticket button confirm reload
     function handleTicketReload() {
+        //on ticket button confirm reload
         topTicket.value = withSpring(
             dimensions.height / 2.25,
             SPRING_CONFIG
         );
-        //don't think the below is actually necessary
-        // setReloadType('Ticket');
     }
-    //=============RELOAD TICKET INTERACTIONS END=============
+    // ---------- TICKET ANIMATIONS END ----------
+
+    // ---------- AUTO TICKET ANIMATIONS START ----------
+    const topAutoTicket = useSharedValue(
+        (dimensions.height + 400)
+    );
+    const styleAutoTicket = useAnimatedStyle(() => {
+        return {
+            top: withSpring(topAutoTicket.value, SPRING_CONFIG),
+        };
+    });
+    const gestureHandlerAutoTicket = useAnimatedGestureHandler({
+        onStart(_, context) {
+            context.startTop = topAutoTicket.value;
+        },
+        onActive(event, context) {
+            topAutoTicket.value = context.startTop + event.translationY;
+        },
+        onEnd() {
+            if (topAutoTicket.value > dimensions.height / 2 + 150) {
+                topAutoTicket.value = withSpring(dimensions.height + 300);
+            } else {
+                topAutoTicket.value = withSpring(dimensions.height / 2.25);
+            }
+        }
+    });
 
 
+    // still need to put in button close function 
 
+    // ---------- AUTO TICKET ANIMATIONS END ----------
 
+    // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS END 🌟🌟🌟🌟🌟🌟 ======
 
 
 
@@ -315,6 +299,8 @@ const CompassCardScreen = () => {
                 <CardSwipeTest
                     handleAddSheetONE={handlePassReload}
                     handleAddSheetTWO={handleTicketReload}
+                // passAutoReload={handlePassAutoReload}
+                // ticketAutoReload={setTicketAutoReload}
                 />
             </Page>
 
@@ -324,34 +310,9 @@ const CompassCardScreen = () => {
                 onGestureEvent={gestureHandlerPass}
             >
                 <Animated.View
-                    style={[
-                        {
-                            position: 'absolute',
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundColor: 'transparent',
-                            shadowColor: '#222222',
-                            shadowoffset: {
-                                width: 0,
-                                height: 2,
-                            },
-                            shadowOpacity: 0.25,
-                            shadowRadius: 3.84,
-                            elevation: 5,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        },
-                        stylePass
-                    ]}
-                >
+                    style={[styles.overlayTabCont, stylePass]}>
                     <AddFundsTabPass
-                        zoneType={zoneTypeState}
-                        zoneAmount={zoneAmountState}
-                        passPaymentType={passPaymentTypeState}
                         month='December'
-                        selectZone={selectZone}
-                        selectPassPayment={PassPaySelection}
                         AddFundsConfirm={ReloadPass}
                     />
                 </Animated.View>
@@ -362,39 +323,30 @@ const CompassCardScreen = () => {
             <PanGestureHandler
                 onGestureEvent={gestureHandlerTicket}
             >
-                <Animated.View
-                    style={[
-                        {
-                            position: 'absolute',
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundColor: 'transparent',
-                            shadowColor: '#222222',
-                            shadowoffset: {
-                                width: 0,
-                                height: 2,
-                            },
-                            shadowOpacity: 0.25,
-                            shadowRadius: 3.84,
-                            elevation: 5,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        },
-                        styleTicket
-                    ]}
-                >
+                <Animated.View style={[styles.overlayTabCont, styleTicket]} >
                     <AddFundsTabTicket
                         ticketBalance="$4.05" //this will come from the database
-                        ticketLoadAmount={ticketLoadAmountState}
-                        ticketPaymentType={ticketPaymentState}
-                        selectTicketAmount={selectAmount}
-                        selectTicketPayment={TicketPaySelection}
-                        AddFundsConfirm=
-                        {ReloadTicket}
+                        AddFundsConfirm={ReloadTicket}
                     />
                 </Animated.View>
             </PanGestureHandler>
+
+            {/* AUTO TICKET ANIMATION TAB  */}
+            {/* <PanGestureHandler
+                onGestureEvent={gestureHandlerAutoTicket}
+            >
+                <Animated.View style={[styles.overlayTabCont, styleAutoTicket]} >
+                    <AutoReloadTab />
+                </Animated.View>
+            </PanGestureHandler> */}
+
+
+
+
+
+
+
+            {/* AUTO PASS ANIMATION TAB  */}
 
             <View style={styles.NavCont}>
                 <NavBar />
@@ -405,7 +357,6 @@ const CompassCardScreen = () => {
 }
 
 
-export default CompassCardScreen;
 
 const styles = StyleSheet.create({
     payment: {
@@ -429,5 +380,24 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
 
-    }
+    },
+    overlayTabCont: {
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'transparent',
+        shadowColor: '#222222',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+    },
 });
+
+
+

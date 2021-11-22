@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -10,7 +10,7 @@ const Container = styled.View`
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(37, 43, 66, 0.5);
-    
+
 `;
 
 const Notch = styled.View`
@@ -42,7 +42,7 @@ const SettingCont = styled.View`
     /* border-width: 2px;
     border-color: red; */
     padding: 5px 15px;
-    
+
 `;
 
 const SettingsContLeft = styled.View`
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         shadowColor: '#252B42',
         shadowOpacity: 0.5,
-        shadowOffset:{width: 0, height: 4},
+        shadowOffset: { width: 0, height: 4 },
     },
     editButtonText: {
         textAlign: 'center',

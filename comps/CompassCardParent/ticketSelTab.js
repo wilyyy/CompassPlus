@@ -2,28 +2,21 @@ import React, { useState } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const Amount = [
-    {
-        id: "1",
-        title: "Ticket 1",
-    },
-    {
-        id: "2",
-        title: "Ticket 2",
-    },
-    {
-        id: "3",
-        title: "Add Ticket",
-    },
+    { title: '$10.00', id: '1' },
+    { title: '$20.00', id: '2' },
+    { title: '$40.00', id: '3' },
+    { title: '$60.00', id: '4' },
+    { title: '$80.00', id: '5' },
+    { title: '$100.00', id: '6' },
 ];
-
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+const Item = ({ item, onPress, onPressOut, backgroundColor, textColor }) => (
+    <TouchableOpacity onPress={onPress} onPressOut={onPressOut} style={[styles.item, backgroundColor]}>
         <Text style={[styles.title, textColor]}>{item.title}</Text>
     </TouchableOpacity>
 );
 
 const TicketTab = ({
-    selectThis = () => { },
+    closeAmount = () => { },
 }) => {
     const [selectedId, setSelectedId] = useState(null);
 
@@ -35,6 +28,7 @@ const TicketTab = ({
             <Item
                 item={item}
                 onPress={() => setSelectedId(item.id)}
+                onPressOut={closeAmount}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}
             />
@@ -48,7 +42,6 @@ const TicketTab = ({
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 extraData={selectedId}
-                onPress={selectThis}
             />
         </SafeAreaView>
     );
@@ -60,29 +53,21 @@ const styles = StyleSheet.create({
         height: 'auto',
         backgroundColor: '#fff',
         borderRadius: 15,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-        padding: 30,
-        marginTop: StatusBar.currentHeight || 0,
+        // padding: 30,
         overflow: 'hidden',
-    },
-    item: {
-        paddingTop: 5,
+        alignSelf: 'center',
+        // borderColor: 'red',
+        // borderWidth: 2,
     },
     title: {
         fontSize: 18,
         lineHeight: 28,
-        letterSpacing: 0.1,
-        textAlign: 'left',
         padding: 10,
-
     },
+    test: {
+        borderColor: 'red',
+        borderWidth: 0.5,
+    }
 });
 
 export default TicketTab;

@@ -36,7 +36,7 @@ const NavText = styled.Text`
 `;
 
 export default function NavBar({
-    // navigation = useNavigation(),
+    navigation = useNavigation(),
 }) {
 
     return (
