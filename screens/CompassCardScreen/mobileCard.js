@@ -8,7 +8,7 @@ import { Dimensions, ImageBackground, Pressable, SafeAreaView, SafeViewArea, Scr
 
 import { COLORS } from '../../constants/styles.js';
 
-import MobileCard from '../../comps/CompassCardParent/cardManager.js';
+import MobileCard from '../../comps/CompassCardParent/pass.js';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import NavBar from '../../comps/NavBar/index.js';
 import BgCircle from '../../comps/Global/BgCircleScreens';
@@ -268,6 +268,14 @@ export default function CompassCardScreen() {
         }
     });
 
+    function handleTicketAuto() {
+        //on ticket button confirm reload
+        topAutoTicket.value = withSpring(
+            dimensions.height / 2.25,
+            SPRING_CONFIG
+        );
+    }
+
 
     // still need to put in button close function 
 
@@ -299,8 +307,8 @@ export default function CompassCardScreen() {
                 <CardSwipeTest
                     handleAddSheetONE={handlePassReload}
                     handleAddSheetTWO={handleTicketReload}
-                // passAutoReload={handlePassAutoReload}
-                // ticketAutoReload={setTicketAutoReload}
+                    // passAutoReload={handlePassAutoReload}
+                    ticketAutoReload={handleTicketAuto}
                 />
             </Page>
 
@@ -332,13 +340,13 @@ export default function CompassCardScreen() {
             </PanGestureHandler>
 
             {/* AUTO TICKET ANIMATION TAB  */}
-            {/* <PanGestureHandler
+            <PanGestureHandler
                 onGestureEvent={gestureHandlerAutoTicket}
             >
                 <Animated.View style={[styles.overlayTabCont, styleAutoTicket]} >
                     <AutoReloadTab />
                 </Animated.View>
-            </PanGestureHandler> */}
+            </PanGestureHandler>
 
 
 

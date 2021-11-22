@@ -158,7 +158,7 @@ const H2 = styled.Text`
 `;
 
 
-export default function MobileCard({
+export default function Ticket({
     // cardSide = true, // need to put state for this in app.js?
     onAutoReloadPress = () => { },
     onTransferPress = () => { },
@@ -188,9 +188,8 @@ export default function MobileCard({
     // const [expiration, setExpiration] = useState('December Pass');
 
     //for SWITCH (set card to/disable default status)
-    const [defaultCard, setDefaultCard] = useState(false);
+    const [defaultCard, setDefaultCard] = useState(true);
     const toggleDefaultCard = () => setDefaultCard(previousState => !previousState);
-
 
 
     //front of card

@@ -11,7 +11,8 @@ import {
 } from "react-native";
 
 import AddCardManager from "../../comps/CompassCardParent/addCardManager";
-import MobileCard from '../../comps/CompassCardParent/cardManager.js';
+import Pass from "./pass.js";
+import Ticket from "./ticket";
 
 const dots = new Array(3).fill();
 
@@ -42,11 +43,11 @@ const CardSwipeTest = ({
                 ])}
                 scrollEventThrottle={1}
             >
-                <MobileCard
+                <Pass
                     onAddFundsPress={handleAddSheetONE}
                     onAutoReloadPress={passAutoReload}
                 />
-                <MobileCard
+                <Ticket
                     onAddFundsPress={handleAddSheetTWO}
                     titleCardType='Stored Value Ticket'
                     cardType="Ticket"
