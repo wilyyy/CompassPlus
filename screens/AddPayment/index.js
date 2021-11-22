@@ -43,7 +43,6 @@ const Page = styled.View`
 
 `;
 const TopContainer = styled.View`
-    position: relative;
     top: 15%;
     width: 90%;
     height: 50px; 
@@ -233,14 +232,14 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
     },
     overlayPay: {
-        // position: 'absolute',
+        position: 'absolute',
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         left: 0,
         right: 0,
         paddingVertical: '30%',
-        backgroundColor: 'rgba(37, 43, 66, 0.75)',
+        backgroundColor: 'rgba(37, 43, 66, 0.50)',
         shadowColor: '#222222',
         shadowOffset: {
             width: 0,
@@ -248,6 +247,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
+        zIndex: 10,
     },
 });
 
