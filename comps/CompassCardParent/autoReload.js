@@ -224,6 +224,12 @@ export default function AddFundsTabPass({
         ]
     };
 
+    const openBelow = {
+        transform: [
+            { scale: openModalBelow }
+        ]
+    };
+
 
     return (
         <Container>
@@ -233,16 +239,19 @@ export default function AddFundsTabPass({
                     closeAmount={closeModalZone}
                 />
             </Animated.View>
+
             <Animated.View style={[styles.animationCont, styles.paymentPosition, openPay]}>
                 <PaymentTab
                     closePay={closeModalPay}
                 />
             </Animated.View>
-            <Animated.View style={[styles.animationCont, styles.amountPosition, openZone]}>
+
+            <Animated.View style={[styles.animationCont, styles.belowPosition, openBelow]}>
                 <TicketTab
                     closeAmount={closeModalBelow}
                 />
             </Animated.View>
+
             <Notch />
             <Title>Reload Stored Value</Title>
             <Divider />
@@ -371,10 +380,16 @@ const styles = StyleSheet.create({
         right: 15,
         height: 159,
     },
+    // belowPosition: {
+    //     top: 50,
+    //     right: 15,
+    //     height: 288,
+    // },
 
     amountPosition: {
         top: 50,
         right: 15,
         height: 288,
     },
+
 });
