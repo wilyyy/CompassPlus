@@ -329,6 +329,6 @@ const styles = StyleSheet.create({
     paymentPosition: {
         top: 200,
         right: 15,
-        height: 159,
+        height: 106,
     },
 });

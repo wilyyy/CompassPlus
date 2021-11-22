@@ -6,7 +6,7 @@ import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity }
 const Payment = [
     { title: 'Mastercard', id: '1' },
     { title: 'Visa', id: '2' },
-    { title: 'Add Payment', id: '3' },
+    // { title: 'Add Payment', id: '3' },
 
 ];
 
