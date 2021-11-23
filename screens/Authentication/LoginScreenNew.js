@@ -107,24 +107,21 @@ export default function loginScreenNew ({navigation}) {
 
     const handleLogin = () => {
 
-        // try {
-        //     if (email !== '' && password !== '') {
-        //       await auth.signInWithEmailAndPassword(email, password);
-        //     }
-        //   } catch (error) {
-        //     setLoginError(error.message);
-        //   }
-        auth
+        try {
+            if (email !== '' && password !== '') {
+             auth
             .signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log('Logged in with: ', user.email);
+                navigation.navigate('WelcomeBack');
               })
-              .catch((error) => {
-                alert(error.message)
-              });
-              navigation.navigate('WelcomeBack');
-    }
+            } 
+        }
+            catch (error) {
+            alert(error.message); 
+            }
+        }    
 
 
 
