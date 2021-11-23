@@ -104,7 +104,7 @@ export default function CompassCardScreen() {
     // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS START 🌟🌟🌟🌟🌟🌟 ======
 
 
-    // ---------- PASS ANIMATIONS START ----------
+    // ---------- RELOAD pass ANIMATIONS START ----------
     const topPass = useSharedValue(
         (dimensions.height + 400)
     );
@@ -141,10 +141,10 @@ export default function CompassCardScreen() {
         );
 
     }
-    // ---------- PASS ANIMATIONS END ----------
+    // ---------- Reload pass ANIMATIONS END ----------
 
 
-    // ---------- TICKET ANIMATIONS START ----------
+    // ---------- RELOAD ticket ANIMATIONS START ----------
     const topTicket = useSharedValue(
         (dimensions.height + 400)
     );
@@ -179,10 +179,10 @@ export default function CompassCardScreen() {
             SPRING_CONFIG
         );
     }
-    // ---------- TICKET ANIMATIONS END ----------
+    // ----------  RELOAD ticket ANIMATIONS END ----------
 
 
-    // ---------- AUTO TICKET ANIMATIONS START ----------
+    // ---------- TICKET Auto Reload ANIMATIONS START ----------
     const topAutoTicket = useSharedValue(
         (dimensions.height + 400)
     );
@@ -208,8 +208,7 @@ export default function CompassCardScreen() {
     });
 
     function confirmAutoReload() {
-        // need to set states to save new balances
-        topTicket.value = withSpring(dimensions.height + 300);
+        topAutoTicket.value = withSpring(dimensions.height + 300);
     }
 
     function handleTicketAuto() {
@@ -220,18 +219,18 @@ export default function CompassCardScreen() {
         );
     }
 
-    // ---------- AUTO TICKET ANIMATIONS END ----------
+    // ---------- TICKET Auto Reload ANIMATIONS END ----------
 
 
-    // ---------- TEMP TICKET ANIMATIONS START ----------
+    // ---------- TICKET Temp ANIMATIONS START ----------
     // (best explanations here)
 
-    //I am top value
+    //i am top value
     const topTemp = useSharedValue(
         (dimensions.height + 400)
     );
 
-    //i queue tab open
+    //i queue tab open!
     function handleTempTicket() {
         topTemp.value = withSpring(
             dimensions.height / 3,
@@ -239,14 +238,14 @@ export default function CompassCardScreen() {
         );
     }
 
-    //i assign animated top value
+    //i assign animated top value to tab
     const styleTemp = useAnimatedStyle(() => {
         return {
             top: withSpring(topTemp.value, SPRING_CONFIG),
         };
     });
 
-    // i assign animation values
+    // i assign animation values (start, active, end)
     const gestureHandlerTempTicket = useAnimatedGestureHandler({
         onStart(_, context) {
             context.startTop = topTemp.value;
@@ -268,7 +267,7 @@ export default function CompassCardScreen() {
         topTemp.value = withSpring(dimensions.height + 300);
     }
 
-    // ---------- TEMP TICKET ANIMATIONS END ----------
+    // ---------- TICKET Temp ANIMATIONS END ----------
 
     // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS END 🌟🌟🌟🌟🌟🌟 ======
 
@@ -302,7 +301,7 @@ export default function CompassCardScreen() {
                 />
             </Page>
 
-            {/* RELOAD PASS ANIMATION TAB  */}
+            {/* RELOAD pass ANIMATION TAB  */}
             <PanGestureHandler
                 onGestureEvent={gestureHandlerPass}
             >
@@ -317,7 +316,7 @@ export default function CompassCardScreen() {
 
 
 
-            {/* RELOAD TICKET ANIMATION TAB  */}
+            {/* RELOAD ticket ANIMATION TAB  */}
             <PanGestureHandler
                 onGestureEvent={gestureHandlerTicket}
             >
@@ -329,7 +328,7 @@ export default function CompassCardScreen() {
                 </Animated.View>
             </PanGestureHandler>
 
-            {/* AUTO TICKET ANIMATION TAB  */}
+            {/* TICKET auto reload ANIMATION TAB  */}
             <PanGestureHandler
                 onGestureEvent={gestureHandlerAutoTicket}
             >
@@ -340,7 +339,7 @@ export default function CompassCardScreen() {
                 </Animated.View>
             </PanGestureHandler>
 
-            {/* TEMP TICKET ANIMATION TAB  */}
+            {/* TICKET temp ANIMATION TAB  */}
 
             <PanGestureHandler
                 onGestureEvent={gestureHandlerTempTicket}
@@ -348,8 +347,6 @@ export default function CompassCardScreen() {
                 <Animated.View style={[styles.overlayTabCont, styleTemp]} >
                     <TempTicket
                         tempTicketConfirm={confirmTempTicket}
-
-                    // autoReloadConfirm={confirmAutoReload} PUT IN FUNCTION AGAIN
                     />
                 </Animated.View>
             </PanGestureHandler>
