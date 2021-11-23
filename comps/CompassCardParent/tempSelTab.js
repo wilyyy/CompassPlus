@@ -4,10 +4,14 @@ import { View, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from
 
 
 const Zones = [
-    { title: 'Day Pass', id: '1' },
-    { title: 'Single: 1-Zone', id: '2' },
-    { title: 'Single: 2-Zone', id: '3' },
-    { title: 'Single: 3-Zone', id: '4' },
+    { title: 'Day Pass Adult', id: '1' },
+    { title: 'Single: 1-Zone Adult', id: '2' },
+    { title: 'Single: 2-Zone Adult', id: '3' },
+    { title: 'Single: 3-Zone Adult', id: '4' },
+    { title: 'Day Pass Concession', id: '5' },
+    { title: 'Single: 1-Zone Concession', id: '6' },
+    { title: 'Single: 2-Zone Concession', id: '7' },
+    { title: 'Single: 3-Zone Concession', id: '8' },
 ];
 
 

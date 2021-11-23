@@ -184,25 +184,40 @@ export default function TempTicket({
 
 
     if (zone === 1) {
-        zoneType = 'Day Pass';
+        zoneType = 'Day Pass Adult';
         zoneAmount = '$10.75';
     }
     if (zone === 2) {
-        zoneType = '1-Zone';
+        zoneType = '1-Zone Adult';
         zoneAmount = '$2.45';
     }
     if (zone === 3) {
-        zoneType = '2-Zone';
+        zoneType = '2-Zone Adult';
         zoneAmount = '$3.55';
     }
     if (zone === 4) {
-        zoneType = '3-Zone';
+        zoneType = '3-Zone Adult';
         zoneAmount = '$4.60';
+    }
+    if (zone === 5) {
+        zoneType = 'Day Pass Concession';
+        zoneAmount = '$8.45';
+    }
+    if (zone === 6) {
+        zoneType = '1-Zone Concession';
+        zoneAmount = '$2.00';
+    }
+    if (zone === 7) {
+        zoneType = '2-Zone Concession';
+        zoneAmount = '$3.00';
+    }
+    if (zone === 8) {
+        zoneType = '3-Zone Concession';
+        zoneAmount = '$4.05';
     }
 
 
     function closeModalZone(selected) {
-        console.log(selected.id);
         if (selected.id == 1) {
             setZone(1);
         }
@@ -214,6 +229,18 @@ export default function TempTicket({
         }
         if (selected.id == 4) {
             setZone(4);
+        }
+        if (selected.id == 5) {
+            setZone(5);
+        }
+        if (selected.id == 6) {
+            setZone(6);
+        }
+        if (selected.id == 7) {
+            setZone(7);
+        }
+        if (selected.id == 8) {
+            setZone(8);
         }
         Animated.timing(animationZone, {
             toValue: 0,
@@ -388,9 +415,9 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
     },
     zonesPosition: {
-        top: 50,
+        top: 15,
         right: 15,
-        height: 191,
+        height: 468,
     },
     paymentPosition: {
         top: 200,
