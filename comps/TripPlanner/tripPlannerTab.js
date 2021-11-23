@@ -127,12 +127,44 @@ const TripPlannerTab = ({
                             horizontal={true}
                             contentContainerStyle={styles.contentContainer}
                         >
-                            <RideIcon />
-                            <RideIcon />
-                            <RideIcon />
-                            <RideIcon />
-                            <RideIcon />
-                            <RideIcon />
+                            <SavedRidesIcon 
+                                icon_color='#fff'
+                                text_color='#fff'
+                                ride_text="Lonsdale Quay"
+                            />
+                            <SavedRidesIcon
+                                text_color='#fff'
+                                icon_color='#fff'
+                                icon_type="train" 
+                                ride_text="Canada Line"
+                            />
+                            <SavedRidesIcon 
+                                text_color='#fff'
+                                icon_color='#fff'
+                                icon_type="bus" 
+                                bus_text="250" 
+                                ride_text="Downtown"
+                            />
+                            <SavedRidesIcon 
+                                text_color='#fff'
+                                icon_color='#fff'
+                                icon_type="bus" 
+                                bus_text="05" 
+                                ride_text="Robson"
+                            />
+                            <SavedRidesIcon 
+                                text_color='#fff'
+                                icon_color='#fff'
+                                icon_type="seabus" 
+                                ride_text="Waterfront to Lonsdale Quay"
+                            />
+                            <SavedRidesIcon 
+                                text_color='#fff'
+                                icon_color='#fff'
+                                icon_type="bus" 
+                                bus_text="05" 
+                                ride_text="Dunsmuir to Cardero"
+                            />
                         </ScrollView>
                     </Display>
                 </Container>
@@ -215,7 +247,8 @@ const styles = StyleSheet.create({
     contentContainer: {
         width: '100%',
         height: '100%',
-        paddingTop: '3%'
+        paddingTop: '3%',
+        paddingLeft: '3%'
     },
     contentContainerTwo: {
         width: '100%',
