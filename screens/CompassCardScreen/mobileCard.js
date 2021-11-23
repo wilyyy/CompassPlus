@@ -1,17 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from "styled-components/native";
 import { Tab, ThemeProvider, Icon } from 'react-native-elements';
 import { Dimensions, ImageBackground, Pressable, SafeAreaView, SafeViewArea, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, useWindowDimensions, View, } from 'react-native';
 
-
+import { useNavigation } from '@react-navigation/native';
 
 import { COLORS } from '../../constants/styles.js';
 
-import MobileCard from '../../comps/CompassCardParent/cardManager.js';
+import MobileCard from '../../comps/CompassCardParent/pass.js';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import NavBar from '../../comps/NavBar/index.js';
 import BgCircle from '../../comps/Global/BgCircleScreens';
+
 
 //for animations
 import { PanGestureHandler } from 'react-native-gesture-handler';
@@ -21,10 +22,14 @@ import Animated, {
     useAnimatedStyle,
     withSpring,
 } from 'react-native-reanimated';
-import TransferBalanceTab from '../../comps/CompassCardParent/transferFunds.js';
-import AddFundsTab from '../../comps/CompassCardParent/addFunds.js';
-import AddCardManager from '../../comps/CompassCardParent/addCardManager.js';
+// import TransferBalanceTab from '../../comps/CompassCardParent/NotUsing/transferFunds.js';
+
 import CardSwipeTest from '../../comps/CompassCardParent/cardsInSwipe';
+import AddFundsTabPass from '../../comps/CompassCardParent/addFunds.js';
+import AddFundsTabTicket from '../../comps/CompassCardParent/addFundsTicket.js';
+import AutoReloadTab from '../../comps/CompassCardParent/autoReload.js';
+import AddPaymentType from '../../comps/CompassCardParent/payment.js';
+import TempTicket from '../../comps/CompassCardParent/tempTicket.js';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -81,8 +86,7 @@ const H2 = styled.Text`
     
 `;
 
-// === reUsable animations ===
-// tabs animation
+// reusable spring config
 const SPRING_CONFIG = {
     damping: 80,
     overshootClamping: true,
@@ -92,57 +96,192 @@ const SPRING_CONFIG = {
 };
 
 
-const CompassCardScreen = () => {
+export default function CompassCardScreen() {
     const dimensions = useWindowDimensions();
-    const top = useSharedValue(
+    navigation = useNavigation();
+
+
+    // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS START 🌟🌟🌟🌟🌟🌟 ======
+
+
+    // ---------- RELOAD pass ANIMATIONS START ----------
+    const topPass = useSharedValue(
         (dimensions.height + 400)
     );
-    const style = useAnimatedStyle(() => {
+    const stylePass = useAnimatedStyle(() => {
         return {
-            top: withSpring(top.value, SPRING_CONFIG),
+            top: withSpring(topPass.value, SPRING_CONFIG),
         };
     });
-
-    const gestureHandler = useAnimatedGestureHandler({
+    const gestureHandlerPass = useAnimatedGestureHandler({
         onStart(_, context) {
-            context.startTop = top.value;
+            context.startTop = topPass.value;
         },
         onActive(event, context) {
-            top.value = context.startTop + event.translationY;
+            topPass.value = context.startTop + event.translationY;
         },
         onEnd() {
-            if (top.value > dimensions.height / 2 + 150) {
-                top.value = withSpring(dimensions.height + 300);
+            if (topPass.value > dimensions.height / 2 + 150) {
+                topPass.value = withSpring(dimensions.height + 300);
             } else {
-                top.value = withSpring(dimensions.height / 2.25);
+                topPass.value = withSpring(dimensions.height / 2.25);
+            }
+        }
+    });
+    function ReloadPass() {
+        // need to set states to save new balances
+        topPass.value = withSpring(dimensions.height + 300);
+    }
+    function handlePassReload() {
+        // on pass button confirm reload
+        //tab animation
+        topPass.value = withSpring(
+            dimensions.height / 2.25,
+            SPRING_CONFIG
+        );
+
+    }
+    // ---------- Reload pass ANIMATIONS END ----------
+
+
+    // ---------- RELOAD ticket ANIMATIONS START ----------
+    const topTicket = useSharedValue(
+        (dimensions.height + 400)
+    );
+    const styleTicket = useAnimatedStyle(() => {
+        return {
+            top: withSpring(topTicket.value, SPRING_CONFIG),
+        };
+    });
+    const gestureHandlerTicket = useAnimatedGestureHandler({
+        onStart(_, context) {
+            context.startTop = topTicket.value;
+        },
+        onActive(event, context) {
+            topTicket.value = context.startTop + event.translationY;
+        },
+        onEnd() {
+            if (topTicket.value > dimensions.height / 2 + 150) {
+                topTicket.value = withSpring(dimensions.height + 300);
+            } else {
+                topTicket.value = withSpring(dimensions.height / 2.25);
+            }
+        }
+    });
+    function ReloadTicket() {
+        // need to set states to save new balances
+        topTicket.value = withSpring(dimensions.height + 300);
+    }
+    function handleTicketReload() {
+        //on ticket button confirm reload
+        topTicket.value = withSpring(
+            dimensions.height / 2.25,
+            SPRING_CONFIG
+        );
+    }
+    // ----------  RELOAD ticket ANIMATIONS END ----------
+
+
+    // ---------- TICKET Auto Reload ANIMATIONS START ----------
+    const topAutoTicket = useSharedValue(
+        (dimensions.height + 400)
+    );
+    const styleAutoTicket = useAnimatedStyle(() => {
+        return {
+            top: withSpring(topAutoTicket.value, SPRING_CONFIG),
+        };
+    });
+    const gestureHandlerAutoTicket = useAnimatedGestureHandler({
+        onStart(_, context) {
+            context.startTop = topAutoTicket.value;
+        },
+        onActive(event, context) {
+            topAutoTicket.value = context.startTop + event.translationY;
+        },
+        onEnd() {
+            if (topAutoTicket.value > dimensions.height / 2 + 150) {
+                topAutoTicket.value = withSpring(dimensions.height + 300);
+            } else {
+                topAutoTicket.value = withSpring(dimensions.height / 3);
             }
         }
     });
 
+    function confirmAutoReload() {
+        topAutoTicket.value = withSpring(dimensions.height + 300);
+    }
 
-
-    function handleAddSheet() {
-        top.value = withSpring(
+    function handleTicketAuto() {
+        //on ticket button confirm reload
+        topAutoTicket.value = withSpring(
             dimensions.height / 2.25,
             SPRING_CONFIG
         );
     }
 
+    // ---------- TICKET Auto Reload ANIMATIONS END ----------
 
 
-    function TransferFunds() {
-        // need to set states to save new balances
-        top.value = withSpring(dimensions.height + 300);
+    // ---------- TICKET Temp ANIMATIONS START ----------
+    // (best explanations here)
+
+    //i am top value
+    const topTemp = useSharedValue(
+        (dimensions.height + 400)
+    );
+
+    //i queue tab open!
+    function handleTempTicket() {
+        topTemp.value = withSpring(
+            dimensions.height / 3,
+            SPRING_CONFIG
+        );
     }
+
+    //i assign animated top value to tab
+    const styleTemp = useAnimatedStyle(() => {
+        return {
+            top: withSpring(topTemp.value, SPRING_CONFIG),
+        };
+    });
+
+    // i assign animation values (start, active, end)
+    const gestureHandlerTempTicket = useAnimatedGestureHandler({
+        onStart(_, context) {
+            context.startTop = topTemp.value;
+        },
+        onActive(event, context) {
+            topTemp.value = context.startTop + event.translationY;
+        },
+        onEnd() {
+            if (topTemp.value > dimensions.height / 2 + 150) {
+                topTemp.value = withSpring(dimensions.height + 300);
+            } else {
+                topTemp.value = withSpring(dimensions.height / 3);
+            }
+        }
+    });
+
+    // i close tab!
+    function confirmTempTicket() {
+        topTemp.value = withSpring(dimensions.height + 300);
+    }
+
+    // ---------- TICKET Temp ANIMATIONS END ----------
+
+    // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS END 🌟🌟🌟🌟🌟🌟 ======
 
 
     return (
         <ThemeProvider>
             <Page>
+
                 <BgCircle />
                 <TopContainer>
                     <H1>My Cards</H1>
-                    <AddPayment>
+                    <AddPayment
+                        onPress={() => navigation.navigate('Pay')}
+                    >
                         <Text style={styles.payment}>Add Payment</Text>
                         <Icon
                             name='pluscircleo'
@@ -155,60 +294,59 @@ const CompassCardScreen = () => {
                 </TopContainer>
                 <Text style={styles.TapQueue}>Tap Card to Pay</Text>
                 <CardSwipeTest
-                    handleAddSheetONE={handleAddSheet}
-                    handleAddSheetTWO={handleAddSheet}
+                    handleAddSheetONE={handlePassReload}
+                    handleAddSheetTWO={handleTicketReload}
+                    ticketAutoReload={handleTicketAuto}
+                    addTempTicket={handleTempTicket}
                 />
-                {/* <ScrollView
-                    contentContainerStyle={styles.scrollview}
-                    horizontal={true}
-                    alwaysBounceHorizontal={true}
-                >
-                    <MobileCard
-                        onAddFundsPress={handleAddSheet}
-                    />
-                    <MobileCard
-                        onAddFundsPress={handleAddSheet}
-                        titleCardType={'Stored Value Ticket'}
-                        cardType="Ticket"
-                        expiration={'90 minutes'}
-                        phrasing={'in'}
-                        buttonTitle={'Add Funds'}
-                    />
-                    <AddCardManager />
-                </ScrollView> */}
-
-
             </Page>
 
-
-            {/* ADD FUNDS ANIMATION TAB  */}
+            {/* RELOAD pass ANIMATION TAB  */}
             <PanGestureHandler
-                onGestureEvent={gestureHandler}
+                onGestureEvent={gestureHandlerPass}
             >
                 <Animated.View
-                    style={[
-                        {
-                            position: 'absolute',
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundColor: 'transparent',
-                            shadowColor: '#222222',
-                            shadowoffset: {
-                                width: 0,
-                                height: 2,
-                            },
-                            shadowOpacity: 0.25,
-                            shadowRadius: 3.84,
-                            elevation: 5,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        },
-                        style
-                    ]}
-                >
-                    <AddFundsTab
-                        AddFundsConfirm={TransferFunds}
+                    style={[styles.overlayTabCont, stylePass]}>
+                    <AddFundsTabPass
+                        month='December'
+                        AddFundsConfirm={ReloadPass}
+                    />
+                </Animated.View>
+            </PanGestureHandler>
+
+
+
+            {/* RELOAD ticket ANIMATION TAB  */}
+            <PanGestureHandler
+                onGestureEvent={gestureHandlerTicket}
+            >
+                <Animated.View style={[styles.overlayTabCont, styleTicket]} >
+                    <AddFundsTabTicket
+                        ticketBalance="$4.05" //this will come from the database
+                        AddFundsConfirm={ReloadTicket}
+                    />
+                </Animated.View>
+            </PanGestureHandler>
+
+            {/* TICKET auto reload ANIMATION TAB  */}
+            <PanGestureHandler
+                onGestureEvent={gestureHandlerAutoTicket}
+            >
+                <Animated.View style={[styles.overlayTabCont, styleAutoTicket]} >
+                    <AutoReloadTab
+                        autoReloadConfirm={confirmAutoReload}
+                    />
+                </Animated.View>
+            </PanGestureHandler>
+
+            {/* TICKET temp ANIMATION TAB  */}
+
+            <PanGestureHandler
+                onGestureEvent={gestureHandlerTempTicket}
+            >
+                <Animated.View style={[styles.overlayTabCont, styleTemp]} >
+                    <TempTicket
+                        tempTicketConfirm={confirmTempTicket}
                     />
                 </Animated.View>
             </PanGestureHandler>
@@ -218,11 +356,10 @@ const CompassCardScreen = () => {
             </View>
 
         </ThemeProvider>
-    )
+    );
 }
 
 
-export default CompassCardScreen;
 
 const styles = StyleSheet.create({
     payment: {
@@ -246,5 +383,46 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
 
-    }
+    },
+    overlayTabCont: {
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'transparent',
+        shadowColor: '#222222',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+    },
+    overlayPay: {
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        left: 0,
+        right: 0,
+        paddingVertical: '30%',
+        backgroundColor: 'rgba(37, 43, 66, 0.75)',
+        shadowColor: '#222222',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+    },
 });
+
+
+
+{/* 
+            <Animated.View style={[styles.overlayPay, openPayScreen]}>
+                <AddPaymentType
+                    AddPaymentType={closePayScreen}
+                />
+            </Animated.View> */}

@@ -22,6 +22,7 @@ const ContWithText = styled.TouchableOpacity`
     height: 120px;
     justify-content: space-evenly;
     align-items: center;
+    margin-right: 15px;
 `;
 
 const RideText = styled.Text`
@@ -35,7 +36,7 @@ const Container = styled.View`
     width: 90px;
     height: 90px;
     border-radius: 16px;
-    border: 3px solid ${COLORS.CAROLINABLUE};
+    border: 3px solid ${props=>props.bordercolor};
     justify-content: center;
     align-items: center;
 `;
@@ -48,11 +49,12 @@ const RideIcon = styled.View`
 const BusText = styled.Text`
     font-family: 'Ubuntu_500Medium';
     font-size: 40px;
-    color: ${COLORS.CAROLINABLUE};
+    color: ${props=>props.bustextcolor};
 `;
 
 const SavedRidesIcon = ({
     icon_type="seabus",
+    icon_color=COLORS.CAROLINABLUE,
     bus_text="250",
     ride_text="Lonsdale Quay to Waterfront",
     text_color = COLORS.SPACECADET,
@@ -76,13 +78,13 @@ const SavedRidesIcon = ({
             return <AppLoading />;
         } else {
             return <ContWithText onPress={onButtonPress}>
-                <Container>
+                <Container bordercolor={icon_color}>
                     <RideIcon>
                         <Icon
                             name="train"
                             type="font-awesome-5"
                             size={60}
-                            color={COLORS.CAROLINABLUE}
+                            color={icon_color}
                         />
                     </RideIcon>
                 </Container>
@@ -96,8 +98,8 @@ const SavedRidesIcon = ({
             return <AppLoading />;
         } else {
             return <ContWithText onPress={onButtonPress}>
-                <Container>
-                        <BusText>{bus_text}</BusText>
+                <Container bordercolor={icon_color}>
+                        <BusText bustextcolor={icon_color}>{bus_text}</BusText>
                 </Container>
                 <RideText text_color={text_color}>{ride_text}</RideText>
             </ContWithText>
@@ -109,13 +111,13 @@ const SavedRidesIcon = ({
             return <AppLoading />;
         } else {
             return <ContWithText onPress={onButtonPress}>
-                <Container>
+                <Container bordercolor={icon_color}>
                     <RideIcon>
                         <Icon
                             name="boat"
                             type="ionicon"
                             size={60}
-                            color={COLORS.CAROLINABLUE}
+                            color={icon_color}
                         />
                     </RideIcon>
                 </Container>
