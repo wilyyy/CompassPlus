@@ -56,7 +56,7 @@ const Hr = styled.View`
 
 
 export default function AddCardManager({
-    AddTicket = () => { },
+    AddTempTicket = () => { },
     countdown1 = '90mins...',
     countdown2 = '55mins...',
     countdown3 = '10mins...',
@@ -67,7 +67,9 @@ export default function AddCardManager({
             <CompassPlaceHolder />
 
             <ParentButtonCont>
-                <Pressable style={styles.button}>
+                <Pressable style={styles.button}
+                    onPress={AddTempTicket}
+                >
                     <Text style={styles.buttonText}>Add Tickets</Text>
                 </Pressable>
             </ParentButtonCont>

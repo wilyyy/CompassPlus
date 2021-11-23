@@ -1,30 +1,38 @@
-import React, { useState, useEffect } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
 
-const Amount = [
-    { title: '$10.00', id: '1' },
-    { title: '$20.00', id: '2' },
-    { title: '$40.00', id: '3' },
-    { title: '$60.00', id: '4' },
-    { title: '$80.00', id: '5' },
-    { title: '$100.00', id: '6' },
+
+
+const Zones = [
+    { title: 'Day Pass Adult', id: '1' },
+    { title: 'Single: 1-Zone Adult', id: '2' },
+    { title: 'Single: 2-Zone Adult', id: '3' },
+    { title: 'Single: 3-Zone Adult', id: '4' },
+    { title: 'Day Pass Concession', id: '5' },
+    { title: 'Single: 1-Zone Concession', id: '6' },
+    { title: 'Single: 2-Zone Concession', id: '7' },
+    { title: 'Single: 3-Zone Concession', id: '8' },
 ];
+
+
+
 const Item = ({ item, onPress, onPressOut, backgroundColor, textColor }) => (
     <TouchableOpacity onPress={onPress} onPressOut={onPressOut} style={[styles.item, backgroundColor]}>
         <Text style={[styles.title, textColor]}>{item.title}</Text>
     </TouchableOpacity>
 );
 
-const TicketTab = ({
-    closeAmount = () => { },
+export const TempTab = ({
+    //need to pass item.id
+    closeZone = () => { },
+
 }) => {
     const [selectedId, setSelectedId] = useState(null);
-
 
     useEffect(() => {
 
         if (selectedId != null) {
-            closeAmount(selectedId);
+            closeZone(selectedId);
         }
     }, [selectedId]);
 
@@ -32,24 +40,33 @@ const TicketTab = ({
         const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
         const color = item.id === selectedId ? 'white' : 'black';
 
+
+
         return (
+
             <Item
                 item={item}
                 onPress={() => setSelectedId(item)}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}
             />
+
+
         );
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                data={Amount}
+                data={Zones}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 extraData={selectedId}
+                scrollEnabled={false}
+                style={styles}
+
             />
+
         </SafeAreaView>
     );
 };
@@ -62,9 +79,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         // padding: 30,
         overflow: 'hidden',
-        alignSelf: 'center',
-        // borderColor: 'red',
-        // borderWidth: 2,
+        alignSelf: 'center'
     },
     title: {
         fontSize: 18,
@@ -77,4 +92,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default TicketTab;
+export default TempTab;

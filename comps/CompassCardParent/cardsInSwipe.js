@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
     SafeAreaView,
     ScrollView,
@@ -11,18 +11,25 @@ import {
 } from "react-native";
 
 import AddCardManager from "../../comps/CompassCardParent/addCardManager";
-import MobileCard from '../../comps/CompassCardParent/cardManager.js';
+import Pass from "./pass.js";
+import Ticket from "./ticket";
 
 const dots = new Array(3).fill();
 
 const CardSwipeTest = ({
     handleAddSheetONE = () => { },
     handleAddSheetTWO = () => { },
+    passAutoReload = () => { },
+    ticketAutoReload = () => { },
+    addTempTicket = () => { },
 }) => {
     const scrollX = useRef(new Animated.Value(0)).current;
 
     const { width: windowWidth } = useWindowDimensions();
 
+    const [ticketDefault, setTicketDefault] = useState(false);
+    //const [passDefault, setPassDefault] = useState(false);
+    console.log(ticketDefault, "Ticket D")
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView
@@ -40,18 +47,24 @@ const CardSwipeTest = ({
                 ])}
                 scrollEventThrottle={1}
             >
-                <MobileCard
+                <Pass
                     onAddFundsPress={handleAddSheetONE}
+                    onAutoReloadPress={passAutoReload}
+
+                    triggerDefault={() => { setTicketDefault(false) }}
+                    makeDefault={!ticketDefault}
                 />
-                <MobileCard
+                <Ticket
                     onAddFundsPress={handleAddSheetTWO}
-                    titleCardType='Stored Value Ticket'
-                    cardType="Ticket"
                     expiration='90 minutes'
-                    phrasing='in'
-                    buttonTitle='Add Funds'
+                    onAutoReloadPress={ticketAutoReload}
+                    makeDefault={ticketDefault}
+                    triggerDefault={() => { setTicketDefault(true) }}
+
                 />
-                <AddCardManager />
+                <AddCardManager
+                    AddTempTicket={addTempTicket}
+                />
 
             </ScrollView>
             <View style={styles.indicatorContainer}>
@@ -80,8 +93,9 @@ const CardSwipeTest = ({
 const styles = StyleSheet.create({
     container: {
         height: 590,
-        marginHorizontal: 2.5
+        paddingHorizontal: '2%',
     },
+
     normalDot: {
         height: 8,
         width: 8,
@@ -96,7 +110,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         // borderWidth: 2,
-        // borderColor: 'purple'
+        // borderColor: 'purple',
+        top: 15
 
     }
 });

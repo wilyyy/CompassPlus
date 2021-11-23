@@ -1,49 +1,67 @@
-import React, { useState } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 
 
-const Payment = [
-    { title: 'Mastercard', id: '1' },
-    { title: 'Visa', id: '2' },
-    { title: 'Add Payment', id: '3' },
-
+const Zones = [
+    { title: '1-Zone', id: '1' },
+    { title: '2-Zone', id: '2' },
+    { title: '3-Zone', id: '3' },
 ];
 
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+
+
+const Item = ({ item, onPress, onPressOut, backgroundColor, textColor }) => (
+    <TouchableOpacity onPress={onPress} onPressOut={onPressOut} style={[styles.item, backgroundColor]}>
         <Text style={[styles.title, textColor]}>{item.title}</Text>
     </TouchableOpacity>
 );
 
-const PaymentTab = ({
-    selectThis = () => { },
+export const ZonesTab = ({
+    //need to pass item.id
+    closeZone = () => { },
+
 }) => {
     const [selectedId, setSelectedId] = useState(null);
+
+    useEffect(() => {
+
+        if (selectedId != null) {
+            closeZone(selectedId);
+        }
+    }, [selectedId]);
 
     const renderItem = ({ item }) => {
         const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
         const color = item.id === selectedId ? 'white' : 'black';
 
+
+
         return (
+
             <Item
                 item={item}
-                onPress={() => setSelectedId(item.id)}
+                onPress={() => setSelectedId(item)}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}
             />
+
+
         );
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                data={Payment}
+                data={Zones}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 extraData={selectedId}
-                onPress={selectThis}
+                scrollEnabled={false}
+                style={styles}
+
             />
+
         </SafeAreaView>
     );
 };
@@ -54,28 +72,19 @@ const styles = StyleSheet.create({
         height: 'auto',
         backgroundColor: '#fff',
         borderRadius: 15,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-        padding: 30,
-        marginTop: StatusBar.currentHeight || 0,
+        // padding: 30,
         overflow: 'hidden',
-    },
-    item: {
-        paddingTop: 5,
+        alignSelf: 'center'
     },
     title: {
         fontSize: 18,
         lineHeight: 28,
-        letterSpacing: 0.1,
-        textAlign: 'left',
         padding: 10,
     },
+    test: {
+        borderColor: 'red',
+        borderWidth: 0.5,
+    }
 });
 
-export default PaymentTab;
+export default ZonesTab;

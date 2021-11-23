@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Image, StyleSheet, Switch, Pressable, Text, TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
-import { Icon } from 'react-native-elements'
+import { Icon } from 'react-native-elements';
 
 
 
@@ -11,8 +11,7 @@ const Container = styled.View`
     height: 550px;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 15px;
-    margin: 80px 10px 0px 10px;
-    top:-6%;
+    margin: 20px 10px 0px 10px;
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 const CompassPlaceHolder = styled.View`
@@ -157,12 +156,10 @@ const H2 = styled.Text`
     text-align: center;
 `;
 
-export default function MobileCard({
+
+export default function Pass({
     // cardSide = true, // need to put state for this in app.js?
-    onAutoReloadPress = () => { },
-    onTransferPress = () => { },
     onWalletPress = () => { },
-    onRemoveTicketPress = () => { },
     barcodeId = "Compass No: 016372 9281 9273 CVN 459",
     cardType = "Pass",
     titleCardType = "December Pass",
@@ -170,7 +167,9 @@ export default function MobileCard({
     phrasing = "on",
     buttonTitle = "Reload",
     // onManagePress = () => { },
-    onAddFundsPress = () => { }
+    onAddFundsPress = () => { },
+    makeDefault = false,
+    triggerDefault = () => { },
 }) {
 
     //to manage toggling between front and back of card
@@ -187,8 +186,22 @@ export default function MobileCard({
     // const [expiration, setExpiration] = useState('December Pass');
 
     //for SWITCH (set card to/disable default status)
-    const [defaultCard, setDefaultCard] = useState(false);
+    const [defaultCard, setDefaultCard] = useState(true);
     const toggleDefaultCard = () => setDefaultCard(previousState => !previousState);
+
+    useEffect(() => {
+        setDefaultCard(makeDefault);
+    }, [makeDefault]);
+
+    useEffect(() => {
+        if (defaultCard) {
+            console.log(defaultCard, "pass");
+            triggerDefault();
+        }
+    }, [defaultCard]);
+
+    const [autoReload, setAutoReload] = useState(true);
+    const toggleAutoReload = () => setAutoReload(previousState => !previousState);
 
 
 
@@ -287,10 +300,18 @@ export default function MobileCard({
                             />
                             <MenuItem>Auto reload</MenuItem>
                         </SettingsContLeft>
-                        <Button
+                        {/* <Button
                             onPress={onAutoReloadPress}
                             title="Edit"
                             color="blue"
+                        /> */}
+                        <Switch
+                            trackColor={{ false: '#222222', true: '#009DDC' }}
+                            thumbColor={autoReload ? '#fff' : '#fff'}
+                            ios_backgroundColor='#222222'
+                            onValueChange={toggleAutoReload}
+                            value={autoReload}
+                            style={styles.switch}
                         />
                     </SettingCont>
 
