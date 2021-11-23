@@ -8,6 +8,7 @@ import { COLORS } from "../../constants/styles";
 // import PopUps from '../../screens/testPopUps';
 import ZonesTab from './zoneSelTab';
 import PaymentTab from './paySelTab';
+import TempTab from './tempSelTab';
 
 
 const Container = styled.View`
@@ -35,9 +36,29 @@ const Title = styled.Text`
     font-size: 24px;
     color: #222222;
     align-self: center;
-    margin: 10px 0px 15px 0px;
+    margin: 10px 0px 0px 0px;
     font-weight: 500;
 `;
+
+
+
+const SubTitle = styled.Text`
+    font-size: 18px;
+    margin: 5px 0;
+    align-self: center;
+    /* margin-top:-5px; */
+    margin-bottom: 2px;
+    color: #222222;
+`;
+
+const SmallTitle = styled.Text`
+    font-size: 16px;
+    margin: 5px 0;
+    color: ${COLORS.MIDWAYBLUE};
+    /* font-weight:300; */
+`;
+
+
 
 const Divider = styled.View`
     width:100%;
@@ -79,12 +100,7 @@ const TextColumn = styled.View`
     border-width: 2px; */
 `;
 
-const SmallTitle = styled.Text`
-    font-size: 16px;
-    margin: 5px 0;
-    color: ${COLORS.MIDWAYBLUE};
-    /* font-weight:300; */
-`;
+
 
 const Amount = styled.Text`
     font-size: 20px;
@@ -168,16 +184,20 @@ export default function TempTicket({
 
 
     if (zone === 1) {
-        zoneType = '1-Zone';
-        zoneAmount = '$100.25';
+        zoneType = 'Day Pass';
+        zoneAmount = '$10.75';
     }
     if (zone === 2) {
-        zoneType = '2-Zone';
-        zoneAmount = '$134.00';
+        zoneType = '1-Zone';
+        zoneAmount = '$2.45';
     }
     if (zone === 3) {
+        zoneType = '2-Zone';
+        zoneAmount = '$3.55';
+    }
+    if (zone === 4) {
         zoneType = '3-Zone';
-        zoneAmount = '$181.05';
+        zoneAmount = '$4.60';
     }
 
 
@@ -191,6 +211,9 @@ export default function TempTicket({
         }
         if (selected.id == 3) {
             setZone(3);
+        }
+        if (selected.id == 4) {
+            setZone(4);
         }
         Animated.timing(animationZone, {
             toValue: 0,
@@ -244,7 +267,7 @@ export default function TempTicket({
         <Container>
             {/* <Button title='open' onPress={modalTrigger}></Button> */}
             <Animated.View style={[styles.animationCont, styles.zonesPosition, openZone]}>
-                <ZonesTab
+                <TempTab
                     closeZone={closeModalZone}
                 />
             </Animated.View>
@@ -254,7 +277,9 @@ export default function TempTicket({
                 />
             </Animated.View>
             <Notch />
-            <Title>Reload for {month}</Title>
+            <Title>Select single use ticket</Title>
+            <SubTitle>Day Pass valid 24 hours</SubTitle>
+            <SubTitle>Single journey valid 90 minutes</SubTitle>
             <Divider />
 
             {/* ZONE */}
@@ -351,7 +376,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 16,
         position: 'absolute',
-        backgroundColor: '#fff',
+        backgroundColor: 'red',
         width: 200,
         zIndex: 10,
         shadowColor: '#000',
@@ -365,7 +390,7 @@ const styles = StyleSheet.create({
     zonesPosition: {
         top: 50,
         right: 15,
-        height: 144,
+        height: 191,
     },
     paymentPosition: {
         top: 200,

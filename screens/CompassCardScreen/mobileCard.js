@@ -86,13 +86,6 @@ const H2 = styled.Text`
     
 `;
 
-
-
-
-
-
-
-
 // reusable spring config
 const SPRING_CONFIG = {
     damping: 80,
@@ -108,49 +101,8 @@ export default function CompassCardScreen() {
     navigation = useNavigation();
 
 
-
-    // ====== 🔥🔥🔥 STATES START 🔥🔥🔥 ======
-
-    // -------- RELOAD STATES FOR PASS START --------
-
-
-    // // // -------- RELOAD STATES FOR PASS END --------
-
-    // // // -------- RELOAD STATES FOR TICKET START --------
-
-    // const [loadTicket, setLoadTicket] = useState(10);
-    // if (loadTicket === 10) {
-    //     // ticketLoadAmountState = '$10.00';
-    // }
-    // if (loadTicket === 20) {
-    //     // ticketLoadAmountState = '$20.00';
-    // }
-    // if (loadTicket === 40) {
-    //     // ticketLoadAmountState = '$40.00';
-    // }
-    // if (loadTicket === 60) {
-    //     // ticketLoadAmountState = '$60.00';
-    // }
-    // if (loadTicket === 80) {
-    //     //ticketLoadAmountState = '$80.00';
-    // }
-    // if (loadTicket === 100) {
-    //     // ticketLoadAmountState = '$100.00';
-    // }
-    // const [ticketPayment, setTicketPayment] = useState('Visa');
-    // if (ticketPayment === 'Visa') {
-    //     // ticketPaymentState = 'Visa';
-    // }
-    // if (ticketPayment === 'Mastercard') {
-    //     //ticketPaymentState = 'Mastercard';
-    // }
-    // -------- RELOAD STATES FOR TICKET END --------
-
-
-    // ====== 🔥🔥🔥 STATES END 🔥🔥🔥 ======
-
-
     // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS START 🌟🌟🌟🌟🌟🌟 ======
+
 
     // ---------- PASS ANIMATIONS START ----------
     const topPass = useSharedValue(
@@ -191,6 +143,7 @@ export default function CompassCardScreen() {
     }
     // ---------- PASS ANIMATIONS END ----------
 
+
     // ---------- TICKET ANIMATIONS START ----------
     const topTicket = useSharedValue(
         (dimensions.height + 400)
@@ -227,6 +180,7 @@ export default function CompassCardScreen() {
         );
     }
     // ---------- TICKET ANIMATIONS END ----------
+
 
     // ---------- AUTO TICKET ANIMATIONS START ----------
     const topAutoTicket = useSharedValue(
@@ -266,20 +220,33 @@ export default function CompassCardScreen() {
         );
     }
 
-
-    // still need to put in button close function 
-
     // ---------- AUTO TICKET ANIMATIONS END ----------
 
+
     // ---------- TEMP TICKET ANIMATIONS START ----------
+    // (best explanations here)
+
+    //I am top value
     const topTemp = useSharedValue(
         (dimensions.height + 400)
     );
-    const styleTempTicket = useAnimatedStyle(() => {
+
+    //i queue tab open
+    function handleTempTicket() {
+        topTemp.value = withSpring(
+            dimensions.height / 3,
+            SPRING_CONFIG
+        );
+    }
+
+    //i assign animated top value
+    const styleTemp = useAnimatedStyle(() => {
         return {
             top: withSpring(topTemp.value, SPRING_CONFIG),
         };
     });
+
+    // i assign animation values
     const gestureHandlerTempTicket = useAnimatedGestureHandler({
         onStart(_, context) {
             context.startTop = topTemp.value;
@@ -291,31 +258,19 @@ export default function CompassCardScreen() {
             if (topTemp.value > dimensions.height / 2 + 150) {
                 topTemp.value = withSpring(dimensions.height + 300);
             } else {
-                topTemp.value = withSpring(dimensions.height / 2.25);
+                topTemp.value = withSpring(dimensions.height / 3);
             }
         }
     });
-    function addTempTicket() {
-        // need to set states to save new balances
+
+    // i close tab!
+    function confirmTempTicket() {
         topTemp.value = withSpring(dimensions.height + 300);
     }
-    function handleTempTicket() {
-        console.log('i work!');
-        //on ticket button confirm reload
-        topTemp.value = withSpring(
-            dimensions.height / 2.25,
-            SPRING_CONFIG
-        );
-    }
+
     // ---------- TEMP TICKET ANIMATIONS END ----------
 
     // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS END 🌟🌟🌟🌟🌟🌟 ======
-
-    // ====== 🤯🤯🤯🤯🤯🤯 PAY MODAL ANIMATION START 🤯🤯🤯🤯🤯🤯 ======
-
-
-    // ====== 🤯🤯🤯🤯🤯🤯 PAY MODAL ANIMATION END 🤯🤯🤯🤯🤯🤯 ======
-
 
 
     return (
@@ -390,21 +345,14 @@ export default function CompassCardScreen() {
             <PanGestureHandler
                 onGestureEvent={gestureHandlerTempTicket}
             >
-                <Animated.View style={[styles.overlayTabCont, styleTempTicket]} >
+                <Animated.View style={[styles.overlayTabCont, styleTemp]} >
                     <TempTicket
-                        addTempTicket={addTempTicket}
+                        tempTicketConfirm={confirmTempTicket}
 
                     // autoReloadConfirm={confirmAutoReload} PUT IN FUNCTION AGAIN
                     />
                 </Animated.View>
             </PanGestureHandler>
-
-            {/* 
-            <Animated.View style={[styles.overlayPay, openPayScreen]}>
-                <AddPaymentType
-                    AddPaymentType={closePayScreen}
-                />
-            </Animated.View> */}
 
             <View style={styles.NavCont}>
                 <NavBar />
@@ -475,3 +423,9 @@ const styles = StyleSheet.create({
 
 
 
+{/* 
+            <Animated.View style={[styles.overlayPay, openPayScreen]}>
+                <AddPaymentType
+                    AddPaymentType={closePayScreen}
+                />
+            </Animated.View> */}
