@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Pressable } from 'react-native';
+import { View, Dimensions, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import { Avatar } from 'react-native-elements'
+import { Header, Divider } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
-import ChangePasswordScreen from '../../screens/Profile/ChangePasswordScreen.js';
+import { auth } from '../../screens/Authentication/firebase.js';
 
 
 
@@ -13,16 +14,8 @@ const windowHeight = Dimensions.get('window').height;
 
 const BackgroundContainer = styled.View`
     width: ${windowWidth};
-    height: 300px;
+    height: 260px;
     background-color: ${COLORS.SPACECADET};
-`;
-
-const TitleText = styled.Text`
-    font-size: 24px;
-    font-weight: bold;
-    color: #ffffff;
-    text-align: center;
-    padding-top: 60px; 
 `;
 
 const Row = styled.View`
@@ -51,10 +44,39 @@ const Box = styled.View `
 
 const ProfileCard = ({navigation}) => {
     navigation = useNavigation()
+
+
+    const handleSignOut = () => {
+        auth
+        .signOut()
+        .then(()=>{
+            navigation.navigate('Authentication')
+        }) 
+        .catch(error => alert(error.message))
+    }
+
+
     return (
         <View>
+            <Header
+                centerComponent={{ 
+                    text: 'Personal Account', 
+                    style: { 
+                        color: 'white', 
+                        fontWeight: 'bold', 
+                        fontSize: 20 } }}
+                rightComponent={{ 
+                    icon: 'logout', 
+                    color: 'white', 
+                    onPress: {handleSignOut},
+                    iconStyle: { color: 'white' } }}
+                containerStyle={{
+                    backgroundColor: COLORS.SPACECADET, 
+                    height: 100,
+                    borderBottomWidth: 0,
+                }}
+                />
           <BackgroundContainer>
-              <TitleText>Personal Account</TitleText>
               <Row>
                   <SubContainer>
                   <Avatar
@@ -75,6 +97,10 @@ const ProfileCard = ({navigation}) => {
                     <Box />
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BalanceHistory')}> 
                         <Text style={styles.text}>View Balance History</Text>
+                    </TouchableOpacity>
+                    <Box />
+                    <TouchableOpacity style={styles.button} onPress={handleSignOut}> 
+                        <Text style={styles.text}>Log Out</Text>
                     </TouchableOpacity>
                   </SubContainer>
               </Row>

@@ -20,7 +20,7 @@ import AppLoading from 'expo-app-loading';
 import WhiteButton from '../../comps/Global/whiteButton.js';
 
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const windowHeight = Dimensions.get('window').height; 
 
 const Page = styled.View`
     width: ${windowWidth};
@@ -63,6 +63,9 @@ const Button = styled.TouchableOpacity`
     align-items: center;
     border-radius: 20px;
 `;
+const Box = styled.View `
+    height: 10px;
+`;
 
 const LoginScreen = ({ navigation }) => {
     let [fontsLoaded] = useFonts({
@@ -100,12 +103,18 @@ const LoginScreen = ({ navigation }) => {
                     </TextCont>
                     <ButtonCont>
                         <WhiteButton
-                            text="Sign In"
-                            onButtonPress={() => navigation.navigate('Home')}
+                            text="Welcome Back"
+                            onButtonPress={() => navigation.navigate('WelcomeBack')}
                         />
+                        <Box />
                         <WhiteButton
-                            text="Create An Account"
-                            onButtonPress={() => navigation.navigate('CreateAccount')}
+                            text="Login New"
+                            onButtonPress={() => navigation.navigate('LoginNew')}
+                        />
+                        <Box />
+                        <WhiteButton
+                            text="Create Account New"
+                            onButtonPress={() => navigation.navigate('CreateAccountNew')}
                         />
                     </ButtonCont>
                 </Container>

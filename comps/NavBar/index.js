@@ -38,10 +38,10 @@ const NavText = styled.Text`
 export default function NavBar({
     navigation = useNavigation(),
 }) {
-
     return (
         <NavCont>
-            <Section onPress={() => navigation.navigate('Home')}>
+            <Section 
+            onPress={() => navigation.navigate('Home')}>
                 <Icon
                     name='home'
                     type='entypo'
