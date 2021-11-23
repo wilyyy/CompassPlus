@@ -5,7 +5,6 @@ import styled from 'styled-components/native';
 import { AntDesign } from '@expo/vector-icons';
 import { COLORS } from "../../constants/styles";
 // 
-// import PopUps from '../../screens/testPopUps';
 import ZonesTab from './zoneSelTab';
 import PaymentTab from './paySelTab';
 import TicketTab from './ticketSelTab';
@@ -326,6 +325,8 @@ export default function AddFundsTabPass({
         ]
     };
 
+    const [defaultCard, setDefaultCard] = useState(true);
+    const toggleDefaultCard = () => setDefaultCard(previousState => !previousState);
 
     return (
         <Container>
@@ -353,8 +354,18 @@ export default function AddFundsTabPass({
             </Animated.View>
 
             <Notch />
-            <Title>Reload Stored Value</Title>
+            <Title>Set auto reload</Title>
             <Divider />
+            <SettingsContLeft style={styles.toggleCont}>
+                <Switch
+                    trackColor={{ false: '#222222', true: '#009DDC' }}
+                    thumbColor={defaultCard ? '#fff' : '#fff'}
+                    ios_backgroundColor='#222222'
+                    onValueChange={toggleDefaultCard}
+                    value={defaultCard}
+                    style={styles.switch}
+                />
+            </SettingsContLeft>
 
             {/* ZONE */}
             <SettingCont>
@@ -436,6 +447,13 @@ export default function AddFundsTabPass({
 }
 
 const styles = StyleSheet.create({
+    switch: {
+    },
+    toggleCont: {
+        justifyContent: 'center',
+        marginHorizontal: 15,
+        marginTop: -5,
+    },
     TransferButton: {
         backgroundColor: COLORS.CAROLINABLUE,
         width: '60%',
@@ -476,15 +494,15 @@ const styles = StyleSheet.create({
         height: 144,
     },
     paymentPosition: {
-        top: 200,
+        top: 230,
         right: 15,
-        height: 159,
+        height: 106,
     },
-    // belowPosition: {
-    //     top: 50,
-    //     right: 15,
-    //     height: 288,
-    // },
+    belowPosition: {
+        top: 50,
+        right: 15,
+        height: 288,
+    },
 
     amountPosition: {
         top: 50,

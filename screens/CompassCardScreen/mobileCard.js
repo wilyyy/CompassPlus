@@ -202,7 +202,7 @@ export default function CompassCardScreen() {
             if (topAutoTicket.value > dimensions.height / 2 + 150) {
                 topAutoTicket.value = withSpring(dimensions.height + 300);
             } else {
-                topAutoTicket.value = withSpring(dimensions.height / 2.25);
+                topAutoTicket.value = withSpring(dimensions.height / 3);
             }
         }
     });
