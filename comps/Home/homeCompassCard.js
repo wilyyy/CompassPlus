@@ -28,10 +28,12 @@ const CardPlaceholder = styled.TouchableOpacity`
     width: 308px;
     height: 193px;
     position: relative;
-    top: 40;
+    /* top: 40; */
     border: 3px dashed ${COLORS.CAROLINABLUE};
     justify-content: space-evenly;
     align-items: center;
+    background-color: rgba(255,255,255,0.75);
+ 
 `;
 
 const PlaceholderContent = styled.View`
@@ -59,7 +61,7 @@ const H2 = styled.Text`
 const HomeCompassCard = ({
     username = "User",
     compass_linked = "no",
-    onButtonPress = () => {}
+    onButtonPress = () => { }
 }) => {
 
     const [linkedCard, setLinkedCard] = useState(compass_linked);
@@ -69,7 +71,7 @@ const HomeCompassCard = ({
             <H1>Hello {username}!</H1>
             <CardPlaceholder onPress={onButtonPress}>
                 <PlaceholderContent >
-                    <Icon 
+                    <Icon
                         name='add'
                         type='material'
                         color={COLORS.CAROLINABLUE}

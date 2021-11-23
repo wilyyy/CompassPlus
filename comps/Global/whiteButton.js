@@ -17,7 +17,7 @@ import {
 import AppLoading from 'expo-app-loading';
 
 const ContinueButton = styled.TouchableOpacity`
-    background-color: #fff;
+    background-color: ${props=>props.bg_color};
     width: 244px;
     height: 58px;
     justify-content: center;
@@ -28,11 +28,13 @@ const ContinueButton = styled.TouchableOpacity`
 const H2 = styled.Text`
     font-size: 20px;
     font-family: 'Ubuntu_700Bold';
-    color: ${COLORS.CAROLINABLUE};
+    color: ${props=>props.text_color};
 `;
 
 const WhiteButton = ({
+    bg_color = "#fff",
     text = 'Continue',
+    text_color = COLORS.CAROLINABLUE,
     onButtonPress = () => { },
 }) => {
     let [fontsLoaded] = useFonts({
@@ -50,8 +52,11 @@ const WhiteButton = ({
         return <AppLoading />;
     } else {
         return (
-            <ContinueButton onPress={onButtonPress}>
-                <H2>{text}</H2>
+            <ContinueButton 
+                onPress={onButtonPress}
+                bg_color={bg_color}
+            >
+                <H2 text_color={text_color}>{text}</H2>
             </ContinueButton>
         )
     }

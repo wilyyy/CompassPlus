@@ -1,13 +1,14 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Animated, Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
 import { AntDesign } from '@expo/vector-icons';
 import { COLORS } from "../../constants/styles";
 // 
+// import PopUps from '../../screens/testPopUps';
 import ZonesTab from './zoneSelTab';
 import PaymentTab from './paySelTab';
-import TicketTab from './ticketSelTab';
+import TempTab from './tempSelTab';
 
 
 const Container = styled.View`
@@ -35,9 +36,29 @@ const Title = styled.Text`
     font-size: 24px;
     color: #222222;
     align-self: center;
-    margin: 10px 0px 15px 0px;
+    margin: 10px 0px 0px 0px;
     font-weight: 500;
 `;
+
+
+
+const SubTitle = styled.Text`
+    font-size: 18px;
+    margin: 5px 0;
+    align-self: center;
+    /* margin-top:-5px; */
+    margin-bottom: 2px;
+    color: #222222;
+`;
+
+const SmallTitle = styled.Text`
+    font-size: 16px;
+    margin: 5px 0;
+    color: ${COLORS.MIDWAYBLUE};
+    /* font-weight:300; */
+`;
+
+
 
 const Divider = styled.View`
     width:100%;
@@ -79,12 +100,7 @@ const TextColumn = styled.View`
     border-width: 2px; */
 `;
 
-const SmallTitle = styled.Text`
-    font-size: 16px;
-    margin: 5px 0;
-    color: ${COLORS.MIDWAYBLUE};
-    /* font-weight:300; */
-`;
+
 
 const Amount = styled.Text`
     font-size: 20px;
@@ -122,22 +138,21 @@ const ButtonText = styled.Text`
 
 
 
-export default function AddFundsTabPass({
-    reloadAmount = "$10.00",
-    belowAmount = '$10.00',
-    reloadPayment = 'Visa',
+export default function TempTicket({
+    zoneType = "1-Zone",
+    zoneAmount = '$100.25',
+    passPaymentType = 'Visa',
     month = 'December',
-    autoReloadConfirm = () => { },
+    tempTicketConfirm = () => { },
 
 }) {
 
 
-    // 🚧🚧🚧🚧
-    const [animationAmount, setAnimationAmount] = useState(new Animated.Value(0));
-    const [animationPay, setAnimationPay] = useState(new Animated.Value(0));
-    const [animationBelow, setAnimationBelow] = useState(new Animated.Value(0));
 
-    const openModalAmount = animationAmount.interpolate({
+    const [animationZone, setAnimationZone] = useState(new Animated.Value(0));
+    const [animationPay, setAnimationPay] = useState(new Animated.Value(0));
+
+    const openModalZone = animationZone.interpolate({
         inputRange: [0, 1],
         outputRange: [0, 1],
         extrapolate: "clamp",
@@ -149,14 +164,8 @@ export default function AddFundsTabPass({
         extrapolate: "clamp",
     });
 
-    const openModalBelow = animationBelow.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, 1],
-        extrapolate: "clamp",
-    });
-
-    const modalAmountTrigger = () => {
-        Animated.timing(animationAmount, {
+    const modalZoneTrigger = () => {
+        Animated.timing(animationZone, {
             toValue: 1,
             duration: 100,
             useNativeDriver: false,
@@ -171,57 +180,69 @@ export default function AddFundsTabPass({
         }).start();
     };
 
-    const modalBelowTrigger = () => {
-        Animated.timing(animationBelow, {
-            toValue: 1,
-            duration: 100,
-            useNativeDriver: false,
-        }).start();
-    };
+    const [zone, setZone] = useState(1);
 
 
-    const [loadTicket, setLoadTicket] = useState(10);
-    if (loadTicket === 10) {
-        reloadAmount = '$10.00';
+    if (zone === 1) {
+        zoneType = 'Day Pass Adult';
+        zoneAmount = '$10.75';
     }
-    if (loadTicket === 20) {
-        reloadAmount = '$20.00';
+    if (zone === 2) {
+        zoneType = '1-Zone Adult';
+        zoneAmount = '$2.45';
     }
-    if (loadTicket === 40) {
-        reloadAmount = '$40.00';
+    if (zone === 3) {
+        zoneType = '2-Zone Adult';
+        zoneAmount = '$3.55';
     }
-    if (loadTicket === 60) {
-        reloadAmount = '$60.00';
+    if (zone === 4) {
+        zoneType = '3-Zone Adult';
+        zoneAmount = '$4.60';
     }
-    if (loadTicket === 80) {
-        reloadAmount = '$80.00';
+    if (zone === 5) {
+        zoneType = 'Day Pass Concession';
+        zoneAmount = '$8.45';
     }
-    if (loadTicket === 100) {
-        reloadAmount = '$100.00';
+    if (zone === 6) {
+        zoneType = '1-Zone Concession';
+        zoneAmount = '$2.00';
+    }
+    if (zone === 7) {
+        zoneType = '2-Zone Concession';
+        zoneAmount = '$3.00';
+    }
+    if (zone === 8) {
+        zoneType = '3-Zone Concession';
+        zoneAmount = '$4.05';
     }
 
-    function closeModalAmount(selected) {
-        console.log('amount', selected.id);
+
+    function closeModalZone(selected) {
         if (selected.id == 1) {
-            setLoadTicket(10);
+            setZone(1);
         }
         if (selected.id == 2) {
-            setLoadTicket(20);
+            setZone(2);
         }
         if (selected.id == 3) {
-            setLoadTicket(40);
+            setZone(3);
         }
         if (selected.id == 4) {
-            setLoadTicket(60);
+            setZone(4);
         }
         if (selected.id == 5) {
-            setLoadTicket(80);
+            setZone(5);
         }
         if (selected.id == 6) {
-            setLoadTicket(100);
+            setZone(6);
         }
-
-        Animated.timing(animationAmount, {
+        if (selected.id == 7) {
+            setZone(7);
+        }
+        if (selected.id == 8) {
+            setZone(8);
+        }
+        Animated.timing(animationZone, {
             toValue: 0,
             duration: 100,
             useNativeDriver: false,
@@ -229,14 +250,12 @@ export default function AddFundsTabPass({
         }).start();
 
     };
-
-
     const [payment, setPayment] = useState(1);
     if (payment === 1) {
-        reloadPayment = 'Mastercard';
+        passPaymentType = 'Mastercard';
     }
     if (payment === 2) {
-        reloadPayment = 'Visa';
+        passPaymentType = 'Visa';
     }
 
     function closeModalPay(selected) {
@@ -247,55 +266,6 @@ export default function AddFundsTabPass({
         if (selected.id == 2) {
             setPayment(2);
         }
-        Animated.timing(animationPay, {
-            toValue: 0,
-            duration: 100,
-            useNativeDriver: false,
-            delay: 500
-        }).start();
-
-    };
-
-    const [below, setBelow] = useState(10);
-    if (below === 10) {
-        belowAmount = '$10.00';
-    }
-    if (below === 20) {
-        belowAmount = '$20.00';
-    }
-    if (below === 40) {
-        belowAmount = '$40.00';
-    }
-    if (below === 60) {
-        belowAmount = '$60.00';
-    }
-    if (below === 80) {
-        belowAmount = '$80.00';
-    }
-    if (below === 100) {
-        belowAmount = '$100.00';
-    }
-
-    function closeModalBelow(selected) {
-        console.log('amount', selected.id);
-        if (selected.id == 1) {
-            setBelow(10);
-        }
-        if (selected.id == 2) {
-            setBelow(20);
-        }
-        if (selected.id == 3) {
-            setBelow(40);
-        }
-        if (selected.id == 4) {
-            setBelow(60);
-        }
-        if (selected.id == 5) {
-            setBelow(80);
-        }
-        if (selected.id == 6) {
-            setBelow(100);
-        }
 
         Animated.timing(animationPay, {
             toValue: 0,
@@ -307,9 +277,9 @@ export default function AddFundsTabPass({
     };
 
 
-    const openAmount = {
+    const openZone = {
         transform: [
-            { scale: openModalAmount }
+            { scale: openModalZone }
         ]
     };
 
@@ -319,53 +289,25 @@ export default function AddFundsTabPass({
         ]
     };
 
-    const openBelow = {
-        transform: [
-            { scale: openModalBelow }
-        ]
-    };
-
-    const [defaultCard, setDefaultCard] = useState(true);
-    const toggleDefaultCard = () => setDefaultCard(previousState => !previousState);
 
     return (
         <Container>
             {/* <Button title='open' onPress={modalTrigger}></Button> */}
-
-            {/* 🚧🚧 ZONE 🚧🚧 */}
-            <Animated.View style={[styles.animationCont, styles.amountPosition, openAmount]}>
-                <TicketTab
-                    closeAmount={closeModalAmount}
+            <Animated.View style={[styles.animationCont, styles.zonesPosition, openZone]}>
+                <TempTab
+                    closeZone={closeModalZone}
                 />
             </Animated.View>
-
-            {/* 🗣🗣 BELOW 🗣🗣 */}
-            <Animated.View style={[styles.animationCont, styles.belowPosition, openBelow]}>
-                <TicketTab
-                    closeAmount={closeModalBelow}
-                />
-            </Animated.View>
-
-            {/* 👁👁 PAYMENT 👁👁 */}
             <Animated.View style={[styles.animationCont, styles.paymentPosition, openPay]}>
                 <PaymentTab
                     closePay={closeModalPay}
                 />
             </Animated.View>
-
             <Notch />
-            <Title>Set auto reload</Title>
+            <Title>Select single use ticket</Title>
+            <SubTitle>Day Pass valid 24 hours</SubTitle>
+            <SubTitle>Single journey valid 90 minutes</SubTitle>
             <Divider />
-            <SettingsContLeft style={styles.toggleCont}>
-                <Switch
-                    trackColor={{ false: '#222222', true: '#009DDC' }}
-                    thumbColor={defaultCard ? '#fff' : '#fff'}
-                    ios_backgroundColor='#222222'
-                    onValueChange={toggleDefaultCard}
-                    value={defaultCard}
-                    style={styles.switch}
-                />
-            </SettingsContLeft>
 
             {/* ZONE */}
             <SettingCont>
@@ -374,12 +316,12 @@ export default function AddFundsTabPass({
                         source={{ uri: '#', }}
                     />
                     <TextColumn>
-                        <SmallTitle>Amount</SmallTitle>
-                        <Amount>{reloadAmount}</Amount>
+                        <SmallTitle>Select zone</SmallTitle>
+                        <Amount>{zoneType}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
                 <TouchableOpacity
-                    onPress={modalAmountTrigger}
+                    onPress={modalZoneTrigger}
                     style={styles.modalButton}
                 // {selectZone}
                 >
@@ -397,20 +339,11 @@ export default function AddFundsTabPass({
                         source={{ uri: '#', }}
                     />
                     <TextColumn>
-                        <SmallTitle>When balance is below</SmallTitle>
-                        <Amount>{belowAmount}</Amount>
+                        <SmallTitle>Amount</SmallTitle>
+                        <Amount>{zoneAmount}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
-                <TouchableOpacity
-                    onPress={modalBelowTrigger}
-                    style={styles.modalButton}
-                // {selectZone}
-                >
-                    <AntDesign name="down" size={30} color="#222222" />
-                </TouchableOpacity>
-
             </SettingCont>
-
             <Line />
 
             {/* PAYMENT */}
@@ -421,7 +354,7 @@ export default function AddFundsTabPass({
                     />
                     <TextColumn>
                         <SmallTitle>Payment</SmallTitle>
-                        <Amount>{reloadPayment}</Amount>
+                        <Amount>{passPaymentType}</Amount>
                     </TextColumn>
                 </SettingsContLeft>
                 <TouchableOpacity style={styles.modalButton}
@@ -435,10 +368,10 @@ export default function AddFundsTabPass({
 
 
             <TouchableOpacity
-                onPress={autoReloadConfirm}
+                onPress={tempTicketConfirm}
                 style={styles.TransferButton}
             >
-                <ButtonText>Save</ButtonText>
+                <ButtonText>Purchase</ButtonText>
             </TouchableOpacity>
 
         </Container>
@@ -447,13 +380,6 @@ export default function AddFundsTabPass({
 }
 
 const styles = StyleSheet.create({
-    switch: {
-    },
-    toggleCont: {
-        justifyContent: 'center',
-        marginHorizontal: 15,
-        marginTop: -5,
-    },
     TransferButton: {
         backgroundColor: COLORS.CAROLINABLUE,
         width: '60%',
@@ -477,7 +403,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 16,
         position: 'absolute',
-        backgroundColor: '#fff',
+        backgroundColor: 'red',
         width: 200,
         zIndex: 10,
         shadowColor: '#000',
@@ -489,25 +415,13 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
     },
     zonesPosition: {
-        top: 50,
+        top: 15,
         right: 15,
-        height: 144,
+        height: 468,
     },
     paymentPosition: {
-        top: 230,
+        top: 200,
         right: 15,
         height: 106,
     },
-    belowPosition: {
-        top: 50,
-        right: 15,
-        height: 288,
-    },
-
-    amountPosition: {
-        top: 50,
-        right: 15,
-        height: 288,
-    },
-
 });

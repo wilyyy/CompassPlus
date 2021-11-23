@@ -113,7 +113,7 @@ const CreateAccount = ({navigation}) => {
                 />
             </View>
         </Modal>
-        <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="fill" style={styles.image}>
+        <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
             <Container>
                 <H1>
                     Create an Account

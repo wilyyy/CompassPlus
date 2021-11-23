@@ -1,27 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 
 
-const Tickets = [
-    { title: '$10.00', id: '1' },
-    { title: '$15.00', id: '2' },
-    { title: '$20.00', id: '3' },
-    { title: '$50.00', id: '4' },
-    { title: '$75.00', id: '5' },
-    { title: '$100.00', id: '6' },
+const Payment = [
+    { title: 'Mastercard', id: '1' },
+    { title: 'Visa', id: '2' },
+    // { title: 'Add Payment', id: '3' },
+
 ];
 
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+const Item = ({ item, onPress, onPressOut, backgroundColor, textColor }) => (
+    <TouchableOpacity onPress={onPress} onPressOut={onPressOut} style={[styles.item, backgroundColor]}>
         <Text style={[styles.title, textColor]}>{item.title}</Text>
     </TouchableOpacity>
 );
 
-const AmountTab = ({
-    selectThis = () => { },
+const PaymentTab = ({
+    //need to pass item.id
+    closePay = () => { },
 }) => {
     const [selectedId, setSelectedId] = useState(null);
+
+    useEffect(() => {
+
+        if (selectedId != null) {
+            closePay(selectedId);
+        }
+    }, [selectedId]);
+
 
     const renderItem = ({ item }) => {
         const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
@@ -30,7 +37,7 @@ const AmountTab = ({
         return (
             <Item
                 item={item}
-                onPress={() => setSelectedId(item.id)}
+                onPress={() => setSelectedId(item)}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}
             />
@@ -40,11 +47,10 @@ const AmountTab = ({
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                data={Tickets}
+                data={Payment}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 extraData={selectedId}
-                onPress={selectThis}
             />
         </SafeAreaView>
     );
@@ -65,8 +71,12 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
         padding: 30,
-        marginTop: StatusBar.currentHeight || 0,
         overflow: 'hidden',
+        // borderColor: 'red',
+        // borderWidth: 2
+    },
+    item: {
+        paddingTop: 5,
     },
     title: {
         fontSize: 18,
@@ -77,4 +87,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AmountTab;
+export default PaymentTab;

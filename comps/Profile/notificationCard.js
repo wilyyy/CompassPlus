@@ -3,7 +3,7 @@ import { View, Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-nati
 import { Icon, Divider } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
-
+import { useNavigation } from '@react-navigation/native';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -57,8 +57,8 @@ const DescriptionText = styled.Text`
     max-width: 380;
 `;
 
-const NotificationCard = () => {
-
+const NotificationCard = ({navigation}) => {
+    navigation = useNavigation()
     return (
         <View>
             <Container>
@@ -73,7 +73,7 @@ const NotificationCard = () => {
                 </Row>
             </Container>
             <View >
-                <TouchableOpacity onPress={() => { }}>
+                <TouchableOpacity onPress={() => navigation.navigate('NotificationPreferences')}>
                     <ItemRow>
                         <SubContainer>
                             <SubtitleText>Edit Your Notification Settings</SubtitleText>
