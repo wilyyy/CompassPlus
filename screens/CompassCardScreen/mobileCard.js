@@ -29,6 +29,7 @@ import AddFundsTabPass from '../../comps/CompassCardParent/addFunds.js';
 import AddFundsTabTicket from '../../comps/CompassCardParent/addFundsTicket.js';
 import AutoReloadTab from '../../comps/CompassCardParent/autoReload.js';
 import AddPaymentType from '../../comps/CompassCardParent/payment.js';
+import TempTicket from '../../comps/CompassCardParent/tempTicket.js';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -270,45 +271,48 @@ export default function CompassCardScreen() {
 
     // ---------- AUTO TICKET ANIMATIONS END ----------
 
+    // ---------- TEMP TICKET ANIMATIONS START ----------
+    const topTemp = useSharedValue(
+        (dimensions.height + 400)
+    );
+    const styleTempTicket = useAnimatedStyle(() => {
+        return {
+            top: withSpring(topTemp.value, SPRING_CONFIG),
+        };
+    });
+    const gestureHandlerTempTicket = useAnimatedGestureHandler({
+        onStart(_, context) {
+            context.startTop = topTemp.value;
+        },
+        onActive(event, context) {
+            topTemp.value = context.startTop + event.translationY;
+        },
+        onEnd() {
+            if (topTemp.value > dimensions.height / 2 + 150) {
+                topTemp.value = withSpring(dimensions.height + 300);
+            } else {
+                topTemp.value = withSpring(dimensions.height / 2.25);
+            }
+        }
+    });
+    function addTempTicket() {
+        // need to set states to save new balances
+        topTemp.value = withSpring(dimensions.height + 300);
+    }
+    function handleTempTicket() {
+        console.log('i work!');
+        //on ticket button confirm reload
+        topTemp.value = withSpring(
+            dimensions.height / 2.25,
+            SPRING_CONFIG
+        );
+    }
+    // ---------- TEMP TICKET ANIMATIONS END ----------
+
     // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS END 🌟🌟🌟🌟🌟🌟 ======
 
     // ====== 🤯🤯🤯🤯🤯🤯 PAY MODAL ANIMATION START 🤯🤯🤯🤯🤯🤯 ======
 
-    // const [payScreen, setPayScreen] = useState(new Animated.Value(0));
-
-    // const OpenAddPay = () => {
-    //     Animated.timing(payScreen, {
-    //         toValue: 1,
-    //         duration: 0,
-    //         useNativeDriver: false,
-    //     }).start();
-    // };
-
-    // const openModalPay = payScreen.interpolate({
-    //     inputRange: [0, 1],
-    //     outputRange: [0, 1],
-    //     extrapolate: "clamp",
-    // });
-
-
-
-
-
-    // const closePayScreen = () => {
-    //     Animated.timing(payScreen, {
-    //         toValue: 0,
-    //         duration: 0,
-    //         useNativeDriver: false,
-    //     }).start();
-
-    // };
-
-
-    // const openPayScreen = {
-    //     transform: [
-    //         { scale: openModalPay }
-    //     ]
-    // };
 
     // ====== 🤯🤯🤯🤯🤯🤯 PAY MODAL ANIMATION END 🤯🤯🤯🤯🤯🤯 ======
 
@@ -338,16 +342,10 @@ export default function CompassCardScreen() {
                 <CardSwipeTest
                     handleAddSheetONE={handlePassReload}
                     handleAddSheetTWO={handleTicketReload}
-                    // passAutoReload={handlePassAutoReload}
                     ticketAutoReload={handleTicketAuto}
+                    addTempTicket={handleTempTicket}
                 />
             </Page>
-            {/* 
-            <Animated.View style={[styles.overlayPay, openPayScreen]}>
-                <AddPaymentType
-                    AddPaymentType={closePayScreen}
-                />
-            </Animated.View> */}
 
             {/* RELOAD PASS ANIMATION TAB  */}
             <PanGestureHandler
@@ -387,13 +385,26 @@ export default function CompassCardScreen() {
                 </Animated.View>
             </PanGestureHandler>
 
+            {/* TEMP TICKET ANIMATION TAB  */}
 
+            <PanGestureHandler
+                onGestureEvent={gestureHandlerTempTicket}
+            >
+                <Animated.View style={[styles.overlayTabCont, styleTempTicket]} >
+                    <TempTicket
+                        addTempTicket={addTempTicket}
 
+                    // autoReloadConfirm={confirmAutoReload} PUT IN FUNCTION AGAIN
+                    />
+                </Animated.View>
+            </PanGestureHandler>
 
-
-
-
-            {/* AUTO PASS ANIMATION TAB  */}
+            {/* 
+            <Animated.View style={[styles.overlayPay, openPayScreen]}>
+                <AddPaymentType
+                    AddPaymentType={closePayScreen}
+                />
+            </Animated.View> */}
 
             <View style={styles.NavCont}>
                 <NavBar />

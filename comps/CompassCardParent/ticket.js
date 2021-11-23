@@ -161,16 +161,9 @@ const H2 = styled.Text`
 export default function Ticket({
     // cardSide = true, // need to put state for this in app.js?
     onAutoReloadPress = () => { },
-    onTransferPress = () => { },
     onWalletPress = () => { },
-    onRemoveTicketPress = () => { },
     barcodeId = "Compass No: 016372 9281 9273 CVN 459",
-    cardType = "Pass",
-    titleCardType = "December Pass",
-    expiration = "December",
-    phrasing = "on",
-    buttonTitle = "Reload",
-    // onManagePress = () => { },
+    expiration = "90 minutes",
     onAddFundsPress = () => { },
     makeDefault = false,
     triggerDefault = () => { },
@@ -224,8 +217,8 @@ export default function Ticket({
                 <CompassPlaceHolder />
                 <BackBodyCont>
                     <ExpirationCont>
-                        <H2>{titleCardType}</H2>
-                        <ExpirationTitle>Expires {phrasing}: </ExpirationTitle>
+                        <H2>Stored Value Ticket</H2>
+                        <ExpirationTitle>Expires in: </ExpirationTitle>
                         <ExpirationDateFront>{expiration}</ExpirationDateFront>
                     </ExpirationCont>
                     <Hr />
@@ -236,7 +229,7 @@ export default function Ticket({
                             <Text style={styles.buttonText}>Manage</Text>
                         </Pressable> */}
                     <Pressable style={styles.frontFundsButton} onPress={onAddFundsPress}>
-                        <Text style={styles.buttonText}>{buttonTitle}</Text>
+                        <Text style={styles.buttonText}>Add Funds</Text>
                     </Pressable>
                     {/* </ButtonCont> */}
                 </CardFooter>

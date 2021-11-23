@@ -21,6 +21,7 @@ const CardSwipeTest = ({
     handleAddSheetTWO = () => { },
     passAutoReload = () => { },
     ticketAutoReload = () => { },
+    addTempTicket = () => { },
 }) => {
     const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -55,18 +56,15 @@ const CardSwipeTest = ({
                 />
                 <Ticket
                     onAddFundsPress={handleAddSheetTWO}
-                    titleCardType='Stored Value Ticket'
-                    cardType="Ticket"
                     expiration='90 minutes'
-                    phrasing='in'
-                    buttonTitle='Add Funds'
                     onAutoReloadPress={ticketAutoReload}
-
                     makeDefault={ticketDefault}
                     triggerDefault={() => { setTicketDefault(true) }}
 
                 />
-                <AddCardManager />
+                <AddCardManager
+                    AddTempTicket={addTempTicket}
+                />
 
             </ScrollView>
             <View style={styles.indicatorContainer}>
