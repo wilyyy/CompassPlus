@@ -162,7 +162,46 @@ export default function AddFundsTabTicket({
     }
 
 
-    const closeModalAmount = () => {
+    const [loadTicket, setLoadTicket] = useState(10);
+    if (loadTicket === 10) {
+        ticketLoadAmount = '$10.00';
+    }
+    if (loadTicket === 20) {
+        ticketLoadAmount = '$20.00';
+    }
+    if (loadTicket === 40) {
+        ticketLoadAmount = '$40.00';
+    }
+    if (loadTicket === 60) {
+        ticketLoadAmount = '$60.00';
+    }
+    if (loadTicket === 80) {
+        ticketLoadAmount = '$80.00';
+    }
+    if (loadTicket === 100) {
+        ticketLoadAmount = '$100.00';
+    }
+
+    function closeModalAmount(selected) {
+        console.log('amount', selected.id);
+        if (selected.id == 1) {
+            setLoadTicket(10);
+        }
+        if (selected.id == 2) {
+            setLoadTicket(20);
+        }
+        if (selected.id == 3) {
+            setLoadTicket(40);
+        }
+        if (selected.id == 4) {
+            setLoadTicket(60);
+        }
+        if (selected.id == 5) {
+            setLoadTicket(80);
+        }
+        if (selected.id == 6) {
+            setLoadTicket(100);
+        }
         Animated.timing(animationAmount, {
             toValue: 0,
             duration: 100,
@@ -172,7 +211,22 @@ export default function AddFundsTabTicket({
 
     }
 
-    const closeModalPay = () => {
+    const [payment, setPayment] = useState(1);
+    if (payment === 1) {
+        ticketPaymentType = 'Mastercard';
+    }
+    if (payment === 2) {
+        ticketPaymentType = 'Visa';
+    }
+
+    function closeModalPay(selected) {
+        console.log('payment', selected.id);
+        if (selected.id == 1) {
+            setPayment(1);
+        }
+        if (selected.id == 2) {
+            setPayment(2);
+        }
         Animated.timing(animationPay, {
             toValue: 0,
             duration: 100,

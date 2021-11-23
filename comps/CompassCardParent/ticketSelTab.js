@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const Amount = [
@@ -20,6 +20,14 @@ const TicketTab = ({
 }) => {
     const [selectedId, setSelectedId] = useState(null);
 
+
+    useEffect(() => {
+
+        if (selectedId != null) {
+            closeAmount(selectedId);
+        }
+    }, [selectedId]);
+
     const renderItem = ({ item }) => {
         const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
         const color = item.id === selectedId ? 'white' : 'black';
@@ -27,8 +35,7 @@ const TicketTab = ({
         return (
             <Item
                 item={item}
-                onPress={() => setSelectedId(item.id)}
-                onPressOut={closeAmount}
+                onPress={() => setSelectedId(item)}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}
             />

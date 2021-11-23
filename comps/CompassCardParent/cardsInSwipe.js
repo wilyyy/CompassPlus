@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
     SafeAreaView,
     ScrollView,
@@ -26,6 +26,9 @@ const CardSwipeTest = ({
 
     const { width: windowWidth } = useWindowDimensions();
 
+    const [ticketDefault, setTicketDefault] = useState(false);
+    //const [passDefault, setPassDefault] = useState(false);
+    console.log(ticketDefault, "Ticket D")
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView
@@ -46,6 +49,9 @@ const CardSwipeTest = ({
                 <Pass
                     onAddFundsPress={handleAddSheetONE}
                     onAutoReloadPress={passAutoReload}
+
+                    triggerDefault={() => { setTicketDefault(false) }}
+                    makeDefault={!ticketDefault}
                 />
                 <Ticket
                     onAddFundsPress={handleAddSheetTWO}
@@ -55,6 +61,9 @@ const CardSwipeTest = ({
                     phrasing='in'
                     buttonTitle='Add Funds'
                     onAutoReloadPress={ticketAutoReload}
+
+                    makeDefault={ticketDefault}
+                    triggerDefault={() => { setTicketDefault(true) }}
 
                 />
                 <AddCardManager />

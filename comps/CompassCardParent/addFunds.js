@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Animated, Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
 import { AntDesign } from '@expo/vector-icons';
@@ -164,8 +164,34 @@ export default function AddFundsTabPass({
         }).start();
     };
 
+    const [zone, setZone] = useState(1);
 
-    const closeModalZone = () => {
+
+    if (zone === 1) {
+        zoneType = '1-Zone';
+        zoneAmount = '$100.25';
+    }
+    if (zone === 2) {
+        zoneType = '2-Zone';
+        zoneAmount = '$134.00';
+    }
+    if (zone === 3) {
+        zoneType = '3-Zone';
+        zoneAmount = '$181.05';
+    }
+
+
+    function closeModalZone(selected) {
+        console.log(selected.id);
+        if (selected.id == 1) {
+            setZone(1);
+        }
+        if (selected.id == 2) {
+            setZone(2);
+        }
+        if (selected.id == 3) {
+            setZone(3);
+        }
         Animated.timing(animationZone, {
             toValue: 0,
             duration: 100,
@@ -174,8 +200,23 @@ export default function AddFundsTabPass({
         }).start();
 
     };
+    const [payment, setPayment] = useState(1);
+    if (payment === 1) {
+        passPaymentType = 'Mastercard';
+    }
+    if (payment === 2) {
+        passPaymentType = 'Visa';
+    }
 
-    const closeModalPay = () => {
+    function closeModalPay(selected) {
+        console.log('payment', selected.id);
+        if (selected.id == 1) {
+            setPayment(1);
+        }
+        if (selected.id == 2) {
+            setPayment(2);
+        }
+
         Animated.timing(animationPay, {
             toValue: 0,
             duration: 100,

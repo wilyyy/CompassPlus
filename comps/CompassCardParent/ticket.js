@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Image, StyleSheet, Switch, Pressable, Text, TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
@@ -171,7 +171,9 @@ export default function Ticket({
     phrasing = "on",
     buttonTitle = "Reload",
     // onManagePress = () => { },
-    onAddFundsPress = () => { }
+    onAddFundsPress = () => { },
+    makeDefault = false,
+    triggerDefault = () => { },
 }) {
 
     //to manage toggling between front and back of card
@@ -191,6 +193,17 @@ export default function Ticket({
     const [defaultCard, setDefaultCard] = useState(true);
     const toggleDefaultCard = () => setDefaultCard(previousState => !previousState);
 
+
+    useEffect(() => {
+        // alert(makeDefault)
+        setDefaultCard(makeDefault);
+    }, [makeDefault]);
+
+    useEffect(() => {
+        if (defaultCard) {
+            triggerDefault();
+        }
+    }, [defaultCard]);
 
     //front of card
     if (cardSide === true) {

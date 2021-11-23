@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Image, StyleSheet, Switch, Pressable, Text, TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
@@ -167,7 +167,9 @@ export default function Pass({
     phrasing = "on",
     buttonTitle = "Reload",
     // onManagePress = () => { },
-    onAddFundsPress = () => { }
+    onAddFundsPress = () => { },
+    makeDefault = false,
+    triggerDefault = () => { },
 }) {
 
     //to manage toggling between front and back of card
@@ -187,6 +189,16 @@ export default function Pass({
     const [defaultCard, setDefaultCard] = useState(true);
     const toggleDefaultCard = () => setDefaultCard(previousState => !previousState);
 
+    useEffect(() => {
+        setDefaultCard(makeDefault);
+    }, [makeDefault]);
+
+    useEffect(() => {
+        if (defaultCard) {
+            console.log(defaultCard, "pass");
+            triggerDefault();
+        }
+    }, [defaultCard]);
 
     const [autoReload, setAutoReload] = useState(true);
     const toggleAutoReload = () => setAutoReload(previousState => !previousState);

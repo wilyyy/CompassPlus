@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 
@@ -22,6 +22,13 @@ const PaymentTab = ({
 }) => {
     const [selectedId, setSelectedId] = useState(null);
 
+    useEffect(() => {
+
+        if (selectedId != null) {
+            closePay(selectedId);
+        }
+    }, [selectedId]);
+
 
     const renderItem = ({ item }) => {
         const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
@@ -30,8 +37,7 @@ const PaymentTab = ({
         return (
             <Item
                 item={item}
-                onPress={() => setSelectedId(item.id)}
-                onPressOut={closePay}
+                onPress={() => setSelectedId(item)}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}
             />

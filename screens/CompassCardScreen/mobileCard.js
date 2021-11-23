@@ -111,27 +111,8 @@ export default function CompassCardScreen() {
     // ====== 🔥🔥🔥 STATES START 🔥🔥🔥 ======
 
     // -------- RELOAD STATES FOR PASS START --------
-    // const [zone, setZone] = useState(3);
-    // if (zone === 1) {
-    //     // zoneTypeState = '1-Zone';
-    //     // zoneAmountState = '$100.25';
-    // }
-    // if (zone === 2) {
-    //     // zoneTypeState = '2-Zone';
-    //     // zoneAmountState = '$134.00';
-    // }
-    // if (zone === 3) {
-    //     // zoneTypeState = '3-Zone';
-    //     // zoneAmountState = '$181.05';
-    // }
 
-    // const [passPayment, setPassPayment] = useState('Visa');
-    // if (passPayment === 'Visa') {
-    //     // passPaymentTypeState = 'Visa';
-    // }
-    // if (passPayment === 'Mastercard') {
-    //     // passPaymentTypeState = 'Mastercard';
-    // }
+
     // // // -------- RELOAD STATES FOR PASS END --------
 
     // // // -------- RELOAD STATES FOR TICKET START --------
@@ -271,6 +252,11 @@ export default function CompassCardScreen() {
         }
     });
 
+    function confirmAutoReload() {
+        // need to set states to save new balances
+        topTicket.value = withSpring(dimensions.height + 300);
+    }
+
     function handleTicketAuto() {
         //on ticket button confirm reload
         topAutoTicket.value = withSpring(
@@ -395,7 +381,9 @@ export default function CompassCardScreen() {
                 onGestureEvent={gestureHandlerAutoTicket}
             >
                 <Animated.View style={[styles.overlayTabCont, styleAutoTicket]} >
-                    <AutoReloadTab />
+                    <AutoReloadTab
+                        autoReloadConfirm={confirmAutoReload}
+                    />
                 </Animated.View>
             </PanGestureHandler>
 

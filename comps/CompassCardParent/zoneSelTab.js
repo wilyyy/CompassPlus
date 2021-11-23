@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 
@@ -20,9 +20,16 @@ const Item = ({ item, onPress, onPressOut, backgroundColor, textColor }) => (
 export const ZonesTab = ({
     //need to pass item.id
     closeZone = () => { },
+
 }) => {
     const [selectedId, setSelectedId] = useState(null);
 
+    useEffect(() => {
+
+        if (selectedId != null) {
+            closeZone(selectedId);
+        }
+    }, [selectedId]);
 
     const renderItem = ({ item }) => {
         const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
@@ -34,8 +41,7 @@ export const ZonesTab = ({
 
             <Item
                 item={item}
-                onPress={() => setSelectedId(item.id)}
-                onPressOut={closeZone}
+                onPress={() => setSelectedId(item)}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}
             />
