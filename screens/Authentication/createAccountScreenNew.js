@@ -58,7 +58,7 @@ export default function createAccountScreenNew ({navigation}) {
               .catch((error) => {
                 alert(error.message)
               });
-              navigation.navigate('Home');
+              navigation.navigate('Onboarding');
     }
 
     return (
