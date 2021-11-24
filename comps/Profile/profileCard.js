@@ -14,7 +14,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const BackgroundContainer = styled.View`
     width: ${windowWidth};
-    height: 260px;
+    height: 210px;
     background-color: ${COLORS.SPACECADET};
 `;
 
@@ -68,7 +68,7 @@ const ProfileCard = ({navigation}) => {
                 rightComponent={{ 
                     icon: 'logout', 
                     color: 'white', 
-                    onPress: {handleSignOut},
+                    onPress: handleSignOut,
                     iconStyle: { color: 'white' } }}
                 containerStyle={{
                     backgroundColor: COLORS.SPACECADET, 
@@ -97,10 +97,6 @@ const ProfileCard = ({navigation}) => {
                     <Box />
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BalanceHistory')}> 
                         <Text style={styles.text}>View Balance History</Text>
-                    </TouchableOpacity>
-                    <Box />
-                    <TouchableOpacity style={styles.button} onPress={handleSignOut}> 
-                        <Text style={styles.text}>Log Out</Text>
                     </TouchableOpacity>
                   </SubContainer>
               </Row>

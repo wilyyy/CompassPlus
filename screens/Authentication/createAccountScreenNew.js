@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from './firebase.js';
+import KeyBoardAvoidingWrapper from '../../comps/Global/KeyboardAvoidingWrapper.js';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -58,53 +59,55 @@ export default function createAccountScreenNew ({navigation}) {
               .catch((error) => {
                 alert(error.message)
               });
-              navigation.navigate('Onboarding');
+              navigation.navigate('Benefits');
     }
 
     return (
-        <Page>
-            <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
-                <Image 
-                    style={styles.compassCardLogo} 
-                    source={require('../../assets/logoWhite.png')}
-                />
-                <WelcomeText>Welcome to</WelcomeText>
-                <CompassPlusText>CompassPlus</CompassPlusText>
-                <BoxSmall />
-                <TextfieldContainer>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Name ..."
-                        value={name}
-                        onChangeText={text => setName(text)}
+        // <KeyBoardAvoidingWrapper>
+            <Page>
+                <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
+                    <Image 
+                        style={styles.compassCardLogo} 
+                        source={require('../../assets/logoWhite.png')}
                     />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Email ..."
-                        value={email}
-                        onChangeText={text => setEmail(text)}
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Password ..."
-                        secureTextEntry={true}
-                        autoCorrect={false}
-                        value={password}
-                        onChangeText={text => setPassword(text)}
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Compass Card Number (optional) ..."
-                        value={cardNumber}
-                        onChangeText={text => setCardNumber(text)}
-                    />
-                </TextfieldContainer>  
-                <BoxLarge />
-                <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-                    <Text style={styles.text}>CREATE ACCOUNT</Text>
-                </TouchableOpacity>    
-            </ImageBackground>
-        </Page>
+                    <WelcomeText>Welcome to</WelcomeText>
+                    <CompassPlusText>CompassPlus</CompassPlusText>
+                    <BoxSmall />
+                    <TextfieldContainer>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Name ..."
+                            value={name}
+                            onChangeText={text => setName(text)}
+                        />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Email ..."
+                            value={email}
+                            onChangeText={text => setEmail(text)}
+                        />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Password ..."
+                            secureTextEntry={true}
+                            autoCorrect={false}
+                            value={password}
+                            onChangeText={text => setPassword(text)}
+                        />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Compass Card Number (optional) ..."
+                            value={cardNumber}
+                            onChangeText={text => setCardNumber(text)}
+                        />
+                    </TextfieldContainer>  
+                    <BoxLarge />
+                    <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+                        <Text style={styles.text}>CREATE ACCOUNT</Text>
+                    </TouchableOpacity>    
+                </ImageBackground>
+            </Page>
+        // {/* </KeyBoardAvoidingWrapper> */}
     )
 }
 

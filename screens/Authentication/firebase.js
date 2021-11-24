@@ -27,30 +27,31 @@ else {
 }
 
 const auth = firebase.auth();
-const provider = new GoogleAuthProvider();
 
 
-const SignInWithGoogle = async () => {
+const SignInWithGoogle = async (navigation) => {
   try {
-      const result = await Google.logInAsync({
-        androidClientId: '309523893558-b8ei8n9t7ag8ht90cls7dc55a3ki0b50.apps.googleusercontent.com',
-        iosClientId: '309523893558-gqgt5iqmgs9uor2i2ksmm5c4gb0hipdo.apps.googleusercontent.com',
-        scopes: ['profile', 'email'],
-      });
-
-      if (result.type === 'success') {
-          provider.credential(result.idToken, result.accessToken);
+    const result = await Google.logInAsync({
+      androidClientId: '309523893558-b8ei8n9t7ag8ht90cls7dc55a3ki0b50.apps.googleusercontent.com',
+      iosClientId: '309523893558-gqgt5iqmgs9uor2i2ksmm5c4gb0hipdo.apps.googleusercontent.com',
+      scopes: ['profile', 'email'],
+    });
+    
+    if (result.type === 'success') {
+      const provider = GoogleAuthProvider.credential(result.idToken, result.accessToken);
+      console.log(result, provider);
+    
           await auth
-              .signInWithCredential(auth, provider)
+              .signInWithCredential(provider)
               .then((userCredential) => {
                   // Signed in 
                   const user = userCredential.user;
                   console.log(user.email);
+                  navigation.navigate('Home');
               })
               .catch((error) => {
                   alert(error.message)
               });
-              navigation.navigate('Home');
      
       } else {
         return { cancelled: true };
