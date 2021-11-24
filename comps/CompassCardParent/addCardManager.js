@@ -1,8 +1,13 @@
 import { borderColor } from 'polished';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Image, Pressable, StyleSheet, Switch, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { ThemeProvider, Icon } from 'react-native-elements';
 import styled from 'styled-components/native';
+import CountDown from 'react-native-countdown-component';
 import { COLORS } from "../../constants/styles";
+import { width } from 'dom-helpers';
+import { TextInput } from 'react-native-gesture-handler';
+import { words } from 'lodash';
 
 
 const Container = styled.View`
@@ -15,9 +20,9 @@ const Container = styled.View`
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const CompassPlaceHolder = styled.View`
-    width: 350px;
-    height: 200px;
+const CompassPlaceHolder = styled.Pressable`
+    width: 100%;
+    height: 36%;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     align-self: center;
@@ -90,6 +95,9 @@ export default function AddCardManager({
     ticketType1 = 'Day Pass',
     ticketType2 = '1-Zone',
     ticketType3 = '3-Zone',
+    name1 = 'Zoë',
+    name2 = 'Will',
+    name3 = 'Sarah',
 
 
 }) {
@@ -98,6 +106,11 @@ export default function AddCardManager({
     const [ticket1Amount, set1Ticket1Amount] = useState(0);
     const [ticket2Amount, set2Ticket1Amount] = useState(0);
     const [ticket3Amount, set3Ticket1Amount] = useState(0);
+
+    const [sTicket1, setSTicket1] = useState('');
+    const [sTicket2, setSTicket2] = useState('');
+    const [sTicket3, setSTicket3] = useState('');
+
 
     //ticket 1 states
     if (ticket1Amount === 1) {
@@ -219,45 +232,136 @@ export default function AddCardManager({
     //     //set display on for temp ticket 1, 2, & 3
     // }
 
-    return (
-        <Container>
-            <CompassPlaceHolder />
+    const hours24 = 86400000;
+    const minutes90 = 5400;
 
-            <ParentButtonCont>
-                <Pressable style={styles.addTicket}
+    return (
+        <ThemeProvider>
+            <Container>
+                <CompassPlaceHolder
                     onPress={AddTempTicket}
                 >
-                    <Text style={styles.addButtonText}>Add Tickets</Text>
-                </Pressable>
-            </ParentButtonCont>
-            <TicketsCont style={styles.temp1}>
-                <View style={styles.ticket}>
-                    <TicketPlaceHolder />
-                    <Text style={styles.buttonText}>{ticketType1}: {countdown1}</Text>
+                    <View style={styles.iconCont}>
+                        <Icon
+                            name='plus'
+                            type='antdesign'
+                            color={COLORS.CAROLINABLUE}
+                            shadowOpacity={0.25}
+                            shadowRadius={3}
+                            shadowOffset={{ width: 0, height: 3 }}
+                            shadowColor='#222222'
+                            size={80}
+                            style={styles.plusIcon}
+
+                        />
+                    </View>
+                </CompassPlaceHolder>
+
+
+                <View style={styles.body}>
+                    <TicketsCont style={styles.temp1}>
+                        <View style={styles.textInput}>
+                            <TextInput
+                                style={styles.nameStyle}
+                                placeholder={'Add name'}
+                                onSubmitEditing={() => { setSTicket1("' ticket") }}
+                                maxLength={50}
+                            />
+                            <Text>{sTicket1}</Text>
+                        </View>
+
+                        <View style={[styles.ticket, styles.bg1]}>
+                            <Text style={styles.buttonText}>{ticketType1}:</Text>
+
+                            <CountDown
+                                until={hours24}
+                                onFinish={() => alert('dlt')}
+                                size={15}
+                                timeToShow={['H', 'M', 'S']}
+                                timeLabels={{ h: null, m: null, s: null }}
+                                showSeparator
+                                separatorStyle={COLORS.SPACECADET}
+                                digitStyle={{ backgroundColor: COLORS.CONCESSION }}
+                                digitTxtStyle={{ color: '#fff' }}
+                            />
+                        </View>
+                    </TicketsCont>
+                    <TicketsCont style={styles.temp2}>
+                        <View style={styles.textInput}>
+                            <TextInput
+                                style={styles.nameStyle}
+                                placeholder={'Add name'}
+                                maxLength={50}
+                                onSubmitEditing={() => { setSTicket2("'s ticket") }}
+                            />
+                            <Text>{sTicket2}</Text>
+                        </View>
+
+                        <View style={[styles.ticket, styles.bg2]}>
+                            {/* <TicketPlaceHolder /> */}
+                            <Text style={styles.buttonText}>{ticketType2}: </Text>
+                            <CountDown
+                                until={minutes90}
+                                onFinish={() => alert('dlt')}
+                                size={15}
+                                timeToShow={['H', 'M', 'S']}
+                                timeLabels={{ h: null, m: null, s: null }}
+                                showSeparator
+                                separatorStyle={COLORS.SPACECADET}
+                                digitStyle={{ backgroundColor: COLORS.MIDWAYBLUE }}
+                                digitTxtStyle={{ color: '#fff' }}
+                            />
+                        </View>
+                    </TicketsCont>
+                    <TicketsCont style={styles.temp3}>
+                        <View style={styles.textInput}>
+                            <TextInput
+                                style={styles.nameStyle}
+                                placeholder={'Add name'}
+                                maxLength={50}
+                                onSubmitEditing={() => { setSTicket3("'s ticket") }}
+                            />
+                            <Text>{sTicket3}</Text>
+                        </View>
+
+                        <View style={[styles.ticket, styles.bg3]}>
+                            {/* <TicketPlaceHolder /> */}
+                            <Text style={styles.buttonText}>{ticketType3}:</Text>
+                            <CountDown
+                                until={minutes90}
+                                onFinish={() => alert('dlt')}
+                                size={15}
+                                timeToShow={['H', 'M', 'S']}
+                                timeLabels={{ h: null, m: null, s: null }}
+                                showSeparator
+                                separatorStyle={COLORS.SPACECADET}
+                                digitStyle={{ backgroundColor: COLORS.MIDWAYBLUE }}
+                                digitTxtStyle={{ color: '#fff' }}
+                            />
+                        </View>
+                    </TicketsCont>
                 </View>
-            </TicketsCont>
-            <TicketsCont style={styles.temp2}>
-                <View style={styles.ticket}>
-                    <TicketPlaceHolder />
-                    <Text style={styles.buttonText}>{ticketType2}: {countdown2}</Text>
-                </View>
-            </TicketsCont>
-            <TicketsCont style={styles.temp3}>
-
-                <View style={styles.ticket}>
-                    <TicketPlaceHolder />
-                    <Text style={styles.buttonText}>{ticketType3}: {countdown3}</Text>
-                </View>
-            </TicketsCont>
-
-
-
-        </Container>
+            </Container>
+        </ThemeProvider>
     );
 }
 
 const styles = StyleSheet.create({
-
+    body: {
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginVertical: 'auto',
+        height: '64%'
+    },
+    iconCont: {
+        alignContent: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+    },
+    plusIcon: {
+        paddingLeft: 5,
+    },
     addTicket: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -275,19 +379,21 @@ const styles = StyleSheet.create({
     },
 
     ticket: {
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 15,
         alignItems: 'center',
         flexDirection: 'row',
         marginBottom: 20,
         height: 55,
         width: '80%',
         backgroundColor: '#fff',
-        borderColor: '#009ddc',
-        borderWidth: 2,
+        // borderColor: '#222222',
+        // borderWidth: 2,
         borderRadius: 10,
         shadowColor: '#252B42',
         shadowOpacity: 0.5,
-        shadowOffset: { width: 0, height: 4 },
+        shadowRadius: 2,
+        shadowOffset: { width: 0, height: 0 },
 
     },
     addButtonText: {
@@ -295,7 +401,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         lineHeight: 24,
         letterSpacing: 0,
-        color: '#009ddc',
+        color: COLORS.CAROLINABLUE,
         marginHorizontal: '5%',
     },
     buttonText: {
@@ -303,19 +409,53 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         lineHeight: 24,
         letterSpacing: 0,
-        color: '#009ddc',
-        paddingHorizontal: '5%',
-        position: 'absolute',
-        left: '28%'
+        color: '#222222',
+        // paddingHorizontal: '5%',
 
     },
-    // temp1: {
-    //     display: 'none',
+    nameStyle: {
+        alignSelf: 'flex-start',
+        marginLeft: '11%',
+        marginBottom: '2%',
+        color: '#222222',
+        fontStyle: 'italic',
+    },
+    textInput: {
+        flexDirection: 'row',
+        alignContent: 'center',
+        width: '100%',
+    },
+    // bg1: {
+    //     // display: 'none',
+    //     backgroundColor: COLORS.CAROLINABLUE,
     // },
-    // temp2: {
-    //     display: 'none',
+    // bg2: {
+    //     // display: 'none',
+    //     backgroundColor: COLORS.CONCESSION,
     // },
-    // temp3: {
-    //     display: 'none',
+    // bg3: {
+    //     // display: 'none',
+    //     backgroundColor: COLORS.CAROLINABLUE,
     // },
+
+
+    temp1: {
+        // display: 'none',
+    },
+    temp2: {
+        // display: 'none',
+    },
+    temp3: {
+        // display: 'none',
+    },
 })
+
+
+
+{/* <ParentButtonCont>
+                <Pressable style={styles.addTicket}
+                    onPress={AddTempTicket}
+                >
+                    <Text style={styles.addButtonText}>Add Tickets</Text>
+                </Pressable>
+            </ParentButtonCont> */}
