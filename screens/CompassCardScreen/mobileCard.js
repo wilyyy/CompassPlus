@@ -263,8 +263,9 @@ export default function CompassCardScreen() {
     });
 
     // i close tab!
-    function confirmTempTicket() {
+    function confirmTempTicket(passPaymentType, zoneAmount, zoneType) {
         topTemp.value = withSpring(dimensions.height + 300);
+        console.log(zoneType);
     }
 
     // ---------- TICKET Temp ANIMATIONS END ----------
@@ -292,7 +293,7 @@ export default function CompassCardScreen() {
                         />
                     </AddPayment>
                 </TopContainer>
-                <Text style={styles.TapQueue}>Tap Card to Pay</Text>
+                <Text style={styles.TapQueue}>Pay, reload, and manage</Text>
                 <CardSwipeTest
                     handleAddSheetONE={handlePassReload}
                     handleAddSheetTWO={handleTicketReload}

@@ -23,7 +23,7 @@ const CardSwipeTest = ({
     ticketAutoReload = () => { },
     addTempTicket = () => { },
 }) => {
-    const scrollX = useRef(new Animated.Value(0)).current;
+    const scrollX = new Animated.Value(0);
 
     const { width: windowWidth } = useWindowDimensions();
 

@@ -70,20 +70,20 @@ const Hr = styled.View`
     align-self: center;
 `;
 
-function setVisability() {
-    if (selected == 0) {
-        setTempAmount(0);
-    }
-    if (selected == 1) {
-        setTempAmount(1);
-    }
-    if (selected == 2) {
-        setTempAmount(2);
-    }
-    if (selected == 3) {
-        setTempAmount(3);
-    }
-}
+// function setVisability() {
+//     if (selected == 0) {
+//         setTempAmount(0);
+//     }
+//     if (selected == 1) {
+//         setTempAmount(1);
+//     }
+//     if (selected == 2) {
+//         setTempAmount(2);
+//     }
+//     if (selected == 3) {
+//         setTempAmount(3);
+//     }
+// }
 
 
 
@@ -107,9 +107,9 @@ export default function AddCardManager({
     const [ticket2Amount, set2Ticket1Amount] = useState(0);
     const [ticket3Amount, set3Ticket1Amount] = useState(0);
 
-    const [sTicket1, setSTicket1] = useState('');
-    const [sTicket2, setSTicket2] = useState('');
-    const [sTicket3, setSTicket3] = useState('');
+    const [sTicket1, setSTicket1] = useState(false);
+    const [sTicket2, setSTicket2] = useState(false);
+    const [sTicket3, setSTicket3] = useState(false);
 
 
     //ticket 1 states
@@ -119,37 +119,37 @@ export default function AddCardManager({
     }
     if (ticket1Amount === 2) {
         ticketType1 = '1-Zone';
-        ticketCol2 = 'blue';
+        ticketCol1 = 'blue';
     }
     if (ticket1Amount === 3) {
         ticketType1 = '2-Zone';
-        ticketCol3 = 'blue';
+        ticketCol1 = 'blue';
     }
     if (ticket1Amount === 4) {
         ticketType1 = '3-Zone';
-        ticketCol4 = 'blue';
+        ticketCol1 = 'blue';
     }
     if (ticket1Amount === 5) {
         ticketType1 = 'Day Pass';
-        ticketCol5 = 'orange';
+        ticketCol1 = 'orange';
     }
     if (ticket1Amount === 6) {
         ticketType1 = '1-Zone';
-        ticketCol6 = 'orange';
+        ticketCol1 = 'orange';
     }
     if (ticket1Amount === 7) {
         ticketType1 = '2-Zone';
-        ticketCol5 = 'orange';
+        ticketCol1 = 'orange';
     }
     if (ticket1Amount === 8) {
         ticketType1 = '3-Zone';
-        ticketCol5 = 'orange';
+        ticketCol1 = 'orange';
     }
 
     //ticket 2 states
     if (ticket2Amount === 1) {
         ticketType1 = 'Day Pass';
-        ticketCol1 = 'blue';
+        ticketCol2 = 'blue';
     }
     if (ticket2Amount === 2) {
         ticketType1 = '1-Zone';
@@ -157,27 +157,27 @@ export default function AddCardManager({
     }
     if (ticket2Amount === 3) {
         ticketType1 = '2-Zone';
-        ticketCol3 = 'blue';
+        ticketCol2 = 'blue';
     }
     if (ticket2Amount === 4) {
         ticketType1 = '3-Zone';
-        ticketCol4 = 'blue';
+        ticketCol2 = 'blue';
     }
     if (ticket2Amount === 5) {
         ticketType1 = 'Day Pass';
-        ticketCol5 = 'orange';
+        ticketCol2 = 'orange';
     }
     if (ticket2Amount === 6) {
         ticketType1 = '1-Zone';
-        ticketCol6 = 'orange';
+        ticketCol2 = 'orange';
     }
     if (ticket2Amount === 7) {
         ticketType1 = '2-Zone';
-        ticketCol5 = 'orange';
+        ticketCol2 = 'orange';
     }
     if (ticket2Amount === 8) {
         ticketType1 = '3-Zone';
-        ticketCol5 = 'orange';
+        ticketCol2 = 'orange';
     }
 
     //ticket 3 states
@@ -218,18 +218,30 @@ export default function AddCardManager({
     // if (tempAmount === 0) {
     //     //align add ticket button to center of card
     //     //set display none to all temp tickets
+    //     setSTicket1('none');
+    //     setSTicket2('none');
+    //     setSTicket3('none');
     // }
 
     // if (tempAmount === 1) {
     //     //set display on for temp ticket 1
+    //     setSTicket1('initial');
+    //     setSTicket2('none');
+    //     setSTicket3('none');
     // }
 
     // if (tempAmount === 2) {
     //     //set display on for temp ticket 1 & 2
+    //     setSTicket1('initial');
+    //     setSTicket2('initial');
+    //     setSTicket3('none');
     // }
 
     // if (tempAmount == 3) {
     //     //set display on for temp ticket 1, 2, & 3
+    //     setSTicket1('initial');
+    //     setSTicket2('initial');
+    //     setSTicket3('initial');
     // }
 
     const hours24 = 86400000;
@@ -425,29 +437,32 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         width: '100%',
     },
+    //need to make background color into a state too
     // bg1: {
-    //     // display: 'none',
-    //     backgroundColor: COLORS.CAROLINABLUE,
+    //     display: { sTicket1 },
+    //     backgroundColor: { ticketCol1 },
+    //     borderColor: 'red',
+    //     borderWidth: 2,
     // },
     // bg2: {
     //     // display: 'none',
-    //     backgroundColor: COLORS.CONCESSION,
+    //     backgroundColor: { ticketCol2 },
     // },
     // bg3: {
     //     // display: 'none',
-    //     backgroundColor: COLORS.CAROLINABLUE,
+    //     backgroundColor: { ticketCol3 },
     // },
 
 
-    temp1: {
-        // display: 'none',
-    },
-    temp2: {
-        // display: 'none',
-    },
-    temp3: {
-        // display: 'none',
-    },
+    // temp1: {
+    //     display: { sTicket1 },
+    // },
+    // temp2: {
+    //     display: { sTicket2 },
+    // },
+    // temp3: {
+    //     display: { sTicket3 },
+    // },
 })
 
 

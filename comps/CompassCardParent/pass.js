@@ -116,8 +116,8 @@ const CompassCardBarcode = styled.Image`
 
 const BackBodyCont = styled.View`
     padding: 0 20px;
-    height: 44%;
-
+    height: 49%;
+    justify-content: center;
     /* border-width: 2px;
     border-color:green; */
 `;
@@ -163,9 +163,8 @@ export default function Pass({
     barcodeId = "Compass No: 016372 9281 9273 CVN 459",
     cardType = "Pass",
     titleCardType = "December Pass",
-    expiration = "December",
+    expiration = "December ",
     phrasing = "on",
-    buttonTitle = "Reload",
     // onManagePress = () => { },
     onAddFundsPress = () => { },
     makeDefault = false,
@@ -223,22 +222,17 @@ export default function Pass({
                 </Pressable>
                 <CompassPlaceHolder />
                 <BackBodyCont>
+                    <Pressable style={styles.frontFundsButton} onPress={onAddFundsPress}>
+                        <Text style={styles.buttonText}>Reload</Text>
+                    </Pressable>
                     <ExpirationCont>
-                        <H2>{titleCardType}</H2>
-                        <ExpirationTitle>Expires {phrasing}: </ExpirationTitle>
-                        <ExpirationDateFront>{expiration}</ExpirationDateFront>
+                        <H2>Pass expires {expiration}</H2>
+
                     </ExpirationCont>
-                    <Hr />
                 </BackBodyCont>
                 <CardFooter>
-                    {/* <ButtonCont> */}
-                    {/* <Pressable style={styles.button} onPress={goManage}>
-                            <Text style={styles.buttonText}>Manage</Text>
-                        </Pressable> */}
-                    <Pressable style={styles.frontFundsButton} onPress={onAddFundsPress}>
-                        <Text style={styles.buttonText}>{buttonTitle}</Text>
-                    </Pressable>
-                    {/* </ButtonCont> */}
+
+
                 </CardFooter>
 
             </Container>
@@ -386,7 +380,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
     },
     frontFundsButton: {
-        alignSelf: 'flex-end',
+        alignSelf: 'center',
         // marginRight: 20,
         justifyContent: 'center',
         alignItems: 'center',

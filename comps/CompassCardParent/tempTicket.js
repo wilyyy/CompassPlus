@@ -143,7 +143,8 @@ export default function TempTicket({
     zoneAmount = '$100.25',
     passPaymentType = 'Visa',
     month = 'December',
-    tempTicketConfirm = () => { },
+    tempTicketConfirm = (passPaymentType, zoneAmount, zoneType) => { },
+
 
 }) {
 
@@ -369,6 +370,7 @@ export default function TempTicket({
 
             <TouchableOpacity
                 onPress={tempTicketConfirm}
+                // onPress={tempTicketConfirm(passPaymentType, zoneAmount, zoneType)}
                 style={styles.TransferButton}
             >
                 <ButtonText>Purchase</ButtonText>
