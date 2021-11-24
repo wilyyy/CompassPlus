@@ -59,8 +59,10 @@ const PasswordChange = ({navigation}) => {
                             fontSize: 20 } 
                         }}
                     containerStyle={{
-                        backgroundColor: COLORS.CAROLINABLUE, 
-                        height: 80}}
+                        backgroundColor: COLORS.SPACECADET, 
+                        height: 100,
+                        borderBottomWidth: 0,
+                    }}
                     />
                 <Box />
                     <EditColumn>

@@ -22,12 +22,30 @@ import LoginScreen from './screens/Authentication/loginScreen';
 import ChangePasswordScreen from './screens/Profile/ChangePasswordScreen';
 import BalanceHistoryCard from './comps/BalanceHistory/BalanceHistoryCard';
 import NotificationPreferencesScreen from './screens/Profile/NotificationPreferencesScreen';
+import LoginScreenNew from './screens/Authentication/SignInScreenNew';
+import welcomeBackScreen from './screens/Authentication/welcomeBackScreen';
+import loginScreenNew from './screens/Authentication/LoginScreenNew';
+import createAccountScreenNew from './screens/Authentication/createAccountScreenNew';
+import authenticationScreen from './screens/Authentication/authenticationScreen';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+
+  // const [userLogged, setUserLogged] = useState(false);
+
+  // useEffect(() => {
+  //   const authListener = firebase.auth().onAuthStateChanged((user) => {
+  //     setUserLogged(user ? true : false);
+  //   });
+  //   return authListener;
+  // }, []);
+
+
   return (
     <NavigationContainer>
+
       <Stack.Navigator initialRouteName='Authentication'
         screenOptions={{
           headerShown: false,
@@ -48,6 +66,11 @@ export default function App() {
         <Stack.Screen name='ChangePassword' component={ChangePasswordScreen} />
         <Stack.Screen name='BalanceHistory' component={BalanceHistoryCard} />
         <Stack.Screen name='NotificationPreferences' component={NotificationPreferencesScreen} />
+        <Stack.Screen name='SignIn' component={LoginScreenNew} />
+        <Stack.Screen name='WelcomeBack' component={welcomeBackScreen} />
+        <Stack.Screen name='LoginNew' component={loginScreenNew} />
+        <Stack.Screen name='CreateAccountNew' component={createAccountScreenNew} />
+        <Stack.Screen name='Authentication' component={authenticationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

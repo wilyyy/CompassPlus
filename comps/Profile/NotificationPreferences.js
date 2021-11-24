@@ -20,7 +20,28 @@ const windowHeight = Dimensions.get('window').height;
 
 
 const Box = styled.View `
-    height: 15px;
+    height: 20px;
+`;
+
+const TopContainer = styled.View `
+    width: ${windowWidth};
+    height: 150px;
+    background-color: #fff;
+`;
+
+const DescriptionContainer = styled.View`
+    width: 85%;
+    height: 150px;
+    justify-content: center;
+    align-self: center;
+`;
+
+const DescriptionText = styled.Text`
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    align-items: center;
+    color: ${COLORS.DAVYSGREY}
 `;
 
 const SectionContainer = styled.View`
@@ -91,10 +112,16 @@ const NotificationPreferences = ({navigation}) => {
                             fontWeight: 'bold', 
                             fontSize: 20 } }}
                     containerStyle={{
-                        backgroundColor: COLORS.CAROLINABLUE, 
-                        height: 80}}
+                        backgroundColor: COLORS.SPACECADET, 
+                        height: 100,
+                        borderBottomWidth: 0,
+                    }}
                     />
-                <Box />
+                <TopContainer>
+                    <DescriptionContainer>
+                        <DescriptionText> When you download CompassPlus, all notifications are disabled automatically. If you want to receive route and/or news updates switch on your notifications. Come here to change your preferences anytime. 🪄 </DescriptionText>
+                    </DescriptionContainer>
+               </TopContainer>
                 <SectionContainer>
                     <SectionText>Route Updates</SectionText>
                 </SectionContainer>
