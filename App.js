@@ -28,7 +28,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Map'
+      <Stack.Navigator initialRouteName='MobileCard'
         screenOptions={{
           headerShown: false,
           animation: 'none',
