@@ -81,7 +81,6 @@ export default function SignUpTransitCard({
     typeOfRideText = "Bus",
     icon = "bus",
     icon_type = "font-awesome",
-    routeIconText = "019",
     stopNameText = "Metrotown Stn",
     locationText = "Eastbound W Pender @ Nicola St"
 }) {
@@ -100,6 +99,10 @@ export default function SignUpTransitCard({
     const ToggleFillHeart = () => setFillHeart(previousState => !previousState);
     const [greenCard, setGreenCard] = useState(false);
     const ToggleGreenCard = () => setGreenCard (previousState => !previousState)
+
+    // random icon for now
+    const RandomCounter = Math.floor(Math.random() * 3) + 1;
+    const [randomIcon, setRandomIcon] = useState(RandomCounter);
     
     const PressHeart = () => {
         ToggleFillHeart();
@@ -117,7 +120,12 @@ export default function SignUpTransitCard({
                 </Trapezoid>
                 <TransitCard bgcolor={greenCard ? COLORS.LIMEGREEN : COLORS.SPACECADET}>
                     <RouteIconCont>
-                        <RouteH1 h1color={greenCard ? COLORS.LIMEGREEN : COLORS.SPACECADET}>{routeIconText}</RouteH1>
+                        <Icon 
+                            name={randomIcon === 1 ? "boat" : randomIcon === 2 ? "train" : "bus"} 
+                            type={randomIcon  === 1 ? "ionicon" : randomIcon === 2 ? "font-awesome-5" : "font-awesome"}
+                            size={36}
+                            color={greenCard ? COLORS.LIMEGREEN : COLORS.SPACECADET}
+                        />
                     </RouteIconCont>
                     <RouteInfo>
                         <Text style={styles.text_bold}>{stopNameText}</Text>
