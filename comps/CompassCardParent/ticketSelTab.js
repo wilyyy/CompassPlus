@@ -18,7 +18,7 @@ const Item = ({ item, onPress, onPressOut, backgroundColor, textColor }) => (
 const TicketTab = ({
     closeAmount = () => { },
 }) => {
-    const [selectedId, setSelectedId] = useState(null);
+    const [selectedId, setSelectedId] = useState({});
 
 
     useEffect(() => {
@@ -29,8 +29,9 @@ const TicketTab = ({
     }, [selectedId]);
 
     const renderItem = ({ item }) => {
-        const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
-        const color = item.id === selectedId ? 'white' : 'black';
+        console.log(item, selectedId)
+        const backgroundColor = item.id === selectedId.id ? "#5BCF49" : "transparent";
+        const color = item.id === selectedId.id ? 'white' : 'black';
 
         return (
             <Item

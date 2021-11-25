@@ -42,7 +42,7 @@ export default function App() {
   //   return authListener;
   // }, []);
 
-  
+
   return (
     <NavigationContainer>
 

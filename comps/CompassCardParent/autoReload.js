@@ -297,7 +297,7 @@ export default function AddFundsTabPass({
             setBelow(100);
         }
 
-        Animated.timing(animationPay, {
+        Animated.timing(animationBelow, {
             toValue: 0,
             duration: 100,
             useNativeDriver: false,
