@@ -107,7 +107,7 @@ const HomeCard = ({
                     <TempCenter>
                         <Container onPress={SeeSavedRides}>
                             <Row>
-                                <Image style={styles.image} source={img} />
+                                <Image style={styles.image} source={require('../../assets/SavedTrips.png')} />
                                 <TextCont>
                                     <H1>Saved Trips</H1>
                                     <H2>Access your saved trips for quicker route planning</H2>
@@ -140,7 +140,7 @@ const HomeCard = ({
                 <TempCenter>
                     <Container onPress={() => navigation.navigate('MobileCard')}>
                         <Row>
-                            <Image style={styles.image} source={img} />
+                            <Image style={styles.image} source={require('../../assets/ManageCards.png')} />
                             <TextCont>
                                 <H1>Manage your Card</H1>
                                 <H2>Check your balance and top up wherever you are.</H2>
@@ -159,7 +159,7 @@ export default HomeCard;
 const styles = StyleSheet.create({
     image: {
         display: 'flex',
-        margin: 0,
+        marginLeft: 25,
         justifyContent: 'center',
         alignItems: 'center',
         width: 60,

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Dimensions, StyleSheet, Image, ImageBackground, TextInput, TouchableOpacity, Text } from 'react-native';
+import {Dimensions, StyleSheet, Image, ImageBackground, TextInput, TouchableOpacity, Text} from 'react-native';
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import * as Google from 'expo-google-app-auth';
@@ -171,7 +171,7 @@ export default function loginScreenNew ({navigation}) {
                     <Line/>
                 </AlternativeLoginContainer>
                 <BoxSmall />
-                <TouchableOpacity style={styles.buttonTwo} onPress={SignInWithGoogle}>
+                <TouchableOpacity style={styles.buttonTwo} onPress={()=> SignInWithGoogle(navigation)}>
                     <GoogleButton>
                         <Image 
                             style={styles.googleLogo} 
