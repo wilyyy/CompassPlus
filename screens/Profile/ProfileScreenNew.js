@@ -2,9 +2,9 @@ import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 
 import NavBar from '../../comps/NavBar';
-import ProfileCard from '../../comps/Profile/ProfileCard.js';
-import NotificationCard from '../../comps/Profile/NotificationCard.js';
-import SupportCard from '../../comps/Profile/SupportCard.js';
+import ProfileCard from '../../comps/Profile/profileCard.js';
+import NotificationCard from '../../comps/Profile/notificationCard.js';
+import SupportCard from '../../comps/Profile/supportCard.js';
 
 
 const ProfileScreenNew = () => {
