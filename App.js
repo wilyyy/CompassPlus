@@ -47,7 +47,7 @@ export default function App() {
   return (
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName='Authentication'
+      <Stack.Navigator initialRouteName='MobileCard'
         screenOptions={{
           headerShown: false,
           animation: 'none',
