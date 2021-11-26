@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {Dimensions, StyleSheet, Image, ImageBackground, TextInput, TouchableOpacity, Text } from 'react-native';
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from './firebase.js';
 import KeyBoardAvoidingWrapper from '../../comps/Global/KeyboardAvoidingWrapper.js';
+import axios from 'axios';
+import { getAuth } from '@firebase/auth';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -41,12 +43,17 @@ const BoxLarge = styled.View `
 `;
 
 export default function createAccountScreenNew ({navigation}) {
-    navigation = useNavigation()
+    navigation = useNavigation();
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [cardNumber, setCardNumber] = useState('')
+    //database fb_uid association
+    // const associateAuth = getAuth();
+    // const currentUserFb_uid = associateAuth.currentUser.uid;
+    
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [cardNumber, setCardNumber] = useState('');
 
     const handleSignUp = () => {
         auth
@@ -55,11 +62,24 @@ export default function createAccountScreenNew ({navigation}) {
                 // Signed in 
                 const user = userCredential.user;
                 console.log('Registered with: ', user.email);
+                axios.post('/users.php', {
+                    fb_uid: user.uid,
+                    first_name: 'Fred',
+                    last_name: 'Flintstone',
+                    age: '20'
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                        navigation.navigate('Benefits');
+                    })
+                    .catch(function (error) {
+                    console.log(error);
+                    });
               })
               .catch((error) => {
                 alert(error.message)
               });
-              navigation.navigate('Benefits');
+        
     }
 
     return (

@@ -6,6 +6,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, TransitionPresets } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 
+import axios from 'axios';
+axios.defaults.baseURL = "http://df0e-142-232-219-83.ngrok.io/Compassplus-serverside/api";
+
 // go to storybook/stories/Button/Button.stories.js to add components
 // export { default } from './storybook';
 
@@ -47,7 +50,7 @@ export default function App() {
   return (
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName='MobileCard'
+      <Stack.Navigator initialRouteName='Authentication'
         screenOptions={{
           headerShown: false,
           animation: 'none',
