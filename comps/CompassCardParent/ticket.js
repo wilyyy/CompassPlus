@@ -164,7 +164,7 @@ export default function Ticket({
     onWalletPress = () => { },
     barcodeId = "Compass No: 016372 9281 9273 CVN 459",
     expiration = "90 minutes",
-    onAddFundsPress = () => { },
+    reloadStoredValue = () => { },
     makeDefault = false,
     triggerDefault = () => { },
 }) {
@@ -228,7 +228,7 @@ export default function Ticket({
                     {/* <Pressable style={styles.button} onPress={goManage}>
                             <Text style={styles.buttonText}>Manage</Text>
                         </Pressable> */}
-                    <Pressable style={styles.frontFundsButton} onPress={onAddFundsPress}>
+                    <Pressable style={styles.frontFundsButton} onPress={reloadStoredValue}>
                         <Text style={styles.buttonText}>Add Funds</Text>
                     </Pressable>
                     {/* </ButtonCont> */}
@@ -316,7 +316,7 @@ export default function Ticket({
                     </SettingCont>
                 </BackBodyCont>
                 <CardFooter>
-                    <Pressable style={styles.backFundsButton} onPress={onAddFundsPress}>
+                    <Pressable style={styles.backFundsButton} onPress={reloadStoredValue}>
                         <Text style={styles.buttonText}>Add Funds</Text>
                     </Pressable>
                 </CardFooter>

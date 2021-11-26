@@ -4,14 +4,21 @@ import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
 import { Icon } from 'react-native-elements';
 
+const Spacing = styled.View`
 
+    border-width: 2px;
+    border-color: red;
+    padding-right:20px;
+`;
 
 const Container = styled.View`
     width: 350px;
-    height: 550px;
+    height: 68%;
+    min-height: 550px;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 15px;
-    margin: 20px 10px 0px 10px;
+    margin-top: 20px;
+    margin-right:30px;
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 const CompassPlaceHolder = styled.View`
@@ -20,11 +27,34 @@ const CompassPlaceHolder = styled.View`
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     align-self: center;
+    padding:5%;
     background-color: ${COLORS.CAROLINABLUE};
     box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.75);
-
 `;
 
+const CardTitle = styled.Text`
+font-size: 18px;
+    font-family: 'Ubuntu_700Bold';
+    line-height: 24px;
+    letter-spacing: 0;
+    color: ${COLORS.SPACECADET};
+`;
+
+const H1 = styled.Text`
+font-size: 24px;
+    font-family: 'Ubuntu_700Bold';
+    color: ${COLORS.SPACECADET};
+    margin-bottom: 5%;
+`;
+
+const H3 = styled.Text`
+    font-size: 16px;
+    font-family: 'Ubuntu_400Regular';
+    line-height: 24px;
+    letter-spacing: 0;
+    color: ${COLORS.SPACECADET};
+
+`;
 
 const ExpirationCont = styled.View`
     flex-direction: column;
@@ -118,20 +148,19 @@ const BackBodyCont = styled.View`
     padding: 0 20px;
     height: 49%;
     justify-content: center;
-    /* border-width: 2px;
-    border-color:green; */
+    align-items: center;
+    border-width: 2px;
+    border-color:green;
 `;
 
-const CardFooter = styled.View`
-    align-self: center;
-    width: 90%;
-    /* margin-top:12%; */
+const CardHeader = styled.View`
+    padding: 0 20px;
+    justify-content: center;
+    align-items: center;
     height: 15%;
-
-    /* flex-direction: row; */
-
-    /* border-width: 2px;
-    border-color:red; */
+/* 
+     border-width: 2px;
+    border-color:red;  */
 `;
 const IconsFrontCont = styled.View`
     width: auto;
@@ -161,14 +190,14 @@ export default function Pass({
     // cardSide = true, // need to put state for this in app.js?
     onWalletPress = () => { },
     barcodeId = "Compass No: 016372 9281 9273 CVN 459",
-    cardType = "Pass",
-    titleCardType = "December Pass",
     expiration = "December ",
-    phrasing = "on",
     // onManagePress = () => { },
-    onAddFundsPress = () => { },
+    reloadPass = () => { },
+    reloadStoredValue = () => { },
     makeDefault = false,
     triggerDefault = () => { },
+    onAutoReloadPress = () => { },
+
 }) {
 
     //to manage toggling between front and back of card
@@ -207,6 +236,7 @@ export default function Pass({
     //front of card
     if (cardSide === true) {
         return (
+            // <Spacing>
             <Container>
                 <Pressable
                     onPress={goManage}
@@ -220,22 +250,30 @@ export default function Pass({
                         reverse={true}
                     />
                 </Pressable>
-                <CompassPlaceHolder />
+                <CompassPlaceHolder>
+                    <CardTitle>My Compass Card</CardTitle>
+                </CompassPlaceHolder>
+                <CardHeader>
+                    <H1>Shake to Pay</H1>
+                </CardHeader>
                 <BackBodyCont>
-                    <Pressable style={styles.frontFundsButton} onPress={onAddFundsPress}>
-                        <Text style={styles.buttonText}>Reload</Text>
+
+                    <Pressable style={styles.frontFundsButton} onPress={reloadPass}>
+                        <Text style={styles.buttonText}>Reload Pass</Text>
                     </Pressable>
                     <ExpirationCont>
-                        <H2>Pass expires {expiration}</H2>
+                        <H3>Pass expires {expiration}</H3>
 
                     </ExpirationCont>
+                    <Pressable style={styles.frontFundsButton} onPress={reloadStoredValue}>
+                        <Text style={styles.buttonText}>Add Funds</Text>
+                    </Pressable>
+                    <H3>Pass expires {expiration}</H3>
+
                 </BackBodyCont>
-                <CardFooter>
-
-
-                </CardFooter>
 
             </Container>
+            // </Spacing>
         );
     }
 
@@ -265,6 +303,7 @@ export default function Pass({
 
                 <BackBodyCont>
                     <H2>{barcodeId}</H2>
+                    <Text>Manage Auto Reload</Text>
                     <SettingCont>
                         <SettingsContLeft>
                             <Icon
@@ -273,7 +312,7 @@ export default function Pass({
                                 color={COLORS.SPACECADET}
                                 size={30}
                             />
-                            <MenuItem>Make default</MenuItem>
+                            <MenuItem>Monthly Pass</MenuItem>
                         </SettingsContLeft>
                         <Switch
                             trackColor={{ false: '#222222', true: '#009DDC' }}
@@ -287,27 +326,21 @@ export default function Pass({
                     <SettingCont>
                         <SettingsContLeft>
                             <Icon
-                                name='reload1'
-                                type='antdesign'
+                                name='add-task'
+                                type='materialicons'
                                 color={COLORS.SPACECADET}
                                 size={30}
                             />
-                            <MenuItem>Auto reload</MenuItem>
+                            <MenuItem>Stored Value</MenuItem>
                         </SettingsContLeft>
-                        {/* <Button
+                        <Button
                             onPress={onAutoReloadPress}
                             title="Edit"
                             color="blue"
-                        /> */}
-                        <Switch
-                            trackColor={{ false: '#222222', true: '#009DDC' }}
-                            thumbColor={autoReload ? '#fff' : '#fff'}
-                            ios_backgroundColor='#222222'
-                            onValueChange={toggleAutoReload}
-                            value={autoReload}
-                            style={styles.switch}
                         />
+
                     </SettingCont>
+
 
                     <SettingCont>
                         <TouchableWithoutFeedback onPress={onWalletPress}>
@@ -323,11 +356,11 @@ export default function Pass({
                         </TouchableWithoutFeedback>
                     </SettingCont>
                 </BackBodyCont>
-                <CardFooter>
-                    <Pressable style={styles.backFundsButton} onPress={onAddFundsPress}>
+                <CardHeader>
+                    <Pressable style={styles.backFundsButton} onPress={reloadPass}>
                         <Text style={styles.buttonText}>Add Funds</Text>
                     </Pressable>
-                </CardFooter>
+                </CardHeader>
             </Container>
 
         );
@@ -393,6 +426,7 @@ const styles = StyleSheet.create({
         shadowColor: '#252B42',
         shadowOpacity: 0.5,
         shadowOffset: { width: 0, height: 4 },
+        // marginVertical: '2%',
         // top: '80%'
     }
 })
@@ -428,3 +462,29 @@ const styles = StyleSheet.create({
                         </SettingsContLeft>
                     </TouchableWithoutFeedback>
                 </SettingCont> */}
+
+
+                // <SettingCont>
+                //         <SettingsContLeft>
+                //             <Icon
+                //                 name='reload1'
+                //                 type='antdesign'
+                //                 color={COLORS.SPACECADET}
+                //                 size={30}
+                //             />
+                //             <MenuItem>Auto reload</MenuItem>
+                //         </SettingsContLeft>
+                //         {/* <Button
+                //             onPress={onAutoReloadPress}
+                //             title="Edit"
+                //             color="blue"
+                //         /> */}
+                //         <Switch
+                //             trackColor={{ false: '#222222', true: '#009DDC' }}
+                //             thumbColor={autoReload ? '#fff' : '#fff'}
+                //             ios_backgroundColor='#222222'
+                //             onValueChange={toggleAutoReload}
+                //             value={autoReload}
+                //             style={styles.switch}
+                //         />
+                //     </SettingCont>
