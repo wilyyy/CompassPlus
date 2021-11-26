@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import {
     SafeAreaView,
+    Dimensions,
     ScrollView,
     Text,
     StyleSheet,
@@ -9,12 +10,21 @@ import {
     Animated,
     useWindowDimensions
 } from "react-native";
+import styled from "styled-components";
 
 import AddCardManager from "../../comps/CompassCardParent/addCardManager";
 import Pass from "./pass.js";
 import Ticket from "./ticket";
 
-const dots = new Array(3).fill();
+const windowWidth = Dimensions.get('window').width;
+const scrollWidth = windowWidth * 4;
+const windowHeight = Dimensions.get('window').height;
+
+// const SV = styled.ScrollView`
+//     /* width: ${scrollWidth}; */
+// `;
+
+const dots = new Array(2).fill();
 
 const CardSwipeTest = ({
     handleAddSheetONE = () => { },
@@ -31,8 +41,9 @@ const CardSwipeTest = ({
     //const [passDefault, setPassDefault] = useState(false);
     console.log(ticketDefault, "Ticket D")
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView >
             <ScrollView
+                contentContainerStyle={styles.container}
                 horizontal={true}
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
@@ -48,20 +59,21 @@ const CardSwipeTest = ({
                 scrollEventThrottle={1}
             >
                 <Pass
-                    onAddFundsPress={handleAddSheetONE}
+                    reloadPass={handleAddSheetONE}
                     onAutoReloadPress={passAutoReload}
-
+                    reloadStoredValue={handleAddSheetTWO}
                     triggerDefault={() => { setTicketDefault(false) }}
                     makeDefault={!ticketDefault}
+                    onAutoReloadPress={ticketAutoReload}
                 />
-                <Ticket
+                {/* <Ticket
                     onAddFundsPress={handleAddSheetTWO}
                     expiration='90 minutes'
                     onAutoReloadPress={ticketAutoReload}
                     makeDefault={ticketDefault}
                     triggerDefault={() => { setTicketDefault(true) }}
 
-                />
+                /> */}
                 <AddCardManager
                     AddTempTicket={addTempTicket}
                 />
@@ -92,8 +104,11 @@ const CardSwipeTest = ({
 
 const styles = StyleSheet.create({
     container: {
-        height: 590,
-        paddingHorizontal: '2%',
+        height: '80%',
+        width: 770,
+        // paddingHorizontal: '5%',
+        left: '5%'
+        // justifyContent: 'space-between'
     },
 
     normalDot: {
@@ -111,7 +126,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         // borderWidth: 2,
         // borderColor: 'purple',
-        top: 15
+        top: -205,
 
     }
 });

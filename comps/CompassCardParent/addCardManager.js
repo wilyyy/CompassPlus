@@ -9,14 +9,21 @@ import { width } from 'dom-helpers';
 import { TextInput } from 'react-native-gesture-handler';
 import { words } from 'lodash';
 
+// const Spacing = styled.View`
+
+//     border-width: 2px;
+//     border-color: red;
+//     margin-right:20px;
+// `;
 
 const Container = styled.View`
     width: 350px;
-    height: 550px;
+    height:68%;
+    min-height: 550px;
     background-color: #fff;
     border-radius: 15px;
-    margin: 80px 10px 0px 10px;
-    top:-6%;
+    margin-top: 20px;
+    /* right:2%; */
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
@@ -29,10 +36,20 @@ const CompassPlaceHolder = styled.Pressable`
     background-color: ${COLORS.ALICEBLUE};
     border-width: 4px;
     border-style: dotted;
+    padding:5%;
     border-color: ${COLORS.CAROLINABLUE};
     box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.75);
 
 `;
+
+const CardTitle = styled.Text`
+font-size: 18px;
+    font-family: 'Ubuntu_700Bold';
+    line-height: 24px;
+    letter-spacing: 0;
+    color: ${COLORS.SPACECADET};
+`;
+
 
 const ParentButtonCont = styled.View`
     height:100px;
@@ -249,15 +266,17 @@ export default function AddCardManager({
 
     return (
         <ThemeProvider>
+            {/* <Spacing> */}
             <Container>
                 <CompassPlaceHolder
                     onPress={AddTempTicket}
                 >
+                    <CardTitle>Temporary Tickets</CardTitle>
                     <View style={styles.iconCont}>
                         <Icon
                             name='plus'
                             type='antdesign'
-                            color={COLORS.CAROLINABLUE}
+                            color={COLORS.ALICEBLUE}
                             shadowOpacity={0.25}
                             shadowRadius={3}
                             shadowOffset={{ width: 0, height: 3 }}
@@ -354,6 +373,7 @@ export default function AddCardManager({
                     </TicketsCont>
                 </View>
             </Container>
+            {/* </Spacing> */}
         </ThemeProvider>
     );
 }
@@ -372,7 +392,8 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     plusIcon: {
-        paddingLeft: 5,
+        top: '-10%',
+
     },
     addTicket: {
         justifyContent: 'center',

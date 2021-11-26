@@ -27,7 +27,7 @@ export const TempTab = ({
     closeZone = () => { },
 
 }) => {
-    const [selectedId, setSelectedId] = useState(null);
+    const [selectedId, setSelectedId] = useState({});
 
     useEffect(() => {
 
@@ -37,8 +37,8 @@ export const TempTab = ({
     }, [selectedId]);
 
     const renderItem = ({ item }) => {
-        const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
-        const color = item.id === selectedId ? 'white' : 'black';
+        const backgroundColor = item.id === selectedId.id ? "#5BCF49" : "transparent";
+        const color = item.id === selectedId.id ? 'white' : 'black';
 
 
 
