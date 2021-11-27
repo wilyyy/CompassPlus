@@ -4,6 +4,8 @@ import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
 import { Icon } from 'react-native-elements';
 import LottieView from 'lottie-react-native';
+import CountDown from 'react-native-countdown-component';
+
 
 import {
     useFonts,
@@ -21,8 +23,8 @@ import {
 const Spacing = styled.View`
 
     border-width: 2px;
-    border-color: red;
-    padding-right:20px;
+    /* border-color: red;
+    padding-right:20px; */
 `;
 
 const Container = styled.View`
@@ -57,7 +59,15 @@ const H1 = styled.Text`
 font-size: 24px;
     font-family: 'Ubuntu_700Bold';
     color: ${COLORS.SPACECADET};
+    /* margin-bottom: 5%; */
+`;
+
+const H1Back = styled.Text`
+font-size: 24px;
+    font-family: 'Ubuntu_700Bold';
+    color: ${COLORS.SPACECADET};
     margin-bottom: 5%;
+    
 `;
 
 const H3 = styled.Text`
@@ -157,10 +167,20 @@ const CompassCardBarcode = styled.Image`
 
 `;
 
+const FrontBodyCont = styled.View`
+    margin: 0 50px;
+    height: 20%;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    /* border-width: 2px;
+    border-color:green; */
+    flex-direction: row;
+`;
+
 const BackBodyCont = styled.View`
-    padding: 0 20px;
-    height: 49%;
-    justify-content: center;
+    padding: 15px 20px 0;
+    height: 40%;
+    justify-content: flex-start;
     align-items: center;
     /* border-width: 2px;
     border-color:green; */
@@ -170,11 +190,26 @@ const CardHeader = styled.View`
     padding: 0 20px;
     justify-content: center;
     align-items: center;
-    height: 15%;
-/* 
-     border-width: 2px;
+    height: 40%;
+
+     /* border-width: 2px;
     border-color:red;  */
 `;
+
+const CardFooterBack = styled.View`
+    flex-direction: row;
+    align-items: center;
+    height: 20%;
+
+    margin: 0 50px;
+    /* height: 20%; */
+    justify-content: space-evenly;
+    align-items: flex-end;
+/* 
+      border-width: 2px;
+    border-color:red;   */
+`;
+
 const IconsFrontCont = styled.View`
     width: auto;
     align-items: center;
@@ -248,6 +283,8 @@ export default function Pass({
 
 
     var anim = useRef();
+    const minutes90 = 5400;
+    const month = 2419200;
     //front of card
     if (cardSide === true) {
         return (
@@ -281,23 +318,77 @@ export default function Pass({
                     />
                 </CompassPlaceHolder>
                 <CardHeader>
-                    <H1>Shake to Pay</H1>
-                </CardHeader>
-                <BackBodyCont>
+                    <H1>Time Remaining:</H1>
+                    <View style={[styles.ticket, styles.bg1]}>
+                        <Text style={styles.buttonText}>Active Trip:</Text>
 
-                    <Pressable style={styles.frontFundsButton} onPress={reloadPass}>
-                        <Text style={styles.buttonText}>Reload Pass</Text>
+                        <CountDown
+                            until={minutes90}
+                            onFinish={() => alert('dlt')}
+                            size={15}
+                            timeToShow={['H', 'M', 'S']}
+                            timeLabels={{ h: null, m: null, s: null }}
+                            showSeparator
+                            separatorStyle={COLORS.SPACECADET}
+                            digitStyle={{ backgroundColor: COLORS.MIDWAYBLUE }}
+                            digitTxtStyle={{ color: '#fff' }}
+                        />
+                    </View>
+                    <View style={[styles.ticket, styles.bg1]}>
+                        <Text style={styles.buttonText}>Pass:</Text>
+
+                        <CountDown
+                            until={month}
+                            onFinish={() => alert('dlt')}
+                            size={15}
+                            timeToShow={['D', 'H', 'M', 'S']}
+                            timeLabels={{ d: null, h: null, m: null, s: null }}
+                            showSeparator
+                            separatorStyle={COLORS.SPACECADET}
+                            digitStyle={{ backgroundColor: COLORS.MIDWAYBLUE }}
+                            digitTxtStyle={{ color: '#fff' }}
+                        />
+                    </View>
+                </CardHeader>
+                <FrontBodyCont>
+
+                    <Pressable
+                        style={styles.frontFundsButton}
+                        onPress={reloadPass}>
+
+                        <Icon
+                            name='idcard'
+                            type='antdesign'
+                            color={COLORS.SPACECADET}
+                            size={25}
+                            reverse={true}
+                        />
+                        <Text
+                        // style={styles.buttonText}
+                        >Reload Pass</Text>
                     </Pressable>
                     <ExpirationCont>
-                        <H3>Pass expires {expiration}</H3>
+                        {/* <H3>Pass expires {expiration}</H3> */}
 
                     </ExpirationCont>
-                    <Pressable style={styles.frontFundsButton} onPress={reloadStoredValue}>
-                        <Text style={styles.buttonText}>Add Funds</Text>
-                    </Pressable>
-                    <H3>Pass expires {expiration}</H3>
+                    <Pressable
+                        style={styles.frontFundsButton}
+                        onPress={reloadStoredValue}>
 
-                </BackBodyCont>
+                        <Icon
+                            name='attach-money'
+                            type='materialicons'
+                            color={COLORS.SPACECADET}
+                            size={25}
+                            reverse={true}
+                        />
+                        <Text
+                        //  style={styles.buttonText}
+                        >Add Funds</Text>
+                    </Pressable>
+                    {/* <H3>Pass expires {expiration}</H3> */}
+
+                </FrontBodyCont>
 
             </Container>
             // </Spacing>
@@ -332,7 +423,7 @@ export default function Pass({
 
                 <BackBodyCont>
 
-                    <Text>Manage Auto Reload</Text>
+                    <H1Back>Manage Auto Reload</H1Back>
                     <SettingCont>
                         <SettingsContLeft>
                             <Icon
@@ -385,11 +476,42 @@ export default function Pass({
                         </TouchableWithoutFeedback>
                     </SettingCont> */}
                 </BackBodyCont>
-                <CardHeader>
-                    <Pressable style={styles.backFundsButton} onPress={reloadPass}>
-                        <Text style={styles.buttonText}>Add Funds</Text>
+                <CardFooterBack>
+                    <Pressable
+                        style={styles.frontFundsButton}
+                        onPress={reloadPass}>
+
+                        <Icon
+                            name='idcard'
+                            type='antdesign'
+                            color={COLORS.SPACECADET}
+                            size={25}
+                            reverse={true}
+                        />
+                        <Text
+                        // style={styles.buttonText}
+                        >Reload Pass</Text>
                     </Pressable>
-                </CardHeader>
+                    <ExpirationCont>
+                        {/* <H3>Pass expires {expiration}</H3> */}
+
+                    </ExpirationCont>
+                    <Pressable
+                        style={styles.frontFundsButton}
+                        onPress={reloadStoredValue}>
+
+                        <Icon
+                            name='attach-money'
+                            type='materialicons'
+                            color={COLORS.SPACECADET}
+                            size={25}
+                            reverse={true}
+                        />
+                        <Text
+                        //  style={styles.buttonText}
+                        >Add Funds</Text>
+                    </Pressable>
+                </CardFooterBack>
             </Container>
 
         );
@@ -414,11 +536,11 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
     },
     buttonText: {
-        fontSize: 24,
+        fontSize: 18,
         fontWeight: 'bold',
         lineHeight: 24,
         letterSpacing: 0,
-        color: '#009ddc',
+        color: '#222222',
     },
     toggleSideIcon: {
         alignItems: 'flex-end',
@@ -442,21 +564,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
     },
     frontFundsButton: {
-        alignSelf: 'center',
-        // marginRight: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '60%',
-        height: 55,
-        backgroundColor: '#fff',
-        borderColor: '#009ddc',
-        borderWidth: 2,
-        borderRadius: 10,
-        shadowColor: '#252B42',
-        shadowOpacity: 0.5,
-        shadowOffset: { width: 0, height: 4 },
-        // marginVertical: '2%',
-        // top: '80%'
+        marginBottom: 20,
     },
     lottie: {
         top: '5%',
@@ -470,6 +578,24 @@ const styles = StyleSheet.create({
         right: 40,
         top: -50,
         opacity: 0.10,
+    },
+    ticket: {
+        justifyContent: 'space-between',
+        paddingHorizontal: 15,
+        alignItems: 'center',
+        flexDirection: 'row',
+        marginTop: 20,
+        height: 55,
+        width: '100%',
+        backgroundColor: '#fff',
+        // borderColor: '#222222',
+        // borderWidth: 2,
+        borderRadius: 10,
+        shadowColor: '#252B42',
+        shadowOpacity: 0.5,
+        shadowRadius: 2,
+        shadowOffset: { width: 0, height: 0 },
+
     },
 })
 
