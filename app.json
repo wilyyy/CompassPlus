@@ -1,10 +1,10 @@
 {
   "expo": {
     "name": "compassPlus",
-    "slug": "compassPlus",
+    "slug": "compassplus",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logoWhite.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -17,19 +17,20 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
+      "bundleIdentifier": ".com.compassplus",
       "config": {
         "googleMapsApiKey": "AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U"
       }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logoWhite.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logoWhite.png"
     }
   }
 }
