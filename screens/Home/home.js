@@ -14,6 +14,18 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BgCircle from '../../comps/Global/BgCircleScreens.js';
 
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+} from '@expo-google-fonts/ubuntu';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -25,15 +37,34 @@ const Page = styled.View`
     color: #fff;
 `;
 
+const Hr = styled.View`
+    width:90%;
+    background-color: ${COLORS.CAROLINABLUE};
+    height:2px;
+    margin-top: -5%;
+`;
+
 //switch to gesture handler?
 const BottomContainer = styled.View`
     width: ${windowWidth};
     align-items: center;
     height: 60%;
+    /* border-width: 2px;
+    border-color: red; */
 `;
 
 const HomeElement = styled.Pressable`
     margin: 10px 0;
+    /* border-width: 2px;
+    border-color: red; */
+`;
+
+const H2 = styled.Text`
+    font-size: 16px;
+    top:-2%;
+    color: #fff;
+    font-family: 'Ubuntu_400Regular';
+    text-align: center;
 `;
 
 const HomeScreen = () => {
@@ -74,17 +105,14 @@ const HomeScreen = () => {
             </View>
         </Modal>
         <HomeCompassCard onButtonPress={OpenModal} compass_linked={linkedCard} />
-
-
+        <H2>Tap Card to Pay</H2>
+        <Divider style={styles.divider} width={2} color={COLORS.CAROLINABLUE} />
+        <WelcomeMessage />
+        <Hr />
         <BottomContainer>
-            <ScrollView style={styles.scroll_cont}>
-                <HomeElement>
-                    <WelcomeMessage />
-                </HomeElement>
-                <Divider width={2} color={COLORS.CAROLINABLUE} />
-                <HomeElement><HomeCard style={styles.margin_r} /></HomeElement>
-                <HomeElement><HomeCard card_type="manageCard" style={styles.margin_r} /></HomeElement>
-            </ScrollView>
+            <HomeElement>
+                <HomeCard style={styles.margin_r} /></HomeElement>
+            <HomeElement><HomeCard card_type="manageCard" style={styles.margin_r} /></HomeElement>
         </BottomContainer>
         <View style={styles.NavCont}>
             <NavBar />
@@ -106,6 +134,6 @@ const styles = StyleSheet.create({
     NavCont: {
         position: 'absolute',
         bottom: 0,
-    }
+    },
 
 });

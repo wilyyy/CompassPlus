@@ -48,7 +48,7 @@ const BotSearchBar = styled.View`
 `;
 
 const MarkerCont = styled.View`
-    display: ${props=>props.marker_display};
+    display: ${props => props.marker_display};
 `;
 
 
@@ -144,7 +144,7 @@ const MapHomeScreen = () => {
                 longitudeDelta: 0.0421,
             }}
             style={styles.map}
-            customMapStyle={MapStyleDark}
+            customMapStyle={MapStyleAub}
         >
             <Marker
                 coordinate={{
@@ -162,7 +162,7 @@ const MapHomeScreen = () => {
                 pinColor={COLORS.LIMEGREEN}
                 opacity={endMarkerDisplay}
             />
-            <MapViewDirections 
+            <MapViewDirections
                 origin={region}
                 destination={endRegion}
                 apikey='AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U'

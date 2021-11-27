@@ -22,14 +22,15 @@ import AppLoading from 'expo-app-loading';
 
 const TempCenter = styled.View`
     align-items: center;
+    width: 350px;
 `;
 
 
 const Container = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
-    width: 80%;
-    height: 106px;
+    width: 90%;
+    height: 100px;
     background-color: ${COLORS.CAROLINABLUE};
     border-radius: 10px;
 `;
@@ -38,22 +39,24 @@ const Row = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 330px;
+    width: 90%;
     height: 100px;
     border-radius: 10px;
+    /* border-width: 2px;
+    border-color: blue; */
+    padding:5%;
 `;
 
 const TextCont = styled.View`
-    width: 220px;
-    justify-content: flex-start;
-    align-items: flex-start;
+    flex:2;
+    /* border-width: 2px;
+    border-color: red; */
 `;
 
 const H1 = styled.Text`
     font-size: 18px;
     font-family: 'Ubuntu_700Bold';
     line-height: 24px;
-    letter-spacing: 0;
     color: #fff;
 `;
 
@@ -107,14 +110,16 @@ const HomeCard = ({
                     <TempCenter>
                         <Container onPress={SeeSavedRides}>
                             <Row>
-                                <Image style={styles.image} source={require('../../assets/SavedTrips.png')} />
+                                <View style={styles.flex}>
+                                    <Image style={styles.image} source={require('../../assets/SavedTrips.png')} />
+                                </View>
                                 <TextCont>
-                                    <H1>Saved Trips</H1>
-                                    <H2>Access your saved trips for quicker route planning</H2>
+                                    <H1>Saved Locations</H1>
+                                    <H2>Access your locations for quicker route planning</H2>
                                 </TextCont>
                             </Row>
                         </Container>
-                    </TempCenter>
+                    </TempCenter >
                 )
             }
         }
@@ -140,10 +145,12 @@ const HomeCard = ({
                 <TempCenter>
                     <Container onPress={() => navigation.navigate('MobileCard')}>
                         <Row>
-                            <Image style={styles.image} source={require('../../assets/ManageCards.png')} />
+                            <View style={styles.flex}>
+                                <Image style={styles.image} source={require('../../assets/ManageCards.png')} />
+                            </View>
                             <TextCont>
                                 <H1>Manage your Card</H1>
-                                <H2>Check your balance and top up wherever you are.</H2>
+                                <H2>Check your balance and top up wherever you are</H2>
                             </TextCont>
                         </Row>
                     </Container>
@@ -158,11 +165,9 @@ export default HomeCard;
 
 const styles = StyleSheet.create({
     image: {
-        display: 'flex',
-        marginLeft: 25,
-        justifyContent: 'center',
-        alignItems: 'center',
         width: 60,
         height: 60,
+    }, flex: {
+        flex: 1,
     }
 });

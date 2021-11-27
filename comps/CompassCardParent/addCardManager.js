@@ -34,10 +34,9 @@ const CompassPlaceHolder = styled.Pressable`
     border-top-left-radius: 15px;
     align-self: center;
     background-color: ${COLORS.ALICEBLUE};
-    border-width: 4px;
-    border-style: dotted;
+    border: 3px dashed ${COLORS.CAROLINABLUE};
+
     padding:5%;
-    border-color: ${COLORS.CAROLINABLUE};
     box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.75);
 
 `;
@@ -295,7 +294,7 @@ export default function AddCardManager({
                             <TextInput
                                 style={styles.nameStyle}
                                 placeholder={'Add name'}
-                                onSubmitEditing={() => { setSTicket1("' ticket") }}
+                                onSubmitEditing={() => { setSTicket1("'s ticket") }}
                                 maxLength={50}
                             />
                             <Text>{sTicket1}</Text>

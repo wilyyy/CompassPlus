@@ -3,6 +3,17 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled from "styled-components/native";
 import { Tab, ThemeProvider, Icon } from 'react-native-elements';
 import { Dimensions, ImageBackground, Pressable, SafeAreaView, SafeViewArea, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, useWindowDimensions, View, } from 'react-native';
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+} from '@expo-google-fonts/ubuntu';
 
 import { useNavigation } from '@react-navigation/native';
 
