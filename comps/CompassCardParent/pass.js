@@ -1,8 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Button, Image, StyleSheet, Switch, Pressable, Text, TouchableWithoutFeedback, View } from 'react-native';
 import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
 import { Icon } from 'react-native-elements';
+import LottieView from 'lottie-react-native';
+
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+} from '@expo-google-fonts/ubuntu'
+import AppLoading from 'expo-app-loading';;
 
 const Spacing = styled.View`
 
@@ -30,14 +44,16 @@ const CompassPlaceHolder = styled.View`
     padding:5%;
     background-color: ${COLORS.CAROLINABLUE};
     box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.75);
+    overflow:hidden;
 `;
 
 const CardTitle = styled.Text`
-font-size: 18px;
+    font-size: 18px;
+    text-align: center;
     font-family: 'Ubuntu_700Bold';
-    line-height: 24px;
-    letter-spacing: 0;
-    color: ${COLORS.SPACECADET};
+    color: #fff;
+    top:145px;
+    z-index: 10;
 `;
 
 const H1 = styled.Text`
@@ -149,8 +165,8 @@ const BackBodyCont = styled.View`
     height: 49%;
     justify-content: center;
     align-items: center;
-    border-width: 2px;
-    border-color:green;
+    /* border-width: 2px;
+    border-color:green; */
 `;
 
 const CardHeader = styled.View`
@@ -210,6 +226,7 @@ export default function Pass({
     }
 
 
+
     //set card expiration date / month
     // const [expiration, setExpiration] = useState('December Pass');
 
@@ -233,8 +250,29 @@ export default function Pass({
 
 
 
+    let [fontsLoaded] = useFonts({
+        Ubuntu_300Light,
+        Ubuntu_300Light_Italic,
+        Ubuntu_400Regular,
+        Ubuntu_400Regular_Italic,
+        Ubuntu_500Medium,
+        Ubuntu_500Medium_Italic,
+        Ubuntu_700Bold,
+        Ubuntu_700Bold_Italic,
+    });
+    let animationRef = useRef();
+    useEffect(() => {
+        // To play complete animation
+        animationRef.play();
+        // Similary you can use this reset, pause, resume
+
+        // To play from a specific startFrame and endFrame
+        // animationRef.play(30, 120);
+    }, []);
+
+
     //front of card
-    if (cardSide === true) {
+    if (cardSide === true || fontsLoaded) {
         return (
             // <Spacing>
             <Container>
@@ -251,10 +289,22 @@ export default function Pass({
                     />
                 </Pressable>
                 <CompassPlaceHolder>
-                    <CardTitle>My Compass Card</CardTitle>
+                    <CardTitle>Tap Card to Pay</CardTitle>
+                    <Image source={require('../../assets/compassPattern.png')}
+                        style={styles.placeholderBg}
+                    />
+                    <LottieView
+                        ref={(animation) => {
+                            animationRef = animation;
+                        }}
+                        source={require('../../assets/lottie/seabusLottie.json')}
+                        autoPlay
+                        loop
+                        style={styles.lottie}
+                    />
                 </CompassPlaceHolder>
                 <CardHeader>
-                    <H1>Shake to Pay</H1>
+                    {/* <H1>Shake to Pay</H1> */}
                 </CardHeader>
                 <BackBodyCont>
 
@@ -278,7 +328,7 @@ export default function Pass({
     }
 
     //back of card
-    if (cardSide === false) {
+    if (cardSide === false || fontsLoaded) {
         return (
             <Container>
                 {/* <Button
@@ -428,7 +478,19 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
         // marginVertical: '2%',
         // top: '80%'
-    }
+    },
+    lottie: {
+        left: '-0.5%',
+        opacity: 1,
+        position: 'absolute',
+        width: 360,
+    }, placeholderBg: {
+        width: 400,
+        height: 300,
+        right: 40,
+        top: -50,
+        opacity: 0.10,
+    },
 })
 
 

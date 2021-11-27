@@ -23,16 +23,18 @@ import AppLoading from 'expo-app-loading';
 const TempCenter = styled.View`
     align-items: center;
     width: 350px;
+
 `;
 
 
 const Container = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 100%;
     height: 100px;
     background-color: ${COLORS.CAROLINABLUE};
     border-radius: 10px;
+   
 `;
 
 const Row = styled.View`
@@ -42,8 +44,6 @@ const Row = styled.View`
     width: 90%;
     height: 100px;
     border-radius: 10px;
-    /* border-width: 2px;
-    border-color: blue; */
     padding:5%;
 `;
 

@@ -42,6 +42,7 @@ const Hr = styled.View`
     background-color: ${COLORS.CAROLINABLUE};
     height:2px;
     margin-top: -5%;
+    margin-bottom: 5%;
 `;
 
 //switch to gesture handler?
