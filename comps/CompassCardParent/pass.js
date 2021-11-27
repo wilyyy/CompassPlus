@@ -16,7 +16,7 @@ import {
     Ubuntu_700Bold,
     Ubuntu_700Bold_Italic,
 } from '@expo-google-fonts/ubuntu'
-import AppLoading from 'expo-app-loading';;
+    ;
 
 const Spacing = styled.View`
 
@@ -49,11 +49,8 @@ const CompassPlaceHolder = styled.View`
 
 const CardTitle = styled.Text`
     font-size: 18px;
-    text-align: center;
-    font-family: 'Ubuntu_700Bold';
+    font-family: 'Ubuntu_500Medium';
     color: #fff;
-    top:145px;
-    z-index: 10;
 `;
 
 const H1 = styled.Text`
@@ -194,11 +191,12 @@ const IconFront = styled.Image`
 
 
 const H2 = styled.Text`
-    color: #222222;
+    color: #fff;
     font-style: italic;
     margin:15px;
     font-size: 14px;
     text-align: center;
+    top:130px;
 `;
 
 
@@ -249,30 +247,9 @@ export default function Pass({
     const toggleAutoReload = () => setAutoReload(previousState => !previousState);
 
 
-
-    let [fontsLoaded] = useFonts({
-        Ubuntu_300Light,
-        Ubuntu_300Light_Italic,
-        Ubuntu_400Regular,
-        Ubuntu_400Regular_Italic,
-        Ubuntu_500Medium,
-        Ubuntu_500Medium_Italic,
-        Ubuntu_700Bold,
-        Ubuntu_700Bold_Italic,
-    });
-    let animationRef = useRef();
-    useEffect(() => {
-        // To play complete animation
-        animationRef.play();
-        // Similary you can use this reset, pause, resume
-
-        // To play from a specific startFrame and endFrame
-        // animationRef.play(30, 120);
-    }, []);
-
-
+    var anim = useRef();
     //front of card
-    if (cardSide === true || fontsLoaded) {
+    if (cardSide === true) {
         return (
             // <Spacing>
             <Container>
@@ -289,13 +266,13 @@ export default function Pass({
                     />
                 </Pressable>
                 <CompassPlaceHolder>
-                    <CardTitle>Tap Card to Pay</CardTitle>
+                    <CardTitle>Tap to Pay</CardTitle>
                     <Image source={require('../../assets/compassPattern.png')}
                         style={styles.placeholderBg}
                     />
                     <LottieView
-                        ref={(animation) => {
-                            animationRef = animation;
+                        ref={(ref) => {
+                            anim = ref;
                         }}
                         source={require('../../assets/lottie/seabusLottie.json')}
                         autoPlay
@@ -304,7 +281,7 @@ export default function Pass({
                     />
                 </CompassPlaceHolder>
                 <CardHeader>
-                    {/* <H1>Shake to Pay</H1> */}
+                    <H1>Shake to Pay</H1>
                 </CardHeader>
                 <BackBodyCont>
 
@@ -328,7 +305,7 @@ export default function Pass({
     }
 
     //back of card
-    if (cardSide === false || fontsLoaded) {
+    if (cardSide === false) {
         return (
             <Container>
                 {/* <Button
@@ -349,10 +326,12 @@ export default function Pass({
                     />
                 </Pressable>
 
-                <CompassPlaceHolder />
+                <CompassPlaceHolder>
+                    <H2>{barcodeId}</H2>
+                </CompassPlaceHolder>
 
                 <BackBodyCont>
-                    <H2>{barcodeId}</H2>
+
                     <Text>Manage Auto Reload</Text>
                     <SettingCont>
                         <SettingsContLeft>
@@ -392,7 +371,7 @@ export default function Pass({
                     </SettingCont>
 
 
-                    <SettingCont>
+                    {/* <SettingCont>
                         <TouchableWithoutFeedback onPress={onWalletPress}>
                             <SettingsContLeft>
                                 <Icon
@@ -404,7 +383,7 @@ export default function Pass({
                                 <MenuItem>View in Apple Wallet</MenuItem>
                             </SettingsContLeft>
                         </TouchableWithoutFeedback>
-                    </SettingCont>
+                    </SettingCont> */}
                 </BackBodyCont>
                 <CardHeader>
                     <Pressable style={styles.backFundsButton} onPress={reloadPass}>
@@ -480,6 +459,7 @@ const styles = StyleSheet.create({
         // top: '80%'
     },
     lottie: {
+        top: '5%',
         left: '-0.5%',
         opacity: 1,
         position: 'absolute',
