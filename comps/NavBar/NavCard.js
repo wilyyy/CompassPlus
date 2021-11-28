@@ -40,24 +40,24 @@ export default function NavBar({
 }) {
     return (
         <NavCont>
-            <Section 
-            onPress={() => navigation.navigate('Home')}>
+            <Section
+                onPress={() => navigation.navigate('Home')}>
                 <Icon
                     name='home'
                     type='entypo'
                     color={COLORS.SPACECADET}
                     size={35}
                 />
-                <NavText>Home</NavText>
+                {/* <NavText>Home</NavText> */}
             </Section>
             <Section onPress={() => navigation.navigate('MobileCard')}>
                 <Icon
                     name='card'
                     type='ionicon'
-                    color={COLORS.SPACECADET}
+                    color={COLORS.CAROLINABLUE}
                     size={35}
                 />
-                <NavText>Compass</NavText>
+                {/* <NavText>Compass</NavText> */}
             </Section>
             <Section onPress={() => navigation.navigate('Map')}>
                 <Icon
@@ -66,7 +66,7 @@ export default function NavBar({
                     color={COLORS.SPACECADET}
                     size={35}
                 />
-                <NavText>Trip Planner</NavText>
+                {/* <NavText>Trip Planner</NavText> */}
             </Section>
             <Section onPress={() => navigation.navigate('Account')}>
                 <Icon
@@ -75,7 +75,7 @@ export default function NavBar({
                     color={COLORS.SPACECADET}
                     size={35}
                 />
-                <NavText>Profile</NavText>
+                {/* <NavText>Profile</NavText> */}
             </Section>
         </NavCont>
     );

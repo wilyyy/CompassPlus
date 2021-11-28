@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import WhiteButton from '../../comps/Global/whiteButton.js';
 import SavedTripsCard from '../../comps/TripPlanner/savedTripsCard.js';
-import NavBar from '../../comps/NavBar/index.js';
+import NavMaps from '../../comps/NavBar/NavMaps.js';
 
 import {
     useFonts,
@@ -75,7 +75,7 @@ const Para = styled.Text`
 `;
 
 const SavedTrips = ({
-    onBackPress = () => {},
+    onBackPress = () => { },
     navigation = useNavigation()
 
 }) => {
@@ -96,7 +96,7 @@ const SavedTrips = ({
         return <Page>
             <TopBar>
                 <Button onPress={onBackPress}>
-                    <Icon 
+                    <Icon
                         name="arrow-back-circle"
                         type="ionicon"
                         color='#fff'
@@ -105,7 +105,7 @@ const SavedTrips = ({
                 </Button>
                 <H1>Saved Trips</H1>
                 <Button onPress={onBackPress}>
-                    <Icon 
+                    <Icon
                         name="add-circle"
                         type="ionicon"
                         color='#fff'
@@ -121,14 +121,14 @@ const SavedTrips = ({
                 <BottomCont>
                     <Divider orientation="vertical" width={5} />
                     <Para>Want to save more trips to your home, work, or school?</Para>
-                    <WhiteButton 
-                        text="Pick Destinations" 
+                    <WhiteButton
+                        text="Pick Destinations"
                         bg_color={COLORS.CAROLINABLUE}
                         text_color="#fff"
-                        onButtonPress={() => navigation.navigate('Onboarding') }
+                        onButtonPress={() => navigation.navigate('Onboarding')}
                     />
                 </BottomCont>
-                <NavBar/ >
+                <NavMaps />
             </Content>
         </Page>
     }

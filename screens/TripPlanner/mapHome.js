@@ -10,7 +10,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import { COLORS } from '../../constants/styles.js';
 import { MapStyleAub, MapStyleDefault, MapStyleDark } from '../../googlemaps/mapStyle.js';
 
-import NavBar from '../../comps/NavBar/index.js';
+import NavMaps from '../../comps/NavBar/NavMaps.js';
 import TripPlannerTab from '../../comps/TripPlanner/tripPlannerTab'
 import MapComp from '../../comps/TripPlanner/mapComp';
 // import MapSearchBar from '../../comps/TripPlanner/mapSearchBar.js';
@@ -174,7 +174,7 @@ const MapHomeScreen = () => {
             <TripPlannerTab />
         </Container>
         <View style={styles.NavCont}>
-            <NavBar />
+            <NavMaps />
         </View>
     </Page>
 }

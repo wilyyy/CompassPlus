@@ -9,7 +9,7 @@ import HomeCompassCard from '../../comps/Home/homeCompassCard.js';
 import HomeCard from '../../comps/Home/homeCard.js';
 import WelcomeMessage from '../../comps/Home/welcomeMessage.js';
 import LinkCompassCard from '../../comps/Home/linkCompassCard.js';
-import NavBar from '../../comps/NavBar/index.js';
+import NavHome from '../../comps/NavBar/NavHome.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BgCircle from '../../comps/Global/BgCircleScreens.js';
@@ -116,7 +116,7 @@ const HomeScreen = () => {
             <HomeElement><HomeCard card_type="manageCard" style={styles.margin_r} /></HomeElement>
         </BottomContainer>
         <View style={styles.NavCont}>
-            <NavBar />
+            <NavHome />
         </View>
     </Page>
 }

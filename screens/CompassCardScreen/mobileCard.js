@@ -25,7 +25,7 @@ import { COLORS } from '../../constants/styles.js';
 
 import MobileCard from '../../comps/CompassCardParent/pass.js';
 import { Button } from 'react-native-elements/dist/buttons/Button';
-import NavBar from '../../comps/NavBar/index.js';
+import NavCard from '../../comps/NavBar/NavCard.js';
 import BgCircle from '../../comps/Global/BgCircleScreens';
 
 
@@ -406,7 +406,7 @@ export default function CompassCardScreen() {
                 </PanGestureHandler>
 
                 <View style={styles.NavCont}>
-                    <NavBar />
+                    <NavCard />
                 </View>
 
             </ThemeProvider>

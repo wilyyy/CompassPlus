@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 
-import NavBar from '../../comps/NavBar';
+import NavAccount from '../../comps/NavBar/NavAccount.js';
 import ProfileCard from '../../comps/Profile/profileCard.js';
 import NotificationCard from '../../comps/Profile/notificationCard.js';
 import SupportCard from '../../comps/Profile/supportCard.js';
@@ -16,7 +16,7 @@ const ProfileScreenNew = () => {
                 <SupportCard />
             </ScrollView>
             <View style={styles.NavCont}>
-                <NavBar />
+                <NavAccount />
             </View>
         </>
     )
