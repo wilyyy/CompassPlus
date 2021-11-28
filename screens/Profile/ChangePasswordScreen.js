@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import PasswordChange from "../../comps/Profile/PasswordChange"
 
 const ChangePasswordScreen = () => {
     return (
-        <ScrollView>
+        <View>
             <PasswordChange></PasswordChange>
-        </ScrollView>
+        </View>
     )
 }
 

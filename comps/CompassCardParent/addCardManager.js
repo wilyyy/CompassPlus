@@ -34,10 +34,9 @@ const CompassPlaceHolder = styled.Pressable`
     border-top-left-radius: 15px;
     align-self: center;
     background-color: ${COLORS.ALICEBLUE};
-    border-width: 4px;
-    border-style: dotted;
+    border: 3px dashed ${COLORS.CAROLINABLUE};
+
     padding:5%;
-    border-color: ${COLORS.CAROLINABLUE};
     box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.75);
 
 `;
@@ -106,6 +105,7 @@ const Hr = styled.View`
 
 export default function AddCardManager({
     AddTempTicket = () => { },
+    paymentAnimation = () => { },
     countdown1 = '90mins...',
     countdown2 = '55mins...',
     countdown3 = '10mins...',
@@ -295,13 +295,14 @@ export default function AddCardManager({
                             <TextInput
                                 style={styles.nameStyle}
                                 placeholder={'Add name'}
-                                onSubmitEditing={() => { setSTicket1("' ticket") }}
+                                onSubmitEditing={() => { setSTicket1("'s ticket") }}
                                 maxLength={50}
                             />
                             <Text>{sTicket1}</Text>
                         </View>
 
-                        <View style={[styles.ticket, styles.bg1]}>
+                        <Pressable style={[styles.ticket, styles.bg1]}
+                            onPress={paymentAnimation}>
                             <Text style={styles.buttonText}>{ticketType1}:</Text>
 
                             <CountDown
@@ -315,7 +316,7 @@ export default function AddCardManager({
                                 digitStyle={{ backgroundColor: COLORS.CONCESSION }}
                                 digitTxtStyle={{ color: '#fff' }}
                             />
-                        </View>
+                        </Pressable>
                     </TicketsCont>
                     <TicketsCont style={styles.temp2}>
                         <View style={styles.textInput}>
@@ -328,7 +329,8 @@ export default function AddCardManager({
                             <Text>{sTicket2}</Text>
                         </View>
 
-                        <View style={[styles.ticket, styles.bg2]}>
+                        <Pressable style={[styles.ticket, styles.bg2]}
+                            onPress={paymentAnimation}>
                             {/* <TicketPlaceHolder /> */}
                             <Text style={styles.buttonText}>{ticketType2}: </Text>
                             <CountDown
@@ -342,7 +344,7 @@ export default function AddCardManager({
                                 digitStyle={{ backgroundColor: COLORS.MIDWAYBLUE }}
                                 digitTxtStyle={{ color: '#fff' }}
                             />
-                        </View>
+                        </Pressable>
                     </TicketsCont>
                     <TicketsCont style={styles.temp3}>
                         <View style={styles.textInput}>
@@ -355,7 +357,8 @@ export default function AddCardManager({
                             <Text>{sTicket3}</Text>
                         </View>
 
-                        <View style={[styles.ticket, styles.bg3]}>
+                        <Pressable style={[styles.ticket, styles.bg3]}
+                            onPress={paymentAnimation}>
                             {/* <TicketPlaceHolder /> */}
                             <Text style={styles.buttonText}>{ticketType3}:</Text>
                             <CountDown
@@ -369,7 +372,7 @@ export default function AddCardManager({
                                 digitStyle={{ backgroundColor: COLORS.MIDWAYBLUE }}
                                 digitTxtStyle={{ color: '#fff' }}
                             />
-                        </View>
+                        </Pressable>
                     </TicketsCont>
                 </View>
             </Container>

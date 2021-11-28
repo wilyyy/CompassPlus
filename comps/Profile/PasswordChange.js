@@ -6,11 +6,12 @@ import {
     SafeAreaInsetsContext,
     useSafeAreaInsets,
     initialWindowMetrics,
-  } from 'react-native-safe-area-context';
+} from 'react-native-safe-area-context';
 import { Avatar, Header, Divider, Icon } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
+import AddPaymentType from '../CompassCardParent/payment.js';
 
 
 
@@ -19,7 +20,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
-const Box = styled.View `
+const Box = styled.View`
     height: 15px;
 `;
 
@@ -27,8 +28,9 @@ const EditColumn = styled.View`
     flex-direction: column;
     align-items: flex-start;
     padding-left: 15px;
-    backgroundColor: #fff;
-    paddingBottom: 30px;
+    background-color: #fff;
+    padding-bottom: 30px;
+
 `;
 
 const EditContent = styled.Text`
@@ -40,31 +42,42 @@ const EditContent = styled.Text`
     text-align: left;
 `;
 
-const PasswordChange = ({navigation}) => {
-    navigation = useNavigation()
+const PasswordChange = ({ navigation }) => {
+    navigation = useNavigation();
+
     return (
-            <ScrollView>
-                <Header
-                    leftComponent={{ 
-                        icon: 'arrow-back', 
-                        color: 'white', 
-                        onPress: () => {navigation.navigate('Account')}, 
-                        iconStyle: { color: 'white' } 
-                    }}
-                    centerComponent={{ 
-                        text: 'Change Password', 
-                        style: { 
-                            color: 'white', 
-                            fontWeight: 'bold', 
-                            fontSize: 20 } 
-                        }}
-                    containerStyle={{
-                        backgroundColor: COLORS.SPACECADET, 
-                        height: 100,
-                        borderBottomWidth: 0,
-                    }}
-                    />
-                <Box />
+        <View style={styles.test}>
+            <Header
+                leftComponent={{
+                    icon: 'arrow-back',
+                    color: 'white',
+                    size: 40,
+                    onPress: () => { navigation.navigate('Account') },
+                    iconStyle: { color: 'white' }
+                }}
+                centerComponent={{
+                    text: 'Account Details',
+                    style: {
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: 20,
+                        top: '20%',
+                    }
+                }}
+                containerStyle={{
+                    backgroundColor: COLORS.SPACECADET,
+                    height: 100,
+                    borderBottomWidth: 0,
+                    justifyContent: 'center',
+                    paddingTop: '-2%',
+                }}
+            />
+            <View style={{ height: '100%' }}>
+                <ScrollView
+                    contentContainerStyle={styles.scroll}
+                    snapToEnd={false}
+                    showsVerticalScrollIndicator={false}>
+                    <Box />
                     <EditColumn>
                         <EditContent>Enter your current password to reset your password with a new one.</EditContent>
                         <TextInput
@@ -74,7 +87,7 @@ const PasswordChange = ({navigation}) => {
                             secureTextEntry={true}
                             autoCorrect={false}
                         />
-                         <TextInput
+                        <TextInput
                             style={styles.input}
                             placeholder='New Password'
                             underlineColorAndroid="transparent"
@@ -88,19 +101,45 @@ const PasswordChange = ({navigation}) => {
                             secureTextEntry={true}
                             autoCorrect={false}
                         />
+                        <TouchableOpacity style={styles.button} onPress={() => console.log("changed password!")}>
+                            <Text style={styles.text}>Change Password</Text>
+                        </TouchableOpacity>
+                    </EditColumn>
+
+                    {/* <Box /> */}
+
+                    <Box />
+                    <EditColumn>
+                        <EditContent>Manage your payment information.</EditContent>
+                        <AddPaymentType />
+                        <TouchableOpacity style={styles.button} onPress={() => console.log("added payment!")}>
+                            <Text style={styles.text}>Change Password</Text>
+                        </TouchableOpacity>
+
                     </EditColumn>
                     <Box />
-                    <TouchableOpacity style={styles.button} onPress={() => console.log("hello world")}> 
-                        <Text style={styles.text}>Change Password</Text>
-                    </TouchableOpacity>
-            </ScrollView>
+                    {/* <TouchableOpacity style={styles.button} onPress={() => console.log("hello world")}>
+                        <Text style={styles.text}>Change Payment</Text>
+                    </TouchableOpacity> */}
+                </ScrollView>
+            </View>
+        </View>
     );
-  };
-  
-  export default PasswordChange;
+};
+
+export default PasswordChange;
 
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
+    test: {
+
+        width: '100%',
+        height: '100%'
+    },
+    scroll: {
+        paddingBottom: '30%',
+        left: 0,
+    },
     button: {
         width: 200,
         height: 55,
@@ -108,7 +147,9 @@ const PasswordChange = ({navigation}) => {
         backgroundColor: COLORS.CAROLINABLUE,
         justifyContent: 'center',
         alignItems: 'center',
-        alignSelf: 'center',
+        alignSelf: 'flex-end',
+        marginHorizontal: 20,
+        marginTop: 20,
     },
     text: {
         fontSize: 18,
@@ -116,7 +157,7 @@ const PasswordChange = ({navigation}) => {
         color: 'white'
     },
     input: {
-        width: windowWidth-30,
+        width: windowWidth - 30,
         height: 55,
         borderWidth: 2,
         borderColor: COLORS.LIGHTGREY,

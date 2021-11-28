@@ -24,13 +24,16 @@ import SavedRidesIcon from "./savedRidesIcon";
 
 const Container = styled.View`
     width: 100%;
-    margin-left: 10%;
     height: 281px;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding:2%;
+    overflow:hidden;
 `;
 
 const Row = styled.View`
     flex-direction: row;
+     /* border:2px solid blue; */
+     /* top:-5%; */
 `;
 
 const TextColumn = styled.View`
@@ -41,17 +44,25 @@ const TextColumn = styled.View`
 const H1 = styled.Text`
     font-family: 'Ubuntu_700Bold';
     font-size: 24px;
+    color: ${COLORS.SPACECADET};
+`;
+const H1Blue = styled.Text`
+    font-family: 'Ubuntu_700Bold';
+    font-size: 24px;
     color: ${COLORS.CAROLINABLUE};
 `;
 
 const H2 = styled.Text`
     font-family: 'Ubuntu_400Regular';
     font-size: 16px;
+    top: -5px;
+
 `;
 
 const ScrollCont = styled.View`
     width: ${windowWidth};
     height: 150px;
+    top:2%;
 `;
 
 const Minimize = styled.TouchableOpacity`
@@ -63,13 +74,12 @@ const Minimize = styled.TouchableOpacity`
 const ViewAll = styled.TouchableOpacity`
     width: 100px;
     height: 30px;
-    position: relative;
-    bottom: 20px;
+    bottom: 10%;
     left: 65%;
 `;
 
 const SavedRidesScroll = ({
-    onMinimizePress = () => {},
+    onMinimizePress = () => { },
     navigation = useNavigation()
 }) => {
     let [fontsLoaded] = useFonts({
@@ -89,11 +99,12 @@ const SavedRidesScroll = ({
         return <Container>
             <Row>
                 <Minimize onPress={onMinimizePress}>
-                    <Icon 
+                    <Icon
                         name="arrow-back-circle"
                         type="ionicon"
                         color={COLORS.CAROLINABLUE}
                         size={60}
+                        style={{ top: '-5%' }}
                     />
                 </Minimize>
                 <TextColumn>
@@ -101,23 +112,39 @@ const SavedRidesScroll = ({
                     <H2>All of your favourite places</H2>
                 </TextColumn>
             </Row>
-            <ScrollCont>
-                <ScrollView horizontal={true}>
-                    <SavedRidesIcon icon_type="train" ride_text="Waterfront to Yaletown"/>
-                    <SavedRidesIcon icon_type="seabus" ride_text="Waterfront to Lonsdale Quay"/>
-                    <SavedRidesIcon icon_type="bus" bus_text="05" ride_text="Dunsmuir to Cardero"/>
+            <ScrollCont style={{ width: '100%' }}>
+                <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.scroll}
+
+                >
+                    <SavedRidesIcon icon_type="train" ride_text="Waterfront to Yaletown" />
+                    <SavedRidesIcon icon_type="seabus" ride_text="Waterfront to Lonsdale Quay" />
+                    <SavedRidesIcon icon_type="bus" bus_text="05" ride_text="Dunsmuir to Cardero" />
                     <SavedRidesIcon />
-                    <SavedRidesIcon icon_type="train" ride_text="Waterfront to Yaletown"/>
-                    <SavedRidesIcon icon_type="seabus" ride_text="Waterfront to Lonsdale Quay"/>
-                    <SavedRidesIcon icon_type="bus" bus_text="05" ride_text="Dunsmuir to Cardero"/>
+                    <SavedRidesIcon icon_type="train" ride_text="Waterfront to Yaletown" />
+                    <SavedRidesIcon icon_type="seabus" ride_text="Waterfront to Lonsdale Quay" />
+                    <SavedRidesIcon icon_type="bus" bus_text="05" ride_text="Dunsmuir to Cardero" />
                     <SavedRidesIcon />
                 </ScrollView>
             </ScrollCont>
             <ViewAll onPress={() => navigation.navigate('SavedTrips')}>
-                <H1>View All</H1>
+                <H1Blue>View All</H1Blue>
             </ViewAll>
         </Container>
     }
 }
 
 export default SavedRidesScroll;
+
+
+
+
+const styles = StyleSheet.create({
+    scroll: {
+        paddingBottom: '20%',
+        paddingTop: '2%'
+    },
+
+});

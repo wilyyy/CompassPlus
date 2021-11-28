@@ -18,7 +18,8 @@ const NavCont = styled.View`
     height: ${windowHeight / 10}px;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
+    padding-top:10;
     background-color: #fff;
     box-shadow:  10px 0px 4px rgba(0, 0, 0, 0.25);
 `;
@@ -40,15 +41,15 @@ export default function NavBar({
 }) {
     return (
         <NavCont>
-            <Section 
-            onPress={() => navigation.navigate('Home')}>
+            <Section
+                onPress={() => navigation.navigate('Home')}>
                 <Icon
                     name='home'
                     type='entypo'
-                    color={COLORS.SPACECADET}
+                    color={COLORS.CAROLINABLUE}
                     size={35}
                 />
-                <NavText>Home</NavText>
+                {/* <NavText>Home</NavText> */}
             </Section>
             <Section onPress={() => navigation.navigate('MobileCard')}>
                 <Icon
@@ -56,8 +57,9 @@ export default function NavBar({
                     type='ionicon'
                     color={COLORS.SPACECADET}
                     size={35}
+
                 />
-                <NavText>Compass</NavText>
+                {/* <NavText>Compass</NavText> */}
             </Section>
             <Section onPress={() => navigation.navigate('Map')}>
                 <Icon
@@ -65,8 +67,9 @@ export default function NavBar({
                     type='font-awesome'
                     color={COLORS.SPACECADET}
                     size={35}
+
                 />
-                <NavText>Trip Planner</NavText>
+                {/* <NavText>Trip Planner</NavText> */}
             </Section>
             <Section onPress={() => navigation.navigate('Account')}>
                 <Icon
@@ -74,9 +77,11 @@ export default function NavBar({
                     type='material'
                     color={COLORS.SPACECADET}
                     size={35}
+
                 />
-                <NavText>Profile</NavText>
+                {/* <NavText>Profile</NavText> */}
             </Section>
         </NavCont>
     );
 }
+

@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
+
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -8,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import axios from 'axios';
 //this needs to be ngrok or hosted database (aws or heroku)
-axios.defaults.baseURL = "http://1d86-2604-3d08-537e-3900-9c1-ca16-47c4-988c.ngrok.io/compassplus-serverside/api/";
+axios.defaults.baseURL = "http://44d5-2604-3d08-537e-3900-bdbe-145-efa2-b83a.ngrok.io/compassplus-serverside/api/";
 
 // go to storybook/stories/Button/Button.stories.js to add components
 // export { default } from './storybook';
@@ -32,6 +33,7 @@ import loginScreenNew from './screens/Authentication/LoginScreenNew';
 import createAccountScreenNew from './screens/Authentication/createAccountScreenNew';
 import authenticationScreen from './screens/Authentication/authenticationScreen';
 import BenefitsScreen from './screens/Onboarding/BenefitsScreen';
+import AddSavedLocation from './screens/TripPlanner/addSavedLocation';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,7 +53,7 @@ export default function App() {
   return (
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName='Authentication'
+      <Stack.Navigator initialRouteName='AddSavedLocation'
         screenOptions={{
           headerShown: false,
           animation: 'none',
@@ -67,6 +69,7 @@ export default function App() {
         />
         <Stack.Screen name='Map' component={MapHomeScreen} />
         <Stack.Screen name='SavedTrips' component={SavedTrips} />
+        <Stack.Screen name='AddSavedLocation' component={AddSavedLocation} />
         <Stack.Screen name='Account' component={ProfileScreenNew} />
         <Stack.Screen name='ChangePassword' component={ChangePasswordScreen} />
         <Stack.Screen name='BalanceHistory' component={BalanceHistoryCard} />

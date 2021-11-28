@@ -26,7 +26,10 @@ const windowHeight = Dimensions.get('window').height;
 
 const Container = styled.View`
     width: ${windowWidth};
-    height: 217px;
+    height: 165px;
+    top:27px;
+    position:absolute;
+
 `;
 
 const TabCont = styled.View`
@@ -34,12 +37,13 @@ const TabCont = styled.View`
     align-items: flex-end;
     height: 47px;
     width: 100%;
+
 `;
 
 const BigTab = styled.TouchableHighlight`
     width: 50%;
     height: 47px;
-    background-color: ${props=>props.bigtab_color};
+    background-color: ${props => props.bigtab_color};
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     justify-content: center;
@@ -49,7 +53,7 @@ const BigTab = styled.TouchableHighlight`
 const SmallTab = styled.TouchableHighlight`
     width: 50%;
     height: 40px;
-    background-color: ${props=>props.smtab_color};
+    background-color: ${props => props.smtab_color};
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     justify-content: center;
@@ -58,21 +62,22 @@ const SmallTab = styled.TouchableHighlight`
 
 const TabText = styled.Text`
     font-size: 20px;
-    color: ${props=>props.bigtab_text};
+    color: ${props => props.bigtab_text};
     font-family: 'Ubuntu_700Bold';
 `;
 
 const SmTabText = styled.Text`
     font-size: 16px;
-    color: ${props=>props.smtab_text};
+    color: ${props => props.smtab_text};
     font-family: 'Ubuntu_400Regular';
 `;
 
 const Display = styled.View`
     width: 100%;
-    height: 142px;
+    height: 115px;
     align-items: center;
-    background-color: ${props=>props.bg_color};
+    background-color: ${props => props.bg_color};
+
 `;
 
 const TripPlannerTab = ({
@@ -99,23 +104,23 @@ const TripPlannerTab = ({
     const PressRightTab = () => {
         setTabSwitch(true);
     }
-    
-    if(tabSwitch === false){
+
+    if (tabSwitch === false) {
         if (!fontsLoaded) {
             return <AppLoading />;
         } else {
             return (
                 <Container>
                     <TabCont>
-                        <BigTab 
-                            bigtab_color={carolinablue} 
+                        <BigTab
+                            bigtab_color={carolinablue}
                             onPress={PressLeftTab}
                             underlayColor={COLORS.CAROLINABLUE}
                         >
                             <TabText bigtab_text="#fff">Nearby Rides</TabText>
                         </BigTab>
-                        <SmallTab 
-                            smtab_color={spacecadet} 
+                        <SmallTab
+                            smtab_color={spacecadet}
                             onPress={PressRightTab}
                             underlayColor={COLORS.CAROLINABLUE}
                         >
@@ -123,11 +128,11 @@ const TripPlannerTab = ({
                         </SmallTab>
                     </TabCont>
                     <Display bg_color={carolinablue}>
-                        <ScrollView 
+                        <ScrollView
                             horizontal={true}
                             contentContainerStyle={styles.contentContainer}
                         >
-                            <SavedRidesIcon 
+                            <SavedRidesIcon
                                 icon_color='#fff'
                                 text_color='#fff'
                                 ride_text="Lonsdale Quay"
@@ -135,34 +140,34 @@ const TripPlannerTab = ({
                             <SavedRidesIcon
                                 text_color='#fff'
                                 icon_color='#fff'
-                                icon_type="train" 
+                                icon_type="train"
                                 ride_text="Canada Line"
                             />
-                            <SavedRidesIcon 
+                            <SavedRidesIcon
                                 text_color='#fff'
                                 icon_color='#fff'
-                                icon_type="bus" 
-                                bus_text="250" 
+                                icon_type="bus"
+                                bus_text="250"
                                 ride_text="Downtown"
                             />
-                            <SavedRidesIcon 
+                            <SavedRidesIcon
                                 text_color='#fff'
                                 icon_color='#fff'
-                                icon_type="bus" 
-                                bus_text="05" 
+                                icon_type="bus"
+                                bus_text="05"
                                 ride_text="Robson"
                             />
-                            <SavedRidesIcon 
+                            <SavedRidesIcon
                                 text_color='#fff'
                                 icon_color='#fff'
-                                icon_type="seabus" 
+                                icon_type="seabus"
                                 ride_text="Waterfront to Lonsdale Quay"
                             />
-                            <SavedRidesIcon 
+                            <SavedRidesIcon
                                 text_color='#fff'
                                 icon_color='#fff'
-                                icon_type="bus" 
-                                bus_text="05" 
+                                icon_type="bus"
+                                bus_text="05"
                                 ride_text="Dunsmuir to Cardero"
                             />
                         </ScrollView>
@@ -172,61 +177,61 @@ const TripPlannerTab = ({
         }
     }
 
-    if(tabSwitch === true){
+    if (tabSwitch === true) {
         if (!fontsLoaded) {
             return <AppLoading />;
         } else {
             return (
                 <Container>
                     <TabCont>
-                        <SmallTab 
-                            smtab_color={carolinablue} 
+                        <SmallTab
+                            smtab_color={carolinablue}
                             onPress={PressLeftTab}
                             underlayColor={COLORS.SPACECADET}
                         >
                             <SmTabText smtab_text="#fff">Nearby Rides</SmTabText>
                         </SmallTab>
-                        <BigTab 
-                            bigtab_color={spacecadet} 
+                        <BigTab
+                            bigtab_color={spacecadet}
                             onPress={PressRightTab}
                             underlayColor={COLORS.SPACECADET}
                         >
-                            <TabText bigtab_text={COLORS.CAROLINABLUE}>Saved Rides</TabText>
+                            <TabText bigtab_text={COLORS.CAROLINABLUE}>Saved Locations</TabText>
                         </BigTab>
                     </TabCont>
                     <Display bg_color={spacecadet}>
-                        <ScrollView 
+                        <ScrollView
                             horizontal={true}
                             contentContainerStyle={styles.contentContainerTwo}
                         >
-                            <SavedRidesIcon 
+                            <SavedRidesIcon
                                 text_color={COLORS.CAROLINABLUE}
                             />
                             <SavedRidesIcon
                                 text_color={COLORS.CAROLINABLUE}
-                                icon_type="train" 
+                                icon_type="train"
                                 ride_text="Waterfront to Yaletown"
                             />
-                            <SavedRidesIcon 
+                            <SavedRidesIcon
                                 text_color={COLORS.CAROLINABLUE}
-                                icon_type="seabus" 
+                                icon_type="seabus"
                                 ride_text="Waterfront to Lonsdale Quay"
                             />
-                            <SavedRidesIcon 
+                            <SavedRidesIcon
                                 text_color={COLORS.CAROLINABLUE}
-                                icon_type="bus" 
-                                bus_text="05" 
+                                icon_type="bus"
+                                bus_text="05"
                                 ride_text="Dunsmuir to Cardero"
                             />
-                            <SavedRidesIcon 
+                            <SavedRidesIcon
                                 text_color={COLORS.CAROLINABLUE}
-                                icon_type="seabus" 
+                                icon_type="seabus"
                                 ride_text="Waterfront to Lonsdale Quay"
                             />
-                            <SavedRidesIcon 
+                            <SavedRidesIcon
                                 text_color={COLORS.CAROLINABLUE}
-                                icon_type="bus" 
-                                bus_text="05" 
+                                icon_type="bus"
+                                bus_text="05"
                                 ride_text="Dunsmuir to Cardero"
                             />
                         </ScrollView>
@@ -248,12 +253,13 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         paddingTop: '3%',
-        paddingLeft: '3%'
+        paddingLeft: '3%',
+        paddingRight: '10%',
     },
     contentContainerTwo: {
         width: '100%',
         height: '100%',
         paddingTop: '3%',
-        paddingLeft: '3%'
+        paddingBottom: '20%',
     }
 });

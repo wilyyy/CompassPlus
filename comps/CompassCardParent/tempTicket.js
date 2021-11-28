@@ -135,6 +135,21 @@ const ButtonText = styled.Text`
 `;
 
 
+const TabButton = styled.TouchableOpacity`
+        /* background-color: ${COLORS.CAROLINABLUE}; */
+        background-color: ${props => props.backgroundColor};
+        width: 60%;
+        height: 55;
+        border-radius: 10px;
+        align-self: flex-end;
+        justify-content: center;
+        margin-top: 15px;
+        margin-right: 20px;
+        /* shadow: COLORS.SPACECADET,
+        shadowOpacity: 0.5,
+        shadowOffset: { width: 0, height: 4 }, */
+`;
+
 
 
 
@@ -144,6 +159,7 @@ export default function TempTicket({
     passPaymentType = 'Visa',
     month = 'December',
     tempTicketConfirm = (passPaymentType, zoneAmount, zoneType) => { },
+    startAnimation = () => { }
 
 
 }) {
@@ -290,6 +306,38 @@ export default function TempTicket({
         ]
     };
 
+    const [confPay, setConfPay] = useState(2);
+    const [buttonColour, setButtonColour] = useState(COLORS.CAROLINABLUE);
+    const [payText, setPayText] = useState('Purchase');
+    // let payText = 'Purchase';
+    // let buttonColour = COLORS.CAROLINABLUE;
+
+
+
+    function changeButton() {
+        console.log('confPay =', confPay)
+
+        if (confPay == 1) {
+            setButtonColour(COLORS.CAROLINABLUE);
+            setPayText('Purchase');
+            setConfPay(2);
+        }
+
+        if (confPay == 2) {
+            setButtonColour(COLORS.LIMEGREEN);
+            setPayText('Confirm?');
+            setConfPay(3);
+        }
+
+        if (confPay == 3) {
+            tempTicketConfirm();
+            setButtonColour(COLORS.CAROLINABLUE);
+            setPayText('Purchase');
+            setConfPay(2);
+            startAnimation();
+        }
+    }
+
 
     return (
         <Container>
@@ -368,13 +416,13 @@ export default function TempTicket({
 
 
 
-            <TouchableOpacity
-                onPress={tempTicketConfirm}
-                // onPress={tempTicketConfirm(passPaymentType, zoneAmount, zoneType)}
-                style={styles.TransferButton}
+            <TabButton
+                onPress={() => { changeButton() }}
+                backgroundColor={buttonColour}
+            // onPress={tempTicketConfirm(passPaymentType, zoneAmount, zoneType)}
             >
-                <ButtonText>Purchase</ButtonText>
-            </TouchableOpacity>
+                <ButtonText>{payText}</ButtonText>
+            </TabButton>
 
         </Container>
     )

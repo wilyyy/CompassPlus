@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import WhiteButton from '../../comps/Global/whiteButton.js';
 import SavedTripsCard from '../../comps/TripPlanner/savedTripsCard.js';
-import NavBar from '../../comps/NavBar/index.js';
+import NavHome from '../../comps/NavBar/NavHome.js';
 
 import {
     useFonts,
@@ -35,7 +35,7 @@ const Page = styled.View`
 const TopBar = styled.View`
     width: 100%;
     height: 13%;
-    background-color: ${COLORS.CAROLINABLUE};
+    background-color: ${COLORS.SPACECADET};
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -75,7 +75,7 @@ const Para = styled.Text`
 `;
 
 const SavedTrips = ({
-    onBackPress = () => {},
+    onBackPress = () => { },
     navigation = useNavigation()
 
 }) => {
@@ -96,16 +96,16 @@ const SavedTrips = ({
         return <Page>
             <TopBar>
                 <Button onPress={onBackPress}>
-                    <Icon 
+                    <Icon
                         name="arrow-back-circle"
                         type="ionicon"
                         color='#fff'
                         size={60}
                     />
                 </Button>
-                <H1>Saved Trips</H1>
+                <H1>Saved Locations</H1>
                 <Button onPress={onBackPress}>
-                    <Icon 
+                    <Icon
                         name="add-circle"
                         type="ionicon"
                         color='#fff'
@@ -119,16 +119,16 @@ const SavedTrips = ({
                 <SavedTripsCard />
                 <SavedTripsCard />
                 <BottomCont>
-                    <Divider orientation="vertical" width={5} />
+                    {/* <Divider orientation="vertical" width={5} />
                     <Para>Want to save more trips to your home, work, or school?</Para>
-                    <WhiteButton 
-                        text="Pick Destinations" 
+                    <WhiteButton
+                        text="Pick Destinations"
                         bg_color={COLORS.CAROLINABLUE}
                         text_color="#fff"
-                        onButtonPress={() => navigation.navigate('Onboarding') }
-                    />
+                        onButtonPress={() => navigation.navigate('Onboarding')}
+                    /> */}
                 </BottomCont>
-                <NavBar/ >
+                <NavHome />
             </Content>
         </Page>
     }

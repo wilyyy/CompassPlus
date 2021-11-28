@@ -32,6 +32,7 @@ const CardSwipeTest = ({
     passAutoReload = () => { },
     ticketAutoReload = () => { },
     addTempTicket = () => { },
+    paymentAnimation = () => { },
 }) => {
     const scrollX = new Animated.Value(0);
 
@@ -65,6 +66,7 @@ const CardSwipeTest = ({
                     triggerDefault={() => { setTicketDefault(false) }}
                     makeDefault={!ticketDefault}
                     onAutoReloadPress={ticketAutoReload}
+                    paymentAnimation={paymentAnimation}
                 />
                 {/* <Ticket
                     onAddFundsPress={handleAddSheetTWO}
@@ -76,6 +78,7 @@ const CardSwipeTest = ({
                 /> */}
                 <AddCardManager
                     AddTempTicket={addTempTicket}
+                    paymentAnimation={paymentAnimation}
                 />
 
             </ScrollView>
