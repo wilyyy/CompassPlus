@@ -28,17 +28,21 @@ const Spacing = styled.View`
 `;
 
 const Container = styled.View`
-    width: 350px;
+    min-width: 330px;
+    width:40%;
     height: 68%;
     min-height: 550px;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 15px;
     margin-top: 20px;
-    margin-right:30px;
+    left:-1%;
+    /* margin-right:5%; */
+    /* margin-left:5px; */
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 const CompassPlaceHolder = styled.View`
-    width: 350px;
+     min-width: 330px;
+    width:40%;
     height: 200px;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
@@ -238,6 +242,7 @@ const H2 = styled.Text`
 export default function Pass({
     // cardSide = true, // need to put state for this in app.js?
     onWalletPress = () => { },
+    balance = 4.05,
     barcodeId = "Compass No: 016372 9281 9273 CVN 459",
     expiration = "December ",
     // onManagePress = () => { },
@@ -305,7 +310,7 @@ export default function Pass({
                     />
                 </Pressable>
                 <CompassPlaceHolder>
-                    <CardTitle>Tap to Pay</CardTitle>
+                    <CardTitle>$ {balance}</CardTitle>
                     <Image source={require('../../assets/compassPattern.png')}
                         style={styles.placeholderBg}
                     />

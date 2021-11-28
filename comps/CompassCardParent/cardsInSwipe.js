@@ -40,7 +40,10 @@ const CardSwipeTest = ({
     //const [passDefault, setPassDefault] = useState(false);
     console.log(ticketDefault, "Ticket D")
     return (
-        <SafeAreaView style={{ width: '100%', borderColor: 'red', borderWidth: 2 }}>
+        <SafeAreaView style={{
+            width: '100%'
+            // , borderColor: 'red', borderWidth: 2 
+        }}>
             <ScrollView
                 contentContainerStyle={styles.container}
                 horizontal={true}
@@ -75,6 +78,9 @@ const CardSwipeTest = ({
                     triggerDefault={() => { setTicketDefault(true) }}
 
                 /> */}
+                <View
+                    style={{ width: '5%' }}
+                />
                 <AddCardManager
                     AddTempTicket={addTempTicket}
                     paymentAnimation={paymentAnimation}
@@ -106,12 +112,19 @@ const CardSwipeTest = ({
 
 const styles = StyleSheet.create({
     container: {
-        height: '80%',
-        width: 770,
-        // paddingHorizontal: '5%',
+        height: '100%',
+        width: '200%',
+        maxWidth: 750,
+
         // left: '5%'
-        marginLeft: '5%',
+        // marginLeft: '5%',
+        marginLeft: '8%',
+        paddingRight: '70%',
+
+        // justifyContent: 'space-between',
         // justifyContent: 'space-between'
+        // borderWidth: 2,
+        // borderColor: 'pink'
     },
 
     normalDot: {
@@ -129,7 +142,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         // borderWidth: 2,
         // borderColor: 'purple',
-        top: -205,
+        // top: -205,
+        bottom: '-2%',
 
     }
 });

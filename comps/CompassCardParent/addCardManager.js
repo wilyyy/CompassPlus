@@ -17,18 +17,20 @@ import { words } from 'lodash';
 // `;
 
 const Container = styled.View`
-    width: 350px;
+    min-width: 330px;
+    width:40%;
     height:68%;
     min-height: 550px;
     background-color: #fff;
     border-radius: 15px;
     margin-top: 20px;
-    /* right:2%; */
+    right:-1.5%;
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const CompassPlaceHolder = styled.Pressable`
-    width: 100%;
+    min-width: 330px;
+    width:40%;
     height: 36%;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
