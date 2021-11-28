@@ -21,9 +21,9 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Container = styled.TouchableOpacity`
-    width: 340px;
+    width: 90%;
     height: 106px;
-    background-color: ${COLORS.CAROLINABLUE};
+    background-color: ${COLORS.SPACECADET};
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -32,18 +32,20 @@ const Container = styled.TouchableOpacity`
 
 const Row = styled.View`
     flex-direction: row;
-    width: 313px;
+    width: 90%;
     height: 54px;
+    margin: 0 10px 0 10px;
     justify-content: space-between;
     align-items: center;
 `;
 
 const TransitIcon = styled.View`
-    width: 27px;
-    height: 27px;
+    width: 60px;
+    height: 60px;
+    margin-left:2%;
     justify-content: center;
     align-items: center;
-    background-color: ${COLORS.SPACECADET};
+    background-color: ${COLORS.CAROLINABLUE};
     border-radius: 100px;
 `;
 
@@ -75,11 +77,11 @@ const SeeMoreIcon = styled.TouchableOpacity`
 `;
 
 const SavedTripsCard = ({
-    icon_name="bus",
-    icon_type="font-awesome-5",
-    from="Willingon Ave @ Sanderson Way",
-    to="Nanaimo Station @ Bay 2",
-    onButtonPress = () => {}
+    icon_name = "bus",
+    icon_type = "font-awesome-5",
+    from = "Willingon Ave @ Sanderson Way",
+    to = "Nanaimo Station @ Bay 2",
+    onButtonPress = () => { }
 }) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
@@ -96,45 +98,45 @@ const SavedTripsCard = ({
         return <AppLoading />;
     } else {
         return <Container onPress={onButtonPress}>
-        <Row>
-            <TransitIcon>
-                <Icon
-                    name={icon_name}
-                    type={icon_type}
-                    color='#fff'
-                    size={15}
-                />
-            </TransitIcon>
-            <Column>
-                <TextRow>
+            <Row>
+                <TransitIcon>
                     <Icon
-                        name="ios-location-sharp"
-                        type="ionicon"
-                        color={COLORS.LIGHTGREY}
-                        size={15}
+                        name={icon_name}
+                        type={icon_type}
+                        color='#fff'
+                        size={30}
                     />
-                    <Para>{from}</Para>
-                </TextRow>
-                <TextRow>
-                    <Icon
-                        name="ios-location-sharp"
-                        type="ionicon"
+                </TransitIcon>
+                <Column>
+                    <TextRow>
+                        <Icon
+                            name="ios-location-sharp"
+                            type="ionicon"
+                            color={COLORS.LIGHTGREY}
+                            size={15}
+                        />
+                        <Para>{from}</Para>
+                    </TextRow>
+                    <TextRow>
+                        <Icon
+                            name="ios-location-sharp"
+                            type="ionicon"
+                            color={COLORS.LIMEGREEN}
+                            size={15}
+                        />
+                        <Para>{to}</Para>
+                    </TextRow>
+                </Column>
+                {/* <SeeMoreIcon onPress={onButtonPress}>
+                    {/* <Icon
+                        name="arrowright"
+                        type="antdesign"
                         color={COLORS.DAVYSGREY}
-                        size={15}
-                    />
-                    <Para>{to}</Para>
-                </TextRow>
-            </Column>
-            <SeeMoreIcon onPress={onButtonPress}>
-                <Icon
-                    name="arrowright"
-                    type="antdesign"
-                    color= {COLORS.DAVYSGREY}
-                    size={25}
-                />
-            </SeeMoreIcon>
-        </Row>
-    </Container>
+                        size={25}
+                    /> 
+            </SeeMoreIcon> */}
+            </Row>
+        </Container >
     }
 }
 

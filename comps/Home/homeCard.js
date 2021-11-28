@@ -23,7 +23,7 @@ import AppLoading from 'expo-app-loading';
 const TempCenter = styled.View`
     align-items: center;
     width: 350px;
-
+    margin-bottom: 5%;
 `;
 
 

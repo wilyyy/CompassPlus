@@ -55,7 +55,7 @@ const BottomContainer = styled.View`
 `;
 
 const HomeElement = styled.Pressable`
-    margin: 10px 0;
+    /* margin: 10px 0; */
     /* border-width: 2px;
     border-color: red; */
 `;
