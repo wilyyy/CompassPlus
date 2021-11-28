@@ -16,6 +16,10 @@ import {
 import AppLoading from 'expo-app-loading';
 import { useNavigation } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
+import MapView, { Marker } from 'react-native-maps';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { MapStyleAub } from '../../googlemaps/mapStyle.js';
+
 
 
 import { COLORS } from '../../constants/styles.js';
@@ -80,6 +84,24 @@ const H3 = styled.Text`
     position: relative;
     text-align: center;
 `;
+
+const MapContainer = styled.View`
+    width: 333px;
+    height: 325px;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 105, 164, 0.65);
+    border-radius: 10px;
+`;
+
+const SearchBar = styled.View`
+    width: ${windowWidth / 1.25};
+    position: absolute;
+    top: 25%;
+    z-index: 2;
+`;
+
 
 const PickDestinations = ({
     navigation = useNavigation()
@@ -166,6 +188,18 @@ const PickDestinations = ({
           }
     }
 
+    //Map Search Bar State
+    const [region, setRegion] = useState({
+        latitude: 49.246292,
+        longitude: -123.116226,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+    });
+
+    //Map marker State
+    const [markerDisplay, setMarkerDisplay] = useState(0);
+
+
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
@@ -205,11 +239,59 @@ const PickDestinations = ({
                         </SkipCont>
                         <BusProgressBar position={busPosition}/>
                         <BotContainer>
-                            <H1 style={styles.text_down}>{heading}</H1>
-                            <SignUpInput />
-                            {/* add props and maybe think about putting these 3 in a scroll view */}
+                            <H1 style={styles.text_down}>{heading}</H1>       
                             <H3>{subheading}</H3>
-                            <SignUpTransitCardScroll />
+                            <SearchBar>
+                                <GooglePlacesAutocomplete
+                                    placeholder='Search Address'
+                                    fetchDetails={true}
+                                    GooglePlacesSearchQuery={{
+                                        rankby: "distance"
+                                    }}
+                                    onPress={(data, details = null) => {
+                                        // 'details' is provided when fetchDetails = true
+                                        console.log(data, details);
+                                        setRegion({
+                                            latitude: details.geometry.location.lat,
+                                            longitude: details.geometry.location.lng,
+                                            latitudeDelta: 0.0922,
+                                            longitudeDelta: 0.0421
+                                        });
+                                        setMarkerDisplay(1);
+                                    }}
+                                    query={{
+                                        key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
+                                        language: 'en',
+                                        components: "country:can",
+                                        // types: "establishments",
+                                        radius: 40000,
+                                        location: `${region.latitude}, ${region.longitude}`
+                                    }}
+                                />
+                            </SearchBar>
+                            <MapContainer>
+                                <MapView
+                                    provider="google"
+                                    initialRegion={{
+                                        latitude: 49.246292,
+                                        longitude: -123.116226,
+                                        latitudeDelta: 1,
+                                        longitudeDelta: 1,
+                                    }}
+                                    style={styles.map}
+                                    customMapStyle={MapStyleAub}
+                                >
+                                    <Marker
+                                        coordinate={{
+                                            latitude: region.latitude,
+                                            longitude: region.longitude,
+                                        }}
+                                        pinColor={COLORS.CAROLINABLUE}
+                                        opacity={markerDisplay}
+                                    />
+                                </MapView>
+                            </MapContainer>
+                            
                             <WhiteButton 
                                 text="Continue"
                                 onButtonPress={IncrementCount}
@@ -245,5 +327,12 @@ const styles = StyleSheet.create({
         marginTop: 250,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    map: {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        zIndex: -2,
+        borderRadius: 10
     }
 });
