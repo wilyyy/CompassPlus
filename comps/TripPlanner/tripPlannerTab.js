@@ -124,7 +124,7 @@ const TripPlannerTab = ({
                             onPress={PressRightTab}
                             underlayColor={COLORS.CAROLINABLUE}
                         >
-                            <SmTabText smtab_text={carolinablue}>Saved Locations</SmTabText>
+                            <SmTabText smtab_text='#fff'>Saved Locations</SmTabText>
                         </SmallTab>
                     </TabCont>
                     <Display bg_color={carolinablue} style={{ width: '100%' }}>
@@ -191,7 +191,7 @@ const TripPlannerTab = ({
                             onPress={PressLeftTab}
                             underlayColor={COLORS.CAROLINABLUE}
                         >
-                            <SmTabText smtab_text={carolinablue}>Nearby Rides</SmTabText>
+                            <SmTabText smtab_text='#fff'>Nearby Rides</SmTabText>
                         </SmallTab>
                         <BigTab
                             bigtab_color={carolinablue}
