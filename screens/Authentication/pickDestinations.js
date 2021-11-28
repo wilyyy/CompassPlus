@@ -20,8 +20,6 @@ import MapView, { Marker } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { MapStyleAub } from '../../googlemaps/mapStyle.js';
 
-
-
 import { COLORS } from '../../constants/styles.js';
 import BusProgressBar from '../../comps/SignUp/busProgressBar.js';
 import SignUpInput from '../../comps/SignUp/signUpInput.js';
