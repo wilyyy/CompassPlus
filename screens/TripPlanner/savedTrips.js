@@ -79,6 +79,14 @@ const SavedTrips = ({
     navigation = useNavigation()
 
 }) => {
+    const RouteToAddLocations = () =>{
+        navigation.navigate('AddSavedLocation');
+    }
+
+    const PressBack = () => {
+        navigation.navigate('Map');
+    }
+
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -95,7 +103,7 @@ const SavedTrips = ({
     } else {
         return <Page>
             <TopBar>
-                <Button onPress={onBackPress}>
+                <Button onPress={PressBack}>
                     <Icon
                         name="arrow-back-circle"
                         type="ionicon"
@@ -104,7 +112,7 @@ const SavedTrips = ({
                     />
                 </Button>
                 <H1>Saved Locations</H1>
-                <Button onPress={onBackPress}>
+                <Button onPress={RouteToAddLocations}>
                     <Icon
                         name="add-circle"
                         type="ionicon"

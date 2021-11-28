@@ -133,7 +133,7 @@ const MapHomeScreen = () => {
                         longitudeDelta: 0.0421
                     });
                     setEndMarkerDisplay(1);
-                    setDirectionOpacity(3);
+                    setDirectionOpacity(5);
                 }}
                 query={{
                     key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
@@ -163,7 +163,7 @@ const MapHomeScreen = () => {
             onPress={() => console.log('the above needs to route to the single onboarding screen')}
             style={styles.saveButton}>
             <Icon
-                name='check'
+                name='save'
                 type='antdesign'
                 color={COLORS.LIMEGREEN}
                 size={20}
@@ -204,7 +204,7 @@ const MapHomeScreen = () => {
                 destination={endRegion}
                 apikey='AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U'
                 strokeWidth={directionOpacity}
-                strokeColor={COLORS.CAROLINABLUE}
+                strokeColor='#F06D23'
             />
         </MapView>
         <Container>
