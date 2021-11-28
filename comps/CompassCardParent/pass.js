@@ -19,6 +19,7 @@ import {
     Ubuntu_700Bold_Italic,
 } from '@expo-google-fonts/ubuntu'
     ;
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Spacing = styled.View`
 
@@ -40,6 +41,19 @@ const Container = styled.View`
     /* margin-left:5px; */
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
+
+const TapText = styled.Text`
+    color: ${COLORS.LIGHTGREY};
+    left:-39%;
+    top:6%;
+`;
+
+const ManageDesc = styled.Text`
+    color: ${COLORS.LIGHTGREY};
+    top:2%;
+    margin-bottom:2%;
+`;
+
 const CompassPlaceHolder = styled.View`
      min-width: 330px;
     width:40%;
@@ -54,7 +68,7 @@ const CompassPlaceHolder = styled.View`
 `;
 
 const CardTitle = styled.Text`
-    font-size: 18px;
+    font-size: 24px;
     font-family: 'Ubuntu_500Medium';
     color: #fff;
 `;
@@ -63,6 +77,8 @@ const H1 = styled.Text`
 font-size: 24px;
     font-family: 'Ubuntu_700Bold';
     color: ${COLORS.SPACECADET};
+    margin-top: 6%;
+
     /* margin-bottom: 5%; */
 `;
 
@@ -141,12 +157,12 @@ const SettingCont = styled.View`
     margin-top: 6%;
     
 `;
-const SettingsContLeft = styled.View`
+const SettingsContLeft = styled.TouchableOpacity`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-    /* border-width: 2px;
+/* 
+    border-width: 2px;
     border-color: blue; */
 `;
 const MenuItem = styled.Text`
@@ -326,6 +342,7 @@ export default function Pass({
                 </CompassPlaceHolder>
                 <CardHeader>
                     <H1>Time Remaining:</H1>
+                    <TapText>Tap to Pay</TapText>
                     <Pressable style={[styles.ticket, styles.bg1]}
                         onPress={paymentAnimation}
                     >
@@ -343,6 +360,7 @@ export default function Pass({
                             digitTxtStyle={{ color: '#fff' }}
                         />
                     </Pressable>
+                    <TapText>Tap to Pay</TapText>
                     <Pressable style={[styles.ticket, styles.bg1]}
                         onPress={paymentAnimation}>
                         <Text style={styles.buttonText}>Pass:</Text>
@@ -362,7 +380,7 @@ export default function Pass({
                 </CardHeader>
                 <FrontBodyCont>
 
-                    <Pressable
+                    <TouchableOpacity
                         style={styles.frontFundsButton}
                         onPress={reloadPass}>
 
@@ -374,14 +392,14 @@ export default function Pass({
                             reverse={true}
                         />
                         <Text
-                        // style={styles.buttonText}
+                            style={styles.iconText}
                         >Reload Pass</Text>
-                    </Pressable>
+                    </TouchableOpacity>
                     <ExpirationCont>
                         {/* <H3>Pass expires {expiration}</H3> */}
 
                     </ExpirationCont>
-                    <Pressable
+                    <TouchableOpacity
                         style={styles.frontFundsButton}
                         onPress={reloadStoredValue}>
 
@@ -393,9 +411,9 @@ export default function Pass({
                             reverse={true}
                         />
                         <Text
-                        //  style={styles.buttonText}
+                            style={styles.iconText}
                         >Add Funds</Text>
-                    </Pressable>
+                    </TouchableOpacity>
                     {/* <H3>Pass expires {expiration}</H3> */}
 
                 </FrontBodyCont>
@@ -443,6 +461,7 @@ export default function Pass({
                                 size={30}
                             />
                             <MenuItem>Monthly Pass</MenuItem>
+
                         </SettingsContLeft>
                         <Switch
                             trackColor={{ false: '#222222', true: '#009DDC' }}
@@ -452,7 +471,9 @@ export default function Pass({
                             value={defaultCard}
                             style={styles.switch}
                         />
+
                     </SettingCont>
+                    <ManageDesc>When auto reload is enable, pass reloads on the first day of every month</ManageDesc>
                     <SettingCont>
                         <SettingsContLeft>
                             <Icon
@@ -487,7 +508,7 @@ export default function Pass({
                     </SettingCont> */}
                 </BackBodyCont>
                 <CardFooterBack>
-                    <Pressable
+                    <TouchableOpacity
                         style={styles.frontFundsButton}
                         onPress={reloadPass}>
 
@@ -499,14 +520,14 @@ export default function Pass({
                             reverse={true}
                         />
                         <Text
-                        // style={styles.buttonText}
+                            style={styles.iconText}
                         >Reload Pass</Text>
-                    </Pressable>
+                    </TouchableOpacity>
                     <ExpirationCont>
                         {/* <H3>Pass expires {expiration}</H3> */}
 
                     </ExpirationCont>
-                    <Pressable
+                    <TouchableOpacity
                         style={styles.frontFundsButton}
                         onPress={reloadStoredValue}>
 
@@ -518,9 +539,9 @@ export default function Pass({
                             reverse={true}
                         />
                         <Text
-                        //  style={styles.buttonText}
+                            style={styles.iconText}
                         >Add Funds</Text>
-                    </Pressable>
+                    </TouchableOpacity>
                 </CardFooterBack>
             </Container>
 
@@ -550,12 +571,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         lineHeight: 24,
         letterSpacing: 0,
-        color: '#222222',
+        color: COLORS.SPACECADET,
     },
     toggleSideIcon: {
         alignItems: 'flex-end',
         width: '100%',
-        zIndex: 2,
+        zIndex: 10,
         height: 'auto',
         position: 'absolute',
     },
@@ -574,7 +595,8 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
     },
     frontFundsButton: {
-        marginBottom: 20,
+        marginBottom: 10,
+
     },
     lottie: {
         top: '5%',
@@ -606,6 +628,12 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         shadowOffset: { width: 0, height: 0 },
 
+    },
+    iconText: {
+        color: COLORS.CAROLINABLUE,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        left: '-2%',
     },
 })
 
