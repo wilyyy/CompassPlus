@@ -117,6 +117,21 @@ const ButtonText = styled.Text`
 `;
 
 
+const TabButton = styled.TouchableOpacity`
+        /* background-color: ${COLORS.CAROLINABLUE}; */
+        background-color: ${props => props.backgroundColor};
+        width: 60%;
+        height: 55;
+        border-radius: 10px;
+        align-self: flex-end;
+        justify-content: center;
+        margin-top: 15px;
+        margin-right: 20px;
+        /* shadow: COLORS.SPACECADET,
+        shadowOpacity: 0.5,
+        shadowOffset: { width: 0, height: 4 }, */
+`;
+
 
 export default function AddFundsTabTicket({
     ticketBalance = "$4.05",
@@ -183,7 +198,7 @@ export default function AddFundsTabTicket({
     }
 
     function closeModalAmount(selected) {
-        console.log('amount', selected.id);
+        // console.log('amount', selected.id);
         if (selected.id == 1) {
             setLoadTicket(10);
         }
@@ -220,7 +235,7 @@ export default function AddFundsTabTicket({
     }
 
     function closeModalPay(selected) {
-        console.log('payment', selected.id);
+        // console.log('payment', selected.id);
         if (selected.id == 1) {
             setPayment(1);
         }
@@ -254,6 +269,38 @@ export default function AddFundsTabTicket({
 
 
     // ====== MODAL ANIMATION END ======
+
+
+    const [confPay, setConfPay] = useState(2);
+    const [buttonColour, setButtonColour] = useState(COLORS.CAROLINABLUE);
+    const [payText, setPayText] = useState('Add Funds');
+    // let payText = 'Purchase';
+    // let buttonColour = COLORS.CAROLINABLUE;
+
+
+
+    function changeButton() {
+        // console.log('confPay =', confPay)
+        setConfPay(2);
+        if (confPay == 1) {
+            setButtonColour(COLORS.CAROLINABLUE);
+            setPayText('Add Funds');
+            setConfPay(2);
+        }
+
+        if (confPay == 2) {
+            setButtonColour(COLORS.LIMEGREEN);
+            setPayText('Confirm?');
+            setConfPay(3);
+        }
+
+        if (confPay == 3) {
+            AddFundsConfirm();
+            setButtonColour(COLORS.CAROLINABLUE);
+            setPayText('Add Funds');
+        }
+    }
+
 
     return (
         <Container>
@@ -329,12 +376,14 @@ export default function AddFundsTabTicket({
 
 
 
-            <TouchableOpacity
-                onPress={AddFundsConfirm}
-                style={styles.TransferButton}
+            <TabButton
+                // onPress={AddFundsConfirm}
+                backgroundColor={buttonColour}
+                onPress={() => { changeButton() }}
+            // style={styles.TransferButton}
             >
-                <ButtonText>Add {ticketLoadAmount}</ButtonText>
-            </TouchableOpacity>
+                <ButtonText>{payText}</ButtonText>
+            </TabButton>
 
         </Container>
     )

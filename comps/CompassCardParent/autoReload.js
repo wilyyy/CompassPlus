@@ -119,6 +119,21 @@ const ButtonText = styled.Text`
 `;
 
 
+const TabButton = styled.TouchableOpacity`
+        /* background-color: ${COLORS.CAROLINABLUE}; */
+        background-color: ${props => props.backgroundColor};
+        width: 60%;
+        height: 55;
+        border-radius: 10px;
+        align-self: flex-end;
+        justify-content: center;
+        margin-top: 15px;
+        margin-right: 20px;
+        /* shadow: COLORS.SPACECADET,
+        shadowOpacity: 0.5,
+        shadowOffset: { width: 0, height: 4 }, */
+`;
+
 
 
 
@@ -328,6 +343,38 @@ export default function AddFundsTabPass({
     const [defaultCard, setDefaultCard] = useState(true);
     const toggleDefaultCard = () => setDefaultCard(previousState => !previousState);
 
+
+    const [confPay, setConfPay] = useState(2);
+    const [buttonColour, setButtonColour] = useState(COLORS.CAROLINABLUE);
+    const [payText, setPayText] = useState('Save');
+    // let payText = 'Purchase';
+    // let buttonColour = COLORS.CAROLINABLUE;
+
+
+
+    function changeButton() {
+        console.log('confPay =', confPay)
+
+        if (confPay == 1) {
+            setButtonColour(COLORS.CAROLINABLUE);
+            setPayText('Save');
+            setConfPay(2);
+        }
+
+        if (confPay == 2) {
+            setButtonColour(COLORS.LIMEGREEN);
+            setPayText('Confirm?');
+            setConfPay(3);
+        }
+
+        if (confPay == 3) {
+            autoReloadConfirm();
+            setButtonColour(COLORS.CAROLINABLUE);
+            setPayText('Save');
+            setConfPay(2);
+        }
+    }
+
     return (
         <Container>
             {/* <Button title='open' onPress={modalTrigger}></Button> */}
@@ -434,12 +481,12 @@ export default function AddFundsTabPass({
 
 
 
-            <TouchableOpacity
-                onPress={autoReloadConfirm}
-                style={styles.TransferButton}
+            <TabButton
+                backgroundColor={buttonColour}
+                onPress={changeButton}
             >
-                <ButtonText>Save</ButtonText>
-            </TouchableOpacity>
+                <ButtonText>{payText}</ButtonText>
+            </TabButton>
 
         </Container>
     )

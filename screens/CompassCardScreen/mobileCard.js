@@ -14,6 +14,8 @@ import {
     Ubuntu_700Bold,
     Ubuntu_700Bold_Italic,
 } from '@expo-google-fonts/ubuntu';
+import AppLoading from 'expo-app-loading';
+
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -85,9 +87,12 @@ const AddPayment = styled.Pressable`
     top:10px;
 `;
 const H1 = styled.Text`
-    font-size: 40px;
+    font-size: 24px;
     color: #fff;
+    margin-left:auto;
+    margin-right:auto;
     align-self: flex-start;
+    font-family: 'Ubuntu_700Bold';
 
     /* border-width: 2px;
     border-color: blue; */
@@ -110,6 +115,18 @@ const SPRING_CONFIG = {
 export default function CompassCardScreen() {
     const dimensions = useWindowDimensions();
     navigation = useNavigation();
+
+    let [fontsLoaded] = useFonts({
+        Ubuntu_300Light,
+        Ubuntu_300Light_Italic,
+        Ubuntu_400Regular,
+        Ubuntu_400Regular_Italic,
+        Ubuntu_500Medium,
+        Ubuntu_500Medium_Italic,
+        Ubuntu_700Bold,
+        Ubuntu_700Bold_Italic,
+    });
+
 
 
     // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS START 🌟🌟🌟🌟🌟🌟 ======
@@ -283,15 +300,17 @@ export default function CompassCardScreen() {
 
     // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS END 🌟🌟🌟🌟🌟🌟 ======
 
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    } else {
+        return (
+            <ThemeProvider>
+                <Page>
 
-    return (
-        <ThemeProvider>
-            <Page>
-
-                <BgCircle />
-                <TopContainer>
-                    <H1>My Cards</H1>
-                    <AddPayment
+                    <BgCircle />
+                    <TopContainer>
+                        <H1>My Cards</H1>
+                        {/* <AddPayment
                         onPress={() => navigation.navigate('Pay')}
                     >
                         <Text style={styles.payment}>Add Payment</Text>
@@ -302,73 +321,75 @@ export default function CompassCardScreen() {
                             size={15}
                             style={styles.plusIcon}
                         />
-                    </AddPayment>
-                </TopContainer>
-                <Text style={styles.TapQueue}>Pay, reload, and manage</Text>
-                <CardSwipeTest
-                    handleAddSheetONE={handlePassReload}
-                    handleAddSheetTWO={handleTicketReload}
-                    ticketAutoReload={handleTicketAuto}
-                    addTempTicket={handleTempTicket}
-                />
-            </Page>
+                    </AddPayment> */}
 
-            {/* RELOAD pass ANIMATION TAB  */}
-            <PanGestureHandler
-                onGestureEvent={gestureHandlerPass}
-            >
-                <Animated.View
-                    style={[styles.overlayTabCont, stylePass]}>
-                    <AddFundsTabPass
-                        month='December'
-                        AddFundsConfirm={ReloadPass}
+                    </TopContainer>
+                    <Text style={styles.TapQueue}>Tap,  Reload, and Manage your cards</Text>
+                    <CardSwipeTest
+                        handleAddSheetONE={handlePassReload}
+                        handleAddSheetTWO={handleTicketReload}
+                        ticketAutoReload={handleTicketAuto}
+                        addTempTicket={handleTempTicket}
                     />
-                </Animated.View>
-            </PanGestureHandler>
+                </Page>
+
+                {/* RELOAD pass ANIMATION TAB  */}
+                <PanGestureHandler
+                    onGestureEvent={gestureHandlerPass}
+                >
+                    <Animated.View
+                        style={[styles.overlayTabCont, stylePass]}>
+                        <AddFundsTabPass
+                            month='December'
+                            AddFundsConfirm={ReloadPass}
+                        />
+                    </Animated.View>
+                </PanGestureHandler>
 
 
 
-            {/* RELOAD ticket ANIMATION TAB  */}
-            <PanGestureHandler
-                onGestureEvent={gestureHandlerTicket}
-            >
-                <Animated.View style={[styles.overlayTabCont, styleTicket]} >
-                    <AddFundsTabTicket
-                        ticketBalance="$4.05" //this will come from the database
-                        AddFundsConfirm={ReloadTicket}
-                    />
-                </Animated.View>
-            </PanGestureHandler>
+                {/* RELOAD ticket ANIMATION TAB  */}
+                <PanGestureHandler
+                    onGestureEvent={gestureHandlerTicket}
+                >
+                    <Animated.View style={[styles.overlayTabCont, styleTicket]} >
+                        <AddFundsTabTicket
+                            ticketBalance="$4.05" //this will come from the database
+                            AddFundsConfirm={ReloadTicket}
+                        />
+                    </Animated.View>
+                </PanGestureHandler>
 
-            {/* TICKET auto reload ANIMATION TAB  */}
-            <PanGestureHandler
-                onGestureEvent={gestureHandlerAutoTicket}
-            >
-                <Animated.View style={[styles.overlayTabCont, styleAutoTicket]} >
-                    <AutoReloadTab
-                        autoReloadConfirm={confirmAutoReload}
-                    />
-                </Animated.View>
-            </PanGestureHandler>
+                {/* TICKET auto reload ANIMATION TAB  */}
+                <PanGestureHandler
+                    onGestureEvent={gestureHandlerAutoTicket}
+                >
+                    <Animated.View style={[styles.overlayTabCont, styleAutoTicket]} >
+                        <AutoReloadTab
+                            autoReloadConfirm={confirmAutoReload}
+                        />
+                    </Animated.View>
+                </PanGestureHandler>
 
-            {/* TICKET temp ANIMATION TAB  */}
+                {/* TICKET temp ANIMATION TAB  */}
 
-            <PanGestureHandler
-                onGestureEvent={gestureHandlerTempTicket}
-            >
-                <Animated.View style={[styles.overlayTabCont, styleTemp]} >
-                    <TempTicket
-                        tempTicketConfirm={confirmTempTicket}
-                    />
-                </Animated.View>
-            </PanGestureHandler>
+                <PanGestureHandler
+                    onGestureEvent={gestureHandlerTempTicket}
+                >
+                    <Animated.View style={[styles.overlayTabCont, styleTemp]} >
+                        <TempTicket
+                            tempTicketConfirm={confirmTempTicket}
+                        />
+                    </Animated.View>
+                </PanGestureHandler>
 
-            <View style={styles.NavCont}>
-                <NavBar />
-            </View>
+                <View style={styles.NavCont}>
+                    <NavBar />
+                </View>
 
-        </ThemeProvider>
-    );
+            </ThemeProvider>
+        );
+    }
 }
 
 
@@ -382,9 +403,9 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
     },
     TapQueue: {
-        alignSelf: 'flex-start',
-        marginTop: '16%',
-        marginLeft: '5%',
+        alignSelf: 'center',
+        marginTop: '12%',
+        marginBottom: '5%',
         color: '#fff',
         fontStyle: 'italic',
     },
