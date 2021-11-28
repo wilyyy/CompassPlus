@@ -140,6 +140,7 @@ export default function AddFundsTabTicket({
     selectTicketAmount = () => { },
     selectTicketPayment = () => { },
     AddFundsConfirm = () => { },
+    startAnimation = () => { },
 }) {
 
 
@@ -298,6 +299,7 @@ export default function AddFundsTabTicket({
             AddFundsConfirm();
             setButtonColour(COLORS.CAROLINABLUE);
             setPayText('Add Funds');
+            startAnimation();
         }
     }
 

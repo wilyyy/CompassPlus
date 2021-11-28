@@ -143,6 +143,7 @@ export default function AddFundsTabPass({
     reloadPayment = 'Visa',
     month = 'December',
     autoReloadConfirm = () => { },
+    startAnimation = () => { },
 
 }) {
 
@@ -372,6 +373,7 @@ export default function AddFundsTabPass({
             setButtonColour(COLORS.CAROLINABLUE);
             setPayText('Save');
             setConfPay(2);
+            startAnimation();
         }
     }
 

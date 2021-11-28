@@ -15,6 +15,8 @@ import {
     Ubuntu_700Bold_Italic,
 } from '@expo-google-fonts/ubuntu';
 import AppLoading from 'expo-app-loading';
+import LottieView from 'lottie-react-native';
+
 
 
 import { useNavigation } from '@react-navigation/native';
@@ -43,6 +45,7 @@ import AddFundsTabTicket from '../../comps/CompassCardParent/addFundsTicket.js';
 import AutoReloadTab from '../../comps/CompassCardParent/autoReload.js';
 import AddPaymentType from '../../comps/CompassCardParent/payment.js';
 import TempTicket from '../../comps/CompassCardParent/tempTicket.js';
+import PaymentAnimOverlay from '../../comps/CompassCardParent/PayAnimOverlay.js';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -298,6 +301,18 @@ export default function CompassCardScreen() {
 
     // ---------- TICKET Temp ANIMATIONS END ----------
 
+    var anim = useRef();
+    const [lottieAnim, setLottieAnim] = useState(false);
+    function paymentAnimation() {
+        console.log('lottiecheck');
+        setLottieAnim(true);
+        setTimeout(function () { setLottieAnim(false); }, 2500);
+
+    }
+
+
+
+
     // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS END 🌟🌟🌟🌟🌟🌟 ======
 
     if (!fontsLoaded) {
@@ -306,6 +321,9 @@ export default function CompassCardScreen() {
         return (
             <ThemeProvider>
                 <Page>
+                    <PaymentAnimOverlay
+                        lottieAnim={lottieAnim}
+                    />
 
                     <BgCircle />
                     <TopContainer>
@@ -342,6 +360,7 @@ export default function CompassCardScreen() {
                         <AddFundsTabPass
                             month='December'
                             AddFundsConfirm={ReloadPass}
+                            startAnimation={paymentAnimation}
                         />
                     </Animated.View>
                 </PanGestureHandler>
@@ -356,6 +375,7 @@ export default function CompassCardScreen() {
                         <AddFundsTabTicket
                             ticketBalance="$4.05" //this will come from the database
                             AddFundsConfirm={ReloadTicket}
+                            startAnimation={paymentAnimation}
                         />
                     </Animated.View>
                 </PanGestureHandler>
@@ -367,6 +387,7 @@ export default function CompassCardScreen() {
                     <Animated.View style={[styles.overlayTabCont, styleAutoTicket]} >
                         <AutoReloadTab
                             autoReloadConfirm={confirmAutoReload}
+                            startAnimation={paymentAnimation}
                         />
                     </Animated.View>
                 </PanGestureHandler>
@@ -379,6 +400,7 @@ export default function CompassCardScreen() {
                     <Animated.View style={[styles.overlayTabCont, styleTemp]} >
                         <TempTicket
                             tempTicketConfirm={confirmTempTicket}
+                            startAnimation={paymentAnimation}
                         />
                     </Animated.View>
                 </PanGestureHandler>
@@ -448,6 +470,21 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
+    },
+    lottieCont: {
+        zIndex: 10,
+        width: 170,
+        height: 170,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        borderColor: 'red',
+        borderWidth: 2,
+        top: '30%',
+
+    },
+    lottiePay: {
+        width: '100%',
+        height: '100%',
     },
 });
 

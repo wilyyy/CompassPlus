@@ -8,6 +8,7 @@ import { COLORS } from "../../constants/styles";
 // import PopUps from '../../screens/testPopUps';
 import ZonesTab from './zoneSelTab';
 import PaymentTab from './paySelTab';
+import AnimatedLottieView from 'lottie-react-native';
 
 
 const Container = styled.View`
@@ -141,6 +142,7 @@ export default function AddFundsTabPass({
     passPaymentType = 'Visa',
     month = 'December',
     AddFundsConfirm = () => { },
+    startAnimation = () => { },
 
 }) {
 
@@ -280,6 +282,8 @@ export default function AddFundsTabPass({
             setButtonColour(COLORS.CAROLINABLUE);
             setPayText('Purchase');
             setConfPay(2);
+            startAnimation();
+
         }
     }
 
