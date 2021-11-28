@@ -30,15 +30,21 @@ const Page = styled.View`
     width: ${windowWidth};
     height: ${windowHeight};
     background-color: ${COLORS.CAROLINABLUE};
+    justify-content: center;
+    align-items: center;
+`;
+
+const Container = styled.View`
+    width: 90%;
+    height: 800px;
     justify-content: space-evenly;
     align-items: center;
 `;
 
-const BackButton = styled.TouchableOpacity`
-    width: 40px;
-    height: 40px;
-    align-self: flex-start;
-    left: 7%;
+const Button = styled.TouchableOpacity`
+    width: 80px;
+    height: 80px;
+    top: 8%;
 `;
 
 const H1 = styled.Text`
@@ -65,6 +71,15 @@ const SearchBar = styled.View`
     z-index: 2;
 `;
 
+const Label = styled.TextInput`
+    width: ${windowWidth / 1.25};
+    height: 5.5%;
+    padding-left: 10px;
+    bottom: 5%;
+    background-color: #fff;
+    border-radius: 5px;
+`;
+
 const AddSavedLocation = ({
     navigation = useNavigation()
 }) => {
@@ -79,7 +94,7 @@ const AddSavedLocation = ({
         Ubuntu_700Bold_Italic,
     });
 
-    const GoBack = () =>{
+    const PressAddContinue = () => {
         navigation.navigate('SavedTrips');
     }
 
@@ -92,72 +107,81 @@ const AddSavedLocation = ({
     });
     const [markerDisplay, setMarkerDisplay] = useState(0);
 
+    
 
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
         return <Page>
             <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
-                <BackButton>
-                    <Icon 
-                        name="arrow-back-circle"
-                        type="ionicon"
-                        color='#fff'
-                        size={40}
-                        onPress={GoBack}
-                    />
-                </BackButton>
-                <H1>Add A location</H1>
-                <SearchBar>
-                    <GooglePlacesAutocomplete
-                        placeholder='Search Address'
-                        fetchDetails={true}
-                        GooglePlacesSearchQuery={{
-                            rankby: "distance"
-                        }}
-                        onPress={(data, details = null) => {
-                            // 'details' is provided when fetchDetails = true
-                            console.log(data, details);
-                            setRegion({
-                                latitude: details.geometry.location.lat,
-                                longitude: details.geometry.location.lng,
-                                latitudeDelta: 0.0922,
-                                longitudeDelta: 0.0421
-                            });
-                            setMarkerDisplay(1);
-                        }}
-                        query={{
-                            key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
-                            language: 'en',
-                            components: "country:can",
-                            // types: "establishments",
-                            radius: 40000,
-                            location: `${region.latitude}, ${region.longitude}`
-                        }}
-                    />
-                </SearchBar>
-                <MapContainer>
-                    <MapView
-                        provider="google"
-                        initialRegion={{
-                            latitude: 49.246292,
-                            longitude: -123.116226,
-                            latitudeDelta: 1,
-                            longitudeDelta: 1,
-                        }}
-                        style={styles.map}
-                        customMapStyle={MapStyleAub}
-                    >
-                        <Marker
-                            coordinate={{
-                                latitude: region.latitude,
-                                longitude: region.longitude,
+            {/* <Button onPress={PressBack}>
+                <Icon
+                    name="arrow-back-circle"
+                    type="ionicon"
+                    color='#fff'
+                    size={70}
+                />
+            </Button> */}
+                <Container>
+                    <H1>Add A location</H1>
+                    <Label
+                        placeholder="Name for your location"
+                    ></Label>
+                    <SearchBar>
+                        <GooglePlacesAutocomplete
+                            placeholder='Search Address'
+                            fetchDetails={true}
+                            GooglePlacesSearchQuery={{
+                                rankby: "distance"
                             }}
-                            pinColor={COLORS.CAROLINABLUE}
-                            opacity={markerDisplay}
+                            onPress={(data, details = null) => {
+                                // 'details' is provided when fetchDetails = true
+                                console.log(data, details);
+                                setRegion({
+                                    latitude: details.geometry.location.lat,
+                                    longitude: details.geometry.location.lng,
+                                    latitudeDelta: 0.0922,
+                                    longitudeDelta: 0.0421
+                                });
+                                setMarkerDisplay(1);
+                            }}
+                            query={{
+                                key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
+                                language: 'en',
+                                components: "country:can",
+                                // types: "establishments",
+                                radius: 40000,
+                                location: `${region.latitude}, ${region.longitude}`
+                            }}
                         />
-                    </MapView>
-                </MapContainer>
+                    </SearchBar>
+                    <MapContainer>
+                        <MapView
+                            provider="google"
+                            initialRegion={{
+                                latitude: 49.246292,
+                                longitude: -123.116226,
+                                latitudeDelta: 1,
+                                longitudeDelta: 1,
+                            }}
+                            style={styles.map}
+                            customMapStyle={MapStyleAub}
+                        >
+                            <Marker
+                                coordinate={{
+                                    latitude: region.latitude,
+                                    longitude: region.longitude,
+                                }}
+                                pinColor={COLORS.CAROLINABLUE}
+                                opacity={markerDisplay}
+                            />
+                        </MapView>
+                    </MapContainer>
+                    <WhiteButton
+                        text="Add Location"
+                        onButtonPress={PressAddContinue}
+                    />
+                </Container>
             </ImageBackground>
         </Page>
     }
@@ -169,7 +193,8 @@ const styles = StyleSheet.create({
     image: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: windowWidth
+        width: windowWidth,
+        height: '100%'
     },
     map: {
         width: '100%',
