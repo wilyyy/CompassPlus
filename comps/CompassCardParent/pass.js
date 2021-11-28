@@ -44,8 +44,8 @@ const Container = styled.View`
 
 const TapText = styled.Text`
     color: ${COLORS.LIGHTGREY};
-    left:-39%;
-    top:6%;
+    left:-38%;
+    top:2%;
 `;
 
 const ManageDesc = styled.Text`
@@ -342,7 +342,6 @@ export default function Pass({
                 </CompassPlaceHolder>
                 <CardHeader>
                     <H1>Time Remaining:</H1>
-                    <TapText>Tap to Pay</TapText>
                     <Pressable style={[styles.ticket, styles.bg1]}
                         onPress={paymentAnimation}
                     >
@@ -377,6 +376,8 @@ export default function Pass({
                             digitTxtStyle={{ color: '#fff' }}
                         />
                     </Pressable>
+                    <TapText>Tap to Pay</TapText>
+
                 </CardHeader>
                 <FrontBodyCont>
 
@@ -595,8 +596,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
     },
     frontFundsButton: {
-        marginBottom: 10,
-
+        marginBottom: '5%',
     },
     lottie: {
         top: '5%',
