@@ -7,7 +7,7 @@ import { createNativeStackNavigator, TransitionPresets } from '@react-navigation
 import { useNavigation } from '@react-navigation/native';
 
 import axios from 'axios';
-axios.defaults.baseURL = "http://df0e-142-232-219-83.ngrok.io/Compassplus-serverside/api";
+axios.defaults.baseURL = "http://localhost:80/compassplus-serverside/api/";
 
 // go to storybook/stories/Button/Button.stories.js to add components
 // export { default } from './storybook';
