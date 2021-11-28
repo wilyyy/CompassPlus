@@ -1,26 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Pressable } from 'react-native';
 
 import LottieView from 'lottie-react-native';
 
 
-export default function PaymentAnimOverlay({
-    lottieAnim = false,
+export default function TapAnimOverlay({
+    lottieAnimTap = false,
+    closeAnim = () => { },
 }) {
     var anim = useRef();
 
-    if (lottieAnim === true) {
+    if (lottieAnimTap === true) {
         return (
-            <View style={styles.lottieCont}>
+            <Pressable style={styles.lottieCont}
+                onPress={closeAnim}
+            >
                 <LottieView
                     style={styles.lottiePay}
                     ref={(ref) => {
                         anim = ref;
                     }}
-                    source={require('../../assets/lottie/confirmStar.json')}
+                    source={require('../../assets/lottie/tapToPay.json')}
                     autoPlay={true}
                 />
-            </View>
+            </Pressable>
         );
     } return (
         <>
@@ -28,6 +31,8 @@ export default function PaymentAnimOverlay({
     )
 
 }
+
+
 
 const styles = StyleSheet.create({
     lottieCont: {
@@ -37,13 +42,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(0,0,0,0.50)',
-        position: 'absolute'
+        position: 'absolute',
+
 
     },
     lottiePay: {
-        width: 300,
-        height: 300,
-
+        width: 400,
+        height: 400,
     },
 
 });

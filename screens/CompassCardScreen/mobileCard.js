@@ -46,6 +46,7 @@ import AutoReloadTab from '../../comps/CompassCardParent/autoReload.js';
 import AddPaymentType from '../../comps/CompassCardParent/payment.js';
 import TempTicket from '../../comps/CompassCardParent/tempTicket.js';
 import PaymentAnimOverlay from '../../comps/CompassCardParent/PayAnimOverlay.js';
+import TapAnimOverlay from '../../comps/CompassCardParent/TapAnimOverlay.js';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -303,13 +304,24 @@ export default function CompassCardScreen() {
 
     var anim = useRef();
     const [lottieAnim, setLottieAnim] = useState(false);
+    const [lottieAnimTap, setLottieAnimTap] = useState(false);
     function paymentAnimation() {
         console.log('lottiecheck');
         setLottieAnim(true);
-        setTimeout(function () { setLottieAnim(false); }, 2500);
+        setTimeout(function () { setLottieAnim(false); }, 1200);
 
     }
 
+    function tapAnimation() {
+        console.log('lottie tap check');
+        setLottieAnimTap(true);
+        setTimeout(function () { setLottieAnimTap(false); }, 5000);
+
+    }
+
+    function pressOutAnim() {
+        setLottieAnimTap(false);
+    }
 
 
 
@@ -323,6 +335,10 @@ export default function CompassCardScreen() {
                 <Page>
                     <PaymentAnimOverlay
                         lottieAnim={lottieAnim}
+                    />
+                    <TapAnimOverlay
+                        lottieAnimTap={lottieAnimTap}
+                        closeAnim={pressOutAnim}
                     />
 
                     <BgCircle />
@@ -348,6 +364,7 @@ export default function CompassCardScreen() {
                         handleAddSheetTWO={handleTicketReload}
                         ticketAutoReload={handleTicketAuto}
                         addTempTicket={handleTempTicket}
+                        paymentAnimation={tapAnimation}
                     />
                 </Page>
 

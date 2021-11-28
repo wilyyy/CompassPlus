@@ -246,6 +246,7 @@ export default function Pass({
     makeDefault = false,
     triggerDefault = () => { },
     onAutoReloadPress = () => { },
+    paymentAnimation = () => { },
 
 }) {
 
@@ -280,6 +281,7 @@ export default function Pass({
 
     const [autoReload, setAutoReload] = useState(true);
     const toggleAutoReload = () => setAutoReload(previousState => !previousState);
+
 
 
     var anim = useRef();
@@ -319,7 +321,9 @@ export default function Pass({
                 </CompassPlaceHolder>
                 <CardHeader>
                     <H1>Time Remaining:</H1>
-                    <View style={[styles.ticket, styles.bg1]}>
+                    <Pressable style={[styles.ticket, styles.bg1]}
+                        onPress={paymentAnimation}
+                    >
                         <Text style={styles.buttonText}>Active Trip:</Text>
 
                         <CountDown
@@ -333,8 +337,9 @@ export default function Pass({
                             digitStyle={{ backgroundColor: COLORS.MIDWAYBLUE }}
                             digitTxtStyle={{ color: '#fff' }}
                         />
-                    </View>
-                    <View style={[styles.ticket, styles.bg1]}>
+                    </Pressable>
+                    <Pressable style={[styles.ticket, styles.bg1]}
+                        onPress={paymentAnimation}>
                         <Text style={styles.buttonText}>Pass:</Text>
 
                         <CountDown
@@ -348,7 +353,7 @@ export default function Pass({
                             digitStyle={{ backgroundColor: COLORS.MIDWAYBLUE }}
                             digitTxtStyle={{ color: '#fff' }}
                         />
-                    </View>
+                    </Pressable>
                 </CardHeader>
                 <FrontBodyCont>
 
