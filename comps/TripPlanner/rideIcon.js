@@ -32,7 +32,7 @@ const DisplayIcon = styled.View`
     justify-content: center;
     align-items: center;
     border: 2px solid;
-    border-color: ${props=>props.border};
+    border-color: ${props => props.border};
     border-radius: 16px;
 `;
 
@@ -45,7 +45,7 @@ const RideText = styled.Text`
 `;
 
 const RideIcon = ({
-    ride_text= "019 Metrotown",
+    ride_text = "019 Metrotown",
     icon = "bus",
     icon_type = "font-awesome-5",
     color = '#fff',
@@ -67,16 +67,16 @@ const RideIcon = ({
         return <AppLoading />;
     } else {
         return <Container>
-        <DisplayIcon border={border}>
-            <Icon
-                name={icon}
-                type={icon_type}
-                color={color}
-                size={35}
-            />
-        </DisplayIcon>
-        <RideText>{ride_text}</RideText>
-    </Container>
+            <DisplayIcon border={border}>
+                <Icon
+                    name={icon}
+                    type={icon_type}
+                    color={color}
+                    size={35}
+                />
+            </DisplayIcon>
+            <RideText>{ride_text}</RideText>
+        </Container>
     }
 }
 

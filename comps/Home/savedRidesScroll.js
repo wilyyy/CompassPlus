@@ -74,7 +74,7 @@ const Minimize = styled.TouchableOpacity`
 const ViewAll = styled.TouchableOpacity`
     width: 100px;
     height: 30px;
-    bottom: 7%;
+    bottom: 10%;
     left: 65%;
 `;
 
@@ -144,6 +144,7 @@ export default SavedRidesScroll;
 const styles = StyleSheet.create({
     scroll: {
         paddingBottom: '20%',
+        paddingTop: '2%'
     },
 
 });

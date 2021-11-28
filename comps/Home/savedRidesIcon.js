@@ -18,23 +18,25 @@ import AppLoading from 'expo-app-loading';
 import { COLORS } from "../../constants/styles";
 
 const ContWithText = styled.TouchableOpacity`
-    width: 102px;
-    height: 120px;
+    width: 100px;
+    height: 90px;
     justify-content: space-evenly;
     align-items: center;
     margin-right: 15px;
+
 `;
 
 const RideText = styled.Text`
     color: ${props => props.text_color};
     font-family: 'Ubuntu_400Regular';
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
+    margin-top:10%;
 `;
 
 const Container = styled.View`
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     border-radius: 16px;
     border: 3px solid ${props => props.bordercolor};
     justify-content: center;
@@ -42,13 +44,15 @@ const Container = styled.View`
 `;
 
 const RideIcon = styled.View`
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height:50px;
+    /* border:2px solid yellow; */
+    top:5px;
 `;
 
 const BusText = styled.Text`
     font-family: 'Ubuntu_500Medium';
-    font-size: 40px;
+    font-size: 24px;
     color: ${props => props.bustextcolor};
 `;
 
@@ -88,7 +92,7 @@ const SavedRidesIcon = ({
                         <Icon
                             name="train"
                             type="font-awesome-5"
-                            size={60}
+                            size={40}
                             color={icon_color}
                         />
 
@@ -122,7 +126,7 @@ const SavedRidesIcon = ({
                         <Icon
                             name="boat"
                             type="ionicon"
-                            size={60}
+                            size={40}
                             color={icon_color}
                         />
                     </RideIcon>

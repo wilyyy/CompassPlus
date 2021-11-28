@@ -5,6 +5,10 @@ import styled from "styled-components/native";
 import MapView, { Marker } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import MapViewDirections from 'react-native-maps-directions';
+import { Icon } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
+
+
 
 //styles
 import { COLORS } from '../../constants/styles.js';
@@ -34,17 +38,20 @@ const Container = styled.View`
 `;
 
 const TopSearchBar = styled.View`
-    width: 80%;
+    width: 75%;
     position: absolute;
     z-index: 3;
     top: 7%;
+    left: 5%;
 `;
 
 const BotSearchBar = styled.View`
-    width: 80%;
+    width: 75%;
     position: absolute;
     top: 14%;
     z-index: 2;
+    left: 5%;
+
 `;
 
 const MarkerCont = styled.View`
@@ -76,7 +83,11 @@ const MapHomeScreen = () => {
     //     setMarkerDisplay(1);
     // }, [region, endRegion])
 
+    navigation = useNavigation();
+
+
     return <Page>
+
         <TopSearchBar>
             <GooglePlacesAutocomplete
                 placeholder='Start Address'
@@ -135,6 +146,32 @@ const MapHomeScreen = () => {
                 }}
             />
         </BotSearchBar>
+        <TouchableOpacity
+            style={styles.manageButton}
+            onPress={() => navigation.navigate('SavedTrips')}
+        >
+            <Icon
+                name='setting'
+                type='antdesign'
+                color={COLORS.CAROLINABLUE}
+                size={20}
+                reverse={true}
+            />
+        </TouchableOpacity>
+        <TouchableOpacity
+            // onPress={() => navigation.navigate('')}
+            onPress={() => console.log('the above needs to route to the single onboarding screen')}
+            style={styles.saveButton}>
+            <Icon
+                name='check'
+                type='antdesign'
+                color={COLORS.LIMEGREEN}
+                size={20}
+                reverse={true}
+            />
+        </TouchableOpacity>
+
+
         <MapView
             provider="google"
             initialRegion={{
@@ -191,6 +228,14 @@ const styles = StyleSheet.create({
         height: windowHeight,
         position: 'absolute',
         zIndex: -2
-    }
+    },
+    manageButton: {
+        top: '6%',
+        left: '40%'
+    },
+    saveButton: {
+        top: '6.5%',
+        left: '40%'
+    },
 
 });
