@@ -13,12 +13,14 @@ import { COLORS } from '../../constants/styles';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+
 const NavCont = styled.View`
     width: ${windowWidth}px;
     height: ${windowHeight / 10}px;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
+    padding-top:10;
     background-color: #fff;
     box-shadow:  10px 0px 4px rgba(0, 0, 0, 0.25);
 `;

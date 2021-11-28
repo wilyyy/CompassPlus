@@ -48,7 +48,6 @@ export default function NavBar({
                     type='entypo'
                     color={COLORS.CAROLINABLUE}
                     size={35}
-                    style={styles.icon}
                 />
                 {/* <NavText>Home</NavText> */}
             </Section>
@@ -58,7 +57,6 @@ export default function NavBar({
                     type='ionicon'
                     color={COLORS.SPACECADET}
                     size={35}
-                    style={styles.icon}
 
                 />
                 {/* <NavText>Compass</NavText> */}
@@ -69,7 +67,6 @@ export default function NavBar({
                     type='font-awesome'
                     color={COLORS.SPACECADET}
                     size={35}
-                    style={styles.icon}
 
                 />
                 {/* <NavText>Trip Planner</NavText> */}
@@ -80,7 +77,6 @@ export default function NavBar({
                     type='material'
                     color={COLORS.SPACECADET}
                     size={35}
-                    style={styles.icon}
 
                 />
                 {/* <NavText>Profile</NavText> */}
@@ -89,10 +85,3 @@ export default function NavBar({
     );
 }
 
-
-
-const styles = StyleSheet.create({
-    icon: {
-    }
-
-});
