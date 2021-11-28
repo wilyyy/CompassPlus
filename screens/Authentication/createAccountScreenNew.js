@@ -53,7 +53,7 @@ export default function createAccountScreenNew ({navigation}) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [cardNumber, setCardNumber] = useState('');
+    const [userAge, setUserAge] = useState(null);
 
     const handleSignUp = () => {
         auth
@@ -64,9 +64,8 @@ export default function createAccountScreenNew ({navigation}) {
                 console.log('Registered with: ', user.email);
                 axios.post('/users.php', {
                     fb_uid: user.uid,
-                    first_name: 'Fred',
-                    last_name: 'Flintstone',
-                    age: '20'
+                    first_name: name,
+                    age: userAge
                     })
                     .then(function (response) {
                         console.log(response);
@@ -98,7 +97,13 @@ export default function createAccountScreenNew ({navigation}) {
                             style={styles.input}
                             placeholder="Name ..."
                             value={name}
-                            onChangeText={text => setName(text)}
+                            onChangeText={(text) => setName(text)}
+                        />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Age"
+                            value={userAge}
+                            onChangeText={(number) => setUserAge(number)}
                         />
                         <TextInput
                             style={styles.input}
@@ -113,12 +118,6 @@ export default function createAccountScreenNew ({navigation}) {
                             autoCorrect={false}
                             value={password}
                             onChangeText={text => setPassword(text)}
-                        />
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Compass Card Number (optional) ..."
-                            value={cardNumber}
-                            onChangeText={text => setCardNumber(text)}
                         />
                     </TextfieldContainer>  
                     <BoxLarge />
