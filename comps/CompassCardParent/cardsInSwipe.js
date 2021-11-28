@@ -20,9 +20,7 @@ const windowWidth = Dimensions.get('window').width;
 const scrollWidth = windowWidth * 4;
 const windowHeight = Dimensions.get('window').height;
 
-// const SV = styled.ScrollView`
-//     /* width: ${scrollWidth}; */
-// `;
+
 
 const dots = new Array(2).fill();
 
@@ -42,12 +40,13 @@ const CardSwipeTest = ({
     //const [passDefault, setPassDefault] = useState(false);
     console.log(ticketDefault, "Ticket D")
     return (
-        <SafeAreaView >
+        <SafeAreaView style={{ width: '100%', borderColor: 'red', borderWidth: 2 }}>
             <ScrollView
                 contentContainerStyle={styles.container}
                 horizontal={true}
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
+
                 onScroll={Animated.event([
                     {
                         nativeEvent: {
@@ -110,7 +109,8 @@ const styles = StyleSheet.create({
         height: '80%',
         width: 770,
         // paddingHorizontal: '5%',
-        left: '5%'
+        // left: '5%'
+        marginLeft: '5%',
         // justifyContent: 'space-between'
     },
 
