@@ -41,9 +41,9 @@ const Container = styled.View`
     align-items: center;
 `;
 
-const BackButton = styled.TouchableOpacity`
-    width: 100px;
-    height: 100px;
+const Button = styled.TouchableOpacity`
+    width: 80px;
+    height: 80px;
     top: 8%;
 `;
 
@@ -67,8 +67,17 @@ const MapContainer = styled.View`
 const SearchBar = styled.View`
     width: ${windowWidth / 1.25};
     position: absolute;
-    top: 20%;
+    top: 25%;
     z-index: 2;
+`;
+
+const Label = styled.TextInput`
+    width: ${windowWidth / 1.25};
+    height: 5.5%;
+    padding-left: 10px;
+    bottom: 5%;
+    background-color: #fff;
+    border-radius: 5px;
 `;
 
 const AddSavedLocation = ({
@@ -85,12 +94,8 @@ const AddSavedLocation = ({
         Ubuntu_700Bold_Italic,
     });
 
-    const GoBack = () => {
-        navigation.navigate('SavedTrips');
-    }
-
     const PressAddContinue = () => {
-        navigation.navigate('Map');
+        navigation.navigate('SavedTrips');
     }
 
     //Map
@@ -109,17 +114,19 @@ const AddSavedLocation = ({
     } else {
         return <Page>
             <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
-            <BackButton onPress={GoBack}>
-                <Icon 
+            {/* <Button onPress={PressBack}>
+                <Icon
                     name="arrow-back-circle"
                     type="ionicon"
                     color='#fff'
-                    size={100}
-                             
+                    size={70}
                 />
-            </BackButton>
+            </Button> */}
                 <Container>
                     <H1>Add A location</H1>
+                    <Label
+                        placeholder="Name for your location"
+                    ></Label>
                     <SearchBar>
                         <GooglePlacesAutocomplete
                             placeholder='Search Address'

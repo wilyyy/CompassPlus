@@ -163,7 +163,7 @@ const MapHomeScreen = () => {
             onPress={() => console.log('the above needs to route to the single onboarding screen')}
             style={styles.saveButton}>
             <Icon
-                name='check'
+                name='save'
                 type='antdesign'
                 color={COLORS.LIMEGREEN}
                 size={20}
