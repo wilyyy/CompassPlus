@@ -42,11 +42,9 @@ const Container = styled.View`
 `;
 
 const BackButton = styled.TouchableOpacity`
-    width: 60px;
-    height: 60px;
-    align-self: flex-start;
-    top: 5%;
-    left: 6%;
+    width: 100px;
+    height: 100px;
+    top: 8%;
 `;
 
 const H1 = styled.Text`
@@ -111,13 +109,13 @@ const AddSavedLocation = ({
     } else {
         return <Page>
             <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
-            <BackButton>
+            <BackButton onPress={GoBack}>
                 <Icon 
                     name="arrow-back-circle"
                     type="ionicon"
                     color='#fff'
-                    size={60}
-                    onPress={GoBack}         
+                    size={100}
+                             
                 />
             </BackButton>
                 <Container>
