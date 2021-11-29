@@ -58,12 +58,16 @@ const Button = styled.TouchableOpacity`
     height: 60px;
 `;
 
-const BottomCont = styled.View`
-    width: ${windowWidth};
-    height: 162px;
-    justify-content: space-between;
-    align-items: center;
+const CardWrapper = styled.View`
+    margin-bottom: 10px;
 `;
+
+// const BottomCont = styled.View`
+//     width: ${windowWidth};
+//     height: 162px;
+//     justify-content: space-between;
+//     align-items: center;
+// `;
 
 const Para = styled.Text`
     font-size: 16px;
@@ -74,16 +78,16 @@ const Para = styled.Text`
 
 const fakeData = [
     {
-        name:"Home",
+        name : "Home",
         location:"1529 West Pender Street"
     },
     {
-        name:"Work",
+        name : "Work",
         location:"Richmond Center"
     },
     {
-        name:"School",
-        location:"Vancouver Canada"
+        name : "School",
+        location : "Vancouver Canada"
     }
 ];
 
@@ -92,6 +96,9 @@ const SavedTrips = ({
     navigation = useNavigation()
 
 }) => {
+
+    const [locations, setLocations] = useState(fakeData);
+
     const RouteToAddLocations = () =>{
         navigation.navigate('AddSavedLocation');
     }
@@ -135,10 +142,19 @@ const SavedTrips = ({
                 </Button>
             </TopBar>
             <Content contentContainerStyle={styles.scroll_cont}>
-                {/* put this in a scroll view? or aniamted gestures swipe right to view them? */}
-                <SavedTripsCard />
-                <SavedTripsCard />
-                <SavedTripsCard />
+                {
+                    locations.map((o, i)=>(
+                        <CardWrapper key={i}>
+                            <SavedTripsCard 
+                                name={o.name} 
+                                location={o.location}
+                            />
+                        </CardWrapper>
+                        )
+                    )
+                }
+                
+                
                 {/* <BottomCont> */}
                     {/* <Divider orientation="vertical" width={5} />
                     <Para>Want to save more trips to your home, work, or school?</Para>

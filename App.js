@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import axios from 'axios';
 //this needs to be ngrok or hosted database (aws or heroku)
-axios.defaults.baseURL = "https://2172-2604-3d08-537e-3900-bdbe-145-efa2-b83a.ngrok.io/compassplus-serverside/api/";
+axios.defaults.baseURL = "https://e6a4-2604-3d08-537e-3900-bdbe-145-efa2-b83a.ngrok.io/compassplus-serverside/api/";
 
 // go to storybook/stories/Button/Button.stories.js to add components
 // export { default } from './storybook';

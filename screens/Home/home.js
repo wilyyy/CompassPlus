@@ -80,27 +80,26 @@ const HomeScreen = () => {
     console.log(currentUserFb_uid);
 
     const [modalVisible, setModalVisible] = useState(false);
-    const [linkedCard, setLinkedCard] = useState("no")
+    const [linkedCard, setLinkedCard] = useState("no");
 
-    //Get user first name and display on home page
-    // useEffect(()=>{
-    //     async function getUser() {
-    //         try {
-    //           const response = await axios.get('/users.php?id=1');
-    //           console.log(response);
-    //           setFirstName(response.first_name);
-    //         } catch (error) {
-    //           console.error(error);
-    //         }
-    //       }
-    //     // const FetchData = async () => {
-    //     //     const request = await axios.get('/users.php');
-    //     //     if (currentUserFb_uid == request.fb_uid){
-    //     //         setFirstName(request.first_name);
-    //     //     }
-    //     // }   
-    //     getUser();
-    // }, [])
+    // Get user first name and display on home page
+    useEffect(()=>{
+        async function getUser() {
+            try {
+              const response = await axios.get('/users.php?fb_uid=aNgwp6vay2T6X8aPmvfeF4n10U52');
+              const first_name = response.data.first_name;
+            } catch (error) {
+              console.error(error);
+            }
+          }
+        // const FetchData = async () => {
+        //     const request = await axios.get('/users.php');
+        //     if (currentUserFb_uid == request.fb_uid){
+        //         setFirstName(request.first_name);
+        //     }
+        // }   
+        getUser();
+    }, [])
 
     const OpenModal = () => {
         setModalVisible(true);
