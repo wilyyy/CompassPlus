@@ -50,11 +50,6 @@ const Stack = createNativeStackNavigator();
 
 export default function App  () {
 
-  // const [assets] = useAssets([require('./assets/pickdest_bg.png'), require('./assets/logoWhite.png')]);
-
-  // if (!assets) {
-  //   return <AppLoading />;
-  // }
 
 //   const [assetsLoaded, setAssetsLoaded] = useState(false);
 
