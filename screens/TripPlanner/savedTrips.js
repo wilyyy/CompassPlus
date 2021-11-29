@@ -3,6 +3,7 @@ import { View, Dimensions, StyleSheet, Text, ScrollView, TouchableOpacity } from
 import styled from "styled-components/native";
 import { Icon, Divider } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 import WhiteButton from '../../comps/Global/whiteButton.js';
 import SavedTripsCard from '../../comps/TripPlanner/savedTripsCard.js';
@@ -44,7 +45,7 @@ const TopBar = styled.View`
 
 const Content = styled.ScrollView`
     width: 100%;
-    height: 87%;
+    height: 100%;
     padding-top: 10%;
 `;
 
@@ -96,6 +97,16 @@ const SavedTrips = ({
     navigation = useNavigation()
 
 }) => {
+
+    useEffect(()=>{
+        const GetLocations = async() =>{
+            const result = await axios.get('/saved_locations.php');
+            console.log(result.data);
+            setLocations(result.data);
+        }
+
+        GetLocations();
+    }, [])
 
     const [locations, setLocations] = useState(fakeData);
 
