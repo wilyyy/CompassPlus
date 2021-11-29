@@ -107,7 +107,8 @@ const AddSavedLocation = ({
     });
     const [markerDisplay, setMarkerDisplay] = useState(0);
 
-    // const [name, setName] = 
+    const [name, setName] = useState("");
+    const [address, setAddress] = useState("");
 
     if (!fontsLoaded) {
         return <AppLoading />;

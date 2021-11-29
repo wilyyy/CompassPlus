@@ -106,10 +106,10 @@ const SavedTrips = ({
         }
 
         GetLocations();
-    }, [])
+    })
 
     const DeleteLocation = async(id) => {
-        await axios.delete('/saved_locations.php', {id:id});
+        await axios.delete('/saved_locations.php', { data: { id: id } });
     }
 
     const [locations, setLocations] = useState(fakeData);
