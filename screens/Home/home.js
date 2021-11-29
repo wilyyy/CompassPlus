@@ -75,9 +75,9 @@ const HomeScreen = () => {
     const [firstName, setFirstName] = useState("");
 
     //grab current firebase user id
-    const associateAuth = getAuth();
-    const currentUserFb_uid = associateAuth.currentUser.uid;
-    console.log(currentUserFb_uid);
+    // const associateAuth = getAuth();
+    // const currentUserFb_uid = associateAuth.currentUser.uid;
+    // console.log(currentUserFb_uid);
 
     const [modalVisible, setModalVisible] = useState(false);
     const [linkedCard, setLinkedCard] = useState("no");

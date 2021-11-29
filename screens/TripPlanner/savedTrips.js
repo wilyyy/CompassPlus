@@ -108,6 +108,10 @@ const SavedTrips = ({
         GetLocations();
     }, [])
 
+    const DeleteLocation = async(id) => {
+        await axios.delete('/saved_locations.php', {id:id});
+    }
+
     const [locations, setLocations] = useState(fakeData);
 
     const RouteToAddLocations = () =>{
@@ -159,6 +163,7 @@ const SavedTrips = ({
                             <SavedTripsCard 
                                 name={o.name} 
                                 location={o.location}
+                                onDeletePress={()=>DeleteLocation(o.id)}
                             />
                         </CardWrapper>
                         )
