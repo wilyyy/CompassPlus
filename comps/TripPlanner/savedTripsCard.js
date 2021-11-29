@@ -59,6 +59,7 @@ const TextRow = styled.View`
     width: auto;
     height: 24px;
     flex-direction: row;
+    left: 10px;
 `;
 
 const Para = styled.Text`
@@ -76,11 +77,16 @@ const SeeMoreIcon = styled.TouchableOpacity`
     align-items: center;
 `;
 
+const DeleteButton = styled.TouchableOpacity`
+    width: 40px;
+    height: 40px;
+`;
+
 const SavedTripsCard = ({
     icon_name = "bus",
     icon_type = "font-awesome-5",
-    from = "Willingon Ave @ Sanderson Way",
-    to = "Nanaimo Station @ Bay 2",
+    name = "Home",
+    location = "Nanaimo Station @ Bay 2",
     onButtonPress = () => { }
 }) => {
     let [fontsLoaded] = useFonts({
@@ -110,12 +116,12 @@ const SavedTripsCard = ({
                 <Column>
                     <TextRow>
                         <Icon
-                            name="ios-location-sharp"
-                            type="ionicon"
+                            name="label"
+                            type="material-community"
                             color={COLORS.LIGHTGREY}
                             size={15}
                         />
-                        <Para>{from}</Para>
+                        <Para>{name}</Para>
                     </TextRow>
                     <TextRow>
                         <Icon
@@ -124,9 +130,17 @@ const SavedTripsCard = ({
                             color={COLORS.LIMEGREEN}
                             size={15}
                         />
-                        <Para>{to}</Para>
+                        <Para>{location}</Para>
                     </TextRow>
                 </Column>
+                <DeleteButton>
+                    <Icon
+                        name="trash"
+                        type="entypo"
+                        color="red"
+                        size={40}
+                    />
+                </DeleteButton>
                 {/* <SeeMoreIcon onPress={onButtonPress}>
                     {/* <Icon
                         name="arrowright"

@@ -17,18 +17,20 @@ import { words } from 'lodash';
 // `;
 
 const Container = styled.View`
-    width: 350px;
+    min-width: 330px;
+    width:40%;
     height:68%;
     min-height: 550px;
     background-color: #fff;
     border-radius: 15px;
     margin-top: 20px;
-    /* right:2%; */
+    right:-1.5%;
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const CompassPlaceHolder = styled.Pressable`
-    width: 100%;
+const CompassPlaceHolder = styled.TouchableOpacity`
+    min-width: 330px;
+    width:40%;
     height: 36%;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
@@ -46,7 +48,7 @@ font-size: 18px;
     font-family: 'Ubuntu_700Bold';
     line-height: 24px;
     letter-spacing: 0;
-    color: ${COLORS.SPACECADET};
+    color: ${COLORS.CAROLINABLUE};
 `;
 
 
@@ -84,6 +86,12 @@ const Hr = styled.View`
     background-color: ${COLORS.SPACECADET};
     height:2px;
     align-self: center;
+`;
+
+const TapText = styled.Text`
+    color: ${COLORS.LIGHTGREY};
+    left:-29%;
+    top:-15%;
 `;
 
 // function setVisability() {
@@ -276,11 +284,11 @@ export default function AddCardManager({
                         <Icon
                             name='plus'
                             type='antdesign'
-                            color={COLORS.ALICEBLUE}
-                            shadowOpacity={0.25}
+                            color={COLORS.LIMEGREEN}
+                            shadowOpacity={0.50}
                             shadowRadius={3}
                             shadowOffset={{ width: 0, height: 3 }}
-                            shadowColor='#222222'
+                            shadowColor={COLORS.LIMEGREEN}
                             size={80}
                             style={styles.plusIcon}
 
@@ -292,12 +300,12 @@ export default function AddCardManager({
                 <View style={styles.body}>
                     <TicketsCont style={styles.temp1}>
                         <View style={styles.textInput}>
-                            <TextInput
+                            {/* <TextInput
                                 style={styles.nameStyle}
-                                placeholder={'Add name'}
+                                placeholder={'Add name ✍️'}
                                 onSubmitEditing={() => { setSTicket1("'s ticket") }}
                                 maxLength={50}
-                            />
+                            /> */}
                             <Text>{sTicket1}</Text>
                         </View>
 
@@ -317,15 +325,16 @@ export default function AddCardManager({
                                 digitTxtStyle={{ color: '#fff' }}
                             />
                         </Pressable>
+                        <TapText>Tap to Pay</TapText>
                     </TicketsCont>
                     <TicketsCont style={styles.temp2}>
                         <View style={styles.textInput}>
-                            <TextInput
+                            {/* <TextInput
                                 style={styles.nameStyle}
-                                placeholder={'Add name'}
+                                placeholder={'Add name ✍️'}
                                 maxLength={50}
                                 onSubmitEditing={() => { setSTicket2("'s ticket") }}
-                            />
+                            /> */}
                             <Text>{sTicket2}</Text>
                         </View>
 
@@ -345,15 +354,17 @@ export default function AddCardManager({
                                 digitTxtStyle={{ color: '#fff' }}
                             />
                         </Pressable>
+                        <TapText>Tap to Pay</TapText>
                     </TicketsCont>
+
                     <TicketsCont style={styles.temp3}>
                         <View style={styles.textInput}>
-                            <TextInput
+                            {/* <TextInput
                                 style={styles.nameStyle}
-                                placeholder={'Add name'}
+                                placeholder={'Add name ✍️'}
                                 maxLength={50}
                                 onSubmitEditing={() => { setSTicket3("'s ticket") }}
-                            />
+                            /> */}
                             <Text>{sTicket3}</Text>
                         </View>
 
@@ -373,6 +384,7 @@ export default function AddCardManager({
                                 digitTxtStyle={{ color: '#fff' }}
                             />
                         </Pressable>
+                        <TapText>Tap to Pay</TapText>
                     </TicketsCont>
                 </View>
             </Container>
@@ -455,6 +467,10 @@ const styles = StyleSheet.create({
         marginBottom: '2%',
         color: '#222222',
         fontStyle: 'italic',
+        // borderColor: COLORS.LIGHTGREY,
+        // borderWidth: 1,
+        // padding: 3,
+        // borderRadius: 5
     },
     textInput: {
         flexDirection: 'row',
