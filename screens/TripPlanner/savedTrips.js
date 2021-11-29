@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Dimensions, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import styled from "styled-components/native";
 import { Icon, Divider } from 'react-native-elements';
@@ -42,11 +42,9 @@ const TopBar = styled.View`
     padding-top: 5%;
 `;
 
-const Content = styled.View`
+const Content = styled.ScrollView`
     width: 100%;
     height: 87%;
-    justify-content: space-between;
-    align-items: center;
     padding-top: 10%;
 `;
 
@@ -73,6 +71,21 @@ const Para = styled.Text`
     width: 326px;
     height: 50px;
 `;
+
+const fakeData = [
+    {
+        name:"Home",
+        location:"1529 West Pender Street"
+    },
+    {
+        name:"Work",
+        location:"Richmond Center"
+    },
+    {
+        name:"School",
+        location:"Vancouver Canada"
+    }
+];
 
 const SavedTrips = ({
     onBackPress = () => { },
@@ -121,12 +134,12 @@ const SavedTrips = ({
                     />
                 </Button>
             </TopBar>
-            <Content>
+            <Content contentContainerStyle={styles.scroll_cont}>
                 {/* put this in a scroll view? or aniamted gestures swipe right to view them? */}
                 <SavedTripsCard />
                 <SavedTripsCard />
                 <SavedTripsCard />
-                <BottomCont>
+                {/* <BottomCont> */}
                     {/* <Divider orientation="vertical" width={5} />
                     <Para>Want to save more trips to your home, work, or school?</Para>
                     <WhiteButton
@@ -135,11 +148,19 @@ const SavedTrips = ({
                         text_color="#fff"
                         onButtonPress={() => navigation.navigate('Onboarding')}
                     /> */}
-                </BottomCont>
-                <NavHome />
+                {/* </BottomCont> */}
+                
             </Content>
+            <NavHome />
         </Page>
     }
 }
 
 export default SavedTrips;
+
+const styles = StyleSheet.create({
+    scroll_cont: {
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    }
+});
