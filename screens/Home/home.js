@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Dimensions, StyleSheet, Text, ScrollView, Alert, Modal, Pressable } from 'react-native';
 import styled from "styled-components/native";
 import { Divider } from 'react-native-elements';
+import axios from 'axios';
+import { getAuth } from '@firebase/auth';
 
 import { COLORS } from '../../constants/styles.js';
 import HomeCompassCard from '../../comps/Home/homeCompassCard.js';
@@ -69,8 +71,36 @@ const H2 = styled.Text`
 `;
 
 const HomeScreen = () => {
+
+    const [firstName, setFirstName] = useState("");
+
+    //grab current firebase user id
+    const associateAuth = getAuth();
+    const currentUserFb_uid = associateAuth.currentUser.uid;
+    console.log(currentUserFb_uid);
+
     const [modalVisible, setModalVisible] = useState(false);
     const [linkedCard, setLinkedCard] = useState("no")
+
+    //Get user first name and display on home page
+    // useEffect(()=>{
+    //     async function getUser() {
+    //         try {
+    //           const response = await axios.get('/users.php?id=1');
+    //           console.log(response);
+    //           setFirstName(response.first_name);
+    //         } catch (error) {
+    //           console.error(error);
+    //         }
+    //       }
+    //     // const FetchData = async () => {
+    //     //     const request = await axios.get('/users.php');
+    //     //     if (currentUserFb_uid == request.fb_uid){
+    //     //         setFirstName(request.first_name);
+    //     //     }
+    //     // }   
+    //     getUser();
+    // }, [])
 
     const OpenModal = () => {
         setModalVisible(true);
@@ -105,7 +135,7 @@ const HomeScreen = () => {
                 />
             </View>
         </Modal>
-        <HomeCompassCard onButtonPress={OpenModal} compass_linked={linkedCard} />
+        <HomeCompassCard onButtonPress={OpenModal} compass_linked={linkedCard} username={firstName} />
         <H2>Tap Card to Pay</H2>
         <Divider style={styles.divider} width={2} color={COLORS.CAROLINABLUE} />
         <WelcomeMessage />
