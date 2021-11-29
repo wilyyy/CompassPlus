@@ -36,9 +36,11 @@ const Page = styled.View`
 
 const Container = styled.View`
     width: 90%;
-    height: 800px;
+    height: 80%;
     justify-content: space-evenly;
     align-items: center;
+    /* border:2px solid green; */
+    padding:0;
 `;
 
 const Button = styled.TouchableOpacity`
@@ -55,36 +57,57 @@ const H1 = styled.Text`
 `;
 
 const MapContainer = styled.View`
-    width: 333px;
-    height: 325px;
+    width: 100%;
+    min-height: 325px;
+    height:50%;
     padding: 5px;
     justify-content: center;
     align-items: center;
+    /* top:-5%; */
     background-color: rgba(0, 105, 164, 0.65);
     border-radius: 10px;
+    /* border:2px solid blue; */
 `;
 
 const SearchBar = styled.View`
-    width: ${windowWidth / 1.25};
-    position: absolute;
-    top: 25%;
+    width:100%;
+    /* position: absolute; */
+    top: -5%;
     z-index: 2;
+    
+`;
+
+const InputCont = styled.View`
+    /* border:2px solid blue; */
+    /* top:-7%; */
+    padding-left:1%;
+    width:100%;
+    height:20%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* justify-content: flex-start;
+    align-content: center; */
 `;
 
 const Label = styled.TextInput`
-    width: ${windowWidth / 1.25};
-    height: 5.5%;
-    padding-left: 10px;
-    bottom: 5%;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    /* bottom: 5%; */
+    /* top: -100%; */
     background-color: #fff;
     border-radius: 5px;
+    padding-left: 9px;
+    /* -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;          */
+    /* border:2px solid yellow; */
 `;
 
 const AddSavedLocation = ({
     navigation = useNavigation()
 }) => {
-    const ref = useRef();
-
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -99,6 +122,9 @@ const AddSavedLocation = ({
     const PressAddContinue = () => {
         navigation.navigate('SavedTrips');
     }
+    const PressBack = () => {
+        navigation.navigate('SavedTrips');
+    }
 
     //Map
     const [region, setRegion] = useState({
@@ -109,15 +135,14 @@ const AddSavedLocation = ({
     });
     const [markerDisplay, setMarkerDisplay] = useState(0);
 
-    const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
+
 
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
         return <Page>
             <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
-            {/* <Button onPress={PressBack}>
+                {/* <Button onPress={PressBack}>
                 <Icon
                     name="arrow-back-circle"
                     type="ionicon"
@@ -125,40 +150,58 @@ const AddSavedLocation = ({
                     size={70}
                 />
             </Button> */}
-                <Container>
-                    <H1>Add A location</H1>
-                    <Label
-                        placeholder="Name for your location"
-                    ></Label>
-                    <SearchBar>
-                        <GooglePlacesAutocomplete
-                            ref={ref}
-                            placeholder='Search Address'
-                            fetchDetails={true}
-                            GooglePlacesSearchQuery={{
-                                rankby: "distance"
-                            }}
-                            onPress={(data, details = null) => {
-                                // 'details' is provided when fetchDetails = true
-                                console.log(data, details);
-                                setRegion({
-                                    latitude: details.geometry.location.lat,
-                                    longitude: details.geometry.location.lng,
-                                    latitudeDelta: 0.0922,
-                                    longitudeDelta: 0.0421
-                                });
-                                setMarkerDisplay(1);
-                            }}
-                            query={{
-                                key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
-                                language: 'en',
-                                components: "country:can",
-                                // types: "establishments",
-                                radius: 40000,
-                                location: `${region.latitude}, ${region.longitude}`
-                            }}
+
+
+                <View style={{ flexDirection: 'row', width: '80%', alignContent: 'center', justifyContent: 'space-apart', left: '-1%' }}>
+                    <TouchableOpacity
+                        style={styles.back}
+                        onPress={PressBack}
+                    >
+                        <Icon
+                            name="chevron-left"
+                            type="materialcommunityicons"
+                            color='#fff'
+                            size={50}
                         />
-                    </SearchBar>
+                    </TouchableOpacity>
+                    <H1>Add A location</H1></View>
+
+                <Container>
+                    <InputCont>
+                        <Label
+                            placeholder="Name for your location"
+                        />
+                        <SearchBar>
+                            <GooglePlacesAutocomplete
+                                placeholder='Search Address'
+                                fetchDetails={true}
+                                GooglePlacesSearchQuery={{
+                                    rankby: "distance"
+                                }}
+                                onPress={(data, details = null) => {
+                                    // 'details' is provided when fetchDetails = true
+                                    console.log(data, details);
+                                    setRegion({
+                                        latitude: details.geometry.location.lat,
+                                        longitude: details.geometry.location.lng,
+                                        latitudeDelta: 0.0922,
+                                        longitudeDelta: 0.0421
+                                    });
+                                    setMarkerDisplay(1);
+                                }}
+                                query={{
+                                    key: 'AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U',
+                                    language: 'en',
+                                    components: "country:can",
+                                    // types: "establishments",
+                                    radius: 40000,
+                                    location: `${region.latitude}, ${region.longitude}`
+                                }}
+                            />
+                        </SearchBar>
+                    </InputCont>
+
+
                     <MapContainer>
                         <MapView
                             provider="google"
@@ -187,7 +230,7 @@ const AddSavedLocation = ({
                     />
                 </Container>
             </ImageBackground>
-        </Page>
+        </Page >
     }
 }
 

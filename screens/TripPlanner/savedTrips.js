@@ -98,18 +98,22 @@ const SavedTrips = ({
 
 }) => {
 
+    const [refresh, setRefresh] = useState(false);
+
     useEffect(()=>{
         const GetLocations = async() =>{
             const result = await axios.get('/saved_locations.php');
             console.log(result.data);
             setLocations(result.data);
+            setRefresh(!refresh);
         }
 
         GetLocations();
-    })
+    }, [refresh])
 
     const DeleteLocation = async(id) => {
         await axios.delete('/saved_locations.php', { data: { id: id } });
+        setRefresh(!refresh);
     }
 
     const [locations, setLocations] = useState(fakeData);

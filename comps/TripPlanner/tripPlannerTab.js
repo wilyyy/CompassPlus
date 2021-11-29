@@ -124,13 +124,15 @@ const TripPlannerTab = ({
                             onPress={PressRightTab}
                             underlayColor={COLORS.CAROLINABLUE}
                         >
-                            <SmTabText smtab_text={carolinablue}>Saved Rides</SmTabText>
+                            <SmTabText smtab_text='#fff'>Saved Locations</SmTabText>
                         </SmallTab>
                     </TabCont>
-                    <Display bg_color={carolinablue}>
+                    <Display bg_color={carolinablue} style={{ width: '100%' }}>
                         <ScrollView
                             horizontal={true}
                             contentContainerStyle={styles.contentContainer}
+                            showsHorizontalScrollIndicator={false}
+                            alwaysBounceHorizontal
                         >
                             <SavedRidesIcon
                                 icon_color='#fff'
@@ -161,14 +163,14 @@ const TripPlannerTab = ({
                                 text_color='#fff'
                                 icon_color='#fff'
                                 icon_type="seabus"
-                                ride_text="Waterfront to Lonsdale Quay"
+                                ride_text="Waterfront"
                             />
                             <SavedRidesIcon
                                 text_color='#fff'
                                 icon_color='#fff'
                                 icon_type="bus"
                                 bus_text="05"
-                                ride_text="Dunsmuir to Cardero"
+                                ride_text="Cardero"
                             />
                         </ScrollView>
                     </Display>
@@ -185,51 +187,61 @@ const TripPlannerTab = ({
                 <Container>
                     <TabCont>
                         <SmallTab
-                            smtab_color={carolinablue}
+                            smtab_color={spacecadet}
                             onPress={PressLeftTab}
-                            underlayColor={COLORS.SPACECADET}
+                            underlayColor={COLORS.CAROLINABLUE}
                         >
-                            <SmTabText smtab_text="#fff">Nearby Rides</SmTabText>
+                            <SmTabText smtab_text='#fff'>Nearby Rides</SmTabText>
                         </SmallTab>
                         <BigTab
-                            bigtab_color={spacecadet}
+                            bigtab_color={carolinablue}
                             onPress={PressRightTab}
                             underlayColor={COLORS.SPACECADET}
                         >
-                            <TabText bigtab_text={COLORS.CAROLINABLUE}>Saved Locations</TabText>
+                            <TabText bigtab_text={COLORS.SPACECADET}>Saved Locations</TabText>
                         </BigTab>
                     </TabCont>
-                    <Display bg_color={spacecadet}>
+                    <Display bg_color={carolinablue} style={{ width: '100%' }}>
                         <ScrollView
                             horizontal={true}
                             contentContainerStyle={styles.contentContainerTwo}
+                            showsHorizontalScrollIndicator={false}
+                            alwaysBounceHorizontal
                         >
                             <SavedRidesIcon
-                                text_color={COLORS.CAROLINABLUE}
+                                icon_color='#fff'
+                                text_color='#fff'
+                                ride_text="Lonsdale Quay"
                             />
                             <SavedRidesIcon
-                                text_color={COLORS.CAROLINABLUE}
+                                text_color='#fff'
+                                icon_color='#fff'
                                 icon_type="train"
-                                ride_text="Waterfront to Yaletown"
+                                ride_text="Yaletown"
                             />
                             <SavedRidesIcon
-                                text_color={COLORS.CAROLINABLUE}
-                                icon_type="seabus"
-                                ride_text="Waterfront to Lonsdale Quay"
+                                text_color='#fff'
+                                icon_color='#fff'
+                                icon_type="bus"
+                                bus_text="R2"
+                                ride_text="Lonsdale Quay"
                             />
                             <SavedRidesIcon
-                                text_color={COLORS.CAROLINABLUE}
+                                text_color='#fff'
+                                icon_color='#fff'
                                 icon_type="bus"
                                 bus_text="05"
-                                ride_text="Dunsmuir to Cardero"
+                                ride_text="Dunsmuir"
                             />
                             <SavedRidesIcon
-                                text_color={COLORS.CAROLINABLUE}
+                                text_color='#fff'
+                                icon_color='#fff'
                                 icon_type="seabus"
-                                ride_text="Waterfront to Lonsdale Quay"
+                                ride_text="Waterfront"
                             />
                             <SavedRidesIcon
-                                text_color={COLORS.CAROLINABLUE}
+                                text_color='#fff'
+                                icon_color='#fff'
                                 icon_type="bus"
                                 bus_text="05"
                                 ride_text="Dunsmuir to Cardero"
@@ -250,16 +262,18 @@ const styles = StyleSheet.create({
         paddingTop: 15
     },
     contentContainer: {
-        width: '100%',
+        width: '180%',
         height: '100%',
         paddingTop: '3%',
         paddingLeft: '3%',
-        paddingRight: '10%',
+        paddingRight: '50%',
     },
     contentContainerTwo: {
-        width: '100%',
+        width: '180%',
         height: '100%',
         paddingTop: '3%',
-        paddingBottom: '20%',
+        paddingLeft: '3%',
+        paddingRight: '50%',
+
     }
 });
