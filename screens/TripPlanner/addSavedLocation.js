@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components/native";
 import { View, Modal, TextInput, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity, ImageBackground } from 'react-native';
 import {
@@ -83,6 +83,8 @@ const Label = styled.TextInput`
 const AddSavedLocation = ({
     navigation = useNavigation()
 }) => {
+    const ref = useRef();
+
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -130,6 +132,7 @@ const AddSavedLocation = ({
                     ></Label>
                     <SearchBar>
                         <GooglePlacesAutocomplete
+                            ref={ref}
                             placeholder='Search Address'
                             fetchDetails={true}
                             GooglePlacesSearchQuery={{
