@@ -47,7 +47,7 @@ const SignInWithGoogle = async (navigation) => {
                   // Signed in 
                   const user = userCredential.user;
                   console.log(user.email);
-                  navigation.navigate('Home');
+                  navigation.navigate('WelcomeBack');
               })
               .catch((error) => {
                   alert(error.message)
