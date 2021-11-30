@@ -127,16 +127,15 @@ const AddSavedLocation = ({
         location: addLocation
     };
 
-    useEffect(() => {
+    const AddCardToDb = async() =>{
         const addressText = ref.current?.getAddressText();
-        setAddLocation(addressText);
-        console.log(addLocation)
-        console.log(cardName)
-        const AddCardToDb = async() =>{
-            await axios.post('/saved_locations.php', newCard);
-        };
-        AddCardToDb();
-    }, []);
+        await axios.post('/saved_locations.php', {
+            fb_uid: 'asdasddadasdasas',
+            name: cardName,
+            location: addressText
+        });
+        navigation.navigate('SavedTrips');
+    };
     
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
@@ -260,7 +259,7 @@ const AddSavedLocation = ({
                     </MapContainer>
                     <WhiteButton
                         text="Add Location"
-                        onButtonPress={PressAddContinue}
+                        onButtonPress={AddCardToDb}
                     />
                 </Container>
             </ImageBackground>

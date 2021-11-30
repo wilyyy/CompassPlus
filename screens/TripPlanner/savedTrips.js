@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Dimensions, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import styled from "styled-components/native";
 import { Icon, Divider } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 
 import WhiteButton from '../../comps/Global/whiteButton.js';
@@ -100,20 +100,23 @@ const SavedTrips = ({
 
     const [refresh, setRefresh] = useState(false);
 
-    useEffect(()=>{
-        const GetLocations = async() =>{
-            const result = await axios.get('/saved_locations.php');
-            console.log(result.data);
-            setLocations(result.data);
-            setRefresh(true);
-            // setRefresh(!refresh);
-        }
-        GetLocations();
-    }, [refresh])
+    const GetLocations = async() =>{
+        const result = await axios.get('/saved_locations.php');
+        console.log(result.data);
+        setLocations(result.data);
+        setRefresh(true);
+        // setRefresh(!refresh);
+    }
+    useFocusEffect(
+        React.useCallback(()=>{
+            
+            GetLocations();
+        }, [])
+    )
 
     const DeleteLocation = async(id) => {
         await axios.delete('/saved_locations.php', { data: { id: id } });
-        setRefresh(!refresh);
+        await GetLocations();
     }
 
     const [locations, setLocations] = useState(fakeData);
