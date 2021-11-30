@@ -127,8 +127,6 @@ const AddSavedLocation = ({
         location: addLocation
     };
 
-    
-
     useEffect(() => {
         const addressText = ref.current?.getAddressText();
         setAddLocation(addressText);
