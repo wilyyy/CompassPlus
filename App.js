@@ -49,7 +49,7 @@ export default function App() {
   return (
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName='AddSavedLocation'
+      <Stack.Navigator initialRouteName='Home'
         screenOptions={{
           headerShown: false,
           animation: 'none',

@@ -198,7 +198,7 @@ const TripPlannerTab = ({
                             onPress={PressRightTab}
                             underlayColor={COLORS.SPACECADET}
                         >
-                            <TabText bigtab_text={COLORS.SPACECADET}>Saved Locations</TabText>
+                            <TabText bigtab_text='#fff'>Saved Locations</TabText>
                         </BigTab>
                     </TabCont>
                     <Display bg_color={carolinablue} style={{ width: '100%' }}>

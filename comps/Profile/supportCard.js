@@ -31,6 +31,7 @@ const TitleText = styled.Text`
     font-weight: bold;
     padding-left: 15;
     color: #ffffff;
+    font-family: 'Ubuntu_700Bold';
 `;
 
 const SubContainer = styled.View`
@@ -58,9 +59,9 @@ const SupportCard = () => {
         <View>
             <Container>
                 <Row>
-                    <Icon 
-                        style={{paddingLeft: 15}} 
-                        name='help' 
+                    <Icon
+                        style={{ paddingLeft: 15 }}
+                        name='help'
                         color='white'
                         size={24}
                     />
@@ -68,72 +69,72 @@ const SupportCard = () => {
                 </Row>
             </Container>
             <View >
-                <TouchableOpacity onPress={()=>{Linking.openURL('https://www.compasscard.ca/ContactUs')}}>
+                <TouchableOpacity onPress={() => { Linking.openURL('https://www.compasscard.ca/ContactUs') }}>
                     <ItemRow>
                         <SubContainer>
                             <SubtitleText>Contact Information</SubtitleText>
                             <DescriptionText>General contact information for Translink and operating companies.</DescriptionText>
                         </SubContainer>
-                        <Icon 
-                            style={{alignSelf:'flex-end', paddingRight: 15,}} 
-                            name='link' 
+                        <Icon
+                            style={{ alignSelf: 'flex-end', paddingRight: 15, }}
+                            name='link'
                             color={COLORS.DAVYSGREY}
                             size={30}
                         />
                     </ItemRow>
                 </TouchableOpacity>
-                <Divider orientation="horizontal" color={COLORS.DAVYSGREY}/>
+                <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
             </View>
             <View >
-                <TouchableOpacity onPress={()=>{Linking.openURL('https://www.translink.ca/-/media/translink/documents/transit-fares/compass-card/compass_refund_request_form.pdf')}}>
+                <TouchableOpacity onPress={() => { Linking.openURL('https://www.translink.ca/-/media/translink/documents/transit-fares/compass-card/compass_refund_request_form.pdf') }}>
                     <ItemRow>
                         <SubContainer>
                             <SubtitleText>Lost and Found</SubtitleText>
                             <DescriptionText>Did you loose your compass card or another item? Click here to report it.</DescriptionText>
                         </SubContainer>
-                        <Icon 
-                            style={{paddingRight: 15,}} 
-                            name='link' 
+                        <Icon
+                            style={{ paddingRight: 15, }}
+                            name='link'
                             color={COLORS.DAVYSGREY}
                             size={30}
                         />
                     </ItemRow>
                 </TouchableOpacity>
-                <Divider orientation="horizontal" color={COLORS.DAVYSGREY}/>
+                <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
             </View>
             <View >
-                <TouchableOpacity onPress={()=>{Linking.openURL('https://www.compasscard.ca/Help')}}>
+                <TouchableOpacity onPress={() => { Linking.openURL('https://www.compasscard.ca/Help') }}>
                     <ItemRow>
                         <SubContainer>
                             <SubtitleText>File a Claim</SubtitleText>
                             <DescriptionText>From time to time, incidents occur in our system.</DescriptionText>
                         </SubContainer>
-                        <Icon 
-                            style={{paddingRight: 15,}} 
-                            name='link' 
+                        <Icon
+                            style={{ paddingRight: 15, }}
+                            name='link'
                             color={COLORS.DAVYSGREY}
                             size={30}
                         />
                     </ItemRow>
                 </TouchableOpacity>
-                <Divider orientation="horizontal" color={COLORS.DAVYSGREY}/>
+                <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
             </View>
             <View >
-                <TouchableOpacity onPress={()=>{Linking.openURL('https://www.compasscard.ca/ContactUs')}}>
+                <TouchableOpacity onPress={() => { Linking.openURL('https://www.compasscard.ca/ContactUs') }}>
                     <ItemRow>
                         <SubContainer>
                             <SubtitleText>Talk to a Representative</SubtitleText>
                             <DescriptionText>Have a question? Chat with our virtual assistant.</DescriptionText>
                         </SubContainer>
-                        <Icon 
-                            style={{paddingRight: 15,}} 
-                            name='link' 
+                        <Icon
+                            style={{ paddingRight: 15, }}
+                            name='link'
                             color={COLORS.DAVYSGREY}
                             size={30}
                         />
                     </ItemRow>
                 </TouchableOpacity>
-                <Divider orientation="horizontal" color={COLORS.DAVYSGREY}/>
+                <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
             </View>
         </View>
     );

@@ -25,50 +25,67 @@ import SavedRidesIcon from "./savedRidesIcon";
 const Container = styled.View`
     width: 100%;
     height: 281px;
-    justify-content: space-between;
     padding:2%;
     overflow:hidden;
+    background-color: ${COLORS.CAROLINABLUE};
+    border-radius: 15px;
 `;
 
 const Row = styled.View`
     flex-direction: row;
      /* border:2px solid blue; */
-     /* top:-5%; */
+     justify-content: space-between;
+     align-content: center;
+     margin-bottom: 5%;
 `;
 
 const TextColumn = styled.View`
-    justify-content: space-between;
+    justify-content: center;
     height: 60px;
+    /* border:2px solid green; */
+
 `;
 
 const H1 = styled.Text`
     font-family: 'Ubuntu_700Bold';
-    font-size: 24px;
-    color: ${COLORS.SPACECADET};
+    font-size: 22px;
+    color: #fff;
 `;
 const H1Blue = styled.Text`
     font-family: 'Ubuntu_700Bold';
     font-size: 24px;
-    color: ${COLORS.CAROLINABLUE};
+    color: #fff;
 `;
 
 const H2 = styled.Text`
     font-family: 'Ubuntu_400Regular';
     font-size: 16px;
     top: -5px;
+    color: #fff;
+
 
 `;
 
 const ScrollCont = styled.View`
     width: ${windowWidth};
     height: 150px;
-    top:2%;
+    justify-content: center;
+    align-content: center;
+    /* border:2px solid gold; */
+
 `;
 
 const Minimize = styled.TouchableOpacity`
     width: 60px;
     height: 60px;
-    align-self: flex-end;
+    top:-1%;
+
+   
+`;
+const Manage = styled.TouchableOpacity`
+    width: 60px;
+    height: 60px;
+    top:-1%;
 `;
 
 const ViewAll = styled.TouchableOpacity`
@@ -98,19 +115,31 @@ const SavedRidesScroll = ({
     } else {
         return <Container>
             <Row>
-                <Minimize onPress={onMinimizePress}>
+                <Minimize style={styles.toggleSideIcon}
+                    onPress={onMinimizePress}>
                     <Icon
-                        name="arrow-back-circle"
-                        type="ionicon"
-                        color={COLORS.CAROLINABLUE}
-                        size={60}
-                        style={{ top: '-5%' }}
+                        name="chevron-left"
+                        type="evilicons"
+                        color='#fff'
+                        size={65}
+                    // style={{ top: '-5%' }}
                     />
                 </Minimize>
                 <TextColumn>
-                    <H1>Saved Trips</H1>
-                    <H2>All of your favourite places</H2>
+                    <H1>Favourite Locations</H1>
+                    {/* <H2>Swipe through your locations</H2> */}
                 </TextColumn>
+                <Manage style={styles.toggleSideIcon}
+                    onPress={() => navigation.navigate('SavedTrips')}>
+                    <Icon
+                        name="setting"
+                        type="antdesign"
+                        color={COLORS.SPACECADET}
+                        size={20}
+                        reverse={true}
+                    // style={{ top: '-5%' }}
+                    />
+                </Manage>
             </Row>
             <ScrollCont style={{ width: '100%' }}>
                 <ScrollView
@@ -119,19 +148,19 @@ const SavedRidesScroll = ({
                     contentContainerStyle={styles.scroll}
 
                 >
-                    <SavedRidesIcon icon_type="train" ride_text="Waterfront to Yaletown" />
-                    <SavedRidesIcon icon_type="seabus" ride_text="Waterfront to Lonsdale Quay" />
-                    <SavedRidesIcon icon_type="bus" bus_text="05" ride_text="Dunsmuir to Cardero" />
-                    <SavedRidesIcon />
-                    <SavedRidesIcon icon_type="train" ride_text="Waterfront to Yaletown" />
-                    <SavedRidesIcon icon_type="seabus" ride_text="Waterfront to Lonsdale Quay" />
-                    <SavedRidesIcon icon_type="bus" bus_text="05" ride_text="Dunsmuir to Cardero" />
-                    <SavedRidesIcon />
+                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="train" ride_text="Waterfront to Yaletown" />
+                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="seabus" ride_text="Waterfront to Lonsdale Quay" />
+                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="bus" bus_text="05" ride_text="Dunsmuir to Cardero" />
+                    <SavedRidesIcon icon_color="#fff" text_color='#fff' />
+                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="train" ride_text="Waterfront to Yaletown" />
+                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="seabus" ride_text="Waterfront to Lonsdale Quay" />
+                    <SavedRidesIcon icon_color="#fff" text_color="#fff" icon_type="bus" bus_text="05" ride_text="Dunsmuir to Cardero" />
+                    <SavedRidesIcon icon_color="#fff" text_color="#fff" />
                 </ScrollView>
             </ScrollCont>
-            <ViewAll onPress={() => navigation.navigate('SavedTrips')}>
+            {/* <ViewAll onPress={() => navigation.navigate('SavedTrips')}>
                 <H1Blue>View All</H1Blue>
-            </ViewAll>
+            </ViewAll> */}
         </Container>
     }
 }
@@ -143,8 +172,17 @@ export default SavedRidesScroll;
 
 const styles = StyleSheet.create({
     scroll: {
-        paddingBottom: '20%',
-        paddingTop: '2%'
+        paddingVertical: '8.5%',
+        // paddingTop: '2%',
+        backgroundColor: 'rgba(255,255,255,0.25)',
+        borderRadius: 10,
+
+    },
+    toggleSideIcon: {
+
+        shadowColor: COLORS.SPACECADET,
+        shadowOpacity: 0.5,
+        shadowOffset: { width: 0, height: 4 },
     },
 
 });

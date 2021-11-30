@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
     SafeAreaView,
     Dimensions,
@@ -36,9 +36,11 @@ const CardSwipeTest = ({
 
     const { width: windowWidth } = useWindowDimensions();
 
+
+
     const [ticketDefault, setTicketDefault] = useState(false);
     //const [passDefault, setPassDefault] = useState(false);
-    console.log(ticketDefault, "Ticket D")
+    // console.log(ticketDefault, "Ticket D")
     return (
         <SafeAreaView style={{
             width: '100%'

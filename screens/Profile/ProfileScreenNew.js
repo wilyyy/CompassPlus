@@ -6,29 +6,58 @@ import ProfileCard from '../../comps/Profile/profileCard.js';
 import NotificationCard from '../../comps/Profile/notificationCard.js';
 import SupportCard from '../../comps/Profile/supportCard.js';
 // import { FlatList } from 'react-native-gesture-handler';
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+} from '@expo-google-fonts/ubuntu';
+import AppLoading from 'expo-app-loading';
+import LottieView from 'lottie-react-native';
 
 
 const ProfileScreenNew = () => {
-    return (
-        <View
-            style={styles.test}
-        >
 
-            <ProfileCard />
-            <ScrollView
-                contentContainerStyle={styles.scroll}
-                snapToEnd={false}
-                showsVerticalScrollIndicator={false}
+    let [fontsLoaded] = useFonts({
+        Ubuntu_300Light,
+        Ubuntu_300Light_Italic,
+        Ubuntu_400Regular,
+        Ubuntu_400Regular_Italic,
+        Ubuntu_500Medium,
+        Ubuntu_500Medium_Italic,
+        Ubuntu_700Bold,
+        Ubuntu_700Bold_Italic,
+    });
 
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    } else {
+        return (
+            <View
+                style={styles.test}
             >
-                <NotificationCard />
-                <SupportCard />
-            </ScrollView>
-            <View style={styles.NavCont}>
-                <NavAccount />
+
+                <ProfileCard />
+                <ScrollView
+                    contentContainerStyle={styles.scroll}
+                    snapToEnd={false}
+                    showsVerticalScrollIndicator={false}
+
+                >
+                    <NotificationCard />
+                    <SupportCard />
+                </ScrollView>
+                <View style={styles.NavCont}>
+                    <NavAccount />
+                </View>
             </View>
-        </View>
-    )
+        )
+    }
 }
 
 export default ProfileScreenNew;

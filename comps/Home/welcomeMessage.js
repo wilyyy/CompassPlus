@@ -18,13 +18,14 @@ import {
 import AppLoading from 'expo-app-loading';
 
 const Container = styled.View`
+
     min-height: 100px;
     height:10%;
     align-items: center;
     margin-bottom:5%;
         align-content: center;
     justify-content: center;
-    width: 90%;    
+    width: 90%;     
 `;
 
 const TextCont = styled.View`

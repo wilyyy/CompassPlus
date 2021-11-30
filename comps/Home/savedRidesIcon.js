@@ -38,6 +38,7 @@ const Container = styled.View`
     width: 70px;
     height: 70px;
     border-radius: 16px;
+    margin:5px;
     border: 3px solid ${props => props.bordercolor};
     justify-content: center;
     align-items: center;

@@ -60,7 +60,6 @@ const Page = styled.View`
 
 `;
 const TopContainer = styled.View`
-    position: relative;
     top: 15%;
     width: 90%;
     height: 50px; 
@@ -103,7 +102,8 @@ const H1 = styled.Text`
 `;
 const H2 = styled.Text`
     font-size: 24px;
-    
+    color: #fff;
+
 `;
 
 // reusable spring config
@@ -344,21 +344,9 @@ export default function CompassCardScreen() {
                     <BgCircle />
                     <TopContainer>
                         <H1>My Cards</H1>
-                        {/* <AddPayment
-                        onPress={() => navigation.navigate('Pay')}
-                    >
-                        <Text style={styles.payment}>Add Payment</Text>
-                        <Icon
-                            name='pluscircleo'
-                            type='antdesign'
-                            color='#fff'
-                            size={15}
-                            style={styles.plusIcon}
-                        />
-                    </AddPayment> */}
 
                     </TopContainer>
-                    <Text style={styles.TapQueue}>Tap,  Reload, and Manage your cards</Text>
+                    <Text style={styles.TapQueue}>Tap, reload, and manage your Compass Card</Text>
                     <CardSwipeTest
                         handleAddSheetONE={handlePassReload}
                         handleAddSheetTWO={handleTicketReload}
@@ -446,7 +434,8 @@ const styles = StyleSheet.create({
         marginTop: '12%',
         marginBottom: '5%',
         color: '#fff',
-        fontStyle: 'italic',
+        fontSize: 16,
+        fontFamily: 'Ubuntu_400Regular'
     },
     scrollView: {
 
