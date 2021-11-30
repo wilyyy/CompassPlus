@@ -17,9 +17,7 @@ const Page = styled.View`
 const Box = styled.View `
     height: 88%;
 `;
-const BoxSmall = styled.View `
-    height: 20;
-`;
+
 
 
 export default function BenefitsScreen ({navigation}) {
