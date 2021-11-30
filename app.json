@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "compassPlus",
-    "slug": "compassplus",
+    "name": "Compass Plus",
+    "slug": "compass-plus",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logoWhite.png",
@@ -17,13 +17,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": false,
-      "bundleIdentifier": ".com.compassplus",
+      "supportsTablet": true,
+      "bundleIdentifier": ".com.zoejames.compassplus",
+      "buildNumber": "1.0.0",
       "config": {
         "googleMapsApiKey": "AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U"
       }
     },
     "android": {
+      "package": "com.zoejames.compassplus",
       "adaptiveIcon": {
         "foregroundImage": "./assets/logoWhite.png",
         "backgroundColor": "#FFFFFF"

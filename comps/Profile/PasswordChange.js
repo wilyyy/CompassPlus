@@ -113,7 +113,7 @@ const PasswordChange = ({ navigation }) => {
                         <EditContent>Manage your payment information.</EditContent>
                         <AddPaymentType />
                         <TouchableOpacity style={styles.button} onPress={() => console.log("added payment!")}>
-                            <Text style={styles.text}>Change Password</Text>
+                            <Text style={styles.text}>Save Changes</Text>
                         </TouchableOpacity>
 
                     </EditColumn>

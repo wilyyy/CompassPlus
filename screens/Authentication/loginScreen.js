@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, Dimensions, StyleSheet, Text, ImageBackground } from 'react-native';
 import styled from "styled-components/native";
 
@@ -20,7 +20,7 @@ import AppLoading from 'expo-app-loading';
 import WhiteButton from '../../comps/Global/whiteButton.js';
 
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height; 
+const windowHeight = Dimensions.get('window').height;
 
 const Page = styled.View`
     width: ${windowWidth};
@@ -63,7 +63,7 @@ const Button = styled.TouchableOpacity`
     align-items: center;
     border-radius: 20px;
 `;
-const Box = styled.View `
+const Box = styled.View`
     height: 10px;
 `;
 
@@ -102,18 +102,18 @@ const LoginScreen = ({ navigation }) => {
                         />
                     </TextCont>
                     <ButtonCont>
-                        <WhiteButton
+                        {/* <WhiteButton
                             text="Welcome Back"
                             onButtonPress={() => navigation.navigate('WelcomeBack')}
                         />
-                        <Box />
+                        <Box /> */}
                         <WhiteButton
-                            text="Login New"
+                            text="Login"
                             onButtonPress={() => navigation.navigate('LoginNew')}
                         />
                         <Box />
                         <WhiteButton
-                            text="Create Account New"
+                            text="Create Account"
                             onButtonPress={() => navigation.navigate('CreateAccountNew')}
                         />
                     </ButtonCont>
