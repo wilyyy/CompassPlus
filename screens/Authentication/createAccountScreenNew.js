@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import {Dimensions, StyleSheet, Image, ImageBackground, TextInput, TouchableOpacity, Text } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Dimensions, StyleSheet, Image, ImageBackground, TextInput, TouchableOpacity, Text, Alert, KeyboardAvoidingView, ScrollView } from 'react-native';
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +7,8 @@ import { auth } from './firebase.js';
 import KeyBoardAvoidingWrapper from '../../comps/Global/KeyboardAvoidingWrapper.js';
 import axios from 'axios';
 import { getAuth } from '@firebase/auth';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+  
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -55,36 +57,62 @@ export default function createAccountScreenNew ({navigation}) {
     const [password, setPassword] = useState('');
     const [userAge, setUserAge] = useState(null);
 
+   
+    useEffect(()=>{
+        const unsubscribe = auth.onAuthStateChanged(user =>{
+            if(user){
+                const uid = user.uid;
+                console.log("signed in right now", user);
+            }
+        })
+        return unsubscribe
+    }, [])
+
+
     const handleSignUp = () => {
-        auth
-            .createUserWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                console.log('Registered with: ', user.email);
-                axios.post('/users.php', {
-                    fb_uid: user.uid,
-                    first_name: name,
-                    age: userAge
-                    })
-                    .then(function (response) {
-                        console.log(response);
-                        navigation.navigate('Benefits');
-                    })
-                    .catch(function (error) {
-                    console.log(error);
-                    });
-              })
-              .catch((error) => {
-                alert(error.message)
-              });
-        
-    }
+        if(name == '' || email == '' || password == '') {
+            Alert.alert("Please enter all relevant information: Name, Email, Password.");
+            }
+        // else if (error.code == 'auth/email-already-in-use') {
+        //     Alert.alert('Email already in use !');
+        // }
+        else{
+            auth
+                .createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    console.log('Registered with: ', user.email);
+                    axios.post('/users.php', {
+                        fb_uid: user.uid,
+                        first_name: name,
+                        age: userAge
+                        })
+                        .then(function (response) {
+                            console.log(response);
+                            navigation.navigate('Benefits');
+                        })
+                        .catch(function (error) {
+                        console.log(error);
+                        });
+                })
+                .catch(error => {
+                    console.log(error.code);
+                    switch (error.code) {
+                        case 'auth/email-already-in-use':
+                            Alert.alert('Email already in use !')
+                            break;
+                        case 'auth/weak-password':
+                            Alert.alert('Pathword too weak. Please choose a password with 6 characters at least.')
+                            break;
+                    }});
+        }
+        }; 
 
     return (
-        // <KeyBoardAvoidingWrapper>
             <Page>
                 <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
+                <KeyboardAwareScrollView style={{ flex: 1}} >
                     <Image 
                         style={styles.compassCardLogo} 
                         source={require('../../assets/logoWhite.png')}
@@ -109,6 +137,8 @@ export default function createAccountScreenNew ({navigation}) {
                             style={styles.input}
                             placeholder="Email ..."
                             value={email}
+                            textContentType='emailAddress'
+                            keyboardType='email-address'
                             onChangeText={text => setEmail(text)}
                         />
                         <TextInput
@@ -123,10 +153,10 @@ export default function createAccountScreenNew ({navigation}) {
                     <BoxLarge />
                     <TouchableOpacity style={styles.button} onPress={handleSignUp}>
                         <Text style={styles.text}>CREATE ACCOUNT</Text>
-                    </TouchableOpacity>    
+                    </TouchableOpacity>  
+                </KeyboardAwareScrollView>  
                 </ImageBackground>
             </Page>
-        // {/* </KeyBoardAvoidingWrapper> */}
     )
 }
 
@@ -141,6 +171,7 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         marginTop: 70,
+        alignSelf: 'center',
     },
     input: {
         height: 55,

@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {Dimensions, StyleSheet, Image, ImageBackground, TextInput, TouchableOpacity, Text} from 'react-native';
+import {Dimensions, StyleSheet, Image, ImageBackground, TextInput, TouchableOpacity, Text, Alert} from 'react-native';
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import * as Google from 'expo-google-app-auth';
 import { useNavigation } from '@react-navigation/native';
 import { auth, SignInWithGoogle } from './firebase.js';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+
 
 
 
@@ -79,6 +82,7 @@ export default function loginScreenNew ({navigation}) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
     // const [passwordVisibility, setPasswordVisibility] = useState(true);
     // const [rightIcon, setRightIcon] = useState('eye');
 
@@ -116,18 +120,32 @@ export default function loginScreenNew ({navigation}) {
                 console.log('Logged in with: ', user.email);
                 navigation.navigate('WelcomeBack');
               })
+              .catch(error => {
+                switch (error.code) {
+                   case 'auth/invalid-email':
+                      Alert.alert('Invalid email. Please try again :)')
+                      break;
+                    case 'auth/user-not-found':
+                       Alert.alert('There is no account with your provided data. Sign up to create a new account :)')
+                       break;
+                    case 'auth/wrong-password':
+                       Alert.alert('Invalid password. Please try again :)')
+                    break;
+                }})
             } 
         }
             catch (error) {
-            alert(error.message); 
+                console.log(error.code);
+                alert("Error: ", error);
             }
-        }    
+        };    
 
 
 
     return (
         <Page>
             <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
+            <KeyboardAwareScrollView style={{ flex: 1}} >
                 <Image 
                     style={styles.compassCardLogo} 
                     source={require('../../assets/logoWhite.png')}
@@ -181,6 +199,7 @@ export default function loginScreenNew ({navigation}) {
                         <Text style={styles.textTwo}>           </Text>
                     </GoogleButton>
                 </TouchableOpacity>
+                </KeyboardAwareScrollView> 
             </ImageBackground>
         </Page>
     )
@@ -190,12 +209,13 @@ const styles = StyleSheet.create({
     image: {
         alignItems: 'center',
         width: windowWidth,
-        height: windowHeight
+        height: windowHeight,
     },
     compassCardLogo: {
         width: 100,
         height: 100,
         marginTop: 70,
+        alignSelf: 'center',
     },
     input: {
         height: 55,
