@@ -105,7 +105,7 @@ const SavedTrips = ({
             const result = await axios.get('/saved_locations.php');
             console.log(result.data);
             setLocations(result.data);
-            setRefresh(!refresh);
+            setRefresh(true);
         }
 
         GetLocations();
