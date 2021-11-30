@@ -2,9 +2,14 @@ import React from 'react';
 import { View, ScrollView, StyleSheet, FlatList } from 'react-native';
 
 import NavAccount from '../../comps/NavBar/NavAccount.js';
-import ProfileCard from '../../comps/Profile/ProfileCard.js';
-import NotificationCard from '../../comps/Profile/NotificationCard.js';
-import SupportCard from '../../comps/Profile/SupportCard.js';
+// import ProfileCard from '../../comps/Profile/profileCard.js';
+// import NotificationCard from '../../comps/profile/notificationCard.js';
+// import SupportCard from '../../comps/Profile/supportCard.js';
+
+import ProfileCard from '../../comps/Profile/profileCard';
+import NotificationCard from '../../comps/Profile/notificationCard';
+import SupportCard from '../../comps/Profile/supportCard';
+
 // import { FlatList } from 'react-native-gesture-handler';
 
 
