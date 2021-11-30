@@ -25,7 +25,7 @@ import {
 import axios from 'axios';
 
 //database hosted on digital ocean, check notion for authentication details. php will be hosted on heroku
-axios.defaults.baseURL = "http://6ba6-2604-3d08-537e-3900-6c07-148c-6f2a-a24a.ngrok.io/compassplus-serverside/api/";
+axios.defaults.baseURL = "http://0d33-2604-3d08-537e-3900-6c07-148c-6f2a-a24a.ngrok.io/compassplus-serverside/api/";
 
 // go to storybook/stories/Button/Button.stories.js to add components
 // export { default } from './storybook';
@@ -99,7 +99,7 @@ export default function App  () {
   return (
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName='Authentication'
+      <Stack.Navigator initialRouteName='Map'
         screenOptions={{
           headerShown: false,
           animation: 'none',

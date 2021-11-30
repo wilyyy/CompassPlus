@@ -106,8 +106,8 @@ const SavedTrips = ({
             console.log(result.data);
             setLocations(result.data);
             setRefresh(true);
+            // setRefresh(!refresh);
         }
-
         GetLocations();
     }, [refresh])
 

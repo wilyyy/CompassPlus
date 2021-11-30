@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { View, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity, ImageBackground } from 'react-native';
 import styled from "styled-components/native";
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Callout, Marker } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import MapViewDirections from 'react-native-maps-directions';
 import { Icon } from 'react-native-elements';
@@ -17,6 +17,7 @@ import { MapStyleAub, MapStyleDefault, MapStyleDark } from '../../googlemaps/map
 import NavMaps from '../../comps/NavBar/NavMaps.js';
 import TripPlannerTab from '../../comps/TripPlanner/tripPlannerTab'
 import MapComp from '../../comps/TripPlanner/mapComp';
+import { NearbyBusMarkers } from '../../fakedata/nearbyBusMarkers.js';
 // import MapSearchBar from '../../comps/TripPlanner/mapSearchBar.js';
 
 const windowWidth = Dimensions.get('window').width;
@@ -58,6 +59,8 @@ const MarkerCont = styled.View`
     display: ${props => props.marker_display};
 `;
 
+const BusMarker = styled.View``;
+
 
 //search bar
 const MapHomeScreen = () => {
@@ -78,6 +81,8 @@ const MapHomeScreen = () => {
     const [markerDisplay, setMarkerDisplay] = useState(0);
     const [endMarkerDisplay, setEndMarkerDisplay] = useState(0);
     const [directionOpacity, setDirectionOpacity] = useState(0);
+
+    const [busMarker, setBusMarker] = useState(NearbyBusMarkers);
 
     // useEffect(()=>{
     //     setMarkerDisplay(1);
@@ -175,8 +180,8 @@ const MapHomeScreen = () => {
         <MapView
             provider="google"
             initialRegion={{
-                latitude: 49.246292,
-                longitude: -123.116226,
+                latitude: 49.248499,
+                longitude: -123.001375,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
             }}
@@ -199,6 +204,32 @@ const MapHomeScreen = () => {
                 pinColor={COLORS.LIMEGREEN}
                 opacity={endMarkerDisplay}
             />
+            {/* bus marker */}
+            {
+                busMarker.map((o, i)=>{
+                    <BusMarker key={i}>
+                        <Marker 
+                            coordinate={{
+                                latitude: o.latitude,
+                                longitude: o.longitude
+                            }}
+                            image={require('../../assets/bus_marker.png')}
+                        >
+                            <Callout>
+                                <View>
+                                    <Text style={{
+                                        color: COLORS.SPACECADET,
+                                        justifyContent: 'center',
+                                        alignItems: 'center'
+                                    }}>{o.bus}</Text>
+                                </View>
+                            </Callout>
+                        </Marker>
+                    </BusMarker>
+                })
+            }
+            
+
             <MapViewDirections
                 origin={region}
                 destination={endRegion}
