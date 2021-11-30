@@ -87,6 +87,9 @@ export default function createAccountScreenNew ({navigation}) {
                         case 'auth/weak-password':
                             Alert.alert('Pathword too weak. Please choose a password with 6 characters at least.')
                             break;
+                        case 'auth/invalid-email':
+                            Alert.alert('Invalid email. Please try again :)')
+                      break;
                     }});
         }
         }; 

@@ -6,11 +6,15 @@ import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../../screens/Authentication/firebase.js';
+import { Camera } from "expo-camera";
+
 
 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
+
 
 const BackgroundContainer = styled.View`
     width: ${windowWidth};

@@ -6,9 +6,9 @@ import NavAccount from '../../comps/NavBar/NavAccount.js';
 // import NotificationCard from '../../comps/profile/notificationCard.js';
 // import SupportCard from '../../comps/Profile/supportCard.js';
 
-import ProfileCard from '../../comps/Profile/profileCard';
-import NotificationCard from '../../comps/Profile/notificationCard';
-import SupportCard from '../../comps/Profile/supportCard';
+import ProfileCard from '../../comps/Profile/ProfileCard';
+import NotificationCard from '../../comps/Profile/NotificationCard';
+import SupportCard from '../../comps/Profile/SupportCard';
 
 // import { FlatList } from 'react-native-gesture-handler';
 
