@@ -79,12 +79,13 @@ const SavedTrips = ({
     navigation = useNavigation()
 
 }) => {
-    const RouteToAddLocations = () =>{
+    const RouteToAddLocations = () => {
         navigation.navigate('AddSavedLocation');
     }
 
     const PressBack = () => {
-        navigation.navigate('Map');
+        // navigation.navigate('Map');
+        navigation.goBack();
     }
 
     let [fontsLoaded] = useFonts({
