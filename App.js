@@ -8,8 +8,9 @@ import { createNativeStackNavigator, TransitionPresets } from '@react-navigation
 import { useNavigation } from '@react-navigation/native';
 
 import axios from 'axios';
-//this needs to be ngrok or hosted database (aws or heroku)
-axios.defaults.baseURL = "http://ab02-2604-3d08-537e-3900-6c07-148c-6f2a-a24a.ngrok.io/compassplus-serverside/api/";
+
+//database hosted on digital ocean, check notion for authentication details. php will be hosted on heroku
+axios.defaults.baseURL = "http://a4db-2604-3d08-537e-3900-6c07-148c-6f2a-a24a.ngrok.io/compassplus-serverside/api/";
 
 // go to storybook/stories/Button/Button.stories.js to add components
 // export { default } from './storybook';

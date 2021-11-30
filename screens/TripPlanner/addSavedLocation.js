@@ -19,9 +19,12 @@ import { Icon } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { MapStyleAub } from '../../googlemaps/mapStyle.js';
+import { getAuth } from '@firebase/auth';
+
 
 import { COLORS } from '../../constants/styles.js';
 import WhiteButton from '../../comps/Global/whiteButton.js';
+import axios from 'axios';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -63,6 +66,7 @@ const MapContainer = styled.View`
     padding: 5px;
     justify-content: center;
     align-items: center;
+    z-index: -2;
     /* top:-5%; */
     background-color: rgba(0, 105, 164, 0.65);
     border-radius: 10px;
@@ -71,8 +75,8 @@ const MapContainer = styled.View`
 
 const SearchBar = styled.View`
     width:100%;
-    /* position: absolute; */
-    top: -5%;
+    position: absolute;
+    top: 50%;
     z-index: 2;
     
 `;
@@ -80,11 +84,11 @@ const SearchBar = styled.View`
 const InputCont = styled.View`
     /* border:2px solid blue; */
     /* top:-7%; */
-    padding-left:1%;
     width:100%;
     height:20%;
     margin-top: 10px;
     margin-bottom: 10px;
+    align-items: center;
     /* justify-content: flex-start;
     align-content: center; */
 `;
@@ -108,6 +112,34 @@ const Label = styled.TextInput`
 const AddSavedLocation = ({
     navigation = useNavigation()
 }) => {
+
+    //POST new card to savedTrips.js
+    const ref = useRef();
+    const [addLocation, setAddLocation] = useState("");
+    const [cardName, setCardName] = useState("");
+    const [buttonClick, setButtonClick] = useState(false);
+    // const auth = getAuth();
+    // const userId = auth.currentUser.uid;
+
+    const newCard = {
+        fb_uid: 'asdasddadasdasas',
+        name: cardName,
+        location: addLocation
+    };
+
+    
+
+    useEffect(() => {
+        const addressText = ref.current?.getAddressText();
+        setAddLocation(addressText);
+        console.log(addLocation)
+        console.log(cardName)
+        const AddCardToDb = async() =>{
+            await axios.post('/saved_locations.php', newCard);
+        };
+        AddCardToDb();
+    }, []);
+    
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -121,6 +153,7 @@ const AddSavedLocation = ({
 
     const PressAddContinue = () => {
         navigation.navigate('SavedTrips');
+        setButtonClick(true);
     }
     const PressBack = () => {
         navigation.navigate('SavedTrips');
@@ -170,9 +203,12 @@ const AddSavedLocation = ({
                     <InputCont>
                         <Label
                             placeholder="Name for your location"
+                            value={cardName}
+                            onChangeText={(text) => setCardName(text)}
                         />
                         <SearchBar>
                             <GooglePlacesAutocomplete
+                                ref={ref}
                                 placeholder='Search Address'
                                 fetchDetails={true}
                                 GooglePlacesSearchQuery={{
