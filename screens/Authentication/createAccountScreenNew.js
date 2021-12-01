@@ -66,9 +66,6 @@ export default function createAccountScreenNew ({navigation}) {
         if(name == '' || email == '' || password == '') {
             Alert.alert("Please enter all relevant information: Name, Email, Password.");
             }
-        // else if (error.code == 'auth/email-already-in-use') {
-        //     Alert.alert('Email already in use !');
-        // }
         else{
             auth
                 .createUserWithEmailAndPassword(email, password)
@@ -87,6 +84,9 @@ export default function createAccountScreenNew ({navigation}) {
                         case 'auth/weak-password':
                             Alert.alert('Pathword too weak. Please choose a password with 6 characters at least.')
                             break;
+                        case 'auth/invalid-email':
+                            Alert.alert('Invalid email. Please try again :)')
+                      break;
                     }});
         }
         }; 

@@ -42,7 +42,7 @@ const Hr = styled.View`
     background-color: ${COLORS.CAROLINABLUE};
     height:2px;
     margin-top: -5%;
-    margin-bottom: 5%;
+    margin-bottom: 10%;
 `;
 
 //switch to gesture handler?
@@ -70,7 +70,7 @@ const H2 = styled.Text`
 
 const HomeScreen = () => {
     const [modalVisible, setModalVisible] = useState(false);
-    const [linkedCard, setLinkedCard] = useState("no")
+    const [linkedCard, setLinkedCard] = useState("yes")
 
     const OpenModal = () => {
         setModalVisible(true);
@@ -135,6 +135,5 @@ const styles = StyleSheet.create({
     NavCont: {
         position: 'absolute',
         bottom: 0,
-    },
-
+    }
 });

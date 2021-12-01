@@ -37,8 +37,7 @@ import Animated, {
     useAnimatedStyle,
     withSpring,
 } from 'react-native-reanimated';
-// import TransferBalanceTab from '../../comps/CompassCardParent/NotUsing/transferFunds.js';
-
+import AddCardManager from '../../comps/CompassCardParent/addCardManager.js';
 import CardSwipeTest from '../../comps/CompassCardParent/cardsInSwipe';
 import AddFundsTabPass from '../../comps/CompassCardParent/addFunds.js';
 import AddFundsTabTicket from '../../comps/CompassCardParent/addFundsTicket.js';
@@ -52,6 +51,7 @@ import TapAnimOverlay from '../../comps/CompassCardParent/TapAnimOverlay.js';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+//page elements 
 const Page = styled.View`
     width: ${windowWidth}px;
     height: ${windowHeight}px;
@@ -89,6 +89,10 @@ const AddPayment = styled.Pressable`
     height: 100%;
     flex-direction: row;
     top:10px;
+
+    /* border-width: 2px;
+    border-color: red; */
+
 `;
 const H1 = styled.Text`
     font-size: 24px;
@@ -106,6 +110,7 @@ const H2 = styled.Text`
     
 `;
 
+//ANIMATIONS
 // reusable spring config
 const SPRING_CONFIG = {
     damping: 80,
@@ -114,6 +119,7 @@ const SPRING_CONFIG = {
     restSpeedThreshold: 0.1,
     stiffness: 500,
 };
+
 
 
 export default function CompassCardScreen() {
@@ -366,6 +372,7 @@ export default function CompassCardScreen() {
                         addTempTicket={handleTempTicket}
                         paymentAnimation={tapAnimation}
                     />
+
                 </Page>
 
                 {/* RELOAD pass ANIMATION TAB  */}
