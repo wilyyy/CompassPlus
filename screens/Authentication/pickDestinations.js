@@ -145,6 +145,7 @@ const PickDestinations = ({
     //counter state that increments and changes page content 4 times
     const [pageCounter, setPageCounter] = useState(0);
 
+    //look at this later
     const AddCardToDb = async(name)=>{
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
