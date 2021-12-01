@@ -1,7 +1,8 @@
 import styled from "styled-components/native";
-import React, { useState }  from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import Ellipse from '../../assets/Ellipse_1.png';
+import { useNavigation } from '@react-navigation/native';
 
 import { COLORS } from "../../constants/styles";
 import SavedRidesScroll from "./savedRidesScroll";
@@ -21,38 +22,41 @@ import AppLoading from 'expo-app-loading';
 
 const TempCenter = styled.View`
     align-items: center;
+    width: 350px;
+    margin-bottom: 5%;
 `;
 
 
 const Container = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
-    width: 80%;
-    height: 106px;
+    width: 100%;
+    height: 100px;
     background-color: ${COLORS.CAROLINABLUE};
     border-radius: 10px;
+   
 `;
 
 const Row = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 330px;
+    width: 90%;
     height: 100px;
     border-radius: 10px;
+    padding:5%;
 `;
 
 const TextCont = styled.View`
-    width: 220px;
-    justify-content: flex-start;
-    align-items: flex-start;
+    flex:2;
+    /* border-width: 2px;
+    border-color: red; */
 `;
 
 const H1 = styled.Text`
     font-size: 18px;
     font-family: 'Ubuntu_700Bold';
     line-height: 24px;
-    letter-spacing: 0;
     color: #fff;
 `;
 
@@ -68,9 +72,10 @@ const H2 = styled.Text`
 const HomeCard = ({
     // header = 'Saved Trips',
     // para = 'Access your saved trips for quicker route planning',
-    img = {Ellipse},
+    img = { Ellipse },
     onCardPress = () => { },
-    card_type = "savedRides"
+    card_type = "savedRides",
+    navigation = useNavigation(),
 
 }) => {
     let [fontsLoaded] = useFonts({
@@ -95,8 +100,9 @@ const HomeCard = ({
         setSavedRides(false);
     }
 
-    if(typeOfCard === "savedRides"){
-        if(savedRides === false){
+
+    if (typeOfCard === "savedRides") {
+        if (savedRides === false) {
             if (!fontsLoaded) {
                 return <AppLoading />;
             } else {
@@ -104,43 +110,47 @@ const HomeCard = ({
                     <TempCenter>
                         <Container onPress={SeeSavedRides}>
                             <Row>
-                                <Image style={styles.image}  source={img}/>
+                                <View style={styles.flex}>
+                                    <Image style={styles.image} source={require('../../assets/SavedTrips.png')} />
+                                </View>
                                 <TextCont>
-                                    <H1>Saved Trips</H1>
-                                    <H2>Access your saved trips for quicker route planning</H2>
+                                    <H1>Saved Locations</H1>
+                                    <H2>Access your locations for quicker route planning</H2>
                                 </TextCont>
                             </Row>
                         </Container>
-                    </TempCenter>
+                    </TempCenter >
                 )
             }
         }
 
-        if(savedRides === true){
+        if (savedRides === true) {
             if (!fontsLoaded) {
                 return <AppLoading />;
             } else {
                 return (
                     <TempCenter>
-                        <SavedRidesScroll onMinimizePress={MinimizeSavedRides}/>
+                        <SavedRidesScroll onMinimizePress={MinimizeSavedRides} />
                     </TempCenter>
                 )
             }
         }
     }
 
-    if(typeOfCard === "manageCard"){
+    if (typeOfCard === "manageCard") {
         if (!fontsLoaded) {
             return <AppLoading />;
         } else {
             return (
                 <TempCenter>
-                    <Container onPress={SeeSavedRides}>
+                    <Container onPress={() => navigation.navigate('MobileCard')}>
                         <Row>
-                            <Image style={styles.image}  source={img}/>
+                            <View style={styles.flex}>
+                                <Image style={styles.image} source={require('../../assets/ManageCards.png')} />
+                            </View>
                             <TextCont>
                                 <H1>Manage your Card</H1>
-                                <H2>Check your balance and top up wherever you are.</H2>
+                                <H2>Check your balance and top up wherever you are</H2>
                             </TextCont>
                         </Row>
                     </Container>
@@ -148,18 +158,16 @@ const HomeCard = ({
             )
         }
     }
-    
+
 }
 
 export default HomeCard;
 
 const styles = StyleSheet.create({
     image: {
-        display: 'flex',
-        margin: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
         width: 60,
         height: 60,
+    }, flex: {
+        flex: 1,
     }
 });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 
@@ -6,29 +6,38 @@ import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity }
 const Payment = [
     { title: 'Mastercard', id: '1' },
     { title: 'Visa', id: '2' },
-    { title: 'Add Payment', id: '3' },
+    // { title: 'Add Payment', id: '3' },
 
 ];
 
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+const Item = ({ item, onPress, onPressOut, backgroundColor, textColor }) => (
+    <TouchableOpacity onPress={onPress} onPressOut={onPressOut} style={[styles.item, backgroundColor]}>
         <Text style={[styles.title, textColor]}>{item.title}</Text>
     </TouchableOpacity>
 );
 
 const PaymentTab = ({
-    selectThis = () => { },
+    //need to pass item.id
+    closePay = () => { },
 }) => {
-    const [selectedId, setSelectedId] = useState(null);
+    const [selectedId, setSelectedId] = useState({});
+
+    useEffect(() => {
+
+        if (selectedId != null) {
+            closePay(selectedId);
+        }
+    }, [selectedId]);
+
 
     const renderItem = ({ item }) => {
-        const backgroundColor = item.id === selectedId ? "#5BCF49" : "transparent";
-        const color = item.id === selectedId ? 'white' : 'black';
+        const backgroundColor = item.id === selectedId.id ? "#5BCF49" : "transparent";
+        const color = item.id === selectedId.id ? 'white' : 'black';
 
         return (
             <Item
                 item={item}
-                onPress={() => setSelectedId(item.id)}
+                onPress={() => setSelectedId(item)}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}
             />
@@ -42,7 +51,6 @@ const PaymentTab = ({
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 extraData={selectedId}
-                onPress={selectThis}
             />
         </SafeAreaView>
     );
@@ -63,8 +71,9 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
         padding: 30,
-        marginTop: StatusBar.currentHeight || 0,
         overflow: 'hidden',
+        // borderColor: 'red',
+        // borderWidth: 2
     },
     item: {
         paddingTop: 5,

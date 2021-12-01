@@ -96,8 +96,10 @@ const BalanceHistoryCard = ({navigation}) => {
                         fontSize: 20 } 
                     }}
                 containerStyle={{
-                    backgroundColor: '#009DDC', 
-                    height: 80}}
+                    backgroundColor: COLORS.CAROLINABLUE, 
+                    height: 100,
+                    borderBottomWidth: 0,
+                }}
                 />
             <ImageContainer>
                 <SubContainer>

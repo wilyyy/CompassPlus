@@ -18,27 +18,34 @@ import {
 import AppLoading from 'expo-app-loading';
 
 const Container = styled.View`
-    height: 100px;
+    min-height: 100px;
+    height:15%;
     align-items: center;
-    top: 10;
+    margin-bottom:5%;
+        align-content: center;
+    justify-content: center;
+    width: 90%;    
 `;
 
 const TextCont = styled.View`
-    width: 297px;
-    height: auto;
+    width: 100%;
+    margin-top: 30px;
 `;
 
 const H1 = styled.Text`
-    font-size: 24px;
+    font-size: 26px;
     font-family: 'Ubuntu_700Bold';
     color: ${COLORS.CAROLINABLUE};
+    text-align: center;
 `;
 const H2 = styled.Text`
     font-size: 16px;
     color: ${COLORS.SPACECADET};
     font-family: 'Ubuntu_400Regular';
     text-align: justify;
-    top: 5;
+    top: 5px;
+    text-align: center;
+    padding-bottom: 20px;
 `;
 
 const WelcomeMessage = () => {
@@ -59,7 +66,7 @@ const WelcomeMessage = () => {
         return <Container>
             <TextCont>
                 <H1>Welcome to CompassPlus</H1>
-                <H2>We’re happy to have you on board. Here are some quick tips to help you start your journey.</H2>
+                <H2>We’re happy to have you on board! </H2>
             </TextCont>
         </Container>
     }

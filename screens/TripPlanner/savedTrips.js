@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, Dimensions, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import styled from "styled-components/native";
-import { Icon, Divider } from 'react-native-elements';
+import { Icon, Divider, Header } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 
 import WhiteButton from '../../comps/Global/whiteButton.js';
 import SavedTripsCard from '../../comps/TripPlanner/savedTripsCard.js';
-import NavBar from '../../comps/NavBar/index.js';
+import NavHome from '../../comps/NavBar/NavHome.js';
 
 import {
     useFonts,
@@ -35,7 +35,7 @@ const Page = styled.View`
 const TopBar = styled.View`
     width: 100%;
     height: 13%;
-    background-color: ${COLORS.CAROLINABLUE};
+    background-color: ${COLORS.SPACECADET};
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -75,10 +75,18 @@ const Para = styled.Text`
 `;
 
 const SavedTrips = ({
-    onBackPress = () => {},
+    onBackPress = () => { },
     navigation = useNavigation()
 
 }) => {
+    const RouteToAddLocations = () =>{
+        navigation.navigate('AddSavedLocation');
+    }
+
+    const PressBack = () => {
+        navigation.navigate('Map');
+    }
+
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -94,41 +102,70 @@ const SavedTrips = ({
         return <AppLoading />;
     } else {
         return <Page>
-            <TopBar>
-                <Button onPress={onBackPress}>
-                    <Icon 
+            {/* <TopBar>
+                <Button onPress={PressBack}>
+                    <Icon
                         name="arrow-back-circle"
                         type="ionicon"
                         color='#fff'
                         size={60}
                     />
                 </Button>
-                <H1>Saved Trips</H1>
-                <Button onPress={onBackPress}>
-                    <Icon 
+                <H1>Saved Locations</H1>
+                <Button onPress={RouteToAddLocations}>
+                    <Icon
                         name="add-circle"
                         type="ionicon"
                         color='#fff'
                         size={60}
                     />
                 </Button>
-            </TopBar>
+            </TopBar> */}
+            <Header
+                leftComponent={{
+                    icon: 'arrow-back',
+                    color: 'white',
+                    size: 30,
+                    onPress: () => {PressBack},
+                    iconStyle: { color: 'white' }
+                }}
+                centerComponent={{
+                    text: 'Saved Locations',
+                    style: {
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: 24
+                    }
+                }}
+                rightComponent={{
+                    icon: 'add',
+                    color: 'white',
+                    size: 30,
+                    onPress: () => {RouteToAddLocations},
+                    iconStyle: { color: 'white' }
+                }}
+                containerStyle={{
+                    backgroundColor: COLORS.SPACECADET,
+                    height: 100,
+                    borderBottomWidth: 0,
+                }}
+            />
             <Content>
                 {/* put this in a scroll view? or aniamted gestures swipe right to view them? */}
                 <SavedTripsCard />
                 <SavedTripsCard />
                 <SavedTripsCard />
                 <BottomCont>
-                    <Divider orientation="vertical" width={5} />
+                    {/* <Divider orientation="vertical" width={5} />
                     <Para>Want to save more trips to your home, work, or school?</Para>
-                    <WhiteButton 
-                        text="Pick Destinations" 
+                    <WhiteButton
+                        text="Pick Destinations"
                         bg_color={COLORS.CAROLINABLUE}
                         text_color="#fff"
-                        onButtonPress={() => navigation.navigate('Onboarding') }
-                    />
+                        onButtonPress={() => navigation.navigate('Onboarding')}
+                    /> */}
                 </BottomCont>
-                <NavBar/ >
+                <NavHome />
             </Content>
         </Page>
     }

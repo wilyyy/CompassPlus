@@ -1,46 +1,40 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Pressable } from 'react-native';
+import { View, Dimensions, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import { Avatar } from 'react-native-elements'
+import { Header, Divider, Icon } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
-import ChangePasswordScreen from '../../screens/Profile/ChangePasswordScreen.js';
+import { auth } from '../../screens/Authentication/firebase.js';
 
 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+
+
 const BackgroundContainer = styled.View`
     width: ${windowWidth};
-    height: 300px;
     background-color: ${COLORS.SPACECADET};
-`;
-
-const TitleText = styled.Text`
-    font-size: 24px;
-    font-weight: bold;
-    color: #ffffff;
-    text-align: center;
-    padding-top: 60px; 
 `;
 
 const Row = styled.View`
     flex-direction: row;
     align-items: center;
-    padding-top: 35px; 
     justify-content: space-evenly;
 `;
 
 const SubContainer = styled.View`
-    flex-direction: column;
     align-items: center;
+    margin-top: 5%;
 `;
 
 const NameText = styled.Text`
     font-size: 20px;
     font-weight: normal;
-    padding-top: 10;
+    padding-top: 5%;
+    padding-bottom: 10%;
     color: #ffffff;
 `;
 
@@ -51,10 +45,71 @@ const Box = styled.View `
 
 const ProfileCard = ({navigation}) => {
     navigation = useNavigation()
+
+
+    const handleSignOut = () => {
+        auth
+        .signOut()
+        .then(()=>{
+            navigation.navigate('Authentication')
+        }) 
+        .catch(error => alert(error.message))
+    }
+
+
     return (
         <View>
-          <BackgroundContainer>
-              <TitleText>Personal Account</TitleText>
+            <Header
+                centerComponent={{ 
+                    text: 'Personal Account', 
+                    style: { 
+                        color: 'white', 
+                        fontWeight: 'bold', 
+                        fontSize: 24 } }}
+                rightComponent={{ 
+                    icon: 'logout', 
+                    color: 'white', 
+                    size: 30,
+                    onPress: handleSignOut,
+                    iconStyle: { color: 'white' } }}
+                containerStyle={{
+                    backgroundColor: COLORS.SPACECADET, 
+                    height: 100,
+                    borderBottomWidth: 0,
+                }}
+                />
+        <BackgroundContainer> 
+            <SubContainer>
+                <Avatar
+                    size="large"
+                    rounded
+                    title="JC"
+                    titleStyle={{color: '#777777'}}
+                    onPress={() => console.log("Works!")}
+                    overlayContainerStyle={{backgroundColor: 'white'}}
+                    activeOpacity={0.7}
+                    />
+                <NameText>Jenny Clark</NameText>
+            </SubContainer>
+            <Row>
+                <TouchableOpacity
+                        style={styles.frontFundsButton}
+                        onPress={() => navigation.navigate('ChangePassword')}>
+                        <Icon
+                            name='idcard'
+                            type='antdesign'
+                            color='#777777'
+                            size={25}
+                            reverse={true}
+                        />
+                        <Text
+                            style={styles.iconText}
+                        >Update Account Details </Text>
+                    </TouchableOpacity>
+                <Text style={styles.text}> Update Account Details</Text>
+            </Row>
+        </BackgroundContainer>
+          {/* <BackgroundContainer>
               <Row>
                   <SubContainer>
                   <Avatar
@@ -78,7 +133,7 @@ const ProfileCard = ({navigation}) => {
                     </TouchableOpacity>
                   </SubContainer>
               </Row>
-          </BackgroundContainer>
+          </BackgroundContainer> */}
       </View>
     );
   };
@@ -99,5 +154,14 @@ const ProfileCard = ({navigation}) => {
         fontSize: 18,
         fontWeight: 'bold',
         color: COLORS.CAROLINABLUE
+    },
+    frontFundsButton: {
+        marginBottom: '5%',
+    },
+    iconText: {
+        color: COLORS.CAROLINABLUE,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        left: '-2%',
     },
 });
