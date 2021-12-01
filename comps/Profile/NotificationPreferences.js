@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import { View, Dimensions, StyleSheet, ScrollView, Switch } from 'react-native';
-import {
-    SafeAreaView,
-    SafeAreaProvider,
-    SafeAreaInsetsContext,
-    useSafeAreaInsets,
-    initialWindowMetrics,
-} from 'react-native-safe-area-context';
-import { Header, Divider } from 'react-native-elements'
+import { Header, Divider, Icon } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
@@ -103,21 +96,23 @@ const NotificationPreferences = ({ navigation }) => {
                 leftComponent={{
                     icon: 'arrow-back',
                     color: 'white',
+                    size: 30,
                     onPress: () => { navigation.navigate('Account') },
-                    iconStyle: { color: 'white' }
+                    iconStyle: { color: 'white'}
                 }}
                 centerComponent={{
-                    text: 'Notification Preferences',
+                    text: 'Notifications',
                     style: {
                         color: 'white',
                         fontWeight: 'bold',
-                        fontSize: 20
+                        fontSize: 24
                     }
                 }}
                 containerStyle={{
                     backgroundColor: COLORS.SPACECADET,
                     height: 100,
                     borderBottomWidth: 0,
+                    justifyContent: 'center',
                 }}
             />
             <TopContainer>

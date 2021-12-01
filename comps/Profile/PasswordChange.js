@@ -51,7 +51,7 @@ const PasswordChange = ({ navigation }) => {
                 leftComponent={{
                     icon: 'arrow-back',
                     color: 'white',
-                    size: 40,
+                    size: 30,
                     onPress: () => { navigation.navigate('Account') },
                     iconStyle: { color: 'white' }
                 }}
@@ -60,8 +60,7 @@ const PasswordChange = ({ navigation }) => {
                     style: {
                         color: 'white',
                         fontWeight: 'bold',
-                        fontSize: 20,
-                        top: '20%',
+                        fontSize: 24,
                     }
                 }}
                 containerStyle={{

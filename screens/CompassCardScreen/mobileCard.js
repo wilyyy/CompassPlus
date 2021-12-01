@@ -37,8 +37,7 @@ import Animated, {
     useAnimatedStyle,
     withSpring,
 } from 'react-native-reanimated';
-// import TransferBalanceTab from '../../comps/CompassCardParent/NotUsing/transferFunds.js';
-
+import AddCardManager from '../../comps/CompassCardParent/addCardManager.js';
 import CardSwipeTest from '../../comps/CompassCardParent/cardsInSwipe';
 import AddFundsTabPass from '../../comps/CompassCardParent/addFunds.js';
 import AddFundsTabTicket from '../../comps/CompassCardParent/addFundsTicket.js';
@@ -52,6 +51,7 @@ import TapAnimOverlay from '../../comps/CompassCardParent/TapAnimOverlay.js';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+//page elements 
 const Page = styled.View`
     width: ${windowWidth}px;
     height: ${windowHeight}px;
@@ -60,7 +60,6 @@ const Page = styled.View`
 
 `;
 const TopContainer = styled.View`
-    position: relative;
     top: 15%;
     width: 90%;
     height: 50px; 
@@ -89,6 +88,10 @@ const AddPayment = styled.Pressable`
     height: 100%;
     flex-direction: row;
     top:10px;
+
+    /* border-width: 2px;
+    border-color: red; */
+
 `;
 const H1 = styled.Text`
     font-size: 24px;
@@ -103,9 +106,11 @@ const H1 = styled.Text`
 `;
 const H2 = styled.Text`
     font-size: 24px;
-    
+    color: #fff;
+
 `;
 
+//ANIMATIONS
 // reusable spring config
 const SPRING_CONFIG = {
     damping: 80,
@@ -114,6 +119,7 @@ const SPRING_CONFIG = {
     restSpeedThreshold: 0.1,
     stiffness: 500,
 };
+
 
 
 export default function CompassCardScreen() {
@@ -344,21 +350,9 @@ export default function CompassCardScreen() {
                     <BgCircle />
                     <TopContainer>
                         <H1>My Cards</H1>
-                        {/* <AddPayment
-                        onPress={() => navigation.navigate('Pay')}
-                    >
-                        <Text style={styles.payment}>Add Payment</Text>
-                        <Icon
-                            name='pluscircleo'
-                            type='antdesign'
-                            color='#fff'
-                            size={15}
-                            style={styles.plusIcon}
-                        />
-                    </AddPayment> */}
 
                     </TopContainer>
-                    <Text style={styles.TapQueue}>Tap,  Reload, and Manage your cards</Text>
+                    <Text style={styles.TapQueue}>Tap, reload, and manage your Compass Card</Text>
                     <CardSwipeTest
                         handleAddSheetONE={handlePassReload}
                         handleAddSheetTWO={handleTicketReload}
@@ -366,6 +360,7 @@ export default function CompassCardScreen() {
                         addTempTicket={handleTempTicket}
                         paymentAnimation={tapAnimation}
                     />
+
                 </Page>
 
                 {/* RELOAD pass ANIMATION TAB  */}
@@ -446,7 +441,8 @@ const styles = StyleSheet.create({
         marginTop: '12%',
         marginBottom: '5%',
         color: '#fff',
-        fontStyle: 'italic',
+        fontSize: 16,
+        fontFamily: 'Ubuntu_400Regular'
     },
     scrollView: {
 

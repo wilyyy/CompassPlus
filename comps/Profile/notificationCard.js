@@ -31,9 +31,9 @@ const ItemRow = styled.View`
 
 const TitleText = styled.Text`
     font-size: 22px;
-    font-weight: bold;
     padding-left: 15;
     color: #ffffff;
+    font-family: 'Ubuntu_700Bold';
 `;
 
 const SubContainer = styled.View`
@@ -57,7 +57,7 @@ const DescriptionText = styled.Text`
     max-width: 380;
 `;
 
-const NotificationCard = ({navigation}) => {
+const NotificationCard = ({ navigation }) => {
     navigation = useNavigation()
     return (
         <View>

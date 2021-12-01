@@ -25,7 +25,7 @@ import {
 import axios from 'axios';
 
 //database hosted on digital ocean, check notion for authentication details. php will be hosted on heroku
-axios.defaults.baseURL = "https://e1cc-2604-3d08-537e-3900-4084-5b2-6842-b64f.ngrok.io/compassplus-serverside/api/";
+axios.defaults.baseURL = "https://121e-2604-3d08-537e-3900-4084-5b2-6842-b64f.ngrok.io/compassplus-serverside/api/";
 
 // go to storybook/stories/Button/Button.stories.js to add components
 // export { default } from './storybook';
@@ -39,7 +39,6 @@ import MapHomeScreen from './screens/TripPlanner/mapHome';
 import SavedTrips from './screens/TripPlanner/savedTrips';
 import CreateAccount from './screens/Authentication/createAccount';
 import ProfileScreenNew from './screens/Profile/ProfileScreenNew';
-import LoginScreen from './screens/Authentication/loginScreen';
 import ChangePasswordScreen from './screens/Profile/ChangePasswordScreen';
 import BalanceHistoryCard from './comps/BalanceHistory/BalanceHistoryCard';
 import NotificationPreferencesScreen from './screens/Profile/NotificationPreferencesScreen';
@@ -53,59 +52,57 @@ import AddSavedLocation from './screens/TripPlanner/addSavedLocation';
 
 const Stack = createNativeStackNavigator();
 
-export default function App  () {
+export default function App() {
 
 
-//   const [assetsLoaded, setAssetsLoaded] = useState(false);
+  //   const [assetsLoaded, setAssetsLoaded] = useState(false);
 
-//   const loadAssetsAsync = async () => {
-//     const imageAssets = cacheImages([
-//       require("./assets/pickdest_bg.png"),
-//       require("./assets/logoWhite.png"),
-//     ]);
+  //   const loadAssetsAsync = async () => {
+  //     const imageAssets = cacheImages([
+  //       require("./assets/pickdest_bg.png"),
+  //       require("./assets/logoWhite.png"),
+  //     ]);
 
-//   //  const fontAssets = cacheFonts([
-//   //    { "ubuntu-light": require("./assets/Fonts/Ubuntu/Ubuntu-Light.ttf") },
-//   //    { "ubuntu-lightItalic": require("./assets/Fonts/Ubuntu/Ubuntu-LightItalic.ttf") },
-//   //    { "ubuntu-bold": require("./assets/Fonts/Ubuntu/Ubuntu-Bold.ttf") },
-//   //    { "ubuntu-boldItalic": require("./assets/Fonts/Ubuntu/Ubuntu-BoldItalic.ttf") },
-//   //    { "ubuntu-medium": require("./assets/Fonts/Ubuntu/Ubuntu-Medium.ttf") },
-//   //    { "ubuntu-mediumItalic": require("./assets/Fonts/Ubuntu/Ubuntu-MediumItalic.ttf") },
-//   //    { "ubuntu-regular": require("./assets/Fonts/Ubuntu/Ubuntu-Regular.ttf") },
-//   //  ]);
+  //   //  const fontAssets = cacheFonts([
+  //   //    { "ubuntu-light": require("./assets/Fonts/Ubuntu/Ubuntu-Light.ttf") },
+  //   //    { "ubuntu-lightItalic": require("./assets/Fonts/Ubuntu/Ubuntu-LightItalic.ttf") },
+  //   //    { "ubuntu-bold": require("./assets/Fonts/Ubuntu/Ubuntu-Bold.ttf") },
+  //   //    { "ubuntu-boldItalic": require("./assets/Fonts/Ubuntu/Ubuntu-BoldItalic.ttf") },
+  //   //    { "ubuntu-medium": require("./assets/Fonts/Ubuntu/Ubuntu-Medium.ttf") },
+  //   //    { "ubuntu-mediumItalic": require("./assets/Fonts/Ubuntu/Ubuntu-MediumItalic.ttf") },
+  //   //    { "ubuntu-regular": require("./assets/Fonts/Ubuntu/Ubuntu-Regular.ttf") },
+  //   //  ]);
 
-//    await Promise.all([...imageAssets, ]);
-//  };
-// const cacheImages=(images) => {
-//     return images.map((image) => {
-//       if (typeof image === "string") {
-//         return Image.prefetch(image);
-//       } else {
-//         return Asset.fromModule(image).downloadAsync();
-//       }
-//     });
-//    }
+  //    await Promise.all([...imageAssets, ]);
+  //  };
+  // const cacheImages=(images) => {
+  //     return images.map((image) => {
+  //       if (typeof image === "string") {
+  //         return Image.prefetch(image);
+  //       } else {
+  //         return Asset.fromModule(image).downloadAsync();
+  //       }
+  //     });
+  //    }
 
-//  if (!assetsLoaded) {
-//   return (
-//     <AppLoading
-//       startAsync={loadAssetsAsync}
-//       onFinish={() => setAssetsLoaded(true)}
-//       onError={console.warn}
-//     />
-//   );
-// }
+  //  if (!assetsLoaded) {
+  //   return (
+  //     <AppLoading
+  //       startAsync={loadAssetsAsync}
+  //       onFinish={() => setAssetsLoaded(true)}
+  //       onError={console.warn}
+  //     />
+  //   );
+  // }
 
   return (
     <NavigationContainer>
-
       <Stack.Navigator initialRouteName='Authentication'
         screenOptions={{
           headerShown: false,
           animation: 'none',
         }}
       >
-        <Stack.Screen name='Login' component={LoginScreen} />
         <Stack.Screen name='CreateAccount' component={CreateAccount} />
         <Stack.Screen name='Onboarding' component={PickDestinations} />
         <Stack.Screen name='Home' component={HomeScreen} />
@@ -140,7 +137,7 @@ export default function App  () {
 //     }
 //   });
 //  }
- 
+
 //  function cacheFonts(fonts) {
 //   return fonts.map((font) => Font.loadAsync(font));
 //  }

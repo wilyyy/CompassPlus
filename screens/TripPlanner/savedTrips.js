@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Dimensions, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import styled from "styled-components/native";
-import { Icon, Divider } from 'react-native-elements';
+import { Icon, Divider, Header } from 'react-native-elements';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 
@@ -130,7 +130,8 @@ const SavedTrips = ({
     }
 
     const PressBack = () => {
-        navigation.navigate('Map');
+        // navigation.navigate('Map');
+        navigation.goBack();
     }
 
     let [fontsLoaded] = useFonts({
@@ -148,7 +149,7 @@ const SavedTrips = ({
         return <AppLoading />;
     } else {
         return <Page>
-            <TopBar>
+            {/* <TopBar>
                 <Button onPress={PressBack}>
                     <Icon
                         name="arrow-back-circle"
@@ -166,7 +167,36 @@ const SavedTrips = ({
                         size={60}
                     />
                 </Button>
-            </TopBar>
+            </TopBar> */}
+            <Header
+                leftComponent={{
+                    icon: 'arrow-back',
+                    color: 'white',
+                    size: 30,
+                    onPress: () => {PressBack},
+                    iconStyle: { color: 'white' }
+                }}
+                centerComponent={{
+                    text: 'Saved Locations',
+                    style: {
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: 24
+                    }
+                }}
+                rightComponent={{
+                    icon: 'add',
+                    color: 'white',
+                    size: 30,
+                    onPress: () => {RouteToAddLocations},
+                    iconStyle: { color: 'white' }
+                }}
+                containerStyle={{
+                    backgroundColor: COLORS.SPACECADET,
+                    height: 100,
+                    borderBottomWidth: 0,
+                }}
+            />
             <Content contentContainerStyle={styles.scroll_cont}>
                 {
                     locations.map((o, i)=>(
@@ -180,19 +210,6 @@ const SavedTrips = ({
                         )
                     )
                 }
-                
-                
-                {/* <BottomCont> */}
-                    {/* <Divider orientation="vertical" width={5} />
-                    <Para>Want to save more trips to your home, work, or school?</Para>
-                    <WhiteButton
-                        text="Pick Destinations"
-                        bg_color={COLORS.CAROLINABLUE}
-                        text_color="#fff"
-                        onButtonPress={() => navigation.navigate('Onboarding')}
-                    /> */}
-                {/* </BottomCont> */}
-                
             </Content>
             <NavHome />
         </Page>

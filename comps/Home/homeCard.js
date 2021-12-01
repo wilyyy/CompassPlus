@@ -107,7 +107,7 @@ const HomeCard = ({
                 return <AppLoading />;
             } else {
                 return (
-                    <TempCenter>
+                    <TempCenter style={styles.shadow}>
                         <Container onPress={SeeSavedRides}>
                             <Row>
                                 <View style={styles.flex}>
@@ -142,7 +142,7 @@ const HomeCard = ({
             return <AppLoading />;
         } else {
             return (
-                <TempCenter>
+                <TempCenter style={styles.shadow}>
                     <Container onPress={() => navigation.navigate('MobileCard')}>
                         <Row>
                             <View style={styles.flex}>
@@ -169,5 +169,10 @@ const styles = StyleSheet.create({
         height: 60,
     }, flex: {
         flex: 1,
+    },
+    shadow: {
+        shadowColor: COLORS.SPACECADET,
+        shadowOpacity: 0.5,
+        shadowOffset: { width: 0, height: 2 },
     }
 });

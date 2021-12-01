@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import styled from "styled-components/native";
 import { Icon } from 'react-native-elements';
+import LottieView from 'lottie-react-native'
 
 import {
     useFonts,
@@ -37,13 +38,31 @@ const Container = styled.View`
 // `
 
 const CardPlaceholder = styled.TouchableOpacity`
-    width: 350px;
+     min-width: 330px;
+    width:90%;
     height: 200px;
     border: 3px dashed ${COLORS.CAROLINABLUE};
     justify-content: center;
     align-items: center;
-    background-color: rgba(255,255,255,0.75);
+    background-color: ${COLORS.ALICEBLUE};
     border-radius: 15px;
+    box-shadow:  0px 2px 4px rgba(0, 0, 0, 1);
+
+`;
+
+const CardPlaceholderActive = styled.TouchableOpacity`
+   
+    min-width: 330px;
+    width:90%;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    background-color: ${COLORS.CAROLINABLUE};
+    border-radius: 15px;
+    overflow: hidden;
+    padding:5%;
+    box-shadow:  0px 2px 4px rgba(0, 0, 0, 1);
+
 `;
 
 const PlaceholderContent = styled.View`
@@ -54,23 +73,34 @@ const PlaceholderContent = styled.View`
 const H1 = styled.Text`
     color: #fff;
     font-size: 24px;
-    position: relative;
-    margin-top:5%;
+    margin-top:6%;
     font-family: 'Ubuntu_700Bold';
 `;
 
 const H2 = styled.Text`
-    color: #fff;
+    color: ${COLORS.CAROLINABLUE};
     font-size: 18px;
     text-align: center;
     font-family: 'Ubuntu_400Regular';
 `;
 
+const CardTitle = styled.Text`
+    font-size: 24px;
+    font-family: 'Ubuntu_500Medium';
+    color: #fff;
+    z-index: 10;
+    position: absolute;
+    align-self: flex-start;
+    left:5%;
+    top:5%;
+`;
 
 const HomeCompassCard = ({
     username = "User",
     compass_linked = "no",
-    onButtonPress = () => { }
+    onButtonPress = () => { },
+    balance = '4.05',
+    tapAnimation = () => { },
 }) => {
 
     const [linkedCard, setLinkedCard] = useState(compass_linked);
@@ -83,11 +113,11 @@ const HomeCompassCard = ({
                     <Icon
                         name='plus'
                         type='antdesign'
-                        color={COLORS.ALICEBLUE}
-                        shadowOpacity={0.25}
+                        color={COLORS.CAROLINABLUE}
+                        shadowOpacity={0.50}
                         shadowRadius={3}
                         shadowOffset={{ width: 0, height: 3 }}
-                        shadowColor='#222222'
+                        shadowColor={COLORS.SPACECADET}
                         size={80}
                         style={styles.plusIcon}
                     />
@@ -97,12 +127,26 @@ const HomeCompassCard = ({
         </Container>
     }
 
+    var anim = useRef();
+
     if (linkedCard === "yes") {
         return <Container>
             <H1>Hello {username}!</H1>
-            <CardPlaceholder onPress={onButtonPress}>
-                <Image style={styles.compass} source={require('../../assets/compass_card.png')} />
-            </CardPlaceholder>
+            <CardPlaceholderActive onPress={tapAnimation}>
+                <CardTitle>$ {balance}</CardTitle>
+                <Image source={require('../../assets/compassPattern.png')}
+                    style={styles.placeholderBg}
+                />
+                <LottieView
+                    ref={(ref) => {
+                        anim = ref;
+                    }}
+                    source={require('../../assets/lottie/seabusLottie.json')}
+                    autoPlay
+                    loop
+                    style={styles.lottie}
+                />
+            </CardPlaceholderActive>
         </Container>
     }
 }
@@ -113,5 +157,15 @@ const styles = StyleSheet.create({
     compass: {
         width: 308,
         height: 193
-    }
+    },
+    plusIcon: {
+        top: '-10%',
+
+    }, placeholderBg: {
+        width: 400,
+        height: 300,
+        right: 20,
+        top: -50,
+        opacity: 0.10,
+    },
 });

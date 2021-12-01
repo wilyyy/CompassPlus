@@ -284,11 +284,11 @@ export default function AddCardManager({
                         <Icon
                             name='plus'
                             type='antdesign'
-                            color={COLORS.LIMEGREEN}
+                            color={COLORS.CAROLINABLUE}
                             shadowOpacity={0.50}
                             shadowRadius={3}
                             shadowOffset={{ width: 0, height: 3 }}
-                            shadowColor={COLORS.LIMEGREEN}
+                            shadowColor={COLORS.SPACECADET}
                             size={80}
                             style={styles.plusIcon}
 

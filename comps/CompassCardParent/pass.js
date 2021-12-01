@@ -55,7 +55,7 @@ const ManageDesc = styled.Text`
 `;
 
 const CompassPlaceHolder = styled.View`
-     min-width: 330px;
+    min-width: 330px;
     width:40%;
     height: 200px;
     border-top-right-radius: 15px;
@@ -380,41 +380,46 @@ export default function Pass({
 
                 </CardHeader>
                 <FrontBodyCont>
+                    <View style={{ flexDirection: 'column' }}>
+                        <TouchableOpacity
+                            style={styles.frontFundsButton}
+                            onPress={reloadPass}>
 
-                    <TouchableOpacity
-                        style={styles.frontFundsButton}
-                        onPress={reloadPass}>
+                            <Icon
+                                name='idcard'
+                                type='antdesign'
+                                color={COLORS.SPACECADET}
+                                size={25}
+                                reverse={true}
+                            />
 
-                        <Icon
-                            name='idcard'
-                            type='antdesign'
-                            color={COLORS.SPACECADET}
-                            size={25}
-                            reverse={true}
-                        />
+                        </TouchableOpacity>
                         <Text
                             style={styles.iconText}
                         >Reload Pass</Text>
-                    </TouchableOpacity>
+                    </View>
                     <ExpirationCont>
                         {/* <H3>Pass expires {expiration}</H3> */}
 
                     </ExpirationCont>
-                    <TouchableOpacity
-                        style={styles.frontFundsButton}
-                        onPress={reloadStoredValue}>
+                    <View style={{ flexDirection: 'column' }}>
+                        <TouchableOpacity
+                            style={styles.frontFundsButton}
+                            onPress={reloadStoredValue}>
 
-                        <Icon
-                            name='attach-money'
-                            type='materialicons'
-                            color={COLORS.SPACECADET}
-                            size={25}
-                            reverse={true}
-                        />
+                            <Icon
+                                name='attach-money'
+                                type='materialicons'
+                                color={COLORS.SPACECADET}
+                                size={25}
+                                reverse={true}
+                            />
+
+                        </TouchableOpacity>
                         <Text
                             style={styles.iconText}
                         >Add Funds</Text>
-                    </TouchableOpacity>
+                    </View>
                     {/* <H3>Pass expires {expiration}</H3> */}
 
                 </FrontBodyCont>
@@ -509,40 +514,49 @@ export default function Pass({
                     </SettingCont> */}
                 </BackBodyCont>
                 <CardFooterBack>
-                    <TouchableOpacity
-                        style={styles.frontFundsButton}
-                        onPress={reloadPass}>
+                    <View style={{ flexDirection: 'column' }}>
 
-                        <Icon
-                            name='idcard'
-                            type='antdesign'
-                            color={COLORS.SPACECADET}
-                            size={25}
-                            reverse={true}
-                        />
+                        <TouchableOpacity
+                            style={styles.frontFundsButton}
+                            onPress={reloadPass}>
+
+                            <Icon
+                                name='idcard'
+                                type='antdesign'
+                                color={COLORS.SPACECADET}
+                                size={25}
+                                reverse={true}
+                            />
+
+                        </TouchableOpacity>
                         <Text
                             style={styles.iconText}
                         >Reload Pass</Text>
-                    </TouchableOpacity>
+                    </View>
                     <ExpirationCont>
                         {/* <H3>Pass expires {expiration}</H3> */}
 
                     </ExpirationCont>
-                    <TouchableOpacity
-                        style={styles.frontFundsButton}
-                        onPress={reloadStoredValue}>
+                    <View style={{ flexDirection: 'column' }}>
+                        <TouchableOpacity
+                            style={styles.frontFundsButton}
+                            onPress={reloadStoredValue}>
 
-                        <Icon
-                            name='attach-money'
-                            type='materialicons'
-                            color={COLORS.SPACECADET}
-                            size={25}
-                            reverse={true}
-                        />
+                            <Icon
+                                name='attach-money'
+                                type='materialicons'
+                                color={COLORS.SPACECADET}
+                                size={25}
+                                reverse={true}
+
+
+                            />
+
+                        </TouchableOpacity>
                         <Text
                             style={styles.iconText}
                         >Add Funds</Text>
-                    </TouchableOpacity>
+                    </View>
                 </CardFooterBack>
             </Container>
 
@@ -580,6 +594,9 @@ const styles = StyleSheet.create({
         zIndex: 10,
         height: 'auto',
         position: 'absolute',
+        shadowColor: COLORS.SPACECADET,
+        shadowOpacity: 0.5,
+        shadowOffset: { width: 0, height: 4 },
     },
     backFundsButton: {
         alignSelf: 'flex-end',
@@ -591,12 +608,16 @@ const styles = StyleSheet.create({
         borderColor: '#009ddc',
         borderWidth: 2,
         borderRadius: 10,
-        shadowColor: '#252B42',
+        shadowColor: COLORS.SPACECADET,
         shadowOpacity: 0.5,
         shadowOffset: { width: 0, height: 4 },
     },
     frontFundsButton: {
         marginBottom: '5%',
+        shadowColor: COLORS.SPACECADET,
+        shadowOpacity: 0.5,
+        shadowOffset: { width: 0, height: 2 },
+
     },
     lottie: {
         top: '5%',
@@ -630,11 +651,11 @@ const styles = StyleSheet.create({
 
     },
     iconText: {
-        color: COLORS.CAROLINABLUE,
+        color: COLORS.SPACECADET,
         fontWeight: 'bold',
         textAlign: 'center',
         left: '-2%',
-    },
+    }
 })
 
 
