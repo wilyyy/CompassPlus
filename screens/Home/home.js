@@ -48,7 +48,7 @@ const Hr = styled.View`
     width:90%;
     background-color: ${COLORS.CAROLINABLUE};
     height:2px;
-    margin-top: -5%;
+    /* margin-top: -5%; */
     margin-bottom: 8%;
 `;
 

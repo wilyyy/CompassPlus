@@ -30,6 +30,8 @@ const Container = styled.View`
 
 const TextCont = styled.View`
     width: 100%;
+    margin-top:13%;
+    margin-bottom:10%;
     
 `;
 
