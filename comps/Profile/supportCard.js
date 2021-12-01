@@ -61,6 +61,10 @@ const Box = styled.View`
     height: 20px;
 `;
 
+const Container = styled.View`
+    width: 30px;
+`;
+
 const ItemRow = styled.View`
     flex-direction: row;
     align-items: center;
@@ -80,7 +84,7 @@ const SubtitleText = styled.Text`
 `;
 
 const InformationText = styled.Text`
-    font-size: 18px;
+    font-size: 17px;
     font-family: 'Ubuntu_400Regular';
     padding-left: 5px;
     margin-right: 30px;
@@ -150,13 +154,15 @@ const SupportCard = ({navigation}) => {
                 <TouchableOpacity onPress={() => { Linking.openURL('https://www.compasscard.ca/ContactUs') }}>
                     <SubtitleText>General Contact</SubtitleText>
                     <ItemRow>
-                        <Icon
-                            style={{ paddingLeft: '12%', alignSelf: 'center' }}
-                            name='address-card'
-                            type='font-awesome-5'
-                            color={COLORS.SPACECADET}
-                            size={25}
-                        />
+                        <Container>
+                            <Icon
+                                style={{ paddingLeft: '12%', alignSelf: 'center' }}
+                                name='id-card'
+                                type='font-awesome-5'
+                                color={COLORS.SPACECADET}
+                                size={25}
+                            />
+                        </Container>
                         <InformationText>General contact information for Translink and operating companies.</InformationText>
                     </ItemRow>
                 </TouchableOpacity>
@@ -168,9 +174,9 @@ const SupportCard = ({navigation}) => {
                         <Icon
                             style={{ paddingLeft: '12%' }}
                             name='phone'
-                            type='font-awesome'
+                            type='font-awesome-5'
                             color={COLORS.SPACECADET}
-                            size={28}
+                            size={25}
                         />
                         <InformationText>Do you have a question? Chat with our virtual assistant.</InformationText>
                     </ItemRow>
@@ -187,13 +193,15 @@ const SupportCard = ({navigation}) => {
                 <TouchableOpacity onPress={() => { Linking.openURL('https://www.translink.ca/-/media/translink/documents/transit-fares/compass-card/compass_refund_request_form.pdf') }}>
                     <SubtitleText>Lost and Found</SubtitleText>
                     <ItemRow>
-                        <Icon
-                            style={{ paddingLeft: '12%' }}
-                            name='search-location'
-                            type='font-awesome-5'
-                            color={COLORS.SPACECADET}
-                            size={25}
-                        />
+                        <Container>
+                            <Icon
+                                style={{ paddingLeft: '12%' }}
+                                name='search-location'
+                                type='font-awesome-5'
+                                color={COLORS.SPACECADET}
+                                size={25}
+                            />
+                        </Container>
                         <InformationText>Did you loose your compass card or another item? Click here to report it.</InformationText>
                     </ItemRow>
                 </TouchableOpacity>
@@ -202,13 +210,15 @@ const SupportCard = ({navigation}) => {
                 <TouchableOpacity onPress={() => { Linking.openURL('https://www.compasscard.ca/Help') }}>
                     <SubtitleText>File a Claim</SubtitleText>
                     <ItemRow>
-                        <Icon
-                            style={{ paddingLeft: '12%' }}
-                            name='exclamation-circle'
-                            type='font-awesome-5'
-                            color={COLORS.SPACECADET}
-                            size={25}
-                        />
+                        <Container>
+                            <Icon
+                                style={{ paddingLeft: '12%' }}
+                                name='exclamation-circle'
+                                type='font-awesome-5'
+                                color={COLORS.SPACECADET}
+                                size={25}
+                            />
+                        </Container>
                         <InformationText>From time to time, incidents occur in our system. Click to file a claim.</InformationText>
                     </ItemRow>
                 </TouchableOpacity>

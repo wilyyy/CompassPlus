@@ -93,10 +93,9 @@ const ProfileCard = ({navigation}) => {
                 <Avatar
                     size={110}
                     rounded
-                    title="JC"
-                    titleStyle={{color: '#777777'}}
-                    onPress={() => console.log("Works!")}
-                    overlayContainerStyle={{backgroundColor: 'white'}}
+                    icon={{name: 'user', type: 'font-awesome'}}
+                    titleStyle={{color: '#fff'}}
+                    overlayContainerStyle={{backgroundColor: COLORS.LIGHTGREY}}
                     activeOpacity={0.7}
                     />
                 <NameText>Jenny Clark</NameText>
