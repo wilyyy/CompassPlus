@@ -247,11 +247,10 @@ const IconFront = styled.Image`
 
 const H2 = styled.Text`
     color: #fff;
-    font-style: italic;
-    margin:15px;
-    font-size: 14px;
+    font-family: 'Ubuntu_400Regular';
+    font-size: 16px;
     text-align: center;
-    top:130px;
+    top:50%;
 `;
 
 
@@ -259,7 +258,7 @@ export default function Pass({
     // cardSide = true, // need to put state for this in app.js?
     onWalletPress = () => { },
     balance = 4.05,
-    barcodeId = "Compass No: 016372 9281 9273 CVN 459",
+    barcodeId = "Compass No: 016372 9281 9273",
     expiration = "December ",
     // onManagePress = () => { },
     reloadPass = () => { },

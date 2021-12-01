@@ -105,7 +105,7 @@ const Arrow = styled.Image`
 `;
 
 const Line = styled.View`
-    width:70%;
+    width:85%;
     height:2px;
     background-color: #c4c4c4;
     margin: 0px 20px 10px 50px;
@@ -307,9 +307,9 @@ export default function AddFundsTabPass({
             {/* ZONE */}
             <SettingCont>
                 <SettingsContLeft>
-                    <SmallCardIcon
+                    {/* <SmallCardIcon
                         source={{ uri: '#', }}
-                    />
+                    /> */}
                     <TextColumn>
                         <SmallTitle>Select zone</SmallTitle>
                         <Amount>{zoneType}</Amount>
@@ -330,9 +330,9 @@ export default function AddFundsTabPass({
             {/* AMOUNT */}
             <SettingCont>
                 <SettingsContLeft>
-                    <SmallCardIcon
+                    {/* <SmallCardIcon
                         source={{ uri: '#', }}
-                    />
+                    /> */}
                     <TextColumn>
                         <SmallTitle>Amount</SmallTitle>
                         <Amount>{zoneAmount}</Amount>
@@ -344,9 +344,9 @@ export default function AddFundsTabPass({
             {/* PAYMENT */}
             <SettingCont>
                 <SettingsContLeft>
-                    <SmallCardIcon
+                    {/* <SmallCardIcon
                         source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                    />
+                    /> */}
                     <TextColumn>
                         <SmallTitle>Payment</SmallTitle>
                         <Amount>{passPaymentType}</Amount>
