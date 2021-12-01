@@ -24,7 +24,7 @@ import SavedRidesIcon from "./savedRidesIcon";
 
 const Container = styled.View`
     width: 100%;
-    height: 281px;
+    height: 80%;
     padding:2%;
     overflow:hidden;
     background-color: ${COLORS.CAROLINABLUE};
@@ -126,7 +126,7 @@ const SavedRidesScroll = ({
                     />
                 </Minimize>
                 <TextColumn>
-                    <H1>Favourite Locations</H1>
+                    <H1>Saved Locations</H1>
                     {/* <H2>Swipe through your locations</H2> */}
                 </TextColumn>
                 <Manage style={styles.toggleSideIcon}

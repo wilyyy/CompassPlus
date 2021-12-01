@@ -23,7 +23,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const Container = styled.View`
     width: ${windowWidth};
-    height: 350px;
+    height: 40%;
     justify-content: space-evenly;
     align-items: center;
 `;
@@ -40,7 +40,8 @@ const Container = styled.View`
 const CardPlaceholder = styled.TouchableOpacity`
      min-width: 330px;
     width:90%;
-    height: 200px;
+    height:auto;
+    min-height: 200px;
     border: 3px dashed ${COLORS.CAROLINABLUE};
     justify-content: center;
     align-items: center;

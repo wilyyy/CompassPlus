@@ -16,6 +16,8 @@ import {
 } from '@expo-google-fonts/ubuntu';
 import AppLoading from 'expo-app-loading';
 import LottieView from 'lottie-react-native';
+import * as Haptics from 'expo-haptics';
+
 
 
 
@@ -313,15 +315,21 @@ export default function CompassCardScreen() {
     const [lottieAnimTap, setLottieAnimTap] = useState(false);
     function paymentAnimation() {
         console.log('lottiecheck');
+        Haptics.selectionAsync();
         setLottieAnim(true);
+        setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 500);
         setTimeout(function () { setLottieAnim(false); }, 1200);
 
     }
 
     function tapAnimation() {
         console.log('lottie tap check');
+        Haptics.selectionAsync();
         setLottieAnimTap(true);
         setTimeout(function () { setLottieAnimTap(false); }, 5000);
+        setTimeout(function () { setLottieAnim(true); }, 5100);
+        setTimeout(function () { setLottieAnim(false); }, 6500);
+        setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 5100);
 
     }
 

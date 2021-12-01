@@ -28,21 +28,24 @@ const Container = styled.TouchableOpacity`
     align-items: center;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(37, 43, 66, 0.5);
+    /* border: 2px solid red; */
 `;
 
 const Row = styled.View`
     flex-direction: row;
-    width: 90%;
+    width: 100%;
     height: 54px;
     margin: 0 10px 0 10px;
     justify-content: space-between;
     align-items: center;
+    /* border: 2px solid blue; */
+
 `;
 
 const TransitIcon = styled.View`
     width: 60px;
     height: 60px;
-    margin-left:2%;
+    margin-left:3%;
     justify-content: center;
     align-items: center;
     background-color: ${COLORS.CAROLINABLUE};
@@ -51,8 +54,9 @@ const TransitIcon = styled.View`
 
 const Column = styled.View`
     height: 54px;
-    width: 236px;
+    flex:4;
     justify-content: space-between;
+    /* border:2px solid green; */
 `;
 
 const TextRow = styled.View`
@@ -62,10 +66,19 @@ const TextRow = styled.View`
     left: 10px;
 `;
 
-const Para = styled.Text`
+const Locationdesc = styled.Text`
     font-size: 15px;
     font-family: 'Ubuntu_400Regular';
     color: #fff;
+    margin-left: 2%;
+
+`;
+
+const Locationtitle = styled.Text`
+    font-size: 18px;
+    font-family: 'Ubuntu_500Medium';
+    color: #fff;
+    margin-left: 2%;
 `;
 
 const SeeMoreIcon = styled.TouchableOpacity`
@@ -78,7 +91,9 @@ const SeeMoreIcon = styled.TouchableOpacity`
 `;
 
 const DeleteButton = styled.TouchableOpacity`
-    width: 40px;
+    /* width: 40px; */
+    flex:1;
+    top:-20px;
     height: 40px;
 `;
 
@@ -115,13 +130,14 @@ const SavedTripsCard = ({
                 </TransitIcon>
                 <Column>
                     <TextRow>
+
                         <Icon
                             name="label"
                             type="material-community"
                             color={COLORS.LIGHTGREY}
                             size={15}
                         />
-                        <Para>{name}</Para>
+                        <Locationtitle>{name}</Locationtitle>
                     </TextRow>
                     <TextRow>
                         <Icon
@@ -130,17 +146,11 @@ const SavedTripsCard = ({
                             color={COLORS.LIMEGREEN}
                             size={15}
                         />
-                        <Para>{location}</Para>
+                        <Locationdesc>{location}</Locationdesc>
                     </TextRow>
+
                 </Column>
-                <DeleteButton>
-                    <Icon
-                        name="trash"
-                        type="entypo"
-                        color="red"
-                        size={40}
-                    />
-                </DeleteButton>
+
                 {/* <SeeMoreIcon onPress={onButtonPress}>
                     {/* <Icon
                         name="arrowright"
@@ -149,6 +159,14 @@ const SavedTripsCard = ({
                         size={25}
                     /> 
             </SeeMoreIcon> */}
+                <DeleteButton>
+                    <Icon
+                        name="trash"
+                        type="entypo"
+                        color={COLORS.LIGHTGREY}
+                        size={30}
+                    />
+                </DeleteButton>
             </Row>
         </Container >
     }
