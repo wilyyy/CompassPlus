@@ -74,6 +74,7 @@ const H2 = styled.Text`
 
 
 const HomeScreen = ({
+
 }) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,

@@ -3,7 +3,6 @@ import { View, Dimensions, StyleSheet, Text, ScrollView, TouchableOpacity } from
 import styled from "styled-components/native";
 import { Icon, Divider, Header } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
-
 import WhiteButton from '../../comps/Global/whiteButton.js';
 import SavedTripsCard from '../../comps/TripPlanner/savedTripsCard.js';
 import NavHome from '../../comps/NavBar/NavHome.js';
@@ -75,18 +74,10 @@ const Para = styled.Text`
 `;
 
 const SavedTrips = ({
-    onBackPress = () => { },
     navigation = useNavigation()
 
 }) => {
-    const RouteToAddLocations = () => {
-        navigation.navigate('AddSavedLocation');
-    }
 
-    const PressBack = () => {
-        // navigation.navigate('Map');
-        navigation.goBack();
-    }
 
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
@@ -99,11 +90,20 @@ const SavedTrips = ({
         Ubuntu_700Bold_Italic,
     });
 
+    const RouteToAddLocations = () => {
+        navigation.navigate('AddSavedLocation');
+    }
+
+    const PressBack = () => {
+        navigation.goBack();
+        console.log('back??')
+    }
+
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
         return <Page>
-            {/* <TopBar>
+            <TopBar>
                 <Button onPress={PressBack}>
                     <Icon
                         name="arrow-back-circle"
@@ -121,14 +121,14 @@ const SavedTrips = ({
                         size={60}
                     />
                 </Button>
-            </TopBar> */}
-            <Header
+            </TopBar>
+            {/* <Header
                 leftComponent={{
                     icon: 'arrow-back',
                     color: 'white',
                     size: 30,
-                    onPress: () => {PressBack},
-                    iconStyle: { color: 'white' }
+                    onPress: () => { navigation.goBack() },
+                    iconStyle: { color: '#fff' }
                 }}
                 centerComponent={{
                     text: 'Saved Locations',
@@ -142,7 +142,7 @@ const SavedTrips = ({
                     icon: 'add',
                     color: 'white',
                     size: 30,
-                    onPress: () => {RouteToAddLocations},
+                    onPress: () => { RouteToAddLocations },
                     iconStyle: { color: 'white' }
                 }}
                 containerStyle={{
@@ -150,7 +150,7 @@ const SavedTrips = ({
                     height: 100,
                     borderBottomWidth: 0,
                 }}
-            />
+            /> */}
             <Content>
                 {/* put this in a scroll view? or aniamted gestures swipe right to view them? */}
                 <SavedTripsCard />
