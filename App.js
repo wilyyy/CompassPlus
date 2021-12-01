@@ -94,7 +94,7 @@ export default function App() {
     <NavigationContainer>
 
 
-      <Stack.Navigator initialRouteName='SavedTrips'
+      <Stack.Navigator initialRouteName='MobileCard'
         screenOptions={{
           headerShown: false,
           animation: 'none',

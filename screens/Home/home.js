@@ -3,6 +3,8 @@ import React, { useState, useRef } from 'react';
 import { Animated, View, Dimensions, StyleSheet, Text, ScrollView, Alert, Modal, Pressable, Image } from 'react-native';
 import styled from "styled-components/native";
 import { Divider } from 'react-native-elements';
+import * as Haptics from 'expo-haptics';
+
 
 import { COLORS } from '../../constants/styles.js';
 import HomeCompassCard from '../../comps/Home/homeCompassCard.js';
@@ -14,6 +16,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BgCircle from '../../comps/Global/BgCircleScreens.js';
 import TapAnimOverlay from '../../comps/CompassCardParent/TapAnimOverlay.js';
+import PaymentAnimOverlay from '../../comps/CompassCardParent/PayAnimOverlay.js';
 
 import {
     useFonts,
@@ -107,12 +110,17 @@ const HomeScreen = ({
 
     var anim = useRef();
     const [lottieAnimTap, setLottieAnimTap] = useState(false);
+    const [lottieAnim, setLottieAnim] = useState(false);
 
 
     function tapAnimation() {
         console.log('lottie tap check');
+        Haptics.selectionAsync();
         setLottieAnimTap(true);
         setTimeout(function () { setLottieAnimTap(false); }, 5000);
+        setTimeout(function () { setLottieAnim(true); }, 5100);
+        setTimeout(function () { setLottieAnim(false); }, 6500);
+        setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 5100);
 
     }
 
@@ -126,6 +134,9 @@ const HomeScreen = ({
     } else {
 
         return <Page>
+            <PaymentAnimOverlay
+                lottieAnim={lottieAnim}
+            />
 
             <TapAnimOverlay
                 lottieAnimTap={lottieAnimTap}
