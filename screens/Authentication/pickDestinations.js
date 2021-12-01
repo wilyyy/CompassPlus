@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components/native";
 import { View, Modal, TextInput, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity, ImageBackground } from 'react-native';
 import {
@@ -106,6 +106,8 @@ const SearchBar = styled.View`
 const PickDestinations = ({
     navigation = useNavigation()
 }) => {
+    const ref = useRef();
+
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -143,26 +145,39 @@ const PickDestinations = ({
     //counter state that increments and changes page content 4 times
     const [pageCounter, setPageCounter] = useState(0);
 
-    useEffect(()=>{
+    const AddCardToDb = async(name)=>{
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
+        const addressText = ref.current?.getAddressText();
+        await axios.post('/saved_locations.php', {
+            fb_uid: fb_uid,
+            name: name,
+            location: addressText
+        });
+    }
+
+    useEffect(()=>{
         //rules to change heading and subheading
         if (pageCounter === 0){
             setHeading("Where do you live?");
             setSubheading("Get home quick and safely! Here are some of the fastest ways home!");
             setBusPosition(0);
+            AddCardToDb('Home');
         } else if (pageCounter === 1){
             setHeading("Where is school?");
             setSubheading("Don't be late to class! Catch the fastest rides to school below!");
             setBusPosition('30%');
+            AddCardToDb('School');
         } else if (pageCounter === 2){
             setHeading("Where do you work?");
             setSubheading("Punch in to work on time! Catch these rides to help you get there faster!");
             setBusPosition('60%');
+            AddCardToDb('Work');
         } else if (pageCounter === 3){
             setHeading("Another place to go?");
             setSubheading("Time is money! Get there faster using these rides below!");
             setBusPosition('90%');
+            AddCardToDb('Other');
         }
         RouteToApp;
     }, [pageCounter]);
@@ -245,6 +260,7 @@ const PickDestinations = ({
                             <H3>{subheading}</H3>
                             <SearchBar>
                                 <GooglePlacesAutocomplete
+                                    ref={ref}
                                     placeholder='Search Address'
                                     fetchDetails={true}
                                     GooglePlacesSearchQuery={{
