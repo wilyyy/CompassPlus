@@ -239,10 +239,10 @@ export default function CompassCardScreen() {
             topAutoTicket.value = context.startTop + event.translationY;
         },
         onEnd() {
-            if (topAutoTicket.value > dimensions.height / 2 + 150) {
+            if (topAutoTicket.value > dimensions.height / 2 + 200) {
                 topAutoTicket.value = withSpring(dimensions.height + 300);
             } else {
-                topAutoTicket.value = withSpring(dimensions.height / 3);
+                topAutoTicket.value = withSpring(dimensions.height / 2.5);
             }
         }
     });

@@ -102,7 +102,7 @@ const Arrow = styled.Image`
 `;
 
 const Line = styled.View`
-    width:70%;
+    width:85%;
     height:2px;
     background-color: #c4c4c4;
     margin: 0px 20px 10px 50px;
@@ -323,9 +323,9 @@ export default function AddFundsTabTicket({
             {/* TO this ticket: */}
             <SettingCont>
                 <SettingsContLeft>
-                    <SmallCardIcon
+                    {/* <SmallCardIcon
                         source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                    />
+                    /> */}
                     <TextColumn>
                         <SmallTitle>Current Balance</SmallTitle>
                         <Amount>{ticketBalance}</Amount>
@@ -338,9 +338,9 @@ export default function AddFundsTabTicket({
             {/* AMOUNT */}
             <SettingCont>
                 <SettingsContLeft>
-                    <SmallCardIcon
+                    {/* <SmallCardIcon
                         source={{ uri: '#', }}
-                    />
+                    /> */}
                     <TextColumn>
                         <SmallTitle>Amount</SmallTitle>
                         <Amount>{ticketLoadAmount}</Amount>
@@ -358,9 +358,9 @@ export default function AddFundsTabTicket({
             {/* PAYMENT */}
             <SettingCont>
                 <SettingsContLeft>
-                    <SmallCardIcon
+                    {/* <SmallCardIcon
                         source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                    />
+                    /> */}
                     <TextColumn>
                         <SmallTitle>Payment</SmallTitle>
                         <Amount>{ticketPaymentType}</Amount>

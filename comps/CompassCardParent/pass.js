@@ -42,6 +42,21 @@ const Container = styled.View`
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
+
+const ContainerLocked = styled.View`
+    min-width: 330px;
+    width:40%;
+    height: 68%;
+    min-height: 550px;
+    background-color: ${COLORS.CAROLINABLUE};
+    border-radius: 15px;
+    margin-top: 20px;
+    left:-1%;
+    /* margin-right:5%; */
+    /* margin-left:5px; */
+    box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
+`;
+
 const TapText = styled.Text`
     color: ${COLORS.LIGHTGREY};
     left:-38%;
@@ -247,11 +262,38 @@ const IconFront = styled.Image`
 
 const H2 = styled.Text`
     color: #fff;
-    font-style: italic;
-    margin:15px;
-    font-size: 14px;
+    font-family: 'Ubuntu_400Regular';
+    font-size: 16px;
     text-align: center;
-    top:130px;
+    top:50%;
+`;
+
+//add card placeholder
+
+const AddCardPlaceHolder = styled.TouchableOpacity`
+    min-width: 330px;
+    width:40%;
+    height: 36%;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    align-self: center;
+    background-color: ${COLORS.ALICEBLUE};
+    border: 3px dashed ${COLORS.CAROLINABLUE};
+
+    padding:5%;
+    box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.75);
+
+`;
+
+const AddCardTitle = styled.Text`
+font-size: 18px;
+    font-family: 'Ubuntu_700Bold';
+    line-height: 24px;
+    letter-spacing: 0;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    top:10%;
 `;
 
 
@@ -259,7 +301,7 @@ export default function Pass({
     // cardSide = true, // need to put state for this in app.js?
     onWalletPress = () => { },
     balance = 4.05,
-    barcodeId = "Compass No: 016372 9281 9273 CVN 459",
+    barcodeId = "Compass No: 016372 9281 9273",
     expiration = "December ",
     // onManagePress = () => { },
     reloadPass = () => { },
@@ -270,6 +312,8 @@ export default function Pass({
     paymentAnimation = () => { },
 
 }) {
+
+    const [linkedCard, setLinkedCard] = useState("no")
 
     //to manage toggling between front and back of card
     const [cardSide, setCardSide] = useState(true)
@@ -309,7 +353,7 @@ export default function Pass({
     const minutes90 = 5400;
     const month = 2419200;
     //front of card
-    if (cardSide === true) {
+    if (cardSide === true && linkedCard === 'yes') {
         return (
             // <Spacing>
             <Container>
@@ -430,7 +474,7 @@ export default function Pass({
     }
 
     //back of card
-    if (cardSide === false) {
+    if (cardSide === false && linkedCard === 'yes') {
         return (
             <Container>
                 {/* <Button
@@ -562,6 +606,64 @@ export default function Pass({
 
         );
     }
+
+    //unadded card 
+    if (linkedCard == 'no') {
+        return (
+            <ContainerLocked>
+
+                <AddCardPlaceHolder>
+                    {/* <Image source={require('../../assets/compassPattern.png')}
+                        style={styles.placeholderBg}
+                    /> */}
+                    <View style={styles.iconCont}>
+                        <Icon
+                            name='plus'
+                            type='antdesign'
+                            color={COLORS.CAROLINABLUE}
+                            shadowOpacity={0.50}
+                            shadowRadius={3}
+                            shadowOffset={{ width: 0, height: 3 }}
+                            shadowColor={COLORS.SPACECADET}
+                            size={80}
+                            style={styles.plusIcon}
+
+                        />
+                    </View>
+
+                </AddCardPlaceHolder>
+                <CardHeader>
+
+
+
+                    <View style={styles.lockIcon}>
+                        <Icon
+                            name='lock'
+                            type='entypo'
+                            color={COLORS.ALICEBLUE}
+                            shadowOpacity={0.50}
+                            shadowRadius={3}
+                            shadowOffset={{ width: 0, height: 3 }}
+
+                            shadowColor={COLORS.SPACECADET}
+                            size={180}
+
+
+                        />
+
+                    </View>
+
+                    <AddCardTitle >Add Compass Card to access Stored Value and Pass options</AddCardTitle>
+
+                </CardHeader>
+
+
+
+            </ContainerLocked>
+            // </Spacing>
+        );
+
+    }
 }
 
 const styles = StyleSheet.create({
@@ -587,6 +689,14 @@ const styles = StyleSheet.create({
         lineHeight: 24,
         letterSpacing: 0,
         color: COLORS.SPACECADET,
+    },
+    unselectedCardText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        lineHeight: 24,
+        letterSpacing: 0,
+        color: COLORS.SPACECADET,
+        top: '-30%',
     },
     toggleSideIcon: {
         alignItems: 'flex-end',
@@ -655,7 +765,20 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         left: '-2%',
-    }
+    },
+    iconCont: {
+        alignContent: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+    },
+    lockIcon: {
+        height: 300,
+        top: '25%',
+        marginTop: '55%',
+        // borderColor: '#222222',
+        // borderWidth: 2,
+    },
 })
 
 
