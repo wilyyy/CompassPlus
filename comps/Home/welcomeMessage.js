@@ -20,7 +20,7 @@ import AppLoading from 'expo-app-loading';
 const Container = styled.View`
 
     min-height: 100px;
-    height:10%;
+    height:15%;
     align-items: center;
     margin-bottom:5%;
         align-content: center;
@@ -30,6 +30,7 @@ const Container = styled.View`
 
 const TextCont = styled.View`
     width: 100%;
+    margin-top: 30px;
 `;
 
 const H1 = styled.Text`
@@ -45,6 +46,7 @@ const H2 = styled.Text`
     text-align: justify;
     top: 5px;
     text-align: center;
+    padding-bottom: 20px;
 `;
 
 const WelcomeMessage = () => {

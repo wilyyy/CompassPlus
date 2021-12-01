@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Dimensions, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import styled from "styled-components/native";
-import { Icon, Divider } from 'react-native-elements';
+import { Icon, Divider, Header } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 
 import WhiteButton from '../../comps/Global/whiteButton.js';
@@ -103,7 +103,7 @@ const SavedTrips = ({
         return <AppLoading />;
     } else {
         return <Page>
-            <TopBar>
+            {/* <TopBar>
                 <Button onPress={PressBack}>
                     <Icon
                         name="arrow-back-circle"
@@ -121,7 +121,36 @@ const SavedTrips = ({
                         size={60}
                     />
                 </Button>
-            </TopBar>
+            </TopBar> */}
+            <Header
+                leftComponent={{
+                    icon: 'arrow-back',
+                    color: 'white',
+                    size: 30,
+                    onPress: () => {PressBack},
+                    iconStyle: { color: 'white' }
+                }}
+                centerComponent={{
+                    text: 'Saved Locations',
+                    style: {
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: 24
+                    }
+                }}
+                rightComponent={{
+                    icon: 'add',
+                    color: 'white',
+                    size: 30,
+                    onPress: () => {RouteToAddLocations},
+                    iconStyle: { color: 'white' }
+                }}
+                containerStyle={{
+                    backgroundColor: COLORS.SPACECADET,
+                    height: 100,
+                    borderBottomWidth: 0,
+                }}
+            />
             <Content>
                 {/* put this in a scroll view? or aniamted gestures swipe right to view them? */}
                 <SavedTripsCard />

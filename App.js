@@ -34,7 +34,6 @@ import MapHomeScreen from './screens/TripPlanner/mapHome';
 import SavedTrips from './screens/TripPlanner/savedTrips';
 import CreateAccount from './screens/Authentication/createAccount';
 import ProfileScreenNew from './screens/Profile/ProfileScreenNew';
-import LoginScreen from './screens/Authentication/loginScreen';
 import ChangePasswordScreen from './screens/Profile/ChangePasswordScreen';
 import BalanceHistoryCard from './comps/BalanceHistory/BalanceHistoryCard';
 import NotificationPreferencesScreen from './screens/Profile/NotificationPreferencesScreen';
@@ -95,13 +94,12 @@ export default function App() {
     <NavigationContainer>
 
 
-      <Stack.Navigator initialRouteName='Login'
+      <Stack.Navigator initialRouteName='Authentication'
         screenOptions={{
           headerShown: false,
           animation: 'none',
         }}
       >
-        <Stack.Screen name='Login' component={LoginScreen} />
         <Stack.Screen name='CreateAccount' component={CreateAccount} />
         <Stack.Screen name='Onboarding' component={PickDestinations} />
         <Stack.Screen name='Home' component={HomeScreen} />
