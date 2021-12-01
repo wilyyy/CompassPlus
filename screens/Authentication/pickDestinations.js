@@ -26,6 +26,8 @@ import SignUpInput from '../../comps/SignUp/signUpInput.js';
 import SignUpTransitCardScroll from '../../comps/SignUp/signUpTransitCardScroll.js';
 import WhiteButton from '../../comps/Global/whiteButton.js';
 import PickDestModal from '../../comps/SignUp/pickDestModal.js';
+import { getAuth } from '@firebase/auth';
+
 
 import { Video, AVPlaybackStatus } from 'expo-av';
 
@@ -142,6 +144,8 @@ const PickDestinations = ({
     const [pageCounter, setPageCounter] = useState(0);
 
     useEffect(()=>{
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
         //rules to change heading and subheading
         if (pageCounter === 0){
             setHeading("Where do you live?");

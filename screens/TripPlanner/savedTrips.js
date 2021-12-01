@@ -5,6 +5,8 @@ import { Icon, Divider, Header } from 'react-native-elements';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 
+import { getAuth } from '@firebase/auth';
+
 import WhiteButton from '../../comps/Global/whiteButton.js';
 import SavedTripsCard from '../../comps/TripPlanner/savedTripsCard.js';
 import NavHome from '../../comps/NavBar/NavHome.js';
@@ -97,19 +99,17 @@ const SavedTrips = ({
     navigation = useNavigation()
 
 }) => {
-
-    const [refresh, setRefresh] = useState(false);
-
     const GetLocations = async() =>{
-        const result = await axios.get('/saved_locations.php');
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        console.log(fb_uid);
+        const result = await axios.get('/saved_locations.php', {params: {fb_uid: fb_uid}});
         console.log(result.data);
         setLocations(result.data);
-        setRefresh(true);
-        // setRefresh(!refresh);
     }
+
     useFocusEffect(
         React.useCallback(()=>{
-            
             GetLocations();
         }, [])
     )
@@ -119,11 +119,7 @@ const SavedTrips = ({
         await GetLocations();
     }
 
-    const DeleteModal = () =>{
-        
-    }
-
-    const [locations, setLocations] = useState(fakeData);
+    const [locations, setLocations] = useState([]);
 
     const RouteToAddLocations = () =>{
         navigation.navigate('AddSavedLocation');
@@ -173,7 +169,7 @@ const SavedTrips = ({
                     icon: 'arrow-back',
                     color: 'white',
                     size: 30,
-                    onPress: () => {PressBack},
+                    onPress: () => {PressBack()},
                     iconStyle: { color: 'white' }
                 }}
                 centerComponent={{
@@ -188,7 +184,7 @@ const SavedTrips = ({
                     icon: 'add',
                     color: 'white',
                     size: 30,
-                    onPress: () => {RouteToAddLocations},
+                    onPress: ()=>{RouteToAddLocations()},
                     iconStyle: { color: 'white' }
                 }}
                 containerStyle={{

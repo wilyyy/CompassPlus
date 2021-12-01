@@ -121,16 +121,12 @@ const AddSavedLocation = ({
     // const auth = getAuth();
     // const userId = auth.currentUser.uid;
 
-    const newCard = {
-        fb_uid: 'asdasddadasdasas',
-        name: cardName,
-        location: addLocation
-    };
-
     const AddCardToDb = async() =>{
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
         const addressText = ref.current?.getAddressText();
         await axios.post('/saved_locations.php', {
-            fb_uid: 'asdasddadasdasas',
+            fb_uid: fb_uid,
             name: cardName,
             location: addressText
         });
