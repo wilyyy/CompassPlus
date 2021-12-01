@@ -70,7 +70,7 @@ const H2 = styled.Text`
 
 const HomeScreen = () => {
     const [modalVisible, setModalVisible] = useState(false);
-    const [linkedCard, setLinkedCard] = useState("no")
+    const [linkedCard, setLinkedCard] = useState("yes")
 
     const OpenModal = () => {
         setModalVisible(true);
