@@ -56,7 +56,7 @@ const Hr = styled.View`
 const BottomContainer = styled.View`
     width: ${windowWidth};
     align-items: center;
-    height: 60%;
+    height: 50%;
     /* border-width: 2px;
     border-color: red; */
 `;
