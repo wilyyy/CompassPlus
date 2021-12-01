@@ -119,6 +119,10 @@ const SavedTrips = ({
         await GetLocations();
     }
 
+    const DeleteModal = () =>{
+        
+    }
+
     const [locations, setLocations] = useState(fakeData);
 
     const RouteToAddLocations = () =>{
