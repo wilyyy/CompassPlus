@@ -90,21 +90,22 @@ const HomeScreen = ({
         Ubuntu_700Bold_Italic,
     });
 
-    const [modalVisible, setModalVisible] = useState(false);
-    const [linkedCard, setLinkedCard] = useState("yes")
+    // const [modalVisible, setModalVisible] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [linkedCard, setLinkedCard] = useState("no")
 
     const OpenModal = () => {
-        setModalVisible(true);
+        setOpenModal(true);
     }
 
     const CloseModal = () => {
-        setModalVisible(!modalVisible);
+        setOpenModal(false);
     }
 
     const LinkCompass = () => {
-        setModalVisible(!modalVisible);
+        setOpenModal(false);
         setLinkedCard("yes");
-        console.log(linkedCard);
+        // console.log(linkedCard);
     }
 
 
@@ -143,22 +144,12 @@ const HomeScreen = ({
                 closeAnim={pressOutAnim}
             />
             <BgCircle />
-            <Modal
-                animationType="fade"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    // Alert.alert('Modal has been closed.');
-                    setModalVisible(!modalVisible);
-                }}
-            >
-                <View style={styles.modal_center}>
-                    <LinkCompassCard
-                        onButtonPress={LinkCompass}
-                        onClosePress={CloseModal}
-                    />
-                </View>
-            </Modal>
+
+            <LinkCompassCard
+                openModal={openModal}
+                onButtonPress={LinkCompass}
+                onClosePress={CloseModal}
+            />
             <HomeCompassCard onButtonPress={OpenModal} tapAnimation={tapAnimation} compass_linked={linkedCard} />
 
             <H2>Tap Card to Pay</H2>
@@ -191,5 +182,21 @@ const styles = StyleSheet.create({
     NavCont: {
         position: 'absolute',
         bottom: 0,
+        zIndex: 10,
     }
 });
+
+
+{/* <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    // Alert.alert('Modal has been closed.');
+                    setModalVisible(!modalVisible);
+                }}
+            > */}
+{/* <View style={styles.modal_center}>
+                
+            </View> */}
+{/* </Modal> */ }
