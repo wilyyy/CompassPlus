@@ -205,6 +205,7 @@ const MapHomeScreen = () => {
                 apikey='AIzaSyAf9zPTlsgPwAuzcHvBFAaSVvD28CCAM7U'
                 strokeWidth={directionOpacity}
                 strokeColor='#F06D23'
+                mode='TRANSIT'
             />
         </MapView>
         <Container>
