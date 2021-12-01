@@ -1,10 +1,13 @@
 import React from 'react';
+import { View, ScrollView, StyleSheet, FlatList, Image } from 'react-native';
+import { Divider, Icon } from 'react-native-elements';
+import { COLORS } from '../../constants/styles.js';
+import styled from "styled-components/native";
+import { useNavigation } from '@react-navigation/native';
 
-import { View, ScrollView, StyleSheet, FlatList } from 'react-native';
 
 import NavAccount from '../../comps/NavBar/NavAccount.js';
-
-import ProfileCard from '../../comps/Profile/profileCard';
+import ProfileCard from '../../comps/Profile/ProfileCard';
 import NotificationCard from '../../comps/Profile/notificationCard';
 import SupportCard from '../../comps/Profile/supportCard';
 
@@ -22,9 +25,82 @@ import {
 } from '@expo-google-fonts/ubuntu';
 import AppLoading from 'expo-app-loading';
 import LottieView from 'lottie-react-native';
+import BgCircle from '../../comps/Global/BgCircleScreens.js';
 
 
-const ProfileScreenNew = () => {
+const TempCenter = styled.View`
+align-items: center;
+width: 90%;
+margin-bottom: 5%;
+align-self: center;
+`;
+
+
+const Container = styled.TouchableOpacity`
+justify-content: center;
+width: 100%;
+height: 100px;
+background-color: ${COLORS.CAROLINABLUE};
+border-radius: 10px;
+
+`;
+
+const Row = styled.View`
+flex-direction: row;
+justify-content: space-evenly;
+align-items: center;
+height: 100px;
+border-radius: 10px;
+padding:5%;
+`;
+
+const TextCont = styled.View`
+flex:3;
+`;
+
+const H1 = styled.Text`
+font-size: 18px;
+font-family: 'Ubuntu_700Bold';
+line-height: 24px;
+color: #fff;
+`;
+
+const H2 = styled.Text`
+font-size: 16px;
+font-family: 'Ubuntu_400Regular';
+line-height: 24px;
+letter-spacing: 0;
+color: #fff;
+
+`;
+const ProfileText = styled.Text`
+    font-size: 24px;
+    font-weight: bold;
+    color: ${COLORS.CAROLINABLUE};
+    text-align: center;
+`;
+
+const DescriptionText = styled.Text`
+    font-size: 16px;
+    color: ${COLORS.SPACECADET};
+    text-align: justify;
+    padding-top: 15px;
+    text-align: center;
+`;
+
+const Hr = styled.View`
+    width:90%;
+    background-color: ${COLORS.CAROLINABLUE};
+    height:2px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    align-self: center; 
+`;
+
+
+const ProfileScreenNew = ({navigation}) => {
+
+    navigation = useNavigation()
 
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
@@ -41,12 +117,66 @@ const ProfileScreenNew = () => {
         return <AppLoading />;
     } else {
         return (
-            <View
-                style={styles.test}
-            >
-
+            <View style={styles.test}>
+                <BgCircle />
                 <ProfileCard />
-                <ScrollView
+                <ScrollView 
+                contentContainerStyle={styles.scroll}
+                snapToEnd={false}
+                showsVerticalScrollIndicator={false}>
+                    <ProfileText>Check out your personal profile</ProfileText>
+                    <DescriptionText>Come back to your profile anytime to change your personal details, check your balance history, set notification settings, or get help and support. </DescriptionText>
+                    <Hr />
+                    <TempCenter style={styles.shadow}>
+                            <Container onPress={() => navigation.navigate('ChangePassword')}>
+                                <Row>
+                                    <Icon
+                                        style={{ paddingRight: 15,}}
+                                        name='settings'
+                                        color='white'
+                                        size={40}
+                                    />
+                                    <TextCont>
+                                        <H1>Update Account Details</H1>
+                                        <H2>Change your email, password, payment method or card details.</H2>
+                                    </TextCont>
+                                </Row>
+                            </Container>
+                        </TempCenter >
+                    <TempCenter style={styles.shadow}>
+                            <Container onPress={() => navigation.navigate('NotificationPreferences')}>
+                                <Row>
+                                    <Icon
+                                        style={{ paddingRight: 15,}}
+                                        name='notifications'
+                                        color='white'
+                                        size={40}
+                                    />
+                                    <TextCont>
+                                        <H1>Notification Settings</H1>
+                                        <H2>Change disruption alerts, COVID safe travel notifications and others.</H2>
+                                    </TextCont>
+                                </Row>
+                            </Container>
+                        </TempCenter >
+                        <TempCenter style={styles.shadow}>
+                            <Container onPress={() => navigation.navigate('BalanceHistory')}>
+                                <Row>
+                                    <Icon
+                                        style={{ paddingRight: 15,}}
+                                        name='history'
+                                        color='white'
+                                        size={40}
+                                    />
+                                    <TextCont>
+                                        <H1>Balance History</H1>
+                                        <H2>View your last transactions, monthly trips, and other.</H2>
+                                    </TextCont>
+                                </Row>
+                            </Container>
+                        </TempCenter >
+                    </ScrollView>
+                {/* <ScrollView
                     contentContainerStyle={styles.scroll}
                     snapToEnd={false}
                     showsVerticalScrollIndicator={false}
@@ -54,7 +184,7 @@ const ProfileScreenNew = () => {
                 >
                     <NotificationCard />
                     <SupportCard />
-                </ScrollView>
+                </ScrollView> */}
                 <View style={styles.NavCont}>
                     <NavAccount />
                 </View>
@@ -86,5 +216,17 @@ const styles = StyleSheet.create({
         paddingBottom: '20%',
         left: 0,
     },
+    image: {
+        width: 60,
+        height: 60,
+    }, 
+    flex: {
+        flex: 1,
+    },
+    shadow: {
+        shadowColor: COLORS.SPACECADET,
+        shadowOpacity: 0.5,
+        shadowOffset: { width: 0, height: 2 },
+    }
 
 });
