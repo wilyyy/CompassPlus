@@ -42,7 +42,7 @@ const Hr = styled.View`
     background-color: ${COLORS.CAROLINABLUE};
     height:2px;
     margin-top: -5%;
-    margin-bottom: 5%;
+    margin-bottom: 10%;
 `;
 
 //switch to gesture handler?
@@ -135,6 +135,5 @@ const styles = StyleSheet.create({
     NavCont: {
         position: 'absolute',
         bottom: 0,
-    },
-
+    }
 });
