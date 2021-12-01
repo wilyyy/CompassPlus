@@ -75,7 +75,7 @@ color: #fff;
 `;
 const ProfileText = styled.Text`
     font-size: 24px;
-    font-weight: bold;
+    font-family: 'Ubuntu_700Bold';
     color: ${COLORS.CAROLINABLUE};
     text-align: center;
 `;
@@ -86,6 +86,7 @@ const DescriptionText = styled.Text`
     text-align: justify;
     padding-top: 15px;
     text-align: center;
+    font-family: 'Ubuntu_400Regular';
 `;
 
 const Hr = styled.View`
@@ -128,22 +129,6 @@ const ProfileScreenNew = ({navigation}) => {
                     <DescriptionText>Come back to your profile anytime to change your personal details, check your balance history, set notification settings, or get help and support. </DescriptionText>
                     <Hr />
                     <TempCenter style={styles.shadow}>
-                            <Container onPress={() => navigation.navigate('ChangePassword')}>
-                                <Row>
-                                    <Icon
-                                        style={{ paddingRight: 15,}}
-                                        name='settings'
-                                        color='white'
-                                        size={40}
-                                    />
-                                    <TextCont>
-                                        <H1>Update Account Details</H1>
-                                        <H2>Change your email, password, payment method or card details.</H2>
-                                    </TextCont>
-                                </Row>
-                            </Container>
-                        </TempCenter >
-                    <TempCenter style={styles.shadow}>
                             <Container onPress={() => navigation.navigate('NotificationPreferences')}>
                                 <Row>
                                     <Icon
@@ -175,16 +160,23 @@ const ProfileScreenNew = ({navigation}) => {
                                 </Row>
                             </Container>
                         </TempCenter >
+                        <TempCenter style={styles.shadow}>
+                            <Container onPress={() => navigation.navigate('Support')}>
+                                <Row>
+                                    <Icon
+                                        style={{ paddingRight: 15,}}
+                                        name='help'
+                                        color='white'
+                                        size={40}
+                                    />
+                                    <TextCont>
+                                        <H1>Help and Support</H1>
+                                        <H2>Do you need help or feedback? No problem, we are here for you.</H2>
+                                    </TextCont>
+                                </Row>
+                            </Container>
+                        </TempCenter >
                     </ScrollView>
-                {/* <ScrollView
-                    contentContainerStyle={styles.scroll}
-                    snapToEnd={false}
-                    showsVerticalScrollIndicator={false}
-
-                >
-                    <NotificationCard />
-                    <SupportCard />
-                </ScrollView> */}
                 <View style={styles.NavCont}>
                     <NavAccount />
                 </View>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { View, Dimensions, StyleSheet, Text, TouchableOpacity,} from 'react-native';
 import { Avatar } from 'react-native-elements'
 import { Header, Divider, Icon } from 'react-native-elements'
 import styled from "styled-components/native";
@@ -16,8 +16,8 @@ const windowHeight = Dimensions.get('window').height;
 
 const SubContainer = styled.View`
     align-items: center;
-    margin-top: 5%;
-    margin-bottom: 24%;
+    margin-top: 7%;
+    margin-bottom: 22%;
 `;
 
 const NameText = styled.Text`
@@ -32,6 +32,19 @@ const EmailText = styled.Text`
     font-size: 22px;
     font-weight: normal;
     color: #ffffff;
+`;
+
+const EditText = styled.Text`
+    font-size: 22px;
+    font-weight: normal;
+    color: ${COLORS.CAROLINABLUE};
+    padding-left: 20px;
+`;
+
+const Row = styled.TouchableOpacity`
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
 `;
 
 
@@ -52,6 +65,12 @@ const ProfileCard = ({navigation}) => {
     return (
         <View>
             <Header
+                leftComponent={{ 
+                    icon: 'settings', 
+                    color: 'white', 
+                    size: 30,
+                    onPress: () => { navigation.navigate('ChangePassword') },
+                    iconStyle: { color: 'white' } }}
                 centerComponent={{ 
                     text: 'Personal Account', 
                     style: { 
