@@ -5,7 +5,18 @@ import { ThemeProvider, Icon } from 'react-native-elements';
 
 import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
-
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+} from '@expo-google-fonts/ubuntu';
+import AppLoading from 'expo-app-loading';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -27,9 +38,10 @@ const Title = styled.Text`
 `;
 
 const Subtitle = styled.Text`
-    font-size: 18px;
+    font-size: 16px;
     text-align: left;
-    padding-left: '10%;
+    font-family: 'Ubuntu_400Regular';
+    padding-left: 1%;
 
 `;
 
@@ -245,7 +257,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     inputhalf: {
-        width: windowWidth/2 -30,
+        width: windowWidth / 2 - 30,
         height: 55,
         borderWidth: 2,
         borderColor: COLORS.LIGHTGREY,

@@ -13,6 +13,19 @@ import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
 import AddPaymentType from '../CompassCardParent/payment.js';
 
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+} from '@expo-google-fonts/ubuntu';
+import AppLoading from 'expo-app-loading';
+
 
 
 
@@ -35,7 +48,7 @@ const EditColumn = styled.View`
 
 const EditContent = styled.Text`
     font-size: 16px;
-    font-weight: bold;
+    font-family: 'Ubuntu_700Bold';
     padding-left: 1%;
     padding-top: 30px;
     padding-bottom: 15px;
@@ -45,85 +58,99 @@ const EditContent = styled.Text`
 const PasswordChange = ({ navigation }) => {
     navigation = useNavigation();
 
-    return (
-        <View style={styles.test}>
-            <Header
-                leftComponent={{
-                    icon: 'arrow-back',
-                    color: 'white',
-                    size: 30,
-                    onPress: () => { navigation.navigate('Account') },
-                    iconStyle: { color: 'white' }
-                }}
-                centerComponent={{
-                    text: 'Account Details',
-                    style: {
+    let [fontsLoaded] = useFonts({
+        Ubuntu_300Light,
+        Ubuntu_300Light_Italic,
+        Ubuntu_400Regular,
+        Ubuntu_400Regular_Italic,
+        Ubuntu_500Medium,
+        Ubuntu_500Medium_Italic,
+        Ubuntu_700Bold,
+        Ubuntu_700Bold_Italic,
+    });
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    } else {
+        return (
+            <View style={styles.test}>
+                <Header
+                    leftComponent={{
+                        icon: 'arrow-back',
                         color: 'white',
-                        fontWeight: 'bold',
-                        fontSize: 24,
-                    }
-                }}
-                containerStyle={{
-                    backgroundColor: COLORS.SPACECADET,
-                    height: 100,
-                    borderBottomWidth: 0,
-                    justifyContent: 'center',
-                    paddingTop: '-2%',
-                }}
-            />
-            <View style={{ height: '100%' }}>
-                <ScrollView
-                    contentContainerStyle={styles.scroll}
-                    snapToEnd={false}
-                    showsVerticalScrollIndicator={false}>
-                    <Box />
-                    <EditColumn>
-                        <EditContent>Enter your current password to reset your password with a new one.</EditContent>
-                        <TextInput
-                            style={styles.input}
-                            placeholder='Current Password'
-                            underlineColorAndroid="transparent"
-                            secureTextEntry={true}
-                            autoCorrect={false}
-                        />
-                        <TextInput
-                            style={styles.input}
-                            placeholder='New Password'
-                            underlineColorAndroid="transparent"
-                            secureTextEntry={true}
-                            autoCorrect={false}
-                        />
-                        <TextInput
-                            style={styles.input}
-                            placeholder='Confirm New Password'
-                            underlineColorAndroid="transparent"
-                            secureTextEntry={true}
-                            autoCorrect={false}
-                        />
-                        <TouchableOpacity style={styles.button} onPress={() => console.log("changed password!")}>
-                            <Text style={styles.text}>Change Password</Text>
-                        </TouchableOpacity>
-                    </EditColumn>
+                        size: 30,
+                        onPress: () => { navigation.navigate('Account') },
+                        iconStyle: { color: 'white' }
+                    }}
+                    centerComponent={{
+                        text: 'Account Details',
+                        style: {
+                            color: 'white',
+                            fontFamily: 'Ubuntu_700Bold',
+                            fontSize: 24,
+                        }
+                    }}
+                    containerStyle={{
+                        backgroundColor: COLORS.SPACECADET,
+                        height: 100,
+                        borderBottomWidth: 0,
+                        justifyContent: 'center',
+                        paddingTop: '-2%',
+                    }}
+                />
+                <View style={{ height: '100%' }}>
+                    <ScrollView
+                        contentContainerStyle={styles.scroll}
+                        snapToEnd={false}
+                        showsVerticalScrollIndicator={false}>
+                        <Box />
+                        <EditColumn>
+                            <EditContent>Enter your current password to reset your password with a new one.</EditContent>
+                            <TextInput
+                                style={styles.input}
+                                placeholder='Current Password'
+                                underlineColorAndroid="transparent"
+                                secureTextEntry={true}
+                                autoCorrect={false}
+                            />
+                            <TextInput
+                                style={styles.input}
+                                placeholder='New Password'
+                                underlineColorAndroid="transparent"
+                                secureTextEntry={true}
+                                autoCorrect={false}
+                            />
+                            <TextInput
+                                style={styles.input}
+                                placeholder='Confirm New Password'
+                                underlineColorAndroid="transparent"
+                                secureTextEntry={true}
+                                autoCorrect={false}
+                            />
+                            <TouchableOpacity style={styles.button} onPress={() => console.log("changed password!")}>
+                                <Text style={styles.text}>Change Password</Text>
+                            </TouchableOpacity>
+                        </EditColumn>
 
-                    {/* <Box /> */}
+                        {/* <Box /> */}
 
-                    <Box />
-                    <EditColumn>
-                        <EditContent>Manage your payment information.</EditContent>
-                        <AddPaymentType />
-                        <TouchableOpacity style={styles.button} onPress={() => console.log("added payment!")}>
-                            <Text style={styles.text}>Save Changes</Text>
-                        </TouchableOpacity>
+                        <Box />
+                        <EditColumn>
+                            <EditContent>Manage your payment information.</EditContent>
+                            <AddPaymentType />
+                            <TouchableOpacity style={styles.button} onPress={() => console.log("added payment!")}>
+                                <Text style={styles.text}>Save Changes</Text>
+                            </TouchableOpacity>
 
-                    </EditColumn>
-                    <Box />
-                    {/* <TouchableOpacity style={styles.button} onPress={() => console.log("hello world")}>
+                        </EditColumn>
+                        <Box />
+                        {/* <TouchableOpacity style={styles.button} onPress={() => console.log("hello world")}>
                         <Text style={styles.text}>Change Payment</Text>
                     </TouchableOpacity> */}
-                </ScrollView>
+                    </ScrollView>
+                </View>
             </View>
-        </View>
-    );
+        );
+    }
 };
 
 export default PasswordChange;
@@ -152,7 +179,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu_700Bold',
         color: 'white'
     },
     input: {
