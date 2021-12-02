@@ -54,9 +54,7 @@ const ProfileCard = ({
     displayEmail = "email"
 }) => {
     // navigation = useNavigation()
-    const auth = getAuth();
-    const googleUsername = auth.currentUser.displayName;
-    const email = auth.currentUser.email;
+    
 
     const handleSignOut = () => {
         auth
