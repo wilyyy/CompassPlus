@@ -98,6 +98,7 @@ const SavedTrips = ({
     navigation = useNavigation()
 
 }) => {
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
     const GetLocations = async() =>{
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
@@ -119,6 +120,7 @@ const SavedTrips = ({
     }
 
     const [locations, setLocations] = useState([]);
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
 
 
     let [fontsLoaded] = useFonts({

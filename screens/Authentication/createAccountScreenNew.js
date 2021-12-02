@@ -80,7 +80,7 @@ export default function createAccountScreenNew ({navigation}) {
                     // Signed in 
                     const user = userCredential.user;
                     console.log('Registered with: ', user.email);
-                    axios.post('/users.php', {
+                    axios.post('users.php', {
                         fb_uid: user.uid,
                         first_name: name,
                         age: userAge

@@ -113,6 +113,7 @@ const AddSavedLocation = ({
     navigation = useNavigation()
 }) => {
 
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
     //POST new card to savedTrips.js
     const ref = useRef();
     const [addLocation, setAddLocation] = useState("");
@@ -132,6 +133,7 @@ const AddSavedLocation = ({
         });
         navigation.navigate('SavedTrips');
     };
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
     
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,

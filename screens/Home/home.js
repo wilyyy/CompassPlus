@@ -4,6 +4,9 @@ import { Animated, View, Dimensions, StyleSheet, Text, ScrollView, Alert, Modal,
 import styled from "styled-components/native";
 import { Divider } from 'react-native-elements';
 import * as Haptics from 'expo-haptics';
+import { getAuth } from '@firebase/auth';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+
 
 
 import { COLORS } from '../../constants/styles.js';
@@ -90,6 +93,25 @@ const HomeScreen = ({
         Ubuntu_700Bold_Italic,
     });
 
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF - DOESTN WORK CUS POST USER DATA BROKE 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+    const [firstName, setFirstName] = useState("");
+    const GetUsers = async() =>{
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        console.log(fb_uid);
+        const result = await axios.get('/users.php', {params: {fb_uid: fb_uid}});
+        console.log(result.data);
+        console.log(result.data.firstName)
+        setFirstName(result.data.first_name);
+    }
+
+    useFocusEffect(
+        React.useCallback(()=>{
+            GetUsers();
+        }, [])
+    )
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+
     // const [modalVisible, setModalVisible] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [linkedCard, setLinkedCard] = useState("no")
@@ -150,7 +172,12 @@ const HomeScreen = ({
                 onButtonPress={LinkCompass}
                 onClosePress={CloseModal}
             />
-            <HomeCompassCard onButtonPress={OpenModal} tapAnimation={tapAnimation} compass_linked={linkedCard} />
+            <HomeCompassCard 
+                onButtonPress={OpenModal} 
+                tapAnimation={tapAnimation} 
+                compass_linked={linkedCard}
+                username={firstName}
+            />
 
             <H2>Tap Card to Pay</H2>
             <Divider style={styles.divider} width={2} color={COLORS.CAROLINABLUE} />
