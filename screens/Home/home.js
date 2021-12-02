@@ -131,13 +131,17 @@ const HomeScreen = ({
 
     //Get all Compass Cards based on Fb UID
     const [compCard, setCompCard] = useState(false);
-    const [compBalance, setCompBalance] = useState(0.00);
+    const [compBalance, setCompBalance] = useState(34.20);
     
     const GetCompassCard = async () => {
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         const result = await axios.get('/compass_card.php', { params: { fb_uid: fb_uid } });
-        setCompCard(result.data[0].balance);
+        setCompBalance(result.data[0].balance);
+        if (compBalance > 0){
+            setLinkedCard("flex");
+            setPassiveCard("none");
+        }
     }
 
     useFocusEffect(
@@ -168,8 +172,6 @@ const HomeScreen = ({
 
     const LinkCompass = () => {
         setOpenModal(false);
-        setLinkedCard("flex");
-        setPassiveCard("none");
         AddCompassCardToDb();
         // console.log(linkedCard);
     }
