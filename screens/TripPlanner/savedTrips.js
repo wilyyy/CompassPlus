@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Dimensions, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import styled from "styled-components/native";
 import { Icon, Divider, Header } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import axios from 'axios';
+
+import { getAuth } from '@firebase/auth';
+
 import WhiteButton from '../../comps/Global/whiteButton.js';
 import SavedTripsCard from '../../comps/TripPlanner/savedTripsCard.js';
 import NavHome from '../../comps/NavBar/NavHome.js';
@@ -41,11 +45,9 @@ const TopBar = styled.View`
     padding-top: 5%;
 `;
 
-const Content = styled.View`
+const Content = styled.ScrollView`
     width: 100%;
-    height: 87%;
-    justify-content: space-between;
-    align-items: center;
+    height: 100%;
     padding-top: 10%;
 `;
 
@@ -59,12 +61,16 @@ const Button = styled.TouchableOpacity`
     height: 60px;
 `;
 
-const BottomCont = styled.View`
-    width: ${windowWidth};
-    height: 162px;
-    justify-content: space-between;
-    align-items: center;
+const CardWrapper = styled.View`
+    margin-bottom: 10px;
 `;
+
+// const BottomCont = styled.View`
+//     width: ${windowWidth};
+//     height: 162px;
+//     justify-content: space-between;
+//     align-items: center;
+// `;
 
 const Para = styled.Text`
     font-size: 16px;
@@ -73,10 +79,48 @@ const Para = styled.Text`
     height: 50px;
 `;
 
+const fakeData = [
+    {
+        name : "Home",
+        location:"1529 West Pender Street"
+    },
+    {
+        name : "Work",
+        location:"Richmond Center"
+    },
+    {
+        name : "School",
+        location : "Vancouver Canada"
+    }
+];
+
 const SavedTrips = ({
     navigation = useNavigation()
 
 }) => {
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+    const GetLocations = async() =>{
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        console.log(fb_uid);
+        const result = await axios.get('/saved_locations.php', {params: {fb_uid: fb_uid}});
+        console.log(result.data);
+        setLocations(result.data);
+    }
+
+    useFocusEffect(
+        React.useCallback(()=>{
+            GetLocations();
+        }, [])
+    )
+
+    const DeleteLocation = async(id) => {
+        await axios.delete('/saved_locations.php', { data: { id: id } });
+        await GetLocations();
+    }
+
+    const [locations, setLocations] = useState([]);
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
 
 
     let [fontsLoaded] = useFonts({
@@ -95,21 +139,12 @@ const SavedTrips = ({
         return <AppLoading />;
     } else {
         return <Page>
-
             <Header
                 leftComponent={{
                     icon: 'arrow-back',
                     color: 'white',
                     size: 30,
                     onPress: () => { navigation.goBack() },
-                    iconStyle: { color: '#fff' }
-
-                }}
-                rightComponent={{
-                    icon: 'add',
-                    color: 'white',
-                    size: 30,
-                    onPress: () => { navigation.navigate('AddSavedLocation') },
                     iconStyle: { color: '#fff' }
 
                 }}
@@ -121,31 +156,43 @@ const SavedTrips = ({
                         fontSize: 24
                     }
                 }}
+                rightComponent={{
+                    icon: 'add',
+                    color: 'white',
+                    size: 30,
+                    onPress: () => { navigation.navigate('AddSavedLocation') },
+                    iconStyle: { color: '#fff' }
+                }}
                 containerStyle={{
                     backgroundColor: COLORS.SPACECADET,
                     height: 100,
                     borderBottomWidth: 0,
                 }}
             />
-            <Content>
-                {/* put this in a scroll view? or aniamted gestures swipe right to view them? */}
-                <SavedTripsCard />
-                <SavedTripsCard />
-                <SavedTripsCard />
-                <BottomCont>
-                    {/* <Divider orientation="vertical" width={5} />
-                    <Para>Want to save more trips to your home, work, or school?</Para>
-                    <WhiteButton
-                        text="Pick Destinations"
-                        bg_color={COLORS.CAROLINABLUE}
-                        text_color="#fff"
-                        onButtonPress={() => navigation.navigate('Onboarding')}
-                    /> */}
-                </BottomCont>
-                <NavHome />
+            <Content contentContainerStyle={styles.scroll_cont}>
+                {
+                    locations.map((o, i)=>(
+                        <CardWrapper key={i}>
+                            <SavedTripsCard 
+                                name={o.name} 
+                                location={o.location}
+                                onDeletePress={()=>DeleteLocation(o.id)}
+                            />
+                        </CardWrapper>
+                        )
+                    )
+                }
             </Content>
+            <NavHome />
         </Page>
     }
 }
 
 export default SavedTrips;
+
+const styles = StyleSheet.create({
+    scroll_cont: {
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    }
+});

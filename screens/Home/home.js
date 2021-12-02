@@ -4,6 +4,9 @@ import { Animated, View, Dimensions, StyleSheet, Text, ScrollView, Alert, Modal,
 import styled from "styled-components/native";
 import { Divider } from 'react-native-elements';
 import * as Haptics from 'expo-haptics';
+import { getAuth } from '@firebase/auth';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+
 
 
 import { COLORS } from '../../constants/styles.js';
@@ -90,10 +93,30 @@ const HomeScreen = ({
         Ubuntu_700Bold_Italic,
     });
 
-    // const [modalVisible, setModalVisible] = useState(false);
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF - DOESTN WORK CUS POST USER DATA BROKE, WIL FIX LAST 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+    //users dont work yet cus post user to db broke rip
+    const [firstName, setFirstName] = useState("");
+    const GetUsers = async() =>{
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        console.log(fb_uid);
+        const result = await axios.get('/users.php', {params: {id: id}});
+        console.log(result.data);
+        setFirstName(result.data.first_name);
+    }
 
-    const [linkedCard, setLinkedCard] = useState("no")
+
+    useFocusEffect(
+        React.useCallback(()=>{
+            GetUsers();
+        }, [])
+    )
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+
+    // const [modalVisible, setModalVisible] = useState(false);
     const [openModal, setOpenModal] = useState(false);
+    const [linkedCard, setLinkedCard] = useState("none");
+    const [passiveCard, setPassiveCard] = useState("flex");
 
     const OpenModal = () => {
         setOpenModal(true);
@@ -105,7 +128,8 @@ const HomeScreen = ({
 
     const LinkCompass = () => {
         setOpenModal(false);
-        setLinkedCard("yes");
+        setLinkedCard("flex");
+        setPassiveCard("none");
         // console.log(linkedCard);
     }
 
@@ -151,7 +175,14 @@ const HomeScreen = ({
                 onButtonPress={LinkCompass}
                 onClosePress={CloseModal}
             />
-            <HomeCompassCard onButtonPress={OpenModal} tapAnimation={tapAnimation} compass_linked={linkedCard} />
+            <HomeCompassCard 
+                onButtonPress={OpenModal} 
+                tapAnimation={tapAnimation} 
+                compass_linked={linkedCard}
+                username={firstName}
+                activeDisplay={linkedCard}
+                passiveDisplay={passiveCard}
+            />
 
             <H2>Tap Card to Pay</H2>
             <Divider style={styles.divider} width={2} color={COLORS.CAROLINABLUE} />

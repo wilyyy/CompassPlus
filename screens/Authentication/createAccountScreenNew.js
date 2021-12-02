@@ -4,6 +4,9 @@ import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from './firebase.js';
+import KeyBoardAvoidingWrapper from '../../comps/Global/KeyboardAvoidingWrapper.js';
+import axios from 'axios';
+import { getAuth } from '@firebase/auth';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
     useFonts,
@@ -83,9 +86,8 @@ export default function createAccountScreenNew({ navigation }) {
         return unsubscribe
     }, [])
 
-
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF - I WANT TO CRY PHP FOR THiS IS BROKEN, BUT I WILL TRY FIX IT LATER*/
     const handleSignUp = () => {
-
         if (name == '' || email == '' || password == '') {
             Alert.alert("Please enter all relevant information: Name, Email, Password.");
         }
@@ -97,6 +99,17 @@ export default function createAccountScreenNew({ navigation }) {
                     const user = userCredential.user;
                     console.log('Registered with: ', user.email);
                     navigation.navigate('Benefits');
+                    axios.post('/users.php', {
+                        fb_uid: user.uid,
+                        first_name: name,
+                        age: userAge
+                        })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                        console.log(error);
+                        });
                 })
                 .catch(error => {
                     console.log(error.code);

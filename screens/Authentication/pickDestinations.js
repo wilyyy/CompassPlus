@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components/native";
 import { View, Modal, TextInput, Dimensions, StyleSheet, Text, Pressable, TouchableOpacity, ImageBackground } from 'react-native';
 import {
@@ -26,6 +26,8 @@ import SignUpInput from '../../comps/SignUp/signUpInput.js';
 import SignUpTransitCardScroll from '../../comps/SignUp/signUpTransitCardScroll.js';
 import WhiteButton from '../../comps/Global/whiteButton.js';
 import PickDestModal from '../../comps/SignUp/pickDestModal.js';
+import { getAuth } from '@firebase/auth';
+
 import Skip from '../../comps/SignUp/skip.js';
 
 import { Video, AVPlaybackStatus } from 'expo-av';
@@ -109,6 +111,8 @@ const SearchBar = styled.View`
 const PickDestinations = ({
     navigation = useNavigation()
 }) => {
+    const ref = useRef();
+
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -132,7 +136,19 @@ const PickDestinations = ({
     //counter state that increments and changes page content 4 times
     const [pageCounter, setPageCounter] = useState(0);
 
-    useEffect(() => {
+    //look at this later
+    const AddCardToDb = async(name)=>{
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        const addressText = ref.current?.getAddressText();
+        await axios.post('/saved_locations.php', {
+            fb_uid: fb_uid,
+            name: name,
+            location: addressText
+        });
+    }
+
+    useEffect(()=>{
         //rules to change heading and subheading
         if (pageCounter === 0) {
             setHeading("Where do you live?");
@@ -150,6 +166,7 @@ const PickDestinations = ({
             setHeading("Another place to go?");
             setSubheading("Time is money! Get there faster using these rides below!");
             setBusPosition('90%');
+            AddCardToDb('Other');
         }
         RouteToApp;
     }, [pageCounter]);

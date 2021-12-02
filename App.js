@@ -22,6 +22,11 @@ import {
 } from '@expo-google-fonts/ubuntu';
 
 
+import axios from 'axios';
+
+//database hosted on digital ocean, check notion for authentication details. php will be hosted on heroku
+axios.defaults.baseURL = "https://compassplus.herokuapp.com/api/";
+
 // go to storybook/stories/Button/Button.stories.js to add components
 // export { default } from './storybook';
 

@@ -102,7 +102,8 @@ const SavedTripsCard = ({
     icon_type = "font-awesome-5",
     name = "Home",
     location = "Nanaimo Station @ Bay 2",
-    onButtonPress = () => { }
+    onButtonPress = () => { },
+    onDeletePress = () => { },
 }) => {
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
@@ -150,7 +151,6 @@ const SavedTripsCard = ({
                     </TextRow>
 
                 </Column>
-
                 {/* <SeeMoreIcon onPress={onButtonPress}>
                     {/* <Icon
                         name="arrowright"
@@ -159,7 +159,7 @@ const SavedTripsCard = ({
                         size={25}
                     /> 
             </SeeMoreIcon> */}
-                <DeleteButton>
+                <DeleteButton  onPress={onDeletePress}>
                     <Icon
                         name="trash"
                         type="entypo"

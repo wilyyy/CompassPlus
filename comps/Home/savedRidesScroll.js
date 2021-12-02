@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import React, { useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Icon } from 'react-native-elements'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import {
     useFonts,
@@ -101,6 +101,21 @@ const SavedRidesScroll = ({
     onMinimizePress = () => { },
     navigation = useNavigation()
 }) => {
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+    const [locations, setLocations] = useState([]);
+    const GetLocations = async() =>{
+        const associateAuth = getAuth();
+        const loc_fb_uid = associateAuth.currentUser.uid;
+        const result = await axios.get('/saved_locations.php', {params: {fb_uid: loc_fb_uid}});
+        setLocations(result);
+    }
+
+    useFocusEffect(
+        React.useCallback(()=>{
+            GetLocations();
+        }, [])
+    )
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
         Ubuntu_300Light_Italic,
@@ -150,14 +165,12 @@ const SavedRidesScroll = ({
                     contentContainerStyle={styles.scroll}
 
                 >
-                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="train" ride_text="Waterfront" />
-                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="seabus" ride_text="Lonsdale Quay" />
-                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="bus" bus_text="05" ride_text="Cardero" />
-                    <SavedRidesIcon icon_color="#fff" text_color='#fff' ride_text="Waterfront" />
-                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="train" ride_text="Yaletown" />
-                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="seabus" ride_text="Waterfront" />
-                    <SavedRidesIcon icon_color="#fff" text_color="#fff" icon_type="bus" bus_text="05" ride_text="Dunsmuir" />
-                    <SavedRidesIcon icon_color="#fff" text_color="#fff" />
+                    <SavedRidesIcon 
+                        icon_color="#fff" 
+                        text_color='#fff' 
+                        icon_type="train" 
+                        ride_text="Waterfront" 
+                    />
                 </ScrollView>
             </ScrollCont>
             {/* <ViewAll onPress={() => navigation.navigate('SavedTrips')}>
