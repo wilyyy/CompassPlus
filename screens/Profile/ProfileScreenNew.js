@@ -99,7 +99,7 @@ const Hr = styled.View`
 `;
 
 
-const ProfileScreenNew = ({navigation}) => {
+const ProfileScreenNew = ({ navigation }) => {
 
     navigation = useNavigation()
 
@@ -121,62 +121,62 @@ const ProfileScreenNew = ({navigation}) => {
             <View style={styles.test}>
                 <BgCircle />
                 <ProfileCard />
-                <ScrollView 
-                contentContainerStyle={styles.scroll}
-                snapToEnd={false}
-                showsVerticalScrollIndicator={false}>
+                <ScrollView
+                    contentContainerStyle={styles.scroll}
+                    snapToEnd={false}
+                    showsVerticalScrollIndicator={false}>
                     <ProfileText>Check out your personal profile</ProfileText>
                     <DescriptionText>Come back to your profile anytime to change your personal details, check your balance history, set notification settings, or get help and support. </DescriptionText>
                     <Hr />
                     <TempCenter style={styles.shadow}>
-                            <Container onPress={() => navigation.navigate('NotificationPreferences')}>
-                                <Row>
-                                    <Icon
-                                        style={{ paddingRight: 15,}}
-                                        name='notifications'
-                                        color='white'
-                                        size={40}
-                                    />
-                                    <TextCont>
-                                        <H1>Notification Settings</H1>
-                                        <H2>Change disruption alerts, COVID safe travel notifications and others.</H2>
-                                    </TextCont>
-                                </Row>
-                            </Container>
-                        </TempCenter >
-                        <TempCenter style={styles.shadow}>
-                            <Container onPress={() => navigation.navigate('BalanceHistory')}>
-                                <Row>
-                                    <Icon
-                                        style={{ paddingRight: 15,}}
-                                        name='history'
-                                        color='white'
-                                        size={40}
-                                    />
-                                    <TextCont>
-                                        <H1>Balance History</H1>
-                                        <H2>View your last transactions, monthly trips, and other.</H2>
-                                    </TextCont>
-                                </Row>
-                            </Container>
-                        </TempCenter >
-                        <TempCenter style={styles.shadow}>
-                            <Container onPress={() => navigation.navigate('Support')}>
-                                <Row>
-                                    <Icon
-                                        style={{ paddingRight: 15,}}
-                                        name='help'
-                                        color='white'
-                                        size={40}
-                                    />
-                                    <TextCont>
-                                        <H1>Help and Support</H1>
-                                        <H2>Do you need help or feedback? No problem, we are here for you.</H2>
-                                    </TextCont>
-                                </Row>
-                            </Container>
-                        </TempCenter >
-                    </ScrollView>
+                        <Container onPress={() => navigation.navigate('NotificationPreferences')}>
+                            <Row>
+                                <Icon
+                                    style={{ paddingRight: 15, }}
+                                    name='notifications'
+                                    color='white'
+                                    size={40}
+                                />
+                                <TextCont>
+                                    <H1>Notification Settings</H1>
+                                    <H2>Change disruption alerts, COVID safe travel notifications and others.</H2>
+                                </TextCont>
+                            </Row>
+                        </Container>
+                    </TempCenter >
+                    <TempCenter style={styles.shadow}>
+                        <Container onPress={() => navigation.navigate('BalanceHistory')}>
+                            <Row>
+                                <Icon
+                                    style={{ paddingRight: 15, }}
+                                    name='history'
+                                    color='white'
+                                    size={40}
+                                />
+                                <TextCont>
+                                    <H1>Balance History</H1>
+                                    <H2>View your last transactions, monthly trips, and other.</H2>
+                                </TextCont>
+                            </Row>
+                        </Container>
+                    </TempCenter >
+                    <TempCenter style={styles.shadow}>
+                        <Container onPress={() => navigation.navigate('Support')}>
+                            <Row>
+                                <Icon
+                                    style={{ paddingRight: 15, }}
+                                    name='help'
+                                    color='white'
+                                    size={40}
+                                />
+                                <TextCont>
+                                    <H1>Help and Support</H1>
+                                    <H2>Do you need help or feedback? No problem, we are here for you.</H2>
+                                </TextCont>
+                            </Row>
+                        </Container>
+                    </TempCenter >
+                </ScrollView>
                 <View style={styles.NavCont}>
                     <NavAccount />
                 </View>
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     image: {
         width: 60,
         height: 60,
-    }, 
+    },
     flex: {
         flex: 1,
     },

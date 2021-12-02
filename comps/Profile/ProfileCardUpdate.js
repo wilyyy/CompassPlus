@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Pressable, TextInput, ScrollView} from 'react-native';
+import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Pressable, TextInput, ScrollView } from 'react-native';
 import { Avatar, Header, Divider, Icon } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
@@ -36,7 +36,7 @@ const SubContainer = styled.View`
     align-items: center;
 `;
 
-const Box = styled.View `
+const Box = styled.View`
     height: 15px;
 `;
 
@@ -95,108 +95,108 @@ const SectionContainerRow = styled.View`
 const ProfileCardUpdate = () => {
 
     return (
-            <ScrollView>
-                <Header
-                    leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => {}, iconStyle: { color: 'white' } }}
-                    centerComponent={{ text: 'Update Account Details', style: { color: 'white', fontWeight: 'bold', fontSize: 20 } }}
-                    containerStyle={{backgroundColor: COLORS.CAROLINABLUE, height: 80}}
+        <ScrollView>
+            <Header
+                leftComponent={{ icon: 'arrow-back', color: 'white', onPress: () => { }, iconStyle: { color: 'white' } }}
+                centerComponent={{ text: 'Update Account Details', style: { color: 'white', fontFamily: 'Ubuntu_700Bold', fontSize: 20 } }}
+                containerStyle={{ backgroundColor: COLORS.CAROLINABLUE, height: 80 }}
+            />
+            <ImageContainer>
+                <SubContainer>
+                    <Avatar
+                        size="large"
+                        rounded
+                        title="JC"
+                        titleStyle={{ color: '#777777' }}
+                        onPress={() => console.log("Works!")}
+                        overlayContainerStyle={{ backgroundColor: 'white' }}
+                        activeOpacity={0.7}
                     />
-                <ImageContainer>
-                    <SubContainer>
-                        <Avatar
-                                size="large"
-                                rounded
-                                title="JC"
-                                titleStyle={{color: '#777777'}}
-                                onPress={() => console.log("Works!")}
-                                overlayContainerStyle={{backgroundColor: 'white'}}
-                                activeOpacity={0.7}
-                            />
-                        <Box/>
-                        <TouchableOpacity style={styles.button} onPress={() => console.log("hello world")}> 
-                            <Text style={styles.text}>Change Image</Text>
-                        </TouchableOpacity>
-                    </SubContainer>
-                </ImageContainer>
-                <SectionContainer>
-                    <SectionText>Name</SectionText>
-                </SectionContainer>
-                <EditRow>
-                    <EditColumn>
-                        <EditContent>First Name</EditContent>
-                        <TextInput
-                            style={styles.input}
-                            placeholder='Jenny'
-                            underlineColorAndroid="transparent"
-                        />
-                    </EditColumn>
-                    <EditColumn>
-                        <EditContent>Last Name</EditContent>
-                        <TextInput
-                            style={styles.input}
-                            placeholder='Clark'
-                            underlineColorAndroid="transparent"
-                        />
-                    </EditColumn>
-                </EditRow>
-                <Divider orientation="horizontal" color={COLORS.DAVYSGREY}/>
-                <Box />
-                <SectionContainer>
-                    <SectionText>Contact Information</SectionText>
-                </SectionContainer>
-                <EditRow>
-                    <EditColumn>
-                        <EditContent>Email</EditContent>
-                        <TextInput
-                            style={styles.input}
-                            placeholder='Jenny@gmail.com'
-                            underlineColorAndroid="transparent"
-                        />
-                    </EditColumn>
-                    <EditColumn>
-                        <EditContent>Phone Number</EditContent>
-                        <TextInput
-                            style={styles.input}
-                            placeholder='+1 (604) 423-5761'
-                            underlineColorAndroid="transparent"
-                        />
-                    </EditColumn>
-                </EditRow>
-                <Divider orientation="horizontal" color={COLORS.DAVYSGREY}/>
-                <Box />
-                <TouchableOpacity style={styles.buttontwo} onPress={() => console.log("hello world")}> 
-                    <Text style={styles.text}>Save Changes</Text>
-                </TouchableOpacity>
-                <Box />
-                <SectionContainerRow>
-                    <SectionText>Payment Methods</SectionText>
-                    <Icon 
-                        style={{paddingRight: 15}} 
-                        name='arrow-forward' 
-                        color='white'
-                        size={24}
-                        onPress={() => console.log("hello world")}
+                    <Box />
+                    <TouchableOpacity style={styles.button} onPress={() => console.log("hello world")}>
+                        <Text style={styles.text}>Change Image</Text>
+                    </TouchableOpacity>
+                </SubContainer>
+            </ImageContainer>
+            <SectionContainer>
+                <SectionText>Name</SectionText>
+            </SectionContainer>
+            <EditRow>
+                <EditColumn>
+                    <EditContent>First Name</EditContent>
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Jenny'
+                        underlineColorAndroid="transparent"
                     />
-                </SectionContainerRow>
-                <Box />
-                <SectionContainerRow>
-                    <SectionText>Security / Password</SectionText>
-                    <Icon 
-                        style={{paddingRight: 15}} 
-                        name='arrow-forward' 
-                        color='white'
-                        size={24}
-                        onPress={() => console.log("hello world")}
+                </EditColumn>
+                <EditColumn>
+                    <EditContent>Last Name</EditContent>
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Clark'
+                        underlineColorAndroid="transparent"
                     />
-                </SectionContainerRow>
-            </ScrollView>
+                </EditColumn>
+            </EditRow>
+            <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
+            <Box />
+            <SectionContainer>
+                <SectionText>Contact Information</SectionText>
+            </SectionContainer>
+            <EditRow>
+                <EditColumn>
+                    <EditContent>Email</EditContent>
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Jenny@gmail.com'
+                        underlineColorAndroid="transparent"
+                    />
+                </EditColumn>
+                <EditColumn>
+                    <EditContent>Phone Number</EditContent>
+                    <TextInput
+                        style={styles.input}
+                        placeholder='+1 (604) 423-5761'
+                        underlineColorAndroid="transparent"
+                    />
+                </EditColumn>
+            </EditRow>
+            <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
+            <Box />
+            <TouchableOpacity style={styles.buttontwo} onPress={() => console.log("hello world")}>
+                <Text style={styles.text}>Save Changes</Text>
+            </TouchableOpacity>
+            <Box />
+            <SectionContainerRow>
+                <SectionText>Payment Methods</SectionText>
+                <Icon
+                    style={{ paddingRight: 15 }}
+                    name='arrow-forward'
+                    color='white'
+                    size={24}
+                    onPress={() => console.log("hello world")}
+                />
+            </SectionContainerRow>
+            <Box />
+            <SectionContainerRow>
+                <SectionText>Security / Password</SectionText>
+                <Icon
+                    style={{ paddingRight: 15 }}
+                    name='arrow-forward'
+                    color='white'
+                    size={24}
+                    onPress={() => console.log("hello world")}
+                />
+            </SectionContainerRow>
+        </ScrollView>
     );
-  };
-  
-  export default ProfileCardUpdate;
+};
+
+export default ProfileCardUpdate;
 
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     button: {
         width: 200,
         height: 55,

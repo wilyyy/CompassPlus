@@ -92,7 +92,7 @@ const InformationText = styled.Text`
     max-width: 75%;
 `;
 
-const SupportCard = ({navigation}) => {
+const SupportCard = ({ navigation }) => {
 
     navigation = useNavigation()
 
@@ -126,7 +126,7 @@ const SupportCard = ({navigation}) => {
                         text: 'Help and Feedback',
                         style: {
                             color: 'white',
-                            fontWeight: 'bold',
+                            fontFamily: 'Ubuntu_700Bold',
                             fontSize: 24,
                         }
                     }}
@@ -139,93 +139,93 @@ const SupportCard = ({navigation}) => {
                     }}
                 />
                 <ScrollView
-                contentContainerStyle={styles.scroll}
-                snapToEnd={false}
-                showsVerticalScrollIndicator={false}>
-                <TopContainer>
-                    <DescriptionContainer>
-                        <DescriptionText> When you download CompassPlus, all notifications are disabled automatically. If you want to receive route and/or news updates switch on your notifications. Come here to change your preferences anytime. 🪄 </DescriptionText>
-                    </DescriptionContainer>
-                </TopContainer>
-                <SectionContainer>
-                    <SectionText>Contact Information</SectionText>
-                </SectionContainer>
-                
-                <TouchableOpacity onPress={() => { Linking.openURL('https://www.compasscard.ca/ContactUs') }}>
-                    <SubtitleText>General Contact</SubtitleText>
-                    <ItemRow>
-                        <Container>
-                            <Icon
-                                style={{ paddingLeft: '12%', alignSelf: 'center' }}
-                                name='id-card'
-                                type='font-awesome-5'
-                                color={COLORS.SPACECADET}
-                                size={25}
-                            />
-                        </Container>
-                        <InformationText>General contact information for Translink and operating companies.</InformationText>
-                    </ItemRow>
-                </TouchableOpacity>
-                <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
+                    contentContainerStyle={styles.scroll}
+                    snapToEnd={false}
+                    showsVerticalScrollIndicator={false}>
+                    <TopContainer>
+                        <DescriptionContainer>
+                            <DescriptionText> When you download CompassPlus, all notifications are disabled automatically. If you want to receive route and/or news updates switch on your notifications. Come here to change your preferences anytime. 🪄 </DescriptionText>
+                        </DescriptionContainer>
+                    </TopContainer>
+                    <SectionContainer>
+                        <SectionText>Contact Information</SectionText>
+                    </SectionContainer>
 
-                <TouchableOpacity onPress={() => { Linking.openURL('https://www.compasscard.ca/ContactUs') }}>
-                    <SubtitleText>Talk to a Representative</SubtitleText>
-                    <ItemRow>
-                        <Icon
-                            style={{ paddingLeft: '12%' }}
-                            name='phone'
-                            type='font-awesome-5'
-                            color={COLORS.SPACECADET}
-                            size={25}
-                        />
-                        <InformationText>Do you have a question? Chat with our virtual assistant.</InformationText>
-                    </ItemRow>
-                </TouchableOpacity>
-                <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
+                    <TouchableOpacity onPress={() => { Linking.openURL('https://www.compasscard.ca/ContactUs') }}>
+                        <SubtitleText>General Contact</SubtitleText>
+                        <ItemRow>
+                            <Container>
+                                <Icon
+                                    style={{ paddingLeft: '12%', alignSelf: 'center' }}
+                                    name='id-card'
+                                    type='font-awesome-5'
+                                    color={COLORS.SPACECADET}
+                                    size={25}
+                                />
+                            </Container>
+                            <InformationText>General contact information for Translink and operating companies.</InformationText>
+                        </ItemRow>
+                    </TouchableOpacity>
+                    <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
 
-                
-                <Box />
-
-                <SectionContainer>
-                    <SectionText>Other Support</SectionText>
-                </SectionContainer>
-
-                <TouchableOpacity onPress={() => { Linking.openURL('https://www.translink.ca/-/media/translink/documents/transit-fares/compass-card/compass_refund_request_form.pdf') }}>
-                    <SubtitleText>Lost and Found</SubtitleText>
-                    <ItemRow>
-                        <Container>
+                    <TouchableOpacity onPress={() => { Linking.openURL('https://www.compasscard.ca/ContactUs') }}>
+                        <SubtitleText>Talk to a Representative</SubtitleText>
+                        <ItemRow>
                             <Icon
                                 style={{ paddingLeft: '12%' }}
-                                name='search-location'
+                                name='phone'
                                 type='font-awesome-5'
                                 color={COLORS.SPACECADET}
                                 size={25}
                             />
-                        </Container>
-                        <InformationText>Did you loose your compass card or another item? Click here to report it.</InformationText>
-                    </ItemRow>
-                </TouchableOpacity>
-                <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
-                
-                <TouchableOpacity onPress={() => { Linking.openURL('https://www.compasscard.ca/Help') }}>
-                    <SubtitleText>File a Claim</SubtitleText>
-                    <ItemRow>
-                        <Container>
-                            <Icon
-                                style={{ paddingLeft: '12%' }}
-                                name='exclamation-circle'
-                                type='font-awesome-5'
-                                color={COLORS.SPACECADET}
-                                size={25}
-                            />
-                        </Container>
-                        <InformationText>From time to time, incidents occur in our system. Click to file a claim.</InformationText>
-                    </ItemRow>
-                </TouchableOpacity>
-                <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
-            
+                            <InformationText>Do you have a question? Chat with our virtual assistant.</InformationText>
+                        </ItemRow>
+                    </TouchableOpacity>
+                    <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
+
+
+                    <Box />
+
+                    <SectionContainer>
+                        <SectionText>Other Support</SectionText>
+                    </SectionContainer>
+
+                    <TouchableOpacity onPress={() => { Linking.openURL('https://www.translink.ca/-/media/translink/documents/transit-fares/compass-card/compass_refund_request_form.pdf') }}>
+                        <SubtitleText>Lost and Found</SubtitleText>
+                        <ItemRow>
+                            <Container>
+                                <Icon
+                                    style={{ paddingLeft: '12%' }}
+                                    name='search-location'
+                                    type='font-awesome-5'
+                                    color={COLORS.SPACECADET}
+                                    size={25}
+                                />
+                            </Container>
+                            <InformationText>Did you loose your compass card or another item? Click here to report it.</InformationText>
+                        </ItemRow>
+                    </TouchableOpacity>
+                    <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
+
+                    <TouchableOpacity onPress={() => { Linking.openURL('https://www.compasscard.ca/Help') }}>
+                        <SubtitleText>File a Claim</SubtitleText>
+                        <ItemRow>
+                            <Container>
+                                <Icon
+                                    style={{ paddingLeft: '12%' }}
+                                    name='exclamation-circle'
+                                    type='font-awesome-5'
+                                    color={COLORS.SPACECADET}
+                                    size={25}
+                                />
+                            </Container>
+                            <InformationText>From time to time, incidents occur in our system. Click to file a claim.</InformationText>
+                        </ItemRow>
+                    </TouchableOpacity>
+                    <Divider orientation="horizontal" color={COLORS.DAVYSGREY} />
+
                 </ScrollView>
-                
+
             </View>
         );
     }

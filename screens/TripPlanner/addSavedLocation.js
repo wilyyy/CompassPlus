@@ -15,7 +15,7 @@ import {
 } from '@expo-google-fonts/ubuntu';
 import AppLoading from 'expo-app-loading';
 import { useNavigation } from '@react-navigation/native';
-import { Icon } from 'react-native-elements';
+import { Icon, Header } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { MapStyleAub } from '../../googlemaps/mapStyle.js';
@@ -171,29 +171,31 @@ const AddSavedLocation = ({
     } else {
         return <Page>
             <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
-                {/* <Button onPress={PressBack}>
-                <Icon
-                    name="arrow-back-circle"
-                    type="ionicon"
-                    color='#fff'
-                    size={70}
+                <Header
+                    leftComponent={{
+                        icon: 'arrow-back',
+                        color: 'white',
+                        size: 30,
+                        onPress: () => { navigation.goBack() },
+                        iconStyle: { color: '#fff' }
+
+                    }}
+                    centerComponent={{
+                        text: 'Add a Location',
+                        style: {
+                            color: '#fff',
+                            fontSize: 24,
+                            fontFamily: 'Ubuntu_700Bold'
+                        }
+                    }}
+                    containerStyle={{
+                        backgroundColor: 'transparent',
+                        height: 100,
+                        borderBottomWidth: 0,
+                        position: 'absolute',
+                        top: 0
+                    }}
                 />
-            </Button> */}
-
-
-                <View style={{ flexDirection: 'row', width: '80%', alignContent: 'center', justifyContent: 'space-apart', left: '-1%' }}>
-                    <TouchableOpacity
-                        style={styles.back}
-                        onPress={PressBack}
-                    >
-                        <Icon
-                            name="chevron-left"
-                            type="materialcommunityicons"
-                            color='#fff'
-                            size={50}
-                        />
-                    </TouchableOpacity>
-                    <H1>Add A location</H1></View>
 
                 <Container>
                     <InputCont>

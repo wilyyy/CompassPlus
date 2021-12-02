@@ -56,6 +56,45 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 
 
+
+  return (
+    <NavigationContainer>
+
+
+      <Stack.Navigator initialRouteName='Authentication'
+        screenOptions={{
+          headerShown: false,
+          animation: 'none',
+        }}
+      >
+        <Stack.Screen name='CreateAccount' component={CreateAccount} />
+        <Stack.Screen name='Onboarding' component={PickDestinations} />
+        <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Screen name='MobileCard' component={CompassCardScreen} />
+        <Stack.Screen name='Pay' component={AddPayScreen}
+          options={{ animation: 'none' }}
+        />
+        <Stack.Screen name='Map' component={MapHomeScreen} />
+        <Stack.Screen name='SavedTrips' component={SavedTrips} />
+        <Stack.Screen name='AddSavedLocation' component={AddSavedLocation} />
+        <Stack.Screen name='Account' component={ProfileScreenNew} />
+        <Stack.Screen name='ChangePassword' component={ChangePasswordScreen} />
+        <Stack.Screen name='BalanceHistory' component={BalanceHistoryCard} />
+        <Stack.Screen name='NotificationPreferences' component={NotificationPreferencesScreen} />
+        <Stack.Screen name='SignIn' component={LoginScreenNew} />
+        <Stack.Screen name='WelcomeBack' component={welcomeBackScreen} />
+        <Stack.Screen name='LoginNew' component={loginScreenNew} />
+        <Stack.Screen name='CreateAccountNew' component={createAccountScreenNew} />
+        <Stack.Screen name='Authentication' component={authenticationScreen} />
+        <Stack.Screen name='Benefits' component={BenefitsScreen} />
+        <Stack.Screen name='Support' component={SupportScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
+
   //   const [assetsLoaded, setAssetsLoaded] = useState(false);
 
   //   const loadAssetsAsync = async () => {
@@ -95,40 +134,6 @@ export default function App() {
   //     />
   //   );
   // }
-
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Authentication'
-        screenOptions={{
-          headerShown: false,
-          animation: 'none',
-        }}
-      >
-        <Stack.Screen name='CreateAccount' component={CreateAccount} />
-        <Stack.Screen name='Onboarding' component={PickDestinations} />
-        <Stack.Screen name='Home' component={HomeScreen} />
-        <Stack.Screen name='MobileCard' component={CompassCardScreen} />
-        <Stack.Screen name='Pay' component={AddPayScreen}
-          options={{ animation: 'none' }}
-        />
-        <Stack.Screen name='Map' component={MapHomeScreen} />
-        <Stack.Screen name='SavedTrips' component={SavedTrips} />
-        <Stack.Screen name='AddSavedLocation' component={AddSavedLocation} />
-        <Stack.Screen name='Account' component={ProfileScreenNew} />
-        <Stack.Screen name='ChangePassword' component={ChangePasswordScreen} />
-        <Stack.Screen name='BalanceHistory' component={BalanceHistoryCard} />
-        <Stack.Screen name='NotificationPreferences' component={NotificationPreferencesScreen} />
-        <Stack.Screen name='SignIn' component={LoginScreenNew} />
-        <Stack.Screen name='WelcomeBack' component={welcomeBackScreen} />
-        <Stack.Screen name='LoginNew' component={loginScreenNew} />
-        <Stack.Screen name='CreateAccountNew' component={createAccountScreenNew} />
-        <Stack.Screen name='Authentication' component={authenticationScreen} />
-        <Stack.Screen name='Benefits' component={BenefitsScreen} />
-        <Stack.Screen name='Support' component={SupportScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
 
 // function cacheImages(images) {
 //   return images.map((image) => {
