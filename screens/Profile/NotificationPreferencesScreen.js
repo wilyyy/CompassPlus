@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import NotificationPreferences from "../../comps/Profile/NotificationPreferences"
 
 const BalanceHistoryScreen = () => {
     return (
-        <ScrollView>
+        <View>
             <NotificationPreferences></NotificationPreferences>
-        </ScrollView>
+        </View>
     )
 }
 

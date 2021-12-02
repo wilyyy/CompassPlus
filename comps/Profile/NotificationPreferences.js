@@ -126,20 +126,20 @@ const NotificationPreferences = ({ navigation }) => {
     } else {
 
         return (
-                <View>
+            <View>
                 <Header
                     leftComponent={{
                         icon: 'arrow-back',
                         color: 'white',
                         size: 30,
                         onPress: () => { navigation.navigate('Account') },
-                        iconStyle: { color: 'white'}
+                        iconStyle: { color: 'white' }
                     }}
                     centerComponent={{
                         text: 'Notifications',
                         style: {
                             color: 'white',
-                            fontWeight: 'bold',
+                            fontFamily: 'Ubuntu_700Bold',
                             fontSize: 24
                         }
                     }}
@@ -154,6 +154,7 @@ const NotificationPreferences = ({ navigation }) => {
                     <TopContainer>
                         <DescriptionContainer>
                             <DescriptionText> When you download CompassPlus, all notifications are disabled automatically. If you want to receive route and/or news updates switch on your notifications. Come here to change your preferences anytime. 🪄 </DescriptionText>
+
                         </DescriptionContainer>
                     </TopContainer>
                     <SectionContainer>

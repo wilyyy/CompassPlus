@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, TouchableOpacity,} from 'react-native';
+import { View, Dimensions, StyleSheet, Text, TouchableOpacity, } from 'react-native';
 import { Avatar } from 'react-native-elements'
 import { Header, Divider, Icon } from 'react-native-elements'
 import styled from "styled-components/native";
@@ -22,7 +22,7 @@ const SubContainer = styled.View`
 
 const NameText = styled.Text`
     font-size: 22px;
-    font-weight: normal;
+    font-family: 'Ubuntu_400Regular';
     padding-top: 6%;
     padding-bottom: 3%;
     color: #ffffff;
@@ -30,7 +30,7 @@ const NameText = styled.Text`
 
 const EmailText = styled.Text`
     font-size: 22px;
-    font-weight: normal;
+    font-family: 'Ubuntu_400Regular';
     color: #ffffff;
 `;
 
@@ -48,43 +48,47 @@ const Row = styled.TouchableOpacity`
 `;
 
 
-const ProfileCard = ({navigation}) => {
+const ProfileCard = ({ navigation }) => {
     navigation = useNavigation()
 
 
     const handleSignOut = () => {
         auth
-        .signOut()
-        .then(()=>{
-            navigation.navigate('Authentication')
-        }) 
-        .catch(error => alert(error.message))
+            .signOut()
+            .then(() => {
+                navigation.navigate('Authentication')
+            })
+            .catch(error => alert(error.message))
     }
 
 
     return (
         <View>
             <Header
-                leftComponent={{ 
-                    icon: 'settings', 
-                    color: 'white', 
+                leftComponent={{
+                    icon: 'settings',
+                    color: 'white',
                     size: 30,
                     onPress: () => { navigation.navigate('ChangePassword') },
-                    iconStyle: { color: 'white' } }}
-                centerComponent={{ 
-                    text: 'Personal Account', 
-                    style: { 
-                        color: 'white', 
-                        fontWeight: 'bold', 
-                        fontSize: 24 } }}
-                rightComponent={{ 
-                    icon: 'logout', 
-                    color: 'white', 
+                    iconStyle: { color: 'white' }
+                }}
+                centerComponent={{
+                    text: 'Personal Account',
+                    style: {
+                        color: 'white',
+                        fontFamily: 'Ubuntu_700Bold',
+                        fontSize: 24
+                    }
+                }}
+                rightComponent={{
+                    icon: 'logout',
+                    color: 'white',
                     size: 30,
                     onPress: handleSignOut,
-                    iconStyle: { color: 'white' } }}
+                    iconStyle: { color: 'white' }
+                }}
                 containerStyle={{
-                    backgroundColor: COLORS.SPACECADET, 
+                    backgroundColor: COLORS.SPACECADET,
                     height: 100,
                     borderBottomWidth: 0,
                 }}
@@ -93,23 +97,23 @@ const ProfileCard = ({navigation}) => {
                 <Avatar
                     size={110}
                     rounded
-                    icon={{name: 'user', type: 'font-awesome'}}
-                    titleStyle={{color: '#fff'}}
-                    overlayContainerStyle={{backgroundColor: COLORS.LIGHTGREY}}
+                    icon={{ name: 'user', type: 'font-awesome' }}
+                    titleStyle={{ color: '#fff' }}
+                    overlayContainerStyle={{ backgroundColor: COLORS.LIGHTGREY }}
                     activeOpacity={0.7}
-                    />
+                />
                 <NameText>Jenny Clark</NameText>
                 <EmailText>jenny.clark@gmail.com</EmailText>
             </SubContainer>
-      </View>
+        </View>
     );
-  };
-  
-  export default ProfileCard;
+};
+
+export default ProfileCard;
 
 
-  const styles = StyleSheet.create({
-    
+const styles = StyleSheet.create({
+
     text: {
         fontSize: 18,
         fontWeight: 'bold',
