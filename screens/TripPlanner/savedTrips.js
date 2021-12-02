@@ -28,7 +28,7 @@ const Page = styled.View`
     height: ${windowHeight};
     justify-content: space-between;
     align-items: center;
-    color: #fff;
+    color: ${COLORS.ALICEBLUE};
 `;
 
 const TopBar = styled.View`
@@ -90,67 +90,43 @@ const SavedTrips = ({
         Ubuntu_700Bold_Italic,
     });
 
-    const RouteToAddLocations = () => {
-        navigation.navigate('AddSavedLocation');
-    }
-
-    const PressBack = () => {
-        navigation.goBack();
-        console.log('back??')
-    }
 
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
         return <Page>
-            <TopBar>
-                <Button onPress={PressBack}>
-                    <Icon
-                        name="arrow-back-circle"
-                        type="ionicon"
-                        color='#fff'
-                        size={60}
-                    />
-                </Button>
-                <H1>Saved Locations</H1>
-                <Button onPress={RouteToAddLocations}>
-                    <Icon
-                        name="add-circle"
-                        type="ionicon"
-                        color='#fff'
-                        size={60}
-                    />
-                </Button>
-            </TopBar>
-            {/* <Header
+
+            <Header
                 leftComponent={{
                     icon: 'arrow-back',
                     color: 'white',
                     size: 30,
                     onPress: () => { navigation.goBack() },
                     iconStyle: { color: '#fff' }
-                }}
-                centerComponent={{
-                    text: 'Saved Locations',
-                    style: {
-                        color: 'white',
-                        fontWeight: 'bold',
-                        fontSize: 24
-                    }
+
                 }}
                 rightComponent={{
                     icon: 'add',
                     color: 'white',
                     size: 30,
-                    onPress: () => { RouteToAddLocations },
-                    iconStyle: { color: 'white' }
+                    onPress: () => { navigation.navigate('AddSavedLocation') },
+                    iconStyle: { color: '#fff' }
+
+                }}
+                centerComponent={{
+                    text: 'Saved Locations',
+                    style: {
+                        color: '#fff',
+                        fontWeight: 'bold',
+                        fontSize: 24
+                    }
                 }}
                 containerStyle={{
                     backgroundColor: COLORS.SPACECADET,
                     height: 100,
                     borderBottomWidth: 0,
                 }}
-            /> */}
+            />
             <Content>
                 {/* put this in a scroll view? or aniamted gestures swipe right to view them? */}
                 <SavedTripsCard />
