@@ -94,6 +94,7 @@ const HomeScreen = ({
     });
 
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF - DOESTN WORK CUS POST USER DATA BROKE, WIL FIX LAST 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+    //users dont work yet cus post user to db broke rip
     const [firstName, setFirstName] = useState("");
     const GetUsers = async() =>{
         const associateAuth = getAuth();
@@ -103,6 +104,7 @@ const HomeScreen = ({
         console.log(result.data);
         setFirstName(result.data.first_name);
     }
+
 
     useFocusEffect(
         React.useCallback(()=>{
