@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import BalanceHistoryCard from "../../comps/BalanceHistory/BalanceHistoryCard"
 
 const BalanceHistoryScreen = () => {
     return (
-        <ScrollView>
+        <View>
             <BalanceHistoryCard></BalanceHistoryCard>
-        </ScrollView>
+        </View>
     )
 }
 
