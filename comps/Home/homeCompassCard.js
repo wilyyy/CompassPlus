@@ -38,6 +38,7 @@ const Container = styled.View`
 // `
 
 const CardPlaceholder = styled.TouchableOpacity`
+    display: ${props=>props.displayTwo};
      min-width: 330px;
     width:90%;
     height:auto;
@@ -52,7 +53,7 @@ const CardPlaceholder = styled.TouchableOpacity`
 `;
 
 const CardPlaceholderActive = styled.TouchableOpacity`
-   
+    display: ${props=>props.display};
     min-width: 330px;
     width:90%;
     height: 200px;
@@ -98,18 +99,36 @@ const CardTitle = styled.Text`
 
 const HomeCompassCard = ({
     username = "User",
-    compass_linked = "no",
+    compass_linked = false,
     onButtonPress = () => { },
     balance = '4.05',
     tapAnimation = () => { },
+    activeDisplay = "none",
+    passiveDisplay = "none"
 }) => {
 
-    const [linkedCard, setLinkedCard] = useState(compass_linked);
+    const condtion = compass_linked;
+    const [linkedCard, setLinkedCard] = useState(false);
 
-    if (linkedCard === "no") {
+    if (linkedCard === false) {
         return <Container>
             <H1>Hello {username}!</H1>
-            <CardPlaceholder onPress={onButtonPress}>
+            <CardPlaceholderActive onPress={tapAnimation} display={activeDisplay}>
+                <CardTitle>$ {balance}</CardTitle>
+                <Image source={require('../../assets/compassPattern.png')}
+                    style={styles.placeholderBg}
+                />
+                <LottieView
+                    ref={(ref) => {
+                        anim = ref;
+                    }}
+                    source={require('../../assets/lottie/seabusLottie.json')}
+                    autoPlay
+                    loop
+                    style={styles.lottie}
+                />
+            </CardPlaceholderActive>
+            <CardPlaceholder onPress={onButtonPress} displayTwo={passiveDisplay}>
                 <PlaceholderContent >
                     <Icon
                         name='plus'
@@ -130,26 +149,26 @@ const HomeCompassCard = ({
 
     var anim = useRef();
 
-    if (linkedCard === "yes") {
-        return <Container>
-            <H1>Hello {username}!</H1>
-            <CardPlaceholderActive onPress={tapAnimation}>
-                <CardTitle>$ {balance}</CardTitle>
-                <Image source={require('../../assets/compassPattern.png')}
-                    style={styles.placeholderBg}
-                />
-                <LottieView
-                    ref={(ref) => {
-                        anim = ref;
-                    }}
-                    source={require('../../assets/lottie/seabusLottie.json')}
-                    autoPlay
-                    loop
-                    style={styles.lottie}
-                />
-            </CardPlaceholderActive>
-        </Container>
-    }
+    // if (linkedCard === true) {
+    //     return <Container>
+    //         <H1>Hello {username}!</H1>
+    //         <CardPlaceholderActive onPress={tapAnimation}>
+    //             <CardTitle>$ {balance}</CardTitle>
+    //             <Image source={require('../../assets/compassPattern.png')}
+    //                 style={styles.placeholderBg}
+    //             />
+    //             <LottieView
+    //                 ref={(ref) => {
+    //                     anim = ref;
+    //                 }}
+    //                 source={require('../../assets/lottie/seabusLottie.json')}
+    //                 autoPlay
+    //                 loop
+    //                 style={styles.lottie}
+    //             />
+    //         </CardPlaceholderActive>
+    //     </Container>
+    // }
 }
 
 export default HomeCompassCard;

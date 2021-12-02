@@ -68,7 +68,7 @@ export default function createAccountScreenNew ({navigation}) {
         return unsubscribe
     }, [])
 
-
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF - I WANT TO CRY PHP FOR THiS IS BROKEN, BUT I WILL TRY FIX IT LATER*/
     const handleSignUp = () => {
         if(name == '' || email == '' || password == '') {
             Alert.alert("Please enter all relevant information: Name, Email, Password.");
@@ -80,7 +80,7 @@ export default function createAccountScreenNew ({navigation}) {
                     // Signed in 
                     const user = userCredential.user;
                     console.log('Registered with: ', user.email);
-                    axios.post('users.php', {
+                    axios.post('/users.php', {
                         fb_uid: user.uid,
                         first_name: name,
                         age: userAge

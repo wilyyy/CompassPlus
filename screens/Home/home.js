@@ -93,15 +93,14 @@ const HomeScreen = ({
         Ubuntu_700Bold_Italic,
     });
 
-    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF - DOESTN WORK CUS POST USER DATA BROKE 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF - DOESTN WORK CUS POST USER DATA BROKE, WIL FIX LAST 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
     const [firstName, setFirstName] = useState("");
     const GetUsers = async() =>{
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         console.log(fb_uid);
-        const result = await axios.get('/users.php', {params: {fb_uid: fb_uid}});
+        const result = await axios.get('/users.php', {params: {id: id}});
         console.log(result.data);
-        console.log(result.data.firstName)
         setFirstName(result.data.first_name);
     }
 
@@ -114,7 +113,8 @@ const HomeScreen = ({
 
     // const [modalVisible, setModalVisible] = useState(false);
     const [openModal, setOpenModal] = useState(false);
-    const [linkedCard, setLinkedCard] = useState("no")
+    const [linkedCard, setLinkedCard] = useState("none");
+    const [passiveCard, setPassiveCard] = useState("flex");
 
     const OpenModal = () => {
         setOpenModal(true);
@@ -126,7 +126,8 @@ const HomeScreen = ({
 
     const LinkCompass = () => {
         setOpenModal(false);
-        setLinkedCard("yes");
+        setLinkedCard("flex");
+        setPassiveCard("none");
         // console.log(linkedCard);
     }
 
@@ -177,6 +178,8 @@ const HomeScreen = ({
                 tapAnimation={tapAnimation} 
                 compass_linked={linkedCard}
                 username={firstName}
+                activeDisplay={linkedCard}
+                passiveDisplay={passiveCard}
             />
 
             <H2>Tap Card to Pay</H2>
