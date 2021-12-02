@@ -18,7 +18,6 @@ import TripPlannerTab from '../../comps/TripPlanner/tripPlannerTab'
 import MapComp from '../../comps/TripPlanner/mapComp';
 // import { NearbyBusMarkers } from '../../fakedata/nearbyBusMarkers.js';
 // import MapSearchBar from '../../comps/TripPlanner/mapSearchBar.js';
-import BusMapMarker from '../../comps/TripPlanner/busMapMarker.js';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

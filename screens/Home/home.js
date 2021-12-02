@@ -96,6 +96,11 @@ const HomeScreen = ({
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF - DOESTN WORK CUS POST USER DATA BROKE, WIL FIX LAST 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
     //users dont work yet cus post user to db broke rip
     const [firstName, setFirstName] = useState("");
+
+    //Google Auth Name Display
+    const auth = getAuth();
+    const googleUsername = auth.currentUser.displayName;
+
     const GetUsers = async() =>{
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
@@ -179,7 +184,7 @@ const HomeScreen = ({
                 onButtonPress={OpenModal} 
                 tapAnimation={tapAnimation} 
                 compass_linked={linkedCard}
-                username={firstName}
+                username={googleUsername}
                 activeDisplay={linkedCard}
                 passiveDisplay={passiveCard}
             />
