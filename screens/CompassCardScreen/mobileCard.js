@@ -20,8 +20,9 @@ import * as Haptics from 'expo-haptics';
 
 
 
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import axios from 'axios';
 
-import { useNavigation } from '@react-navigation/native';
 
 import { COLORS } from '../../constants/styles.js';
 
@@ -340,6 +341,20 @@ export default function CompassCardScreen() {
 
 
     // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS END 🌟🌟🌟🌟🌟🌟 ======
+
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF  🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+
+    //Get Comp Card info and set balance to w/e is on database (default $0)
+    const [compBalance, setCompBalance] = useState(0.00);
+
+    const GetCompassCard = async () => {
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        const result = await axios.get('/compass_card.php', { params: { fb_uid: fb_uid } });
+        setCompBalance(result.data[0].balance);
+    }
+
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
 
     if (!fontsLoaded) {
         return <AppLoading />;

@@ -1,9 +1,10 @@
 import styled from "styled-components/native";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dimensions, SafeAreaView, StyleSheet, Pressable, TextInput, TouchableOpacity, Text, TouchableWithoutFeedback } from "react-native";
 import { COLORS } from "../../constants/styles";
 import { Icon } from "react-native-elements";
-
+import { getAuth } from "@firebase/auth";
+import axios from "axios";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -47,11 +48,9 @@ const InputCont = styled.View`
     align-items: center;
     width: 100%;
     height: 150px;
-
 `
 
 const Close = styled.TouchableOpacity`
-
     align-self: flex-end;
     position: absolute;
     margin-left:5%;
@@ -61,18 +60,37 @@ const Close = styled.TouchableOpacity`
    
 `;
 
+const DisplayCont = styled.TouchableOpacity`
+    display: ${props=>props.cont_display};
+`;
+
 const LinkCompassCard = ({
     openModal = false,
     onButtonPress = () => { },
     onClosePress = () => { }
 }) => {
 
-    const [confirmPage, setConfirmPage] = useState(false);
+    const [lottieAnim, setLottieAnim] = useState(false);
+    function LoadingAnimation() {
+        console.log('lottiecheck');
+        Haptics.selectionAsync();
+        setLottieAnim(true);
+        setTimeout(function () { setLottieAnim(false); }, 1200);
+    }
+    const [compNumber, setCompNumber] = useState("");
+    const [cvn, setCvn] = useState("");
 
-    const PressAddCard = () => {
-        setConfirmPage(true);
-        console.log("hello world");
-
+    const AddCompassCardToDb = async()=>{
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        await axios.post('/compass_card.php', {
+            fb_uid: fb_uid,
+            balance: 0,
+            monthly: true,
+            compass_card_number: compNumber,
+            cvn: cvn
+        });
+        onButtonPress();
     }
 
     if (openModal === true) {
@@ -92,6 +110,8 @@ const LinkCompassCard = ({
                 <InputCont>
                     <TextInput
                         style={styles.input}
+                        value={compNumber}
+                        onChangeText={(text) => setCompNumber(text)}
                         keyboardType='numeric'
                         placeholder='Compass Card Number'
                         placeholderTextColor='lightgrey'
@@ -100,6 +120,8 @@ const LinkCompassCard = ({
                     />
                     <TextInput
                         style={styles.input}
+                        value={cvn}
+                        onChangeText={(text) => setCvn(text)}
                         keyboardType='numeric'
                         placeholder='CVN'
                         placeholderTextColor='lightgrey'
@@ -109,7 +131,7 @@ const LinkCompassCard = ({
                 </InputCont>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={onButtonPress}
+                    onPress={AddCompassCardToDb}
                 >
                     <Text style={styles.text}>Add Card</Text>
                 </TouchableOpacity>
