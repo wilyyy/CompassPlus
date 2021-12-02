@@ -6,7 +6,7 @@ import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../../screens/Authentication/firebase.js';
-
+import { getAuth } from '@firebase/auth';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -48,9 +48,15 @@ const Row = styled.TouchableOpacity`
 `;
 
 
-const ProfileCard = ({ navigation }) => {
-    navigation = useNavigation()
-
+const ProfileCard = ({ 
+    navigation = useNavigation(),
+    displayName = "Jenny Clark",
+    displayEmail = "email"
+}) => {
+    // navigation = useNavigation()
+    const auth = getAuth();
+    const googleUsername = auth.currentUser.displayName;
+    const email = auth.currentUser.email;
 
     const handleSignOut = () => {
         auth
@@ -102,8 +108,8 @@ const ProfileCard = ({ navigation }) => {
                     overlayContainerStyle={{ backgroundColor: COLORS.LIGHTGREY }}
                     activeOpacity={0.7}
                 />
-                <NameText>Jenny Clark</NameText>
-                <EmailText>jenny.clark@gmail.com</EmailText>
+                <NameText>{displayName}</NameText>
+                <EmailText>{displayEmail}</EmailText>
             </SubContainer>
         </View>
     );
