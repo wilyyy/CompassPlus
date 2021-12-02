@@ -17,7 +17,7 @@ const IconCont = styled.View`
     justify-content: space-evenly;
     align-items: center;
     position: relative;
-    left: ${props=>props.position};
+    left: ${props => props.position};
 `;
 
 const Icon = styled.View`
@@ -46,8 +46,8 @@ const BusProgressBar = ({
     return <Container>
         <IconCont position={position}>
             <Icon>
-                <MaterialIcon 
-                    name="bus-side" 
+                <MaterialIcon
+                    name="bus-side"
                     size={40}
                     color="#fff"
                 />
