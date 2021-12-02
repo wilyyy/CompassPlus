@@ -102,6 +102,8 @@ const HomeScreen = ({
     const auth = getAuth();
     const googleUsername = auth.currentUser.displayName;
 
+    
+
     // Get this to work once post users works
     const GetUsers = async() =>{
         const associateAuth = getAuth();
@@ -112,6 +114,7 @@ const HomeScreen = ({
         setFirstName(result.data.first_name);
     }
 
+    
     const AddCompassCardToDb = async()=>{
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
@@ -122,16 +125,19 @@ const HomeScreen = ({
             compass_card_number: 'asdasdsaddd',
             cvn: 'asdasdasddasd'
         });
+        setCompCard(true);
+        
     }
 
     //Get all Compass Cards based on Fb UID
-    const [compCard, setCompCard] = useState([]);
+    const [compCard, setCompCard] = useState(false);
+    const [compBalance, setCompBalance] = useState(0.00);
+    
     const GetCompassCard = async () => {
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
-        console.log(fb_uid);
         const result = await axios.get('/compass_card.php', { params: { fb_uid: fb_uid } });
-        console.log(result.data[balance]);
+        setCompCard(result.data[0].balance);
     }
 
     useFocusEffect(
@@ -143,7 +149,7 @@ const HomeScreen = ({
     useFocusEffect(
         React.useCallback(()=>{
             GetCompassCard();
-        }, [])
+        })
     )
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
 
@@ -218,7 +224,7 @@ const HomeScreen = ({
                 username={googleUsername}
                 activeDisplay={linkedCard}
                 passiveDisplay={passiveCard}
-                // balance={compassBalance}
+                balance={compBalance}
             />
 
             <H2>Tap Card to Pay</H2>
