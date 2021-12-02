@@ -313,7 +313,7 @@ export default function Pass({
 
 }) {
 
-    const [linkedCard, setLinkedCard] = useState("no")
+    const [linkedCard, setLinkedCard] = useState("yes")
 
     //to manage toggling between front and back of card
     const [cardSide, setCardSide] = useState(true)

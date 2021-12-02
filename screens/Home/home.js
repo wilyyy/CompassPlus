@@ -91,8 +91,9 @@ const HomeScreen = ({
     });
 
     // const [modalVisible, setModalVisible] = useState(false);
-    const [openModal, setOpenModal] = useState(false);
+
     const [linkedCard, setLinkedCard] = useState("no")
+    const [openModal, setOpenModal] = useState(false);
 
     const OpenModal = () => {
         setOpenModal(true);
