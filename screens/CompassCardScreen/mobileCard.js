@@ -19,8 +19,6 @@ import LottieView from 'lottie-react-native';
 import * as Haptics from 'expo-haptics';
 
 
-
-
 import { useNavigation } from '@react-navigation/native';
 
 import { COLORS } from '../../constants/styles.js';

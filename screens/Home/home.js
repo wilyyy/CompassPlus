@@ -6,6 +6,7 @@ import { Divider } from 'react-native-elements';
 import * as Haptics from 'expo-haptics';
 import { getAuth } from '@firebase/auth';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import axios from 'axios';
 
 
 
@@ -101,21 +102,33 @@ const HomeScreen = ({
     const auth = getAuth();
     const googleUsername = auth.currentUser.displayName;
 
+    // Get this to work once post users works
     const GetUsers = async() =>{
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         console.log(fb_uid);
-        const result = await axios.get('/users.php', {params: {id: id}});
+        const result = await axios.get('/users.php', {params: {fb_uid: fb_uid}});
         console.log(result.data);
         setFirstName(result.data.first_name);
     }
-
 
     useFocusEffect(
         React.useCallback(()=>{
             GetUsers();
         }, [])
     )
+
+    const AddCompassCardToDb = async()=>{
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        await axios.post('/compass_card.php', {
+            fb_uid: fb_uid,
+            balance: 0,
+            monthly: true,
+            compass_card_number: 'asdasdsaddd',
+            cvn: 'asdasdasddasd'
+        });
+    }
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
 
     // const [modalVisible, setModalVisible] = useState(false);
@@ -135,6 +148,7 @@ const HomeScreen = ({
         setOpenModal(false);
         setLinkedCard("flex");
         setPassiveCard("none");
+        AddCompassCardToDb();
         // console.log(linkedCard);
     }
 
@@ -179,6 +193,7 @@ const HomeScreen = ({
                 openModal={openModal}
                 onButtonPress={LinkCompass}
                 onClosePress={CloseModal}
+                onDbPress={AddCompassCardToDb}
             />
             <HomeCompassCard 
                 onButtonPress={OpenModal} 

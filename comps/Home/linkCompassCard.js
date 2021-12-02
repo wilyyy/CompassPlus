@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Dimensions, SafeAreaView, StyleSheet, Pressable, TextInput, TouchableOpacity, Text, TouchableWithoutFeedback } from "react-native";
 import { COLORS } from "../../constants/styles";
 import { Icon } from "react-native-elements";
+import axios from 'axios';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -64,8 +65,25 @@ const Close = styled.TouchableOpacity`
 const LinkCompassCard = ({
     openModal = false,
     onButtonPress = () => { },
-    onClosePress = () => { }
+    onClosePress = () => { },
+    onDbPress = () => {}
 }) => {
+
+    //POST compass card info to table
+    const [compassCardNum, setCompassCardNum] = useState("");
+    const [cvn, setCvn] = useState("");
+
+    const AddCompassCardToDb = async()=>{
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        await axios.post('/compass_card.php', {
+            fb_uid: fb_uid,
+            balance: 0,
+            monthly: true,
+            compass_card_number: compassCardNum,
+            cvn: cvn
+        });
+    }
 
     const [confirmPage, setConfirmPage] = useState(false);
 
@@ -92,14 +110,17 @@ const LinkCompassCard = ({
                 <InputCont>
                     <TextInput
                         style={styles.input}
+                        value={compassCardNum}
+                        onChangeText={(text) => setCompassCardNum(text)}
                         keyboardType='numeric'
                         placeholder='Compass Card Number'
                         placeholderTextColor='lightgrey'
-                        place
                         underlineColorAndroid="transparent"
                     />
                     <TextInput
                         style={styles.input}
+                        value={cvn}
+                        onChangeText={(text) => setCvn(text)}
                         keyboardType='numeric'
                         placeholder='CVN'
                         placeholderTextColor='lightgrey'
@@ -107,11 +128,13 @@ const LinkCompassCard = ({
                         underlineColorAndroid="transparent"
                     />
                 </InputCont>
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={onButtonPress}
-                >
-                    <Text style={styles.text}>Add Card</Text>
+                <TouchableOpacity onPress={AddCompassCardToDb()}>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={onButtonPress}
+                    >
+                        <Text style={styles.text}>Add Card</Text>
+                    </TouchableOpacity>
                 </TouchableOpacity>
             </TransferCardCont>
         </Pressable>
