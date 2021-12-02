@@ -81,16 +81,16 @@ const Para = styled.Text`
 
 const fakeData = [
     {
-        name : "Home",
-        location:"1529 West Pender Street"
+        name: "Home",
+        location: "1529 West Pender Street"
     },
     {
-        name : "Work",
-        location:"Richmond Center"
+        name: "Work",
+        location: "Richmond Center"
     },
     {
-        name : "School",
-        location : "Vancouver Canada"
+        name: "School",
+        location: "Vancouver Canada"
     }
 ];
 
@@ -99,22 +99,22 @@ const SavedTrips = ({
 
 }) => {
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
-    const GetLocations = async() =>{
+    const GetLocations = async () => {
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         console.log(fb_uid);
-        const result = await axios.get('/saved_locations.php', {params: {fb_uid: fb_uid}});
+        const result = await axios.get('/saved_locations.php', { params: { fb_uid: fb_uid } });
         console.log(result.data);
         setLocations(result.data);
     }
 
     useFocusEffect(
-        React.useCallback(()=>{
+        React.useCallback(() => {
             GetLocations();
         }, [])
     )
 
-    const DeleteLocation = async(id) => {
+    const DeleteLocation = async (id) => {
         await axios.delete('/saved_locations.php', { data: { id: id } });
         await GetLocations();
     }
@@ -152,7 +152,7 @@ const SavedTrips = ({
                     text: 'Saved Locations',
                     style: {
                         color: '#fff',
-                        fontWeight: 'bold',
+                        fontFamily: 'Ubuntu_700Bold',
                         fontSize: 24
                     }
                 }}
@@ -171,15 +171,15 @@ const SavedTrips = ({
             />
             <Content contentContainerStyle={styles.scroll_cont}>
                 {
-                    locations.map((o, i)=>(
+                    locations.map((o, i) => (
                         <CardWrapper key={i}>
-                            <SavedTripsCard 
-                                name={o.name} 
+                            <SavedTripsCard
+                                name={o.name}
                                 location={o.location}
-                                onDeletePress={()=>DeleteLocation(o.id)}
+                                onDeletePress={() => DeleteLocation(o.id)}
                             />
                         </CardWrapper>
-                        )
+                    )
                     )
                 }
             </Content>
