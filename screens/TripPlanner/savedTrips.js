@@ -95,7 +95,6 @@ const fakeData = [
 ];
 
 const SavedTrips = ({
-    onBackPress = () => { },
     navigation = useNavigation()
 
 }) => {
@@ -121,14 +120,6 @@ const SavedTrips = ({
 
     const [locations, setLocations] = useState([]);
 
-    const RouteToAddLocations = () =>{
-        navigation.navigate('AddSavedLocation');
-    }
-
-    const PressBack = () => {
-        // navigation.navigate('Map');
-        navigation.goBack();
-    }
 
     let [fontsLoaded] = useFonts({
         Ubuntu_300Light,
@@ -140,6 +131,15 @@ const SavedTrips = ({
         Ubuntu_700Bold,
         Ubuntu_700Bold_Italic,
     });
+
+    const RouteToAddLocations = () => {
+        navigation.navigate('AddSavedLocation');
+    }
+
+    const PressBack = () => {
+        navigation.goBack();
+        console.log('back??')
+    }
 
     if (!fontsLoaded) {
         return <AppLoading />;
@@ -169,8 +169,8 @@ const SavedTrips = ({
                     icon: 'arrow-back',
                     color: 'white',
                     size: 30,
-                    onPress: () => {PressBack()},
-                    iconStyle: { color: 'white' }
+                    onPress: () => { navigation.goBack() },
+                    iconStyle: { color: '#fff' }
                 }}
                 centerComponent={{
                     text: 'Saved Locations',

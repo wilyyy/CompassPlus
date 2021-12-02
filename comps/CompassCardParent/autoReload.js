@@ -8,11 +8,12 @@ import { COLORS } from "../../constants/styles";
 import ZonesTab from './zoneSelTab';
 import PaymentTab from './paySelTab';
 import TicketTab from './ticketSelTab';
+import { borderRadius } from 'polished';
 
 
 const Container = styled.View`
     width: 100%;
-    height: 600px;
+    height: 550px;
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0px 4px 4px rgba(37, 43, 66, 0.5);    
@@ -30,6 +31,8 @@ const Notch = styled.View`
     align-self: center;
     border-radius: 50px;
 `;
+
+
 
 const Title = styled.Text`
     font-size: 24px;
@@ -65,10 +68,18 @@ const SettingsContLeft = styled.View`
     border-color: blue; */
 `;
 
-const SmallCardIcon = styled.Image`
+const Header = styled.View`
+justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    /* border:2px solid red; */
+`;
+
+const SmallCardIcon = styled.View`
     width:50px;
     height:50px;
     margin: 5px;
+    padding-top: 4%;
 `;
 
 const TextColumn = styled.View`
@@ -104,7 +115,7 @@ const Arrow = styled.Image`
 `;
 
 const Line = styled.View`
-    width:70%;
+    width:85%;
     height:2px;
     background-color: #c4c4c4;
     margin: 0px 20px 10px 50px;
@@ -141,6 +152,7 @@ export default function AddFundsTabPass({
     reloadAmount = "$10.00",
     belowAmount = '$10.00',
     reloadPayment = 'Visa',
+    cardSrc = 'visa',
     month = 'December',
     autoReloadConfirm = () => { },
     startAnimation = () => { },
@@ -250,9 +262,11 @@ export default function AddFundsTabPass({
     const [payment, setPayment] = useState(1);
     if (payment === 1) {
         reloadPayment = 'Mastercard';
+        cardSrc = 'mc';
     }
     if (payment === 2) {
         reloadPayment = 'Visa';
+        cardSrc = 'visa';
     }
 
     function closeModalPay(selected) {
@@ -376,6 +390,10 @@ export default function AddFundsTabPass({
             startAnimation();
         }
     }
+    const cardImg = {
+        visa: require('../../assets/paymentCards/visa.png'),
+        mc: require('../../assets/paymentCards/mc.png'),
+    }
 
     return (
         <Container>
@@ -403,9 +421,10 @@ export default function AddFundsTabPass({
             </Animated.View>
 
             <Notch />
-            <Title>Set auto reload</Title>
-            <Divider />
-            <SettingsContLeft style={styles.toggleCont}>
+            <Header style={styles.toggleCont}>
+                <Title>Set auto reload</Title>
+                {/* <Divider /> */}
+
                 <Switch
                     trackColor={{ false: '#222222', true: '#009DDC' }}
                     thumbColor={defaultCard ? '#fff' : '#fff'}
@@ -414,14 +433,14 @@ export default function AddFundsTabPass({
                     value={defaultCard}
                     style={styles.switch}
                 />
-            </SettingsContLeft>
+            </Header>
 
             {/* ZONE */}
             <SettingCont>
                 <SettingsContLeft>
-                    <SmallCardIcon
+                    {/* <SmallCardIcon
                         source={{ uri: '#', }}
-                    />
+                    /> */}
                     <TextColumn>
                         <SmallTitle>Amount</SmallTitle>
                         <Amount>{reloadAmount}</Amount>
@@ -442,9 +461,9 @@ export default function AddFundsTabPass({
             {/* AMOUNT */}
             <SettingCont>
                 <SettingsContLeft>
-                    <SmallCardIcon
+                    {/* <SmallCardIcon
                         source={{ uri: '#', }}
-                    />
+                    /> */}
                     <TextColumn>
                         <SmallTitle>When balance is below</SmallTitle>
                         <Amount>{belowAmount}</Amount>
@@ -465,9 +484,10 @@ export default function AddFundsTabPass({
             {/* PAYMENT */}
             <SettingCont>
                 <SettingsContLeft>
-                    <SmallCardIcon
-                        source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                    />
+                    {/* <SmallCardIcon>
+                        <Image style={styles.payCard} source={cardSrc.visa} />
+                    </SmallCardIcon> */}
+
                     <TextColumn>
                         <SmallTitle>Payment</SmallTitle>
                         <Amount>{reloadPayment}</Amount>
@@ -497,6 +517,7 @@ export default function AddFundsTabPass({
 
 const styles = StyleSheet.create({
     switch: {
+        left: 10,
     },
     toggleCont: {
         justifyContent: 'center',
@@ -558,5 +579,10 @@ const styles = StyleSheet.create({
         right: 15,
         height: 288,
     },
+    payCard: {
+        width: 60,
+        height: 35,
+        borderRadius: 3
+    }
 
 });

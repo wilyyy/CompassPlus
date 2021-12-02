@@ -149,7 +149,8 @@ const AddSavedLocation = ({
         setButtonClick(true);
     }
     const PressBack = () => {
-        navigation.navigate('SavedTrips');
+        navigation.goBack();
+        console.log()
     }
 
     //Map

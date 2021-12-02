@@ -51,6 +51,7 @@ const CardSwipeTest = ({
                 horizontal={true}
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
+                snapToAlignment={'center'}
 
                 onScroll={Animated.event([
                     {

@@ -24,7 +24,8 @@ import SavedRidesIcon from "./savedRidesIcon";
 
 const Container = styled.View`
     width: 100%;
-    height: 281px;
+    height: 57%;
+    margin-bottom: 50%;
     padding:2%;
     overflow:hidden;
     background-color: ${COLORS.CAROLINABLUE};
@@ -36,7 +37,7 @@ const Row = styled.View`
      /* border:2px solid blue; */
      justify-content: space-between;
      align-content: center;
-     margin-bottom: 5%;
+     /* margin-bottom: 2%; */
 `;
 
 const TextColumn = styled.View`
@@ -68,7 +69,8 @@ const H2 = styled.Text`
 
 const ScrollCont = styled.View`
     width: ${windowWidth};
-    height: 150px;
+    height:50%;
+    min-height: 130px;
     justify-content: center;
     align-content: center;
     /* border:2px solid gold; */
@@ -126,7 +128,7 @@ const SavedRidesScroll = ({
                     />
                 </Minimize>
                 <TextColumn>
-                    <H1>Favourite Locations</H1>
+                    <H1>Saved Locations</H1>
                     {/* <H2>Swipe through your locations</H2> */}
                 </TextColumn>
                 <Manage style={styles.toggleSideIcon}
@@ -141,20 +143,20 @@ const SavedRidesScroll = ({
                     />
                 </Manage>
             </Row>
-            <ScrollCont style={{ width: '100%' }}>
+            <ScrollCont>
                 <ScrollView
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={styles.scroll}
 
                 >
-                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="train" ride_text="Waterfront to Yaletown" />
-                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="seabus" ride_text="Waterfront to Lonsdale Quay" />
-                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="bus" bus_text="05" ride_text="Dunsmuir to Cardero" />
-                    <SavedRidesIcon icon_color="#fff" text_color='#fff' />
-                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="train" ride_text="Waterfront to Yaletown" />
-                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="seabus" ride_text="Waterfront to Lonsdale Quay" />
-                    <SavedRidesIcon icon_color="#fff" text_color="#fff" icon_type="bus" bus_text="05" ride_text="Dunsmuir to Cardero" />
+                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="train" ride_text="Waterfront" />
+                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="seabus" ride_text="Lonsdale Quay" />
+                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="bus" bus_text="05" ride_text="Cardero" />
+                    <SavedRidesIcon icon_color="#fff" text_color='#fff' ride_text="Waterfront" />
+                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="train" ride_text="Yaletown" />
+                    <SavedRidesIcon icon_color="#fff" text_color='#fff' icon_type="seabus" ride_text="Waterfront" />
+                    <SavedRidesIcon icon_color="#fff" text_color="#fff" icon_type="bus" bus_text="05" ride_text="Dunsmuir" />
                     <SavedRidesIcon icon_color="#fff" text_color="#fff" />
                 </ScrollView>
             </ScrollCont>
@@ -172,7 +174,7 @@ export default SavedRidesScroll;
 
 const styles = StyleSheet.create({
     scroll: {
-        paddingVertical: '8.5%',
+        paddingVertical: '5%',
         // paddingTop: '2%',
         backgroundColor: 'rgba(255,255,255,0.25)',
         borderRadius: 10,

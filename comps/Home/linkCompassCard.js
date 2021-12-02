@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import React, { useState } from 'react';
-import { Dimensions, SafeAreaView, StyleSheet, Pressable, TextInput, TouchableOpacity, Text } from "react-native";
+import { Dimensions, SafeAreaView, StyleSheet, Pressable, TextInput, TouchableOpacity, Text, TouchableWithoutFeedback } from "react-native";
 import { COLORS } from "../../constants/styles";
 import { Icon } from "react-native-elements";
 
@@ -8,14 +8,14 @@ import { Icon } from "react-native-elements";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const Page = styled.View`
-width: ${windowWidth};
-    height: ${windowHeight};
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0,0,0,0.50);
-    top:-31.25%;
-`;
+// const Page = styled.View`
+// width: ${windowWidth};
+//     height: ${windowHeight};
+//     justify-content: center;
+//     align-items: center;
+//     background-color: rgba(0,0,0,0.50);
+//     top:-10%;
+// `;
 
 
 const TransferCardCont = styled.View`
@@ -29,7 +29,6 @@ const TransferCardCont = styled.View`
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(37, 43, 66, 0.5);
     padding:2%;
-    top:5%;
 `;
 
 const Title = styled.Text`
@@ -63,6 +62,7 @@ const Close = styled.TouchableOpacity`
 `;
 
 const LinkCompassCard = ({
+    openModal = false,
     onButtonPress = () => { },
     onClosePress = () => { }
 }) => {
@@ -72,10 +72,13 @@ const LinkCompassCard = ({
     const PressAddCard = () => {
         setConfirmPage(true);
         console.log("hello world");
+
     }
 
-    return <SafeAreaView>
-        <Page onPress={onClosePress}>
+    if (openModal === true) {
+        return <Pressable style={styles.cont}
+            onPress={onClosePress}
+        >
             <TransferCardCont>
                 <Close onPress={onClosePress} style={styles.close}>
                     <Icon
@@ -111,13 +114,26 @@ const LinkCompassCard = ({
                     <Text style={styles.text}>Add Card</Text>
                 </TouchableOpacity>
             </TransferCardCont>
-        </Page>
-    </SafeAreaView>
+        </Pressable>
+    }
+    return (
+        <>
+        </>
+    )
 }
 
 export default LinkCompassCard;
 
 const styles = StyleSheet.create({
+    cont: {
+        zIndex: 2,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.50)',
+        position: 'absolute',
+    },
     input: {
         width: '85%',
         height: 55,
@@ -146,5 +162,6 @@ const styles = StyleSheet.create({
         // shadowColor: COLORS.SPACECADET,
         // shadowOpacity: 0.5,
         // shadowOffset: { width: 0, height: 1 },
-    }
+    },
+
 });

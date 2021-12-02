@@ -22,7 +22,7 @@ const ContWithText = styled.TouchableOpacity`
     height: 90px;
     justify-content: space-evenly;
     align-items: center;
-    margin-right: 15px;
+    margin-right: 5px;
 
 `;
 
