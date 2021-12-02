@@ -419,7 +419,7 @@ export default function CompassCardScreen() {
                 >
                     <Animated.View style={[styles.overlayTabCont, styleTicket]} >
                         <AddFundsTabTicket
-                            ticketBalance="$4.05" //this will come from the database
+                            ticketBalance={compBalance} //this will come from the database
                             AddFundsConfirm={ReloadTicket}
                             startAnimation={paymentAnimation}
                         />
