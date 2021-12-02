@@ -112,12 +112,6 @@ const HomeScreen = ({
         setFirstName(result.data.first_name);
     }
 
-    useFocusEffect(
-        React.useCallback(()=>{
-            GetUsers();
-        }, [])
-    )
-
     const AddCompassCardToDb = async()=>{
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
@@ -129,6 +123,28 @@ const HomeScreen = ({
             cvn: 'asdasdasddasd'
         });
     }
+
+    //Get all Compass Cards based on Fb UID
+    const [compCard, setCompCard] = useState([]);
+    const GetCompassCard = async () => {
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        console.log(fb_uid);
+        const result = await axios.get('/compass_card.php', { params: { fb_uid: fb_uid } });
+        console.log(result.data[balance]);
+    }
+
+    useFocusEffect(
+        React.useCallback(()=>{
+            GetUsers();
+        }, [])
+    )
+
+    useFocusEffect(
+        React.useCallback(()=>{
+            GetCompassCard();
+        }, [])
+    )
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
 
     // const [modalVisible, setModalVisible] = useState(false);
@@ -202,6 +218,7 @@ const HomeScreen = ({
                 username={googleUsername}
                 activeDisplay={linkedCard}
                 passiveDisplay={passiveCard}
+                // balance={compassBalance}
             />
 
             <H2>Tap Card to Pay</H2>

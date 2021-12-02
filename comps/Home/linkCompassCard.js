@@ -1,10 +1,10 @@
 import styled from "styled-components/native";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dimensions, SafeAreaView, StyleSheet, Pressable, TextInput, TouchableOpacity, Text, TouchableWithoutFeedback } from "react-native";
 import { COLORS } from "../../constants/styles";
 import { Icon } from "react-native-elements";
-import axios from 'axios';
-
+import { getAuth } from "@firebase/auth";
+import axios from "axios";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -48,11 +48,9 @@ const InputCont = styled.View`
     align-items: center;
     width: 100%;
     height: 150px;
-
 `
 
 const Close = styled.TouchableOpacity`
-
     align-self: flex-end;
     position: absolute;
     margin-left:5%;
@@ -62,15 +60,24 @@ const Close = styled.TouchableOpacity`
    
 `;
 
+const DisplayCont = styled.TouchableOpacity`
+    display: ${props=>props.cont_display};
+`;
+
 const LinkCompassCard = ({
     openModal = false,
     onButtonPress = () => { },
-    onClosePress = () => { },
-    onDbPress = () => {}
+    onClosePress = () => { }
 }) => {
 
-    //POST compass card info to table
-    const [compassCardNum, setCompassCardNum] = useState("");
+    const [lottieAnim, setLottieAnim] = useState(false);
+    function LoadingAnimation() {
+        console.log('lottiecheck');
+        Haptics.selectionAsync();
+        setLottieAnim(true);
+        setTimeout(function () { setLottieAnim(false); }, 1200);
+    }
+    const [compNumber, setCompNumber] = useState("");
     const [cvn, setCvn] = useState("");
 
     const AddCompassCardToDb = async()=>{
@@ -80,17 +87,10 @@ const LinkCompassCard = ({
             fb_uid: fb_uid,
             balance: 0,
             monthly: true,
-            compass_card_number: compassCardNum,
+            compass_card_number: compNumber,
             cvn: cvn
         });
-    }
-
-    const [confirmPage, setConfirmPage] = useState(false);
-
-    const PressAddCard = () => {
-        setConfirmPage(true);
-        console.log("hello world");
-
+        onButtonPress();
     }
 
     if (openModal === true) {
@@ -110,11 +110,12 @@ const LinkCompassCard = ({
                 <InputCont>
                     <TextInput
                         style={styles.input}
-                        value={compassCardNum}
-                        onChangeText={(text) => setCompassCardNum(text)}
+                        value={compNumber}
+                        onChangeText={(text) => setCompNumber(text)}
                         keyboardType='numeric'
                         placeholder='Compass Card Number'
                         placeholderTextColor='lightgrey'
+                        place
                         underlineColorAndroid="transparent"
                     />
                     <TextInput
@@ -128,13 +129,11 @@ const LinkCompassCard = ({
                         underlineColorAndroid="transparent"
                     />
                 </InputCont>
-                <TouchableOpacity onPress={AddCompassCardToDb()}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={onButtonPress}
-                    >
-                        <Text style={styles.text}>Add Card</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={AddCompassCardToDb}
+                >
+                    <Text style={styles.text}>Add Card</Text>
                 </TouchableOpacity>
             </TransferCardCont>
         </Pressable>
