@@ -9,7 +9,9 @@ const Container = styled.View`
     height: 69px;
 `;
 
-const BusMapMarker = () =>{
+const BusMapMarker = ({
+    address="address"
+}) =>{
     return <Container>
         <Marker 
             coordinate={{
@@ -24,9 +26,11 @@ const BusMapMarker = () =>{
                         color: COLORS.SPACECADET,
                         justifyContent: 'center',
                         alignItems: 'center'
-                    }}>{o.bus}</Text>
+                    }}>{address}</Text>
                 </View>
             </Callout>
         </Marker>
     </Container>
 }
+
+export default BusMapMarker;
