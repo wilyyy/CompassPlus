@@ -85,15 +85,17 @@ const BalanceHistoryCard = ({navigation}) => {
                 leftComponent={{ 
                     icon: 'arrow-back', 
                     color: 'white', 
+                    size: 30,
                     onPress: () => {navigation.navigate('Account')}, 
                     iconStyle: { color: '#fff' } 
+    
                 }}
                 centerComponent={{ 
                     text: 'Balance History', 
                     style: { 
                         color: '#fff', 
                         fontWeight: 'bold', 
-                        fontSize: 20 } 
+                        fontSize: 24 } 
                     }}
                 containerStyle={{
                     backgroundColor: COLORS.CAROLINABLUE, 

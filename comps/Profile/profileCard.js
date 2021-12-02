@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Dimensions, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { View, Dimensions, StyleSheet, Text, TouchableOpacity,} from 'react-native';
 import { Avatar } from 'react-native-elements'
 import { Header, Divider, Icon } from 'react-native-elements'
 import styled from "styled-components/native";
@@ -14,32 +14,37 @@ const windowHeight = Dimensions.get('window').height;
 
 
 
-const BackgroundContainer = styled.View`
-    width: ${windowWidth};
-    background-color: ${COLORS.SPACECADET};
-`;
-
-const Row = styled.View`
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-`;
-
 const SubContainer = styled.View`
     align-items: center;
-    margin-top: 5%;
+    margin-top: 7%;
+    margin-bottom: 22%;
 `;
 
 const NameText = styled.Text`
-    font-size: 20px;
+    font-size: 22px;
     font-weight: normal;
-    padding-top: 5%;
-    padding-bottom: 10%;
+    padding-top: 6%;
+    padding-bottom: 3%;
     color: #ffffff;
 `;
 
-const Box = styled.View `
-    height: 15px;
+const EmailText = styled.Text`
+    font-size: 22px;
+    font-weight: normal;
+    color: #ffffff;
+`;
+
+const EditText = styled.Text`
+    font-size: 22px;
+    font-weight: normal;
+    color: ${COLORS.CAROLINABLUE};
+    padding-left: 20px;
+`;
+
+const Row = styled.TouchableOpacity`
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
 `;
 
 
@@ -60,6 +65,12 @@ const ProfileCard = ({navigation}) => {
     return (
         <View>
             <Header
+                leftComponent={{ 
+                    icon: 'settings', 
+                    color: 'white', 
+                    size: 30,
+                    onPress: () => { navigation.navigate('ChangePassword') },
+                    iconStyle: { color: 'white' } }}
                 centerComponent={{ 
                     text: 'Personal Account', 
                     style: { 
@@ -77,63 +88,19 @@ const ProfileCard = ({navigation}) => {
                     height: 100,
                     borderBottomWidth: 0,
                 }}
-                />
-        <BackgroundContainer> 
+            />
             <SubContainer>
                 <Avatar
-                    size="large"
+                    size={110}
                     rounded
-                    title="JC"
-                    titleStyle={{color: '#777777'}}
-                    onPress={() => console.log("Works!")}
-                    overlayContainerStyle={{backgroundColor: 'white'}}
+                    icon={{name: 'user', type: 'font-awesome'}}
+                    titleStyle={{color: '#fff'}}
+                    overlayContainerStyle={{backgroundColor: COLORS.LIGHTGREY}}
                     activeOpacity={0.7}
                     />
                 <NameText>Jenny Clark</NameText>
+                <EmailText>jenny.clark@gmail.com</EmailText>
             </SubContainer>
-            <Row>
-                <TouchableOpacity
-                        style={styles.frontFundsButton}
-                        onPress={() => navigation.navigate('ChangePassword')}>
-                        <Icon
-                            name='idcard'
-                            type='antdesign'
-                            color='#777777'
-                            size={25}
-                            reverse={true}
-                        />
-                        <Text
-                            style={styles.iconText}
-                        >Update Account Details </Text>
-                    </TouchableOpacity>
-                <Text style={styles.text}> Update Account Details</Text>
-            </Row>
-        </BackgroundContainer>
-          {/* <BackgroundContainer>
-              <Row>
-                  <SubContainer>
-                  <Avatar
-                        size="large"
-                        rounded
-                        title="JC"
-                        titleStyle={{color: '#777777'}}
-                        onPress={() => console.log("Works!")}
-                        overlayContainerStyle={{backgroundColor: 'white'}}
-                        activeOpacity={0.7}
-                    />
-                    <NameText>Jenny Clark</NameText>
-                  </SubContainer>
-                  <SubContainer>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ChangePassword')}> 
-                        <Text style={styles.text}>Update Account Details</Text>
-                    </TouchableOpacity>
-                    <Box />
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BalanceHistory')}> 
-                        <Text style={styles.text}>View Balance History</Text>
-                    </TouchableOpacity>
-                  </SubContainer>
-              </Row>
-          </BackgroundContainer> */}
       </View>
     );
   };
@@ -142,26 +109,10 @@ const ProfileCard = ({navigation}) => {
 
 
   const styles = StyleSheet.create({
-    button: {
-        width: 240,
-        height: 55,
-        borderRadius: 30,
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+    
     text: {
         fontSize: 18,
         fontWeight: 'bold',
         color: COLORS.CAROLINABLUE
-    },
-    frontFundsButton: {
-        marginBottom: '5%',
-    },
-    iconText: {
-        color: COLORS.CAROLINABLUE,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        left: '-2%',
     },
 });

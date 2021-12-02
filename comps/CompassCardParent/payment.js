@@ -1,10 +1,14 @@
 
 import React, { useState } from 'react';
-import { Animated, Button, StyleSheet, TouchableOpacity, View, TextInput, Pressable } from 'react-native';
+import { Animated, Button, StyleSheet, TouchableOpacity, View, TextInput, Pressable, Dimensions } from 'react-native';
 import { ThemeProvider, Icon } from 'react-native-elements';
 
 import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
+
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const Cont = styled.View`
     width: 375px;
@@ -25,8 +29,8 @@ const Title = styled.Text`
 const Subtitle = styled.Text`
     font-size: 18px;
     text-align: left;
-    color: #222222;
-    margin:15px 20px 15px 15px;
+    padding-left: '10%;
+
 `;
 
 const ButtonText = styled.Text`
@@ -36,6 +40,13 @@ const ButtonText = styled.Text`
     font-weight: 700;
 `;
 
+const Box = styled.View`
+    width: 30px;
+`;
+
+const BoxHeight = styled.View`
+    height: 20px;
+`;
 
 
 
@@ -64,36 +75,39 @@ export default function AddPaymentType({
             {/* <Title>Add payment</Title> */}
             <Subtitle>Add a Card</Subtitle>
             <TextInput
-                style={styles.placeholderFull}
+                style={styles.input}
                 placeholder='Card Number'
                 keyboardType='number-pad'
                 autoComplete='cc-number'
             />
             <TextInput
-                style={styles.placeholderHalfSingle}
+                style={styles.input}
                 placeholder='MM/YY'
                 keyboardType='number-pad'
                 autoComplete='cc-exp'
             />
             <TextInput
-                style={styles.placeholderFull}
+                style={styles.input}
                 placeholder='Name on Card'
                 keyboardType='default'
                 autoComplete='name'
                 autoCapitalize
             />
 
+            <BoxHeight />
+
             <Subtitle>Billing Address</Subtitle>
             <View style={styles.splitInput}>
                 <TextInput
-                    style={styles.placeholderHalf}
+                    style={styles.inputhalf}
                     placeholder='First Name'
                     keyboardType='default'
                     autoComplete='name-given'
                     autoCapitalize
                 />
+                <Box />
                 <TextInput
-                    style={styles.placeholderHalf}
+                    style={styles.inputhalf}
                     placeholder='Last Name'
                     keyboardType='default'
                     autoComplete='family-name'
@@ -105,21 +119,21 @@ export default function AddPaymentType({
 
 
             <TextInput
-                style={styles.placeholderFull}
+                style={styles.input}
                 placeholder='Street Address'
                 keyboardType='default'
                 autoComplete='street-address'
                 autoCapitalize
             />
             <TextInput
-                style={styles.placeholderFull}
+                style={styles.input}
                 placeholder='Apt/Suite (Optional)'
                 keyboardType='default'
                 autoComplete='street-address'
                 autoCapitalize
             />
             <TextInput
-                style={styles.placeholderFull}
+                style={styles.input}
                 placeholder='City'
                 keyboardType='default'
                 autoComplete='postal-address-locality'
@@ -127,21 +141,21 @@ export default function AddPaymentType({
             />
 
             <TextInput
-                style={styles.placeholderFull}
+                style={styles.input}
                 placeholder='Country'
                 keyboardType='default'
                 autoComplete='postal-address-country'
                 autoCapitalize
             />
             <TextInput
-                style={styles.placeholderHalfSingle}
+                style={styles.input}
                 placeholder='Postal Code'
                 keyboardType='default'
                 autoCapitalize
                 autoComplete='postal-code'
             />
             <TextInput
-                style={styles.placeholderFull}
+                style={styles.input}
                 placeholder='Phone Number'
                 keyboardType='phone-pad'
                 autoComplete='tel'
@@ -219,9 +233,26 @@ const styles = StyleSheet.create({
     },
     splitInput: {
         flexDirection: 'row',
-        marginRight: 15,
-        // marginTop: 15,
-    }
+        justifyContent: 'space-evenly',
+    },
+    input: {
+        width: windowWidth - 30,
+        height: 55,
+        borderWidth: 2,
+        borderColor: COLORS.LIGHTGREY,
+        borderRadius: 8,
+        padding: 10,
+        marginTop: 20,
+    },
+    inputhalf: {
+        width: windowWidth/2 -30,
+        height: 55,
+        borderWidth: 2,
+        borderColor: COLORS.LIGHTGREY,
+        borderRadius: 8,
+        padding: 10,
+        marginTop: 20,
+    },
 })
 
 
