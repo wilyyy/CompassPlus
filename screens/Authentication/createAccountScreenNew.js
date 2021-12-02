@@ -1,11 +1,23 @@
-import React, {useState, useEffect} from 'react';
-import {Dimensions, StyleSheet, Image, ImageBackground, TextInput, TouchableOpacity, Text, Alert, KeyboardAvoidingView, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Dimensions, StyleSheet, Image, ImageBackground, TextInput, TouchableOpacity, Text, Alert, KeyboardAvoidingView, ScrollView } from 'react-native';
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from './firebase.js';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-  
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+} from '@expo-google-fonts/ubuntu';
+import AppLoading from 'expo-app-loading';
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -19,14 +31,14 @@ const Page = styled.View`
 `;
 const WelcomeText = styled.Text`
     font-size: 38px;
-    font-weight: normal;
+    font-family: 'Ubuntu_400Regular';
     color: #ffffff;
     text-align: center;
     padding-top: 50px;
 `;
 const CompassPlusText = styled.Text`
     font-size: 48px;
-    font-weight: bold;
+    font-family: 'Ubuntu_700Bold';
     color: #ffffff;
     text-align: center;
 `;
@@ -34,25 +46,36 @@ const TextfieldContainer = styled.View`
     padding-top: 20px;
     justify-content: space-between;
 `;
-const BoxSmall = styled.View `
+const BoxSmall = styled.View`
     height: 30px;
 `;
-const BoxLarge = styled.View `
+const BoxLarge = styled.View`
     height: 50px;
 `;
 
-export default function createAccountScreenNew ({navigation}) {
+export default function createAccountScreenNew({ navigation }) {
     navigation = useNavigation()
+
+    let [fontsLoaded] = useFonts({
+        Ubuntu_300Light,
+        Ubuntu_300Light_Italic,
+        Ubuntu_400Regular,
+        Ubuntu_400Regular_Italic,
+        Ubuntu_500Medium,
+        Ubuntu_500Medium_Italic,
+        Ubuntu_700Bold,
+        Ubuntu_700Bold_Italic,
+    });
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [cardNumber, setCardNumber] = useState('')
 
-   
-    useEffect(()=>{
-        const unsubscribe = auth.onAuthStateChanged(user =>{
-            if(user){
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if (user) {
                 const uid = user.uid;
                 console.log("signed in right now", user);
             }
@@ -63,10 +86,10 @@ export default function createAccountScreenNew ({navigation}) {
 
     const handleSignUp = () => {
 
-        if(name == '' || email == '' || password == '') {
+        if (name == '' || email == '' || password == '') {
             Alert.alert("Please enter all relevant information: Name, Email, Password.");
-            }
-        else{
+        }
+        else {
             auth
                 .createUserWithEmailAndPassword(email, password)
                 .then((userCredential) => {
@@ -86,62 +109,66 @@ export default function createAccountScreenNew ({navigation}) {
                             break;
                         case 'auth/invalid-email':
                             Alert.alert('Invalid email. Please try again :)')
-                      break;
-                    }});
+                            break;
+                    }
+                });
         }
-        }; 
+    };
 
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    } else {
 
-
-    return (
+        return (
             <Page>
                 <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
-                <KeyboardAwareScrollView style={{ flex: 1}} >
-                    <Image 
-                        style={styles.compassCardLogo} 
-                        source={require('../../assets/logoWhite.png')}
-                    />
-                    <WelcomeText>Welcome to</WelcomeText>
-                    <CompassPlusText>CompassPlus</CompassPlusText>
-                    <BoxSmall />
-                    <TextfieldContainer>
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Name ..."
-                            value={name}
-                            onChangeText={text => setName(text)}
+                    <KeyboardAwareScrollView style={{ flex: 1 }} >
+                        <Image
+                            style={styles.compassCardLogo}
+                            source={require('../../assets/logoWhite.png')}
                         />
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Email ..."
-                            value={email}
-                            textContentType='emailAddress'
-                            keyboardType='email-address'
-                            onChangeText={text => setEmail(text)}
-                        />
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Password ..."
-                            secureTextEntry={true}
-                            autoCorrect={false}
-                            value={password}
-                            onChangeText={text => setPassword(text)}
-                        />
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Compass Card Number (optional) ..."
-                            value={cardNumber}
-                            onChangeText={text => setCardNumber(text)}
-                        />
-                    </TextfieldContainer>  
-                    <BoxLarge />
-                    <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-                        <Text style={styles.text}>CREATE ACCOUNT</Text>
-                    </TouchableOpacity>  
-                </KeyboardAwareScrollView>  
+                        <WelcomeText>Welcome to</WelcomeText>
+                        <CompassPlusText>CompassPlus</CompassPlusText>
+                        <BoxSmall />
+                        <TextfieldContainer>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Name ..."
+                                value={name}
+                                onChangeText={text => setName(text)}
+                            />
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Email ..."
+                                value={email}
+                                textContentType='emailAddress'
+                                keyboardType='email-address'
+                                onChangeText={text => setEmail(text)}
+                            />
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Password ..."
+                                secureTextEntry={true}
+                                autoCorrect={false}
+                                value={password}
+                                onChangeText={text => setPassword(text)}
+                            />
+                            {/* <TextInput
+                                style={styles.input}
+                                placeholder="Compass Card Number (optional) ..."
+                                value={cardNumber}
+                                onChangeText={text => setCardNumber(text)}
+                            /> */}
+                        </TextfieldContainer>
+                        <BoxLarge />
+                        <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+                            <Text style={styles.text}>CREATE ACCOUNT</Text>
+                        </TouchableOpacity>
+                    </KeyboardAwareScrollView>
                 </ImageBackground>
             </Page>
-    )
+        );
+    }
 }
 
 
@@ -179,7 +206,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu_700Bold',
         color: '#fff',
     }
 })

@@ -61,7 +61,7 @@ const Button = styled.TouchableOpacity`
     border-radius: 20px;
 `;
 
-const CreateAccount = ({navigation}) => {
+const CreateAccount = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const OpenModal = () => {
@@ -95,60 +95,60 @@ const CreateAccount = ({navigation}) => {
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
-    return <Page>
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-                // Alert.alert('Modal has been closed.');
-                setModalVisible(!modalVisible);
-            }}
-        >
-            <View style={styles.modal_center}>
-                <PickDestModal 
-                    onClosePress={CloseModal}
-                    onLaterPress={PressLater}
-                    onYesPress={PressYes}
-                />
-            </View>
-        </Modal>
-        <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
-            <Container>
-                <H1>
-                    Create an Account
-                </H1>
-                <TextCont>
-                <TextInput
-                    style={styles.text_input}
-                    placeholderTextColor='616161'
-                    placeholder="Name ..."
-                />
-                <TextInput
-                    style={styles.text_input}
-                    placeholderTextColor='616161'
-                    placeholder="Email ..."
-                />
-                <TextInput 
-                    style={styles.text_input}
-                    placeholderTextColor="616161"
-                    placeholder="Password ..."
-                    secureTextEntry={true}
-                    autoCorrect={false}
-                />
-                <TextInput
+        return <Page>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    // Alert.alert('Modal has been closed.');
+                    setModalVisible(!modalVisible);
+                }}
+            >
+                <View style={styles.modal_center}>
+                    <PickDestModal
+                        onClosePress={CloseModal}
+                        onLaterPress={PressLater}
+                        onYesPress={PressYes}
+                    />
+                </View>
+            </Modal>
+            <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
+                <Container>
+                    <H1>
+                        Create an Account
+                    </H1>
+                    <TextCont>
+                        <TextInput
+                            style={styles.text_input}
+                            placeholderTextColor='616161'
+                            placeholder="Name ..."
+                        />
+                        <TextInput
+                            style={styles.text_input}
+                            placeholderTextColor='616161'
+                            placeholder="Email ..."
+                        />
+                        <TextInput
+                            style={styles.text_input}
+                            placeholderTextColor="616161"
+                            placeholder="Password ..."
+                            secureTextEntry={true}
+                            autoCorrect={false}
+                        />
+                        {/* <TextInput
                     style={styles.text_input}
                     placeholderTextColor='616161'
                     placeholder="Compass Card (Optional)"
-                />
-                </TextCont>
-                <WhiteButton
-                    text="Sign Up"
-                    onButtonPress={OpenModal}
-                />
-            </Container>
-        </ImageBackground>
-    </Page>
+                /> */}
+                    </TextCont>
+                    <WhiteButton
+                        text="Sign Up"
+                        onButtonPress={OpenModal}
+                    />
+                </Container>
+            </ImageBackground>
+        </Page>
     }
 }
 export default CreateAccount;
