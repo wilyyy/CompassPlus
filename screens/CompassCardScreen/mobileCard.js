@@ -22,6 +22,8 @@ import * as Haptics from 'expo-haptics';
 
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
+import { getAuth } from '@firebase/auth';
+
 
 
 import { COLORS } from '../../constants/styles.js';
@@ -342,18 +344,26 @@ export default function CompassCardScreen() {
 
     // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS END 🌟🌟🌟🌟🌟🌟 ======
 
+
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF  🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
 
     //Get Comp Card info and set balance to w/e is on database (default $0)
-    const [compBalance, setCompBalance] = useState(0.00);
+    const [compBalance, setCompBalance] = useState(null);
 
     const GetCompassCard = async () => {
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         const result = await axios.get('/compass_card.php', { params: { fb_uid: fb_uid } });
+        console.log("HI IM AN ASYNC FUNCTION!!");
+        console.log(result.data[0].balance);
         setCompBalance(result.data[0].balance);
     }
 
+    useFocusEffect(
+        React.useCallback(()=>{
+            GetCompassCard();
+        }, [])
+    )
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
 
     if (!fontsLoaded) {
@@ -382,6 +392,7 @@ export default function CompassCardScreen() {
                         ticketAutoReload={handleTicketAuto}
                         addTempTicket={handleTempTicket}
                         paymentAnimation={tapAnimation}
+                        balance={compBalance}
                     />
 
                 </Page>

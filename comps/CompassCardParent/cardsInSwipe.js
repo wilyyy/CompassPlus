@@ -31,6 +31,7 @@ const CardSwipeTest = ({
     ticketAutoReload = () => { },
     addTempTicket = () => { },
     paymentAnimation = () => { },
+    balance=4.05
 }) => {
     const scrollX = new Animated.Value(0);
 
@@ -72,6 +73,7 @@ const CardSwipeTest = ({
                     makeDefault={!ticketDefault}
                     onAutoReloadPress={ticketAutoReload}
                     paymentAnimation={paymentAnimation}
+                    balance={balance}
                 />
                 {/* <Ticket
                     onAddFundsPress={handleAddSheetTWO}

@@ -73,7 +73,8 @@ export default function createAccountScreenNew({ navigation }) {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [cardNumber, setCardNumber] = useState('')
+    const [cardNumber, setCardNumber] = useState('');
+    
 
 
     useEffect(() => {
@@ -98,14 +99,14 @@ export default function createAccountScreenNew({ navigation }) {
                     // Signed in 
                     const user = userCredential.user;
                     console.log('Registered with: ', user.email);
-                    navigation.navigate('Benefits');
                     axios.post('/users.php', {
                         fb_uid: user.uid,
                         first_name: name,
-                        age: userAge
+                        age: '18'
                         })
                         .then(function (response) {
                             console.log(response);
+                            navigation.navigate('Benefits');
                         })
                         .catch(function (error) {
                         console.log(error);
