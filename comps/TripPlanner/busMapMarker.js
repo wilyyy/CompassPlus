@@ -10,5 +10,23 @@ const Container = styled.View`
 `;
 
 const BusMapMarker = () =>{
-    return <Container></Container>
+    return <Container>
+        <Marker 
+            coordinate={{
+                latitude: o.latitude,
+                longitude: o.longitude
+            }}
+            image={require('../../assets/bus_marker.png')}
+        >
+            <Callout>
+                <View>
+                    <Text style={{
+                        color: COLORS.SPACECADET,
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>{o.bus}</Text>
+                </View>
+            </Callout>
+        </Marker>
+    </Container>
 }
