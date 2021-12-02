@@ -10,6 +10,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@eva-design/eva": "^2.1.1",
     "@expo-google-fonts/inter": "^0.2.0",
     "@expo-google-fonts/ubuntu": "^0.2.0",

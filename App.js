@@ -49,6 +49,7 @@ import createAccountScreenNew from './screens/Authentication/createAccountScreen
 import authenticationScreen from './screens/Authentication/authenticationScreen';
 import BenefitsScreen from './screens/Onboarding/BenefitsScreen';
 import AddSavedLocation from './screens/TripPlanner/addSavedLocation';
+import SupportScreen from './screens/Profile/SupportScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -123,6 +124,7 @@ export default function App() {
         <Stack.Screen name='CreateAccountNew' component={createAccountScreenNew} />
         <Stack.Screen name='Authentication' component={authenticationScreen} />
         <Stack.Screen name='Benefits' component={BenefitsScreen} />
+        <Stack.Screen name='Support' component={SupportScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

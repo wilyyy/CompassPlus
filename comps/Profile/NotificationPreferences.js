@@ -4,6 +4,19 @@ import { Header, Divider, Icon } from 'react-native-elements'
 import styled from "styled-components/native";
 import { COLORS } from '../../constants/styles.js';
 import { useNavigation } from '@react-navigation/native';
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+} from '@expo-google-fonts/ubuntu';
+import AppLoading from 'expo-app-loading';
+
 
 
 
@@ -31,7 +44,7 @@ const DescriptionContainer = styled.View`
 
 const DescriptionText = styled.Text`
     font-size: 16px;
-    font-weight: normal;
+    font-family: 'Ubuntu_400Regular';
     text-align: center;
     align-items: center;
     color: ${COLORS.DAVYSGREY};
@@ -46,8 +59,8 @@ const SectionContainer = styled.View`
 
 const SectionText = styled.Text`
     font-size: 20px;
-    font-weight: bold;
-    padding-left: 15;
+    font-family: 'Ubuntu_700Bold';
+    padding-left: 7%;
     color: #ffffff;
 `;
 
@@ -65,10 +78,17 @@ const Column = styled.View`
     padding-top: 30px;
 `;
 
+const ColumnSwitch = styled.View`
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+    padding-top: 20px;
+`;
+
 const EditContent = styled.Text`
-    font-size: 16px;
-    font-weight: bold;
-    padding-left: 15px;
+    font-size: 18px;
+    font-family: 'Ubuntu_700Bold';
+    padding-left: 7%;
     padding-bottom: 30px;
     text-align: left;
     align-self: flex-start;
@@ -89,99 +109,119 @@ const NotificationPreferences = ({ navigation }) => {
 
     navigation = useNavigation()
 
-    return (
 
-        <ScrollView>
-            <Header
-                leftComponent={{
-                    icon: 'arrow-back',
-                    color: 'white',
-                    size: 30,
-                    onPress: () => { navigation.navigate('Account') },
-                    iconStyle: { color: 'white'}
-                }}
-                centerComponent={{
-                    text: 'Notifications',
-                    style: {
+    let [fontsLoaded] = useFonts({
+        Ubuntu_300Light,
+        Ubuntu_300Light_Italic,
+        Ubuntu_400Regular,
+        Ubuntu_400Regular_Italic,
+        Ubuntu_500Medium,
+        Ubuntu_500Medium_Italic,
+        Ubuntu_700Bold,
+        Ubuntu_700Bold_Italic,
+    });
+
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    } else {
+
+        return (
+                <View>
+                <Header
+                    leftComponent={{
+                        icon: 'arrow-back',
                         color: 'white',
-                        fontWeight: 'bold',
-                        fontSize: 24
-                    }
-                }}
-                containerStyle={{
-                    backgroundColor: COLORS.SPACECADET,
-                    height: 100,
-                    borderBottomWidth: 0,
-                    justifyContent: 'center',
-                }}
-            />
-            <TopContainer>
-                <DescriptionContainer>
-                    <DescriptionText> When you download CompassPlus, all notifications are disabled automatically. If you want to receive route and/or news updates switch on your notifications. Come here to change your preferences anytime. 🪄 </DescriptionText>
-                </DescriptionContainer>
-            </TopContainer>
-            <SectionContainer>
-                <SectionText>Route Updates</SectionText>
-            </SectionContainer>
-            <Row>
-                <Column>
-                    <EditContent>Push Notifications</EditContent>
-                    <EditContent>Text Messages via Email</EditContent>
-                </Column>
-                <Column>
-                    <View style={{ paddingRight: 15 }}>
-                        <Switch
-                            trackColor={{ false: "red", true: COLORS.CAROLINABLUE }}
-                            thumbColor={setPushRoutesEnabled ? "white" : "grey"}
-                            ios_backgroundColor="DAVYSGREY"
-                            onValueChange={pushRoutesSwitch}
-                            value={pushRoutesEnabled}
-                        />
-                        <Box />
-                        <Switch
-                            trackColor={{ false: "white", true: COLORS.CAROLINABLUE }}
-                            thumbColor={setTextRoutesEnabled ? "white" : "grey"}
-                            ios_backgroundColor="DAVYSGREY"
-                            onValueChange={textRoutesSwitch}
-                            value={textRoutesEnabled}
-                        />
-                    </View>
-                </Column>
-            </Row>
-            <Divider orientation="horizontal" color="DAVYSGREY" />
-            <Box />
-            <SectionContainer>
-                <SectionText>News Updates</SectionText>
-            </SectionContainer>
-            <Row>
-                <Column>
-                    <EditContent>Push Notifications</EditContent>
-                    <EditContent>Text Messages via Email</EditContent>
-                </Column>
-                <Column>
-                    <View style={{ paddingRight: 15 }}>
-                        <Switch
-                            trackColor={{ false: "red", true: COLORS.CAROLINABLUE }}
-                            thumbColor={setPushNewsEnabled ? "white" : "grey"}
-                            ios_backgroundColor="DAVYSGREY"
-                            onValueChange={pushNewsSwitch}
-                            value={pushNewsEnabled}
-                        />
-                        <Box />
-                        <Switch
-                            trackColor={{ false: "white", true: COLORS.CAROLINABLUE }}
-                            thumbColor={setTextNewsEnabled ? "white" : "grey"}
-                            ios_backgroundColor="DAVYSGREY"
-                            onValueChange={textNewsSwitch}
-                            value={textNewsEnabled}
-                        />
-                    </View>
-                </Column>
-            </Row>
-            <Divider orientation="horizontal" color="DAVYSGREY" />
-        </ScrollView>
-    );
-};
+                        size: 30,
+                        onPress: () => { navigation.navigate('Account') },
+                        iconStyle: { color: 'white'}
+                    }}
+                    centerComponent={{
+                        text: 'Notifications',
+                        style: {
+                            color: 'white',
+                            fontWeight: 'bold',
+                            fontSize: 24
+                        }
+                    }}
+                    containerStyle={{
+                        backgroundColor: COLORS.SPACECADET,
+                        height: 100,
+                        borderBottomWidth: 0,
+                        justifyContent: 'center',
+                    }}
+                />
+                <ScrollView>
+                    <TopContainer>
+                        <DescriptionContainer>
+                            <DescriptionText> When you download CompassPlus, all notifications are disabled automatically. If you want to receive route and/or news updates switch on your notifications. Come here to change your preferences anytime. 🪄 </DescriptionText>
+                        </DescriptionContainer>
+                    </TopContainer>
+                    <SectionContainer>
+                        <SectionText>Route Updates</SectionText>
+                    </SectionContainer>
+                    <Row>
+                        <Column>
+                            <EditContent>Push Notifications</EditContent>
+                            <EditContent>Text Messages via Email</EditContent>
+                        </Column>
+                        <ColumnSwitch>
+                            <View style={{ paddingRight: '7%' }}>
+                                <Switch
+                                    trackColor={{ false: "red", true: COLORS.CAROLINABLUE }}
+                                    thumbColor={setPushRoutesEnabled ? "white" : "grey"}
+                                    ios_backgroundColor="DAVYSGREY"
+                                    onValueChange={pushRoutesSwitch}
+                                    value={pushRoutesEnabled}
+                                />
+                                <Box />
+                                <Switch
+                                    trackColor={{ false: "white", true: COLORS.CAROLINABLUE }}
+                                    thumbColor={setTextRoutesEnabled ? "white" : "grey"}
+                                    ios_backgroundColor="DAVYSGREY"
+                                    onValueChange={textRoutesSwitch}
+                                    value={textRoutesEnabled}
+                                />
+                            </View>
+                        </ColumnSwitch>
+                    </Row>
+                    <Divider orientation="horizontal" color="DAVYSGREY" />
+                    <Box />
+                    <SectionContainer>
+                        <SectionText>News Updates</SectionText>
+                    </SectionContainer>
+                    <Row>
+                        <Column>
+                            <EditContent>Push Notifications</EditContent>
+                            <EditContent>Text Messages via Email</EditContent>
+                        </Column>
+                        <ColumnSwitch>
+                            <View style={{ paddingRight: '7%' }}>
+                                <Switch
+                                    trackColor={{ false: "red", true: COLORS.CAROLINABLUE }}
+                                    thumbColor={setPushNewsEnabled ? "white" : "grey"}
+                                    ios_backgroundColor="DAVYSGREY"
+                                    onValueChange={pushNewsSwitch}
+                                    value={pushNewsEnabled}
+                                />
+                                <Box />
+                                <Switch
+                                    trackColor={{ false: "white", true: COLORS.CAROLINABLUE }}
+                                    thumbColor={setTextNewsEnabled ? "white" : "grey"}
+                                    ios_backgroundColor="DAVYSGREY"
+                                    onValueChange={textNewsSwitch}
+                                    value={textNewsEnabled}
+                                />
+                            </View>
+                        </ColumnSwitch>
+                    </Row>
+                    <Divider orientation="horizontal" color="DAVYSGREY" />
+
+                </ScrollView>
+
+            </View>
+        );
+    };
+}
 
 export default NotificationPreferences;
 

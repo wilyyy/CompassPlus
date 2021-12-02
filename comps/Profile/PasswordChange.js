@@ -36,7 +36,7 @@ const EditColumn = styled.View`
 const EditContent = styled.Text`
     font-size: 16px;
     font-weight: bold;
-    padding-left: 5px;
+    padding-left: 1%;
     padding-top: 30px;
     padding-bottom: 15px;
     text-align: left;
