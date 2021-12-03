@@ -346,7 +346,7 @@ export default function AddFundsTabTicket({
                 />
             </Animated.View>
             <Notch />
-            <Title> d Stored Value</Title>
+            <Title> Add Stored Value</Title>
             <Divider />
 
             {/* TO this ticket: */}
