@@ -30,9 +30,8 @@ const CardSwipeTest = ({
     passAutoReload = () => { },
     ticketAutoReload = () => { },
     addTempTicket = () => { },
-    paymentAnimation = (journeyTimer) => { },
+    paymentAnimation = () => { },
     setMonthTimer,
-    setJourneyTimer,
 
 }) => {
     const scrollX = new Animated.Value(0);

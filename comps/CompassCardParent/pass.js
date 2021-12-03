@@ -298,18 +298,14 @@ font-size: 18px;
 
 
 export default function Pass({
-    // cardSide = true, // need to put state for this in app.js?
-    onWalletPress = () => { },
     balance = 4.05,
     barcodeId = "Compass No: 016372 9281 9273",
-    expiration = "December ",
-    // onManagePress = () => { },
     reloadPass = () => { },
     reloadStoredValue = () => { },
     makeDefault = false,
     triggerDefault = () => { },
     onAutoReloadPress = () => { },
-    paymentAnimation = (journeyTimer) => { },
+    paymentAnimation = () => { },
     monthlyTimer,
 
 
@@ -341,7 +337,6 @@ export default function Pass({
 
     useEffect(() => {
         if (defaultCard) {
-            console.log(defaultCard, "pass");
             triggerDefault();
         }
     }, [defaultCard]);
@@ -349,6 +344,9 @@ export default function Pass({
     const [autoReload, setAutoReload] = useState(true);
     const toggleAutoReload = () => setAutoReload(previousState => !previousState);
 
+    useEffect(() => {
+        console.log(monthlyTimer)
+    }, ['change to', monthlyTimer])
 
 
     var anim = useRef();
@@ -394,7 +392,7 @@ export default function Pass({
                         <Text style={styles.buttonText}>Active Trip:</Text>
 
                         <CountDown
-                            until={journeyTimer}
+                            until={0}
                             size={15}
                             timeToShow={['H', 'M', 'S']}
                             timeLabels={{ h: null, m: null, s: null }}

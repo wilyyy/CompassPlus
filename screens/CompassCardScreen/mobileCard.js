@@ -322,7 +322,7 @@ export default function CompassCardScreen({ }) {
 
     }
 
-    function tapAnimation(journeyTimer) {
+    function tapAnimation() {
         // console.log('lottie tap check');
         Haptics.selectionAsync();
         setLottieAnimTap(true);
@@ -330,8 +330,7 @@ export default function CompassCardScreen({ }) {
         setTimeout(function () { setLottieAnim(true); }, 5100);
         setTimeout(function () { setLottieAnim(false); }, 6500);
         setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 5100);
-        // setSBTimer(540);
-        // journeyTimer = sBTimer;
+
 
     }
 
@@ -349,7 +348,7 @@ export default function CompassCardScreen({ }) {
 
 
 
-    function setPass() {
+    function startPass() {
         setPassTimer(2419200);
         console.log("time started: ", passTimer)
     }
@@ -383,7 +382,6 @@ export default function CompassCardScreen({ }) {
                         addTempTicket={handleTempTicket}
                         paymentAnimation={tapAnimation}
                         setMonthTimer={passTimer}
-                        setJourneyTimer={storedTimer}
 
                     />
 
@@ -399,7 +397,7 @@ export default function CompassCardScreen({ }) {
                             month='December'
                             AddFundsConfirm={ReloadPass}
                             startAnimation={paymentAnimation}
-                            StartMonthTimer={setPass}
+                            StartMonthTimer={startPass}
 
                         />
                     </Animated.View>
@@ -416,7 +414,6 @@ export default function CompassCardScreen({ }) {
                             ticketBalance="$4.05" //this will come from the database
                             AddFundsConfirm={ReloadTicket}
                             startAnimation={paymentAnimation}
-                            startJourneyTimer={setSBTimer}
                         />
                     </Animated.View>
                 </PanGestureHandler>
