@@ -39,6 +39,7 @@ console.disableYellowBox = true;
 
 
 
+
 export default function App() {
 
   const [assets] = useAssets([require('./assets/pickdest_bg.png'), require('./assets/logoWhite.png'), require('./assets/bgCircle.png')]);
