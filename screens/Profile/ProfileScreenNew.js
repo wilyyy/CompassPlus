@@ -166,7 +166,7 @@ const ProfileScreenNew = ({ navigation }) => {
         return (
             <View style={styles.test}>
                 <BgCircle />
-                <ProfileCard 
+                <ProfileCard
                     displayName={googleUsername}
                     displayEmail={email}
                 />
@@ -225,7 +225,7 @@ const ProfileScreenNew = ({ navigation }) => {
                             </Row>
                         </Container>
                     </TempCenter >
-                    
+
                     <HrBottom />
 
                     <FeatureCard style={styles.shadow}>
