@@ -354,15 +354,23 @@ export default function CompassCardScreen() {
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         const result = await axios.get('/compass_card.php', { params: { fb_uid: fb_uid } });
-        console.log("HI IM AN ASYNC FUNCTION!!");
+
         console.log(result.data[0].balance);
         setCompBalance(result.data[0].balance);
     }
 
+    // const [updateBalance, setUpdateBalance] = useState(null);
+
+    // const AddToBalance = async (amount, fb_uid) => {
+    //     const associateAuth = getAuth();
+    //     const fb_uid = associateAuth.currentUser.uid;
+    //     await axios.patch('/compass_card.php', { data: { amount: amount, fb_uid : fb_uid } });
+    // }
+
     useFocusEffect(
         React.useCallback(()=>{
             GetCompassCard();
-        }, [])
+        })
     )
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
 

@@ -51,7 +51,6 @@ const BotSearchBar = styled.View`
     top: 14%;
     z-index: 2;
     left: 5%;
-
 `;
 
 //Marker Fake Data
