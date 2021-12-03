@@ -226,7 +226,7 @@ const MapHomeScreen = () => {
                 longitudeDelta: 0.0221,
             }}
             style={styles.map}
-            customMapStyle={MapStyleAub}
+            customMapStyle={MapStyleAub}    
         >
             <Marker
                 coordinate={{
