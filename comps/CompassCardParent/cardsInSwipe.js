@@ -32,6 +32,7 @@ const CardSwipeTest = ({
     addTempTicket = () => { },
     paymentAnimation = () => { },
     setMonthTimer,
+    startTempTimer,
     balance = 4.05,
 }) => {
     const scrollX = new Animated.Value(0);
@@ -91,6 +92,7 @@ const CardSwipeTest = ({
                 <AddCardManager
                     AddTempTicket={addTempTicket}
                     paymentAnimation={paymentAnimation}
+                    tempTimer={startTempTimer}
                 />
 
             </ScrollView>

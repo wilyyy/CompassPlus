@@ -347,7 +347,7 @@ export default function CompassCardScreen({ }) {
 
 
     const [passTimer, setPassTimer] = useState(0);
-    // const [sBTimer, setSBTimer] = useState(0);
+    const [dailyTimer, setDailyTimer] = useState(0);
 
 
 
@@ -355,6 +355,12 @@ export default function CompassCardScreen({ }) {
         setPassTimer(2419200);
         console.log("time started: ", passTimer)
     }
+
+    function startDaily() {
+        setDailyTimer(86400);
+        console.log("daily time started: ", dailyTimer)
+    }
+
 
 
 
@@ -414,6 +420,7 @@ export default function CompassCardScreen({ }) {
                         addTempTicket={handleTempTicket}
                         paymentAnimation={tapAnimation}
                         setMonthTimer={passTimer}
+                        startTempTimer={dailyTimer}
                         balance={compBalance}
                     />
 
@@ -471,6 +478,7 @@ export default function CompassCardScreen({ }) {
                         <TempTicket
                             tempTicketConfirm={confirmTempTicket}
                             startAnimation={paymentAnimation}
+                            startTimer={startDaily}
                         />
                     </Animated.View>
                 </PanGestureHandler>

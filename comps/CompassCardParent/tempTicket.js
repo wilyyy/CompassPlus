@@ -159,7 +159,8 @@ export default function TempTicket({
     passPaymentType = 'Visa',
     month = 'December',
     tempTicketConfirm = (passPaymentType, zoneAmount, zoneType) => { },
-    startAnimation = () => { }
+    startAnimation = () => { },
+    startTimer = () => { },
 
 
 }) {
@@ -335,6 +336,7 @@ export default function TempTicket({
             setPayText('Purchase');
             setConfPay(2);
             startAnimation();
+            startTimer();
         }
     }
 
