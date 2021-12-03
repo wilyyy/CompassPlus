@@ -70,6 +70,7 @@ export default function authenticationScreen({ navigation }) {
         Ubuntu_700Bold_Italic,
     });
 
+
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
