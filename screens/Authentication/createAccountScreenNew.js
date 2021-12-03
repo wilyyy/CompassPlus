@@ -74,7 +74,7 @@ export default function createAccountScreenNew({ navigation }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [cardNumber, setCardNumber] = useState('');
-    
+
 
 
     useEffect(() => {
@@ -103,13 +103,13 @@ export default function createAccountScreenNew({ navigation }) {
                         fb_uid: user.uid,
                         first_name: name,
                         age: '18'
-                        })
+                    })
                         .then(function (response) {
                             console.log(response);
                             navigation.navigate('Benefits');
                         })
                         .catch(function (error) {
-                        console.log(error);
+                            console.log(error);
                         });
                 })
                 .catch(error => {
@@ -136,7 +136,7 @@ export default function createAccountScreenNew({ navigation }) {
         return (
             <Page>
                 <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
-                    <KeyboardAwareScrollView style={{ flex: 1 }} >
+                    <KeyboardAwareScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }} >
                         <Image
                             style={styles.compassCardLogo}
                             source={require('../../assets/logoWhite.png')}

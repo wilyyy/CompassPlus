@@ -127,7 +127,7 @@ const SPRING_CONFIG = {
 
 
 
-export default function CompassCardScreen() {
+export default function CompassCardScreen({ }) {
     const dimensions = useWindowDimensions();
     navigation = useNavigation();
 
@@ -308,7 +308,7 @@ export default function CompassCardScreen() {
     // i close tab!
     function confirmTempTicket(passPaymentType, zoneAmount, zoneType) {
         topTemp.value = withSpring(dimensions.height + 300);
-        console.log(zoneType);
+        // console.log(zoneType);
     }
 
     // ---------- TICKET Temp ANIMATIONS END ----------
@@ -317,7 +317,7 @@ export default function CompassCardScreen() {
     const [lottieAnim, setLottieAnim] = useState(false);
     const [lottieAnimTap, setLottieAnimTap] = useState(false);
     function paymentAnimation() {
-        console.log('lottiecheck');
+        // console.log('lottiecheck');
         Haptics.selectionAsync();
         setLottieAnim(true);
         setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 500);
@@ -326,13 +326,14 @@ export default function CompassCardScreen() {
     }
 
     function tapAnimation() {
-        console.log('lottie tap check');
+        // console.log('lottie tap check');
         Haptics.selectionAsync();
         setLottieAnimTap(true);
-        setTimeout(function () { setLottieAnimTap(false); }, 5000);
-        setTimeout(function () { setLottieAnim(true); }, 5100);
-        setTimeout(function () { setLottieAnim(false); }, 6500);
-        setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 5100);
+        setTimeout(function () { setLottieAnimTap(false); }, 3000);
+        setTimeout(function () { setLottieAnim(true); }, 3100);
+        setTimeout(function () { setLottieAnim(false); }, 4500);
+        setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 3100);
+
 
     }
 
@@ -343,6 +344,24 @@ export default function CompassCardScreen() {
 
 
     // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS END 🌟🌟🌟🌟🌟🌟 ======
+
+
+    const [passTimer, setPassTimer] = useState(0);
+    const [dailyTimer, setDailyTimer] = useState(0);
+
+
+
+    function startPass() {
+        setPassTimer(2419200);
+        console.log("time started: ", passTimer)
+    }
+
+    function startDaily() {
+        setDailyTimer(86400);
+        console.log("daily time started: ", dailyTimer)
+    }
+
+
 
 
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF  🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
@@ -368,7 +387,7 @@ export default function CompassCardScreen() {
     // }
 
     useFocusEffect(
-        React.useCallback(()=>{
+        React.useCallback(() => {
             GetCompassCard();
         })
     )
@@ -400,6 +419,8 @@ export default function CompassCardScreen() {
                         ticketAutoReload={handleTicketAuto}
                         addTempTicket={handleTempTicket}
                         paymentAnimation={tapAnimation}
+                        setMonthTimer={passTimer}
+                        startTempTimer={dailyTimer}
                         balance={compBalance}
                     />
 
@@ -415,6 +436,8 @@ export default function CompassCardScreen() {
                             month='December'
                             AddFundsConfirm={ReloadPass}
                             startAnimation={paymentAnimation}
+                            StartMonthTimer={startPass}
+
                         />
                     </Animated.View>
                 </PanGestureHandler>
@@ -455,6 +478,7 @@ export default function CompassCardScreen() {
                         <TempTicket
                             tempTicketConfirm={confirmTempTicket}
                             startAnimation={paymentAnimation}
+                            startTimer={startDaily}
                         />
                     </Animated.View>
                 </PanGestureHandler>

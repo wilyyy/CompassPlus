@@ -29,7 +29,7 @@ const TicketTab = ({
     }, [selectedId]);
 
     const renderItem = ({ item }) => {
-        console.log(item, selectedId)
+        // console.log(item, selectedId)
         const backgroundColor = item.id === selectedId.id ? "#5BCF49" : "transparent";
         const color = item.id === selectedId.id ? 'white' : 'black';
 

@@ -34,7 +34,10 @@ const Section = styled.TouchableOpacity`
 const NavText = styled.Text`
     font-size: 11px;
     color: ${COLORS.SPACECADET};
+    font-family: 'Ubuntu_300Light';
 `;
+
+
 
 export default function NavBar({
     navigation = useNavigation(),
@@ -49,7 +52,7 @@ export default function NavBar({
                     color={COLORS.CAROLINABLUE}
                     size={35}
                 />
-                {/* <NavText>Home</NavText> */}
+                <NavText style={styles.blue}>Home</NavText>
             </Section>
             <Section onPress={() => navigation.navigate('MobileCard')}>
                 <Icon
@@ -59,7 +62,7 @@ export default function NavBar({
                     size={35}
 
                 />
-                {/* <NavText>Compass</NavText> */}
+                <NavText>Compass</NavText>
             </Section>
             <Section onPress={() => navigation.navigate('Map')}>
                 <Icon
@@ -69,7 +72,7 @@ export default function NavBar({
                     size={35}
 
                 />
-                {/* <NavText>Trip Planner</NavText> */}
+                <NavText>Map</NavText>
             </Section>
             <Section onPress={() => navigation.navigate('Account')}>
                 <Icon
@@ -79,9 +82,16 @@ export default function NavBar({
                     size={35}
 
                 />
-                {/* <NavText>Profile</NavText> */}
+                <NavText>Profile</NavText>
             </Section>
         </NavCont>
     );
 }
 
+
+
+const styles = StyleSheet.create({
+    blue: {
+        color: COLORS.CAROLINABLUE,
+    }
+})

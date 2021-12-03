@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
 import { Icon } from 'react-native-elements';
 import LottieView from 'lottie-react-native';
-import CountDown from 'react-native-countdown-component';
+import CountDown from '../../constants/Countdown';
 import axios from 'axios';
 import { useNavigation, useFocusEffect } from '@react-navigation/core';
 
@@ -300,18 +300,16 @@ font-size: 18px;
 
 
 export default function Pass({
-    // cardSide = true, // need to put state for this in app.js?
-    onWalletPress = () => { },
     balance = 4.05,
     barcodeId = "Compass No: 016372 9281 9273",
-    expiration = "December ",
-    // onManagePress = () => { },
     reloadPass = () => { },
     reloadStoredValue = () => { },
     makeDefault = false,
     triggerDefault = () => { },
     onAutoReloadPress = () => { },
     paymentAnimation = () => { },
+    monthlyTimer,
+
 
 }) {
 
@@ -341,7 +339,6 @@ export default function Pass({
 
     useEffect(() => {
         if (defaultCard) {
-            console.log(defaultCard, "pass");
             triggerDefault();
         }
     }, [defaultCard]);
@@ -349,6 +346,9 @@ export default function Pass({
     const [autoReload, setAutoReload] = useState(true);
     const toggleAutoReload = () => setAutoReload(previousState => !previousState);
 
+    useEffect(() => {
+        console.log(monthlyTimer)
+    }, ['change to', monthlyTimer])
 
 
     var anim = useRef();
@@ -394,8 +394,7 @@ export default function Pass({
                         <Text style={styles.buttonText}>Active Trip:</Text>
 
                         <CountDown
-                            until={minutes90}
-                            onFinish={() => alert('dlt')}
+                            until={0}
                             size={15}
                             timeToShow={['H', 'M', 'S']}
                             timeLabels={{ h: null, m: null, s: null }}
@@ -411,8 +410,7 @@ export default function Pass({
                         <Text style={styles.buttonText}>Pass:</Text>
 
                         <CountDown
-                            until={month}
-                            onFinish={() => alert('dlt')}
+                            until={monthlyTimer}
                             size={15}
                             timeToShow={['D', 'H', 'M', 'S']}
                             timeLabels={{ d: null, h: null, m: null, s: null }}

@@ -171,7 +171,7 @@ export default function loginScreenNew({ navigation }) {
         return (
             <Page>
                 <ImageBackground source={require("../../assets/pickdest_bg.png")} resizeMode="cover" style={styles.image}>
-                    <KeyboardAwareScrollView style={{ flex: 1 }} >
+                    <KeyboardAwareScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }} >
                         <Image
                             style={styles.compassCardLogo}
                             source={require('../../assets/logoWhite.png')}
@@ -187,6 +187,7 @@ export default function loginScreenNew({ navigation }) {
                                 textContentType='emailAddress'
                                 value={email}
                                 onChangeText={text => setEmail(text)}
+
                             />
                             <TextInput
                                 style={styles.input}

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Image, Pressable, StyleSheet, Switch, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { ThemeProvider, Icon } from 'react-native-elements';
 import styled from 'styled-components/native';
-import CountDown from 'react-native-countdown-component';
+import CountDown from '../../constants/Countdown';
 import { COLORS } from "../../constants/styles";
 import { width } from 'dom-helpers';
 import { TextInput } from 'react-native-gesture-handler';
@@ -117,12 +117,13 @@ export default function AddCardManager({
     countdown1 = '90mins...',
     countdown2 = '55mins...',
     countdown3 = '10mins...',
-    ticketType1 = 'Day Pass',
-    ticketType2 = '1-Zone',
-    ticketType3 = '3-Zone',
+
+    ticketType2 = 'Ticket 2',
+    ticketType3 = 'Ticket 3',
     name1 = 'Zoë',
     name2 = 'Will',
     name3 = 'Sarah',
+    tempTimer,
 
 
 }) {
@@ -272,6 +273,15 @@ export default function AddCardManager({
     const hours24 = 86400000;
     const minutes90 = 5400;
 
+    const [ticketType1, setTicketType1] = useState("Ticket 1");
+
+    useEffect(() => {
+        console.log("temp timer", tempTimer)
+        setTicketType1('Day Pass');
+
+    }, [tempTimer])
+
+
     return (
         <ThemeProvider>
             {/* <Spacing> */}
@@ -314,14 +324,13 @@ export default function AddCardManager({
                             <Text style={styles.buttonText}>{ticketType1}:</Text>
 
                             <CountDown
-                                until={hours24}
-                                onFinish={() => alert('dlt')}
+                                until={tempTimer}
                                 size={15}
                                 timeToShow={['H', 'M', 'S']}
                                 timeLabels={{ h: null, m: null, s: null }}
                                 showSeparator
                                 separatorStyle={COLORS.SPACECADET}
-                                digitStyle={{ backgroundColor: COLORS.CONCESSION }}
+                                digitStyle={{ backgroundColor: COLORS.MIDWAYBLUE }}
                                 digitTxtStyle={{ color: '#fff' }}
                             />
                         </Pressable>
@@ -343,8 +352,7 @@ export default function AddCardManager({
                             {/* <TicketPlaceHolder /> */}
                             <Text style={styles.buttonText}>{ticketType2}: </Text>
                             <CountDown
-                                until={minutes90}
-                                onFinish={() => alert('dlt')}
+                                until={0}
                                 size={15}
                                 timeToShow={['H', 'M', 'S']}
                                 timeLabels={{ h: null, m: null, s: null }}
@@ -373,8 +381,7 @@ export default function AddCardManager({
                             {/* <TicketPlaceHolder /> */}
                             <Text style={styles.buttonText}>{ticketType3}:</Text>
                             <CountDown
-                                until={minutes90}
-                                onFinish={() => alert('dlt')}
+                                until={0}
                                 size={15}
                                 timeToShow={['H', 'M', 'S']}
                                 timeLabels={{ h: null, m: null, s: null }}
