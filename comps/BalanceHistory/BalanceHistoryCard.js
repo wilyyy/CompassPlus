@@ -180,7 +180,7 @@ const BalanceHistoryCard = ({ navigation }) => {
                 </ImageContainer>
                 <ScrollView>
                     <DateRow>
-                        <DateText>Wed 27th Oct 2021</DateText>
+                        <DateText>Thu 2nd Dec 2021</DateText>
                         <Money>-$6.28</Money>
                     </DateRow>
                     <FareRow>
@@ -217,7 +217,7 @@ const BalanceHistoryCard = ({ navigation }) => {
                     </FareRow>
                     <Box />
                     <DateRow>
-                        <DateText>Mon 25th Oct 2021</DateText>
+                        <DateText>Wed 1st Dec 2021</DateText>
                         <Money>-$12.75</Money>
                     </DateRow>
                     <FareRow>
