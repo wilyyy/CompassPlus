@@ -101,7 +101,7 @@ const HomeCompassCard = ({
     username = "User",
     compass_linked = false,
     onButtonPress = () => { },
-    balance = '4.05',
+    balance = 4.05,
     tapAnimation = () => { },
     activeDisplay = "none",
     passiveDisplay = "none"

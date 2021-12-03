@@ -4,6 +4,8 @@ import { Divider, Icon } from 'react-native-elements';
 import { COLORS } from '../../constants/styles.js';
 import styled from "styled-components/native";
 import { useNavigation } from '@react-navigation/native';
+import { getAuth } from '@firebase/auth';
+
 
 
 import NavAccount from '../../comps/NavBar/NavAccount.js';
@@ -100,6 +102,9 @@ const Hr = styled.View`
 
 
 const ProfileScreenNew = ({ navigation }) => {
+    const auth = getAuth();
+    const googleUsername = auth.currentUser.displayName;
+    const email = auth.currentUser.email;
 
     navigation = useNavigation()
 
@@ -120,7 +125,10 @@ const ProfileScreenNew = ({ navigation }) => {
         return (
             <View style={styles.test}>
                 <BgCircle />
-                <ProfileCard />
+                <ProfileCard 
+                    displayName={googleUsername}
+                    displayEmail={email}
+                />
                 <ScrollView
                     contentContainerStyle={styles.scroll}
                     snapToEnd={false}

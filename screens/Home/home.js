@@ -6,6 +6,7 @@ import { Divider } from 'react-native-elements';
 import * as Haptics from 'expo-haptics';
 import { getAuth } from '@firebase/auth';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import axios from 'axios';
 
 
 
@@ -96,20 +97,63 @@ const HomeScreen = ({
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF - DOESTN WORK CUS POST USER DATA BROKE, WIL FIX LAST 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
     //users dont work yet cus post user to db broke rip
     const [firstName, setFirstName] = useState("");
+
+    //Google Auth Name Display
+    const auth = getAuth();
+    const googleUsername = auth.currentUser.displayName;
+
+    
+
+    // Get this to work once post users works
     const GetUsers = async() =>{
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         console.log(fb_uid);
-        const result = await axios.get('/users.php', {params: {id: id}});
+        const result = await axios.get('/users.php', {params: {fb_uid: fb_uid}});
         console.log(result.data);
         setFirstName(result.data.first_name);
     }
 
+    
+    const AddCompassCardToDb = async()=>{
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        await axios.post('/compass_card.php', {
+            fb_uid: fb_uid,
+            balance: 0,
+            monthly: true,
+            compass_card_number: 'asdasdsaddd',
+            cvn: 'asdasdasddasd'
+        });
+        setCompCard(true);
+        
+    }
+
+    //Get all Compass Cards based on Fb UID
+    const [compCard, setCompCard] = useState(false);
+    const [compBalance, setCompBalance] = useState(34.20);
+    
+    const GetCompassCard = async () => {
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        const result = await axios.get('/compass_card.php', { params: { fb_uid: fb_uid } });
+        setCompBalance(result.data[0].balance);
+        if (compBalance > 0){
+            setLinkedCard("flex");
+            setPassiveCard("none");
+        }
+    }
 
     useFocusEffect(
         React.useCallback(()=>{
             GetUsers();
         }, [])
+    )
+
+    useFocusEffect(
+        React.useCallback(()=>{
+            GetCompassCard();
+        })
     )
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
 
@@ -128,8 +172,7 @@ const HomeScreen = ({
 
     const LinkCompass = () => {
         setOpenModal(false);
-        setLinkedCard("flex");
-        setPassiveCard("none");
+        AddCompassCardToDb();
         // console.log(linkedCard);
     }
 
@@ -174,14 +217,16 @@ const HomeScreen = ({
                 openModal={openModal}
                 onButtonPress={LinkCompass}
                 onClosePress={CloseModal}
+                onDbPress={AddCompassCardToDb}
             />
             <HomeCompassCard 
                 onButtonPress={OpenModal} 
                 tapAnimation={tapAnimation} 
                 compass_linked={linkedCard}
-                username={firstName}
+                username={googleUsername}
                 activeDisplay={linkedCard}
                 passiveDisplay={passiveCard}
+                balance={compBalance}
             />
 
             <H2>Tap Card to Pay</H2>

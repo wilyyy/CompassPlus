@@ -18,7 +18,6 @@ import TripPlannerTab from '../../comps/TripPlanner/tripPlannerTab'
 import MapComp from '../../comps/TripPlanner/mapComp';
 // import { NearbyBusMarkers } from '../../fakedata/nearbyBusMarkers.js';
 // import MapSearchBar from '../../comps/TripPlanner/mapSearchBar.js';
-import BusMapMarker from '../../comps/TripPlanner/busMapMarker.js';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -52,7 +51,6 @@ const BotSearchBar = styled.View`
     top: 14%;
     z-index: 2;
     left: 5%;
-
 `;
 
 //Marker Fake Data
@@ -224,11 +222,11 @@ const MapHomeScreen = () => {
             initialRegion={{
                 latitude: 49.248499,
                 longitude: -123.001375,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
+                latitudeDelta: 0.0222,
+                longitudeDelta: 0.0221,
             }}
             style={styles.map}
-            customMapStyle={MapStyleAub}
+            customMapStyle={MapStyleAub}    
         >
             <Marker
                 coordinate={{

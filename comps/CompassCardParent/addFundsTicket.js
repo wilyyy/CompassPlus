@@ -7,6 +7,10 @@ import { AntDesign } from '@expo/vector-icons';
 import { COLORS } from "../../constants/styles";
 import TicketTab from './ticketSelTab';
 import PaymentTab from './paySelTab';
+import { getAuth } from '@firebase/auth';
+import axios from 'axios';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+
 
 const Container = styled.View`
     width: 100%;
@@ -178,7 +182,26 @@ export default function AddFundsTabTicket({
         }).start();
     }
 
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF  🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+    const [updateBalance, setUpdateBalance] = useState(20.00);
+    const [triggerUpdate, setTriggerUpdate] = useState(false);
 
+    useFocusEffect(
+        React.useCallback(() => {
+
+            setUpdateBalance(30.00);
+        }, [triggerUpdate])
+    )
+
+    // const associateAuth = getAuth();
+    // const user_uid = associateAuth.currentUser.uid;
+    const AddToBalance = async (amount, fb_uid) => {
+        await axios.patch('/compass_card.php', { data: { amount: amount, fb_uid: user_uid } });
+        console.log("HI IM AN ASYNC FUNCTION!!");
+        console.log(updateBalance, user_uid);
+    }
+
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
     const [loadTicket, setLoadTicket] = useState(10);
     if (loadTicket === 10) {
         ticketLoadAmount = '$10.00';
@@ -302,6 +325,7 @@ export default function AddFundsTabTicket({
             setPayText('Add Funds');
             startAnimation();
             startJourneyTimer();
+
         }
     }
 

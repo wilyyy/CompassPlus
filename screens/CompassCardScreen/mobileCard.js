@@ -20,8 +20,11 @@ import * as Haptics from 'expo-haptics';
 
 
 
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import axios from 'axios';
+import { getAuth } from '@firebase/auth';
 
-import { useNavigation } from '@react-navigation/native';
+
 
 import { COLORS } from '../../constants/styles.js';
 
@@ -355,6 +358,35 @@ export default function CompassCardScreen({ }) {
 
 
 
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF  🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+
+    //Get Comp Card info and set balance to w/e is on database (default $0)
+    const [compBalance, setCompBalance] = useState(null);
+
+    const GetCompassCard = async () => {
+        const associateAuth = getAuth();
+        const fb_uid = associateAuth.currentUser.uid;
+        const result = await axios.get('/compass_card.php', { params: { fb_uid: fb_uid } });
+
+        console.log(result.data[0].balance);
+        setCompBalance(result.data[0].balance);
+    }
+
+    // const [updateBalance, setUpdateBalance] = useState(null);
+
+    // const AddToBalance = async (amount, fb_uid) => {
+    //     const associateAuth = getAuth();
+    //     const fb_uid = associateAuth.currentUser.uid;
+    //     await axios.patch('/compass_card.php', { data: { amount: amount, fb_uid : fb_uid } });
+    // }
+
+    useFocusEffect(
+        React.useCallback(() => {
+            GetCompassCard();
+        })
+    )
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+
     if (!fontsLoaded) {
         return <AppLoading />;
     } else {
@@ -382,7 +414,7 @@ export default function CompassCardScreen({ }) {
                         addTempTicket={handleTempTicket}
                         paymentAnimation={tapAnimation}
                         setMonthTimer={passTimer}
-
+                        balance={compBalance}
                     />
 
                 </Page>
@@ -411,7 +443,7 @@ export default function CompassCardScreen({ }) {
                 >
                     <Animated.View style={[styles.overlayTabCont, styleTicket]} >
                         <AddFundsTabTicket
-                            ticketBalance="$4.05" //this will come from the database
+                            ticketBalance={compBalance} //this will come from the database
                             AddFundsConfirm={ReloadTicket}
                             startAnimation={paymentAnimation}
                         />

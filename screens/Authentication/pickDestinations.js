@@ -19,6 +19,7 @@ import { Icon, Header } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { MapStyleAub } from '../../googlemaps/mapStyle.js';
+import axios from 'axios';
 
 import { COLORS } from '../../constants/styles.js';
 import BusProgressBar from '../../comps/SignUp/busProgressBar.js';
@@ -136,17 +137,19 @@ const PickDestinations = ({
     //counter state that increments and changes page content 4 times
     const [pageCounter, setPageCounter] = useState(0);
 
-    //look at this later
-    const AddCardToDb = async(name)=>{
+     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+    const [label, setLabel] = useState("");
+    const AddCardToDb = async()=>{
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         const addressText = ref.current?.getAddressText();
         await axios.post('/saved_locations.php', {
             fb_uid: fb_uid,
-            name: name,
+            name: label,
             location: addressText
         });
     }
+    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
 
     useEffect(()=>{
         //rules to change heading and subheading
@@ -154,19 +157,29 @@ const PickDestinations = ({
             setHeading("Where do you live?");
             setSubheading("Get home quick and safely! Here are some of the fastest ways home!");
             setBusPosition(0);
+            setLabel("Home");
+            AddCardToDb();
         } else if (pageCounter === 1) {
             setHeading("Where is school?");
             setSubheading("Don't be late to class! Catch the fastest rides to school below!");
             setBusPosition('30%');
+            ref.current?.clear();
+            setLabel("School");
+            AddCardToDb();
         } else if (pageCounter === 2) {
             setHeading("Where do you work?");
             setSubheading("Punch in to work on time! Catch these rides to help you get there faster!");
             setBusPosition('60%');
+            ref.current?.clear();
+            setLabel("Work");
+            AddCardToDb();
         } else if (pageCounter === 3) {
             setHeading("Another place to go?");
             setSubheading("Time is money! Get there faster using these rides below!");
             setBusPosition('90%');
-            AddCardToDb('Other');
+            ref.current?.clear();
+            setLabel("Other");
+            AddCardToDb();
         }
         RouteToApp;
     }, [pageCounter]);
@@ -277,6 +290,7 @@ const PickDestinations = ({
                         <H3>{subheading}</H3>
                         <SearchBar>
                             <GooglePlacesAutocomplete
+                                ref={ref}
                                 placeholder='Search Address'
                                 fetchDetails={true}
                                 GooglePlacesSearchQuery={{
@@ -284,7 +298,7 @@ const PickDestinations = ({
                                 }}
                                 onPress={(data, details = null) => {
                                     // 'details' is provided when fetchDetails = true
-                                    console.log(data, details);
+                                    // console.log(data, details);
                                     setRegion({
                                         latitude: details.geometry.location.lat,
                                         longitude: details.geometry.location.lng,
