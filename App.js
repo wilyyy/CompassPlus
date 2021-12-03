@@ -40,7 +40,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  const [assets] = useAssets([require('./assets/pickdest_bg.png'), require('./assets/logoWhite.png'), require('./assets/bgCircle.png')]);
+  const [assets] = useAssets([require('./assets/pickdest_bg.png'), require('./assets/logoWhite.png'), require('./assets/bgCircle.png'), , require('./assets/Benefits.png'), require('./assets/ManageCards.png'), require('./assets/SavedTrips.png'), , require('./assets/Benefits.png'), require('./assets/Leaderboard.png'), require('./assets/compassPattern.png')]);
 
   if (!assets) {
     return <AppLoading />;
