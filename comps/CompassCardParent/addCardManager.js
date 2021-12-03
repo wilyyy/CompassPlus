@@ -117,12 +117,13 @@ export default function AddCardManager({
     countdown1 = '90mins...',
     countdown2 = '55mins...',
     countdown3 = '10mins...',
-    ticketType1 = 'Day Pass',
-    ticketType2 = '1-Zone',
-    ticketType3 = '3-Zone',
+    ticketType1 = 'Ticket 1',
+    ticketType2 = 'Ticket 2',
+    ticketType3 = 'Ticket 3',
     name1 = 'Zoë',
     name2 = 'Will',
     name3 = 'Sarah',
+    tempTimer,
 
 
 }) {
@@ -272,6 +273,12 @@ export default function AddCardManager({
     const hours24 = 86400000;
     const minutes90 = 5400;
 
+
+    useEffect(() => {
+        console.log(tempTimer)
+    }, ['change to', tempTimer])
+
+
     return (
         <ThemeProvider>
             {/* <Spacing> */}
@@ -314,14 +321,13 @@ export default function AddCardManager({
                             <Text style={styles.buttonText}>{ticketType1}:</Text>
 
                             <CountDown
-                                until={hours24}
-                                onFinish={() => alert('dlt')}
+                                until={tempTimer}
                                 size={15}
                                 timeToShow={['H', 'M', 'S']}
                                 timeLabels={{ h: null, m: null, s: null }}
                                 showSeparator
                                 separatorStyle={COLORS.SPACECADET}
-                                digitStyle={{ backgroundColor: COLORS.CONCESSION }}
+                                digitStyle={{ backgroundColor: COLORS.MIDWAYBLUE }}
                                 digitTxtStyle={{ color: '#fff' }}
                             />
                         </Pressable>
@@ -343,8 +349,7 @@ export default function AddCardManager({
                             {/* <TicketPlaceHolder /> */}
                             <Text style={styles.buttonText}>{ticketType2}: </Text>
                             <CountDown
-                                until={minutes90}
-                                onFinish={() => alert('dlt')}
+                                until={0}
                                 size={15}
                                 timeToShow={['H', 'M', 'S']}
                                 timeLabels={{ h: null, m: null, s: null }}
@@ -373,8 +378,7 @@ export default function AddCardManager({
                             {/* <TicketPlaceHolder /> */}
                             <Text style={styles.buttonText}>{ticketType3}:</Text>
                             <CountDown
-                                until={minutes90}
-                                onFinish={() => alert('dlt')}
+                                until={0}
                                 size={15}
                                 timeToShow={['H', 'M', 'S']}
                                 timeLabels={{ h: null, m: null, s: null }}
