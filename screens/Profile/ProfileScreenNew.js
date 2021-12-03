@@ -5,13 +5,9 @@ import { COLORS } from '../../constants/styles.js';
 import styled from "styled-components/native";
 import { useNavigation } from '@react-navigation/native';
 import { getAuth } from '@firebase/auth';
-
-
-
 import NavAccount from '../../comps/NavBar/NavAccount.js';
 import ProfileCard from '../../comps/Profile/profileCard';
-import NotificationCard from '../../comps/Profile/notificationCard';
-import SupportCard from '../../comps/Profile/supportCard';
+
 
 // import { FlatList } from 'react-native-gesture-handler';
 import {
@@ -31,49 +27,49 @@ import BgCircle from '../../comps/Global/BgCircleScreens.js';
 
 
 const TempCenter = styled.View`
-align-items: center;
-width: 90%;
-margin-bottom: 5%;
-align-self: center;
+    align-items: center;
+    width: 90%;
+    align-self: center;
+    padding-bottom: 5%;
 `;
 
 
 const Container = styled.TouchableOpacity`
-justify-content: center;
-width: 100%;
-height: 100px;
-background-color: ${COLORS.CAROLINABLUE};
-border-radius: 10px;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    background-color: ${COLORS.CAROLINABLUE};
+    border-radius: 10px;
 
 `;
 
 const Row = styled.View`
-flex-direction: row;
-justify-content: space-evenly;
-align-items: center;
-height: 100px;
-border-radius: 10px;
-padding:5%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100px;
+    border-radius: 10px;
+    padding:5%;
 `;
 
 const TextCont = styled.View`
-flex:3;
+    flex:3;
+    align-self: center; 
 `;
 
 const H1 = styled.Text`
-font-size: 18px;
-font-family: 'Ubuntu_700Bold';
-line-height: 24px;
-color: #fff;
+    font-size: 18px;
+    font-family: 'Ubuntu_700Bold';
+    line-height: 24px;
+    color: #fff;
 `;
 
 const H2 = styled.Text`
-font-size: 16px;
-font-family: 'Ubuntu_400Regular';
-line-height: 24px;
-letter-spacing: 0;
-color: #fff;
-
+    font-size: 16px;
+    font-family: 'Ubuntu_400Regular';
+    line-height: 24px;
+    letter-spacing: 0;
+    color: #fff;
 `;
 const ProfileText = styled.Text`
     font-size: 24px;
@@ -91,13 +87,58 @@ const DescriptionText = styled.Text`
     font-family: 'Ubuntu_400Regular';
 `;
 
-const Hr = styled.View`
+const HrTop = styled.View`
     width:90%;
     background-color: ${COLORS.CAROLINABLUE};
     height:2px;
     margin-top: 10%;
     margin-bottom: 10%;
     align-self: center; 
+`;
+
+const HrBottom = styled.View`
+    width:90%;
+    background-color: ${COLORS.CAROLINABLUE};
+    height:2px;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    align-self: center; 
+`;
+
+const FeatureCard = styled.View`
+    width:90%;
+    background-color: ${COLORS.CAROLINABLUE};
+    margin-bottom: 10%;
+    align-self: center; 
+    align-items: center;
+    border-radius: 10px;
+`;
+
+const FeatureRow = styled.View`
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-left:5%;
+    padding-top:5%;
+`;
+
+const FeatureH1 = styled.Text`
+    font-size: 18px;
+    font-family: 'Ubuntu_700Bold';
+    line-height: 24px;
+    color: #fff;
+    max-width: 85%;
+    padding-left: 15px; 
+`;
+
+const FeatureH2 = styled.Text`
+    font-size: 16px;
+    font-family: 'Ubuntu_400Regular';
+    line-height: 24px;
+    letter-spacing: 0;
+    color: #fff;
+    max-width: 85%;
+    padding-left: 15px; 
+    padding-top: 20px; 
 `;
 
 
@@ -135,7 +176,7 @@ const ProfileScreenNew = ({ navigation }) => {
                     showsVerticalScrollIndicator={false}>
                     <ProfileText>Check out your personal profile</ProfileText>
                     <DescriptionText>Come back to your profile anytime to change your personal details, check your balance history, set notification settings, or get help and support. </DescriptionText>
-                    <Hr />
+                    <HrTop />
                     <TempCenter style={styles.shadow}>
                         <Container onPress={() => navigation.navigate('NotificationPreferences')}>
                             <Row>
@@ -184,6 +225,19 @@ const ProfileScreenNew = ({ navigation }) => {
                             </Row>
                         </Container>
                     </TempCenter >
+                    
+                    <HrBottom />
+
+                    <FeatureCard style={styles.shadow}>
+                        <FeatureRow>
+                            <Image style={styles.image} source={require('../../assets/Leaderboard.png')} />
+                            <TextCont>
+                                <FeatureH1>Watch Out! New Feature Coming Soon</FeatureH1>
+                                <FeatureH2>You'd like to challenge your friends? Collect points for taking public transit and compete with other. Who's winning?</FeatureH2>
+                            </TextCont>
+                        </FeatureRow>
+                    </FeatureCard>
+
                 </ScrollView>
                 <View style={styles.NavCont}>
                     <NavAccount />
@@ -217,8 +271,8 @@ const styles = StyleSheet.create({
         left: 0,
     },
     image: {
-        width: 60,
-        height: 60,
+        width: 120,
+        height: 220,
     },
     flex: {
         flex: 1,
