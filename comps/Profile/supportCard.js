@@ -144,7 +144,7 @@ const SupportCard = ({ navigation }) => {
                     showsVerticalScrollIndicator={false}>
                     <TopContainer>
                         <DescriptionContainer>
-                            <DescriptionText> When you download CompassPlus, all notifications are disabled automatically. If you want to receive route and/or news updates switch on your notifications. Come here to change your preferences anytime. 🪄 </DescriptionText>
+                            <DescriptionText> Translink is commited to giving you a service that's efficient, safe, reliable, and comfortable. Contact us anytime about anything related to our system or the services we provide.  </DescriptionText>
                         </DescriptionContainer>
                     </TopContainer>
                     <SectionContainer>

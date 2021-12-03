@@ -155,6 +155,8 @@ const HomeCard = ({
                         </Row>
                     </Container>
                 </TempCenter>
+
+                
             )
         }
     }

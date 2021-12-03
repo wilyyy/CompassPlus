@@ -1,27 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-
-import { Button, StyleSheet, Text, View, AppRegistry } from 'react-native';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, TransitionPresets } from '@react-navigation/native-stack';
-import { Asset } from 'expo-asset';
-import { AppLoading } from "expo";
-import * as Font from "expo-font";
-
-import {
-  useFonts,
-  Ubuntu_300Light,
-  Ubuntu_300Light_Italic,
-  Ubuntu_400Regular,
-  Ubuntu_400Regular_Italic,
-  Ubuntu_500Medium,
-  Ubuntu_500Medium_Italic,
-  Ubuntu_700Bold,
-  Ubuntu_700Bold_Italic,
-} from '@expo-google-fonts/ubuntu';
-
-
+import { Asset, useAssets } from 'expo-asset';
+import AppLoading from 'expo-app-loading';
 import axios from 'axios';
 
 //database hosted on digital ocean, check notion for authentication details. php will be hosted on heroku
@@ -53,101 +35,51 @@ import SupportScreen from './screens/Profile/SupportScreen';
 
 const Stack = createNativeStackNavigator();
 
+console.disableYellowBox = true;
+
+
+
 export default function App() {
 
-  console.disableYellowBox = true;
+  const [assets] = useAssets([require('./assets/pickdest_bg.png'), require('./assets/logoWhite.png'), require('./assets/bgCircle.png')]);
 
-  return (
-    <NavigationContainer>
+  if (!assets) {
+    return <AppLoading />;
+  } else {
+    return (
+      <NavigationContainer>
 
 
-      <Stack.Navigator initialRouteName='Authentication'
-        screenOptions={{
-          headerShown: false,
-          animation: 'none',
-        }}
-      >
-        <Stack.Screen name='CreateAccount' component={CreateAccount} />
-        <Stack.Screen name='Onboarding' component={PickDestinations} />
-        <Stack.Screen name='Home' component={HomeScreen} />
-        <Stack.Screen name='MobileCard' component={CompassCardScreen} />
-        <Stack.Screen name='Pay' component={AddPayScreen}
-          options={{ animation: 'none' }}
-        />
-        <Stack.Screen name='Map' component={MapHomeScreen} />
-        <Stack.Screen name='SavedTrips' component={SavedTrips} />
-        <Stack.Screen name='AddSavedLocation' component={AddSavedLocation} />
-        <Stack.Screen name='Account' component={ProfileScreenNew} />
-        <Stack.Screen name='ChangePassword' component={ChangePasswordScreen} />
-        <Stack.Screen name='BalanceHistory' component={BalanceHistoryCard} />
-        <Stack.Screen name='NotificationPreferences' component={NotificationPreferencesScreen} />
-        <Stack.Screen name='SignIn' component={LoginScreenNew} />
-        <Stack.Screen name='WelcomeBack' component={welcomeBackScreen} />
-        <Stack.Screen name='LoginNew' component={loginScreenNew} />
-        <Stack.Screen name='CreateAccountNew' component={createAccountScreenNew} />
-        <Stack.Screen name='Authentication' component={authenticationScreen} />
-        <Stack.Screen name='Benefits' component={BenefitsScreen} />
-        <Stack.Screen name='Support' component={SupportScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+        <Stack.Navigator initialRouteName='Map'
+          screenOptions={{
+            headerShown: false,
+            animation: 'none',
+          }}
+        >
+          <Stack.Screen name='CreateAccount' component={CreateAccount} />
+          <Stack.Screen name='Onboarding' component={PickDestinations} />
+          <Stack.Screen name='Home' component={HomeScreen} />
+          <Stack.Screen name='MobileCard' component={CompassCardScreen} />
+          <Stack.Screen name='Pay' component={AddPayScreen}
+            options={{ animation: 'none' }}
+          />
+          <Stack.Screen name='Map' component={MapHomeScreen} />
+          <Stack.Screen name='SavedTrips' component={SavedTrips} />
+          <Stack.Screen name='AddSavedLocation' component={AddSavedLocation} />
+          <Stack.Screen name='Account' component={ProfileScreenNew} />
+          <Stack.Screen name='ChangePassword' component={ChangePasswordScreen} />
+          <Stack.Screen name='BalanceHistory' component={BalanceHistoryCard} />
+          <Stack.Screen name='NotificationPreferences' component={NotificationPreferencesScreen} />
+          <Stack.Screen name='SignIn' component={LoginScreenNew} />
+          <Stack.Screen name='WelcomeBack' component={welcomeBackScreen} />
+          <Stack.Screen name='LoginNew' component={loginScreenNew} />
+          <Stack.Screen name='CreateAccountNew' component={createAccountScreenNew} />
+          <Stack.Screen name='Authentication' component={authenticationScreen} />
+          <Stack.Screen name='Benefits' component={BenefitsScreen} />
+          <Stack.Screen name='Support' component={SupportScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
-
-
-
-  //   const [assetsLoaded, setAssetsLoaded] = useState(false);
-
-  //   const loadAssetsAsync = async () => {
-  //     const imageAssets = cacheImages([
-  //       require("./assets/pickdest_bg.png"),
-  //       require("./assets/logoWhite.png"),
-  //     ]);
-
-  //   //  const fontAssets = cacheFonts([
-  //   //    { "ubuntu-light": require("./assets/Fonts/Ubuntu/Ubuntu-Light.ttf") },
-  //   //    { "ubuntu-lightItalic": require("./assets/Fonts/Ubuntu/Ubuntu-LightItalic.ttf") },
-  //   //    { "ubuntu-bold": require("./assets/Fonts/Ubuntu/Ubuntu-Bold.ttf") },
-  //   //    { "ubuntu-boldItalic": require("./assets/Fonts/Ubuntu/Ubuntu-BoldItalic.ttf") },
-  //   //    { "ubuntu-medium": require("./assets/Fonts/Ubuntu/Ubuntu-Medium.ttf") },
-  //   //    { "ubuntu-mediumItalic": require("./assets/Fonts/Ubuntu/Ubuntu-MediumItalic.ttf") },
-  //   //    { "ubuntu-regular": require("./assets/Fonts/Ubuntu/Ubuntu-Regular.ttf") },
-  //   //  ]);
-
-  //    await Promise.all([...imageAssets, ]);
-  //  };
-  // const cacheImages=(images) => {
-  //     return images.map((image) => {
-  //       if (typeof image === "string") {
-  //         return Image.prefetch(image);
-  //       } else {
-  //         return Asset.fromModule(image).downloadAsync();
-  //       }
-  //     });
-  //    }
-
-  //  if (!assetsLoaded) {
-  //   return (
-  //     <AppLoading
-  //       startAsync={loadAssetsAsync}
-  //       onFinish={() => setAssetsLoaded(true)}
-  //       onError={console.warn}
-  //     />
-  //   );
-  // }
-
-// function cacheImages(images) {
-//   return images.map((image) => {
-//     if (typeof image === "string") {
-//       return Image.prefetch(image);
-//     } else {
-//       return Asset.fromModule(image).downloadAsync();
-//     }
-//   });
-//  }
-
-//  function cacheFonts(fonts) {
-//   return fonts.map((font) => Font.loadAsync(font));
-//  }
-
-//  AppRegistry.registerComponent("App", () => App);
 
