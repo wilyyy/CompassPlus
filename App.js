@@ -50,7 +50,7 @@ export default function App() {
       <NavigationContainer>
 
 
-        <Stack.Navigator initialRouteName='Map'
+        <Stack.Navigator initialRouteName='Authentication'
           screenOptions={{
             headerShown: false,
             animation: 'none',

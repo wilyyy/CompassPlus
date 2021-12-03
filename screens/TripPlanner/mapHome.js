@@ -7,6 +7,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import MapViewDirections from 'react-native-maps-directions';
 import { Icon } from 'react-native-elements';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { getAuth } from '@firebase/auth';
 
 
 //styles
@@ -62,11 +63,11 @@ const BusMarker = styled.View``;
 const MapHomeScreen = () => {
     const homePlace = {
         description: 'Home',
-        geometry: { location: { lat: 49.246292, lng: -123.116226} },
-      };
+        geometry: { location: { lat: 49.246292, lng: -123.116226 } },
+    };
     const workPlace = {
         description: 'Work',
-        geometry: { location: { lat: 49.246292, lng: -123.116226} },
+        geometry: { location: { lat: 49.246292, lng: -123.116226 } },
     };
     const schoolPlace = {
         description: 'School',
@@ -89,19 +90,19 @@ const MapHomeScreen = () => {
 
     const randomLatitude = Math.floor(Math.random() * 49.248499) + 49.248799;
     const randomLongitude = Math.floor(Math.random() * -123.001375) + -123.001775;
-    
+
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
     const [allLocations, setAllLocations] = useState([]);
-    const GetLocations = async() =>{
+    const GetLocations = async () => {
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         console.log(fb_uid);
-        const result = await axios.get('/saved_locations.php', {params: {fb_uid: fb_uid}});
+        const result = await axios.get('/saved_locations.php', { params: { fb_uid: fb_uid } });
         console.log(result.data);
         setAllLocations(result.data)
     }
     useFocusEffect(
-        React.useCallback(()=>{
+        React.useCallback(() => {
             GetLocations();
         })
     )
@@ -214,7 +215,7 @@ const MapHomeScreen = () => {
                 longitudeDelta: 0.0221,
             }}
             style={styles.map}
-            customMapStyle={MapStyleAub}    
+            customMapStyle={MapStyleAub}
         >
             <Marker
                 coordinate={{
@@ -234,186 +235,186 @@ const MapHomeScreen = () => {
             />
 
             {/* Do bus markers like this cus not smart enough & time constraint 😢😢 */}
-                <Marker 
-                    coordinate={{
-                        latitude: 49.253999,
-                        longitude: -123.000175,
-                    }}
-                    image={require('../../assets/bus_marker.png')}
-                >
-                    <Callout>
-                        <View>
-                            <Text style={{
-                                color: COLORS.SPACECADET,
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>Bus Stop</Text>
-                        </View>
-                    </Callout>
-                </Marker>
+            <Marker
+                coordinate={{
+                    latitude: 49.253999,
+                    longitude: -123.000175,
+                }}
+                image={require('../../assets/bus_marker.png')}
+            >
+                <Callout>
+                    <View>
+                        <Text style={{
+                            color: COLORS.SPACECADET,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>Bus Stop</Text>
+                    </View>
+                </Callout>
+            </Marker>
 
-                <Marker 
-                    coordinate={{
-                        latitude: 49.254099,
-                        longitude: -123.000875,
-                    }}
-                    image={require('../../assets/bus_marker.png')}
-                >
-                    <Callout>
-                        <View>
-                            <Text style={{
-                                color: COLORS.SPACECADET,
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>Bus Stop</Text>
-                        </View>
-                    </Callout>
-                </Marker>
+            <Marker
+                coordinate={{
+                    latitude: 49.254099,
+                    longitude: -123.000875,
+                }}
+                image={require('../../assets/bus_marker.png')}
+            >
+                <Callout>
+                    <View>
+                        <Text style={{
+                            color: COLORS.SPACECADET,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>Bus Stop</Text>
+                    </View>
+                </Callout>
+            </Marker>
 
-                <Marker 
-                    coordinate={{
-                        latitude: 49.228799,
-                        longitude: -123.021775,
-                    }}
-                    image={require('../../assets/bus_marker.png')}
-                >
-                    <Callout>
-                        <View>
-                            <Text style={{
-                                color: COLORS.SPACECADET,
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>Bus Stop</Text>
-                        </View>
-                    </Callout>
-                </Marker>
+            <Marker
+                coordinate={{
+                    latitude: 49.228799,
+                    longitude: -123.021775,
+                }}
+                image={require('../../assets/bus_marker.png')}
+            >
+                <Callout>
+                    <View>
+                        <Text style={{
+                            color: COLORS.SPACECADET,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>Bus Stop</Text>
+                    </View>
+                </Callout>
+            </Marker>
 
-                <Marker 
-                    coordinate={{
-                        latitude: 49.229799,
-                        longitude: -123.031775,
-                    }}
-                    image={require('../../assets/bus_marker.png')}
-                >
-                    <Callout>
-                        <View>
-                            <Text style={{
-                                color: COLORS.SPACECADET,
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>Bus Stop</Text>
-                        </View>
-                    </Callout>
-                </Marker>
+            <Marker
+                coordinate={{
+                    latitude: 49.229799,
+                    longitude: -123.031775,
+                }}
+                image={require('../../assets/bus_marker.png')}
+            >
+                <Callout>
+                    <View>
+                        <Text style={{
+                            color: COLORS.SPACECADET,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>Bus Stop</Text>
+                    </View>
+                </Callout>
+            </Marker>
 
-                <Marker 
-                    coordinate={{
-                        latitude: 49.263799,
-                        longitude: -123.011775,
-                    }}
-                    image={require('../../assets/bus_marker.png')}
-                >
-                    <Callout>
-                        <View>
-                            <Text style={{
-                                color: COLORS.SPACECADET,
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>Bus Stop</Text>
-                        </View>
-                    </Callout>
-                </Marker>
+            <Marker
+                coordinate={{
+                    latitude: 49.263799,
+                    longitude: -123.011775,
+                }}
+                image={require('../../assets/bus_marker.png')}
+            >
+                <Callout>
+                    <View>
+                        <Text style={{
+                            color: COLORS.SPACECADET,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>Bus Stop</Text>
+                    </View>
+                </Callout>
+            </Marker>
 
-                <Marker 
-                    coordinate={{
-                        latitude: 49.269799,
-                        longitude: -123.013775,
-                    }}
-                    image={require('../../assets/bus_marker.png')}
-                >
-                    <Callout>
-                        <View>
-                            <Text style={{
-                                color: COLORS.SPACECADET,
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>Bus Stop</Text>
-                        </View>
-                    </Callout>
-                </Marker>
+            <Marker
+                coordinate={{
+                    latitude: 49.269799,
+                    longitude: -123.013775,
+                }}
+                image={require('../../assets/bus_marker.png')}
+            >
+                <Callout>
+                    <View>
+                        <Text style={{
+                            color: COLORS.SPACECADET,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>Bus Stop</Text>
+                    </View>
+                </Callout>
+            </Marker>
 
-                <Marker 
-                    coordinate={{
-                        latitude: 49.239799,
-                        longitude: -123.013775,
-                    }}
-                    image={require('../../assets/bus_marker.png')}
-                >
-                    <Callout>
-                        <View>
-                            <Text style={{
-                                color: COLORS.SPACECADET,
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>Bus Stop</Text>
-                        </View>
-                    </Callout>
-                </Marker>
-                
-                <Marker 
-                    coordinate={{
-                        latitude: 49.249799,
-                        longitude: -123.023775,
-                    }}
-                    image={require('../../assets/bus_marker.png')}
-                >
-                    <Callout>
-                        <View>
-                            <Text style={{
-                                color: COLORS.SPACECADET,
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>Bus Stop</Text>
-                        </View>
-                    </Callout>
-                </Marker>
-                                
-                <Marker 
-                    coordinate={{
-                        latitude: 49.239799,
-                        longitude: -123.000705,
-                    }}
-                    image={require('../../assets/bus_marker.png')}
-                >
-                    <Callout>
-                        <View>
-                            <Text style={{
-                                color: COLORS.SPACECADET,
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>Bus Stop</Text>
-                        </View>
-                    </Callout>
-                </Marker>
+            <Marker
+                coordinate={{
+                    latitude: 49.239799,
+                    longitude: -123.013775,
+                }}
+                image={require('../../assets/bus_marker.png')}
+            >
+                <Callout>
+                    <View>
+                        <Text style={{
+                            color: COLORS.SPACECADET,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>Bus Stop</Text>
+                    </View>
+                </Callout>
+            </Marker>
 
-                                                
-                <Marker 
-                    coordinate={{
-                        latitude: 49.229799,
-                        longitude: -122.99999,
-                    }}
-                    image={require('../../assets/bus_marker.png')}
-                >
-                    <Callout>
-                        <View>
-                            <Text style={{
-                                color: COLORS.SPACECADET,
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>Bus Stop</Text>
-                        </View>
-                    </Callout>
-                </Marker>
+            <Marker
+                coordinate={{
+                    latitude: 49.249799,
+                    longitude: -123.023775,
+                }}
+                image={require('../../assets/bus_marker.png')}
+            >
+                <Callout>
+                    <View>
+                        <Text style={{
+                            color: COLORS.SPACECADET,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>Bus Stop</Text>
+                    </View>
+                </Callout>
+            </Marker>
+
+            <Marker
+                coordinate={{
+                    latitude: 49.239799,
+                    longitude: -123.000705,
+                }}
+                image={require('../../assets/bus_marker.png')}
+            >
+                <Callout>
+                    <View>
+                        <Text style={{
+                            color: COLORS.SPACECADET,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>Bus Stop</Text>
+                    </View>
+                </Callout>
+            </Marker>
+
+
+            <Marker
+                coordinate={{
+                    latitude: 49.229799,
+                    longitude: -122.99999,
+                }}
+                image={require('../../assets/bus_marker.png')}
+            >
+                <Callout>
+                    <View>
+                        <Text style={{
+                            color: COLORS.SPACECADET,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>Bus Stop</Text>
+                    </View>
+                </Callout>
+            </Marker>
             {/* Do bus markers like this cus not smart enough & time constraint 😢😢 */}
 
             <MapViewDirections

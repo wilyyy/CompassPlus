@@ -102,20 +102,20 @@ const HomeScreen = ({
     const auth = getAuth();
     const googleUsername = auth.currentUser.displayName;
 
-    
+
 
     // Get this to work once post users works
-    const GetUsers = async() =>{
+    const GetUsers = async () => {
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         console.log(fb_uid);
-        const result = await axios.get('/users.php', {params: {fb_uid: fb_uid}});
+        const result = await axios.get('/users.php', { params: { fb_uid: fb_uid } });
         console.log(result.data);
         setFirstName(result.data.first_name);
     }
 
-    
-    const AddCompassCardToDb = async()=>{
+
+    const AddCompassCardToDb = async () => {
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         await axios.post('/compass_card.php', {
@@ -126,32 +126,32 @@ const HomeScreen = ({
             cvn: 'asdasdasddasd'
         });
         setCompCard(true);
-        
+
     }
 
     //Get all Compass Cards based on Fb UID
     const [compCard, setCompCard] = useState(false);
     const [compBalance, setCompBalance] = useState(34.20);
-    
+
     const GetCompassCard = async () => {
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         const result = await axios.get('/compass_card.php', { params: { fb_uid: fb_uid } });
         setCompBalance(result.data[0].balance);
-        if (compBalance > 0){
+        if (compBalance > 0) {
             setLinkedCard("flex");
             setPassiveCard("none");
         }
     }
 
     useFocusEffect(
-        React.useCallback(()=>{
+        React.useCallback(() => {
             GetUsers();
         }, [])
     )
 
     useFocusEffect(
-        React.useCallback(()=>{
+        React.useCallback(() => {
             GetCompassCard();
         })
     )
@@ -219,11 +219,11 @@ const HomeScreen = ({
                 onClosePress={CloseModal}
                 onDbPress={AddCompassCardToDb}
             />
-            <HomeCompassCard 
-                onButtonPress={OpenModal} 
-                tapAnimation={tapAnimation} 
+            <HomeCompassCard
+                onButtonPress={OpenModal}
+                tapAnimation={tapAnimation}
                 compass_linked={linkedCard}
-                username={googleUsername}
+                username='Zoë'
                 activeDisplay={linkedCard}
                 passiveDisplay={passiveCard}
                 balance={compBalance}

@@ -144,7 +144,7 @@ const FeatureH2 = styled.Text`
 
 const ProfileScreenNew = ({ navigation }) => {
     const auth = getAuth();
-    const googleUsername = auth.currentUser.displayName;
+    // const googleUsername = auth.currentUser.displayName;
     const email = auth.currentUser.email;
 
     navigation = useNavigation()
@@ -166,8 +166,8 @@ const ProfileScreenNew = ({ navigation }) => {
         return (
             <View style={styles.test}>
                 <BgCircle />
-                <ProfileCard 
-                    displayName={googleUsername}
+                <ProfileCard
+                    displayName="Zoë"
                     displayEmail={email}
                 />
                 <ScrollView
@@ -225,7 +225,7 @@ const ProfileScreenNew = ({ navigation }) => {
                             </Row>
                         </Container>
                     </TempCenter >
-                    
+
                     <HrBottom />
 
                     <FeatureCard style={styles.shadow}>
