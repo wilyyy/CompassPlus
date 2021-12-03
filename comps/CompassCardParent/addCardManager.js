@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Image, Pressable, StyleSheet, Switch, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { ThemeProvider, Icon } from 'react-native-elements';
 import styled from 'styled-components/native';
-import CountDown from 'react-native-countdown-component';
+import CountDown from '../../constants/Countdown';
 import { COLORS } from "../../constants/styles";
 import { width } from 'dom-helpers';
 import { TextInput } from 'react-native-gesture-handler';
@@ -117,7 +117,7 @@ export default function AddCardManager({
     countdown1 = '90mins...',
     countdown2 = '55mins...',
     countdown3 = '10mins...',
-    ticketType1 = 'Ticket 1',
+
     ticketType2 = 'Ticket 2',
     ticketType3 = 'Ticket 3',
     name1 = 'Zoë',
@@ -273,10 +273,13 @@ export default function AddCardManager({
     const hours24 = 86400000;
     const minutes90 = 5400;
 
+    const [ticketType1, setTicketType1] = useState("Ticket 1");
 
     useEffect(() => {
-        console.log(tempTimer)
-    }, ['change to', tempTimer])
+        console.log("temp timer", tempTimer)
+        setTicketType1('Day Pass');
+
+    }, [tempTimer])
 
 
     return (

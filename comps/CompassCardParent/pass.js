@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
 import { Icon } from 'react-native-elements';
 import LottieView from 'lottie-react-native';
-import CountDown from 'react-native-countdown-component';
+import CountDown from '../../constants/Countdown';
 import axios from 'axios';
 import { useNavigation, useFocusEffect } from '@react-navigation/core';
 

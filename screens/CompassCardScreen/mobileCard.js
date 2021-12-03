@@ -329,10 +329,10 @@ export default function CompassCardScreen({ }) {
         // console.log('lottie tap check');
         Haptics.selectionAsync();
         setLottieAnimTap(true);
-        setTimeout(function () { setLottieAnimTap(false); }, 5000);
-        setTimeout(function () { setLottieAnim(true); }, 5100);
-        setTimeout(function () { setLottieAnim(false); }, 6500);
-        setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 5100);
+        setTimeout(function () { setLottieAnimTap(false); }, 3000);
+        setTimeout(function () { setLottieAnim(true); }, 3100);
+        setTimeout(function () { setLottieAnim(false); }, 4500);
+        setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 3100);
 
 
     }

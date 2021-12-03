@@ -193,10 +193,12 @@ export default function AddFundsTabTicket({
         }, [triggerUpdate])
     )
 
-    // const associateAuth = getAuth();
-    // const user_uid = associateAuth.currentUser.uid;
+
     const AddToBalance = async (amount, fb_uid) => {
-        await axios.patch('/compass_card.php', { data: { amount: amount, fb_uid: user_uid } });
+        const associateAuth = getAuth();
+        const user_uid = associateAuth.currentUser.uid;
+        console.log(amount, user_uid)
+        await axios.patch('/compass_card.php', { amount: amount, fb_uid: user_uid });
         console.log("HI IM AN ASYNC FUNCTION!!");
         console.log(updateBalance, user_uid);
     }
@@ -304,7 +306,7 @@ export default function AddFundsTabTicket({
 
 
 
-    function changeButton() {
+    async function changeButton() {
         // console.log('confPay =', confPay)
         setConfPay(2);
         if (confPay == 1) {
@@ -320,6 +322,7 @@ export default function AddFundsTabTicket({
         }
 
         if (confPay == 3) {
+            await AddToBalance(loadTicket)
             AddFundsConfirm();
             setButtonColour(COLORS.CAROLINABLUE);
             setPayText('Add Funds');
@@ -343,7 +346,7 @@ export default function AddFundsTabTicket({
                 />
             </Animated.View>
             <Notch />
-            <Title>Reload Stored Value</Title>
+            <Title> d Stored Value</Title>
             <Divider />
 
             {/* TO this ticket: */}
