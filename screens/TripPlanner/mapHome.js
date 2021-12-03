@@ -222,8 +222,8 @@ const MapHomeScreen = () => {
             initialRegion={{
                 latitude: 49.248499,
                 longitude: -123.001375,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
+                latitudeDelta: 0.0222,
+                longitudeDelta: 0.0221,
             }}
             style={styles.map}
             customMapStyle={MapStyleAub}
