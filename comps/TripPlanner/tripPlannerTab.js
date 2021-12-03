@@ -29,7 +29,6 @@ const Container = styled.View`
     height: 165px;
     top:27px;
     position:absolute;
-
 `;
 
 const TabCont = styled.View`
@@ -37,7 +36,6 @@ const TabCont = styled.View`
     align-items: flex-end;
     height: 47px;
     width: 100%;
-
 `;
 
 const BigTab = styled.TouchableHighlight`
@@ -77,7 +75,6 @@ const Display = styled.View`
     height: 115px;
     align-items: center;
     background-color: ${props => props.bg_color};
-
 `;
 
 const TripPlannerTab = ({
@@ -134,44 +131,34 @@ const TripPlannerTab = ({
                             showsHorizontalScrollIndicator={false}
                             alwaysBounceHorizontal
                         >
-                            <SavedRidesIcon
-                                icon_color='#fff'
+                             <SavedRidesIcon
                                 text_color='#fff'
-                                ride_text="Lonsdale Quay"
+                                icon_color='#fff'
+                                icon_type="bus"
+                                bus_text="22"
+                                ride_text="UBC"
+                            />
+                            <SavedRidesIcon
+                                text_color='#fff'
+                                icon_color='#fff'
+                                icon_type="bus"
+                                bus_text="130"
+                                ride_text="Metrotown"
                             />
                             <SavedRidesIcon
                                 text_color='#fff'
                                 icon_color='#fff'
                                 icon_type="train"
-                                ride_text="Canada Line"
+                                ride_text="Expo Line"
                             />
                             <SavedRidesIcon
                                 text_color='#fff'
                                 icon_color='#fff'
-                                icon_type="bus"
-                                bus_text="250"
-                                ride_text="Downtown"
+                                icon_type="train"
+                                ride_text="Millenium Line"
                             />
-                            <SavedRidesIcon
-                                text_color='#fff'
-                                icon_color='#fff'
-                                icon_type="bus"
-                                bus_text="05"
-                                ride_text="Robson"
-                            />
-                            <SavedRidesIcon
-                                text_color='#fff'
-                                icon_color='#fff'
-                                icon_type="seabus"
-                                ride_text="Waterfront"
-                            />
-                            <SavedRidesIcon
-                                text_color='#fff'
-                                icon_color='#fff'
-                                icon_type="bus"
-                                bus_text="05"
-                                ride_text="Cardero"
-                            />
+                            
+                            
                         </ScrollView>
                     </Display>
                 </Container>
@@ -209,22 +196,23 @@ const TripPlannerTab = ({
                             alwaysBounceHorizontal
                         >
                             <SavedRidesIcon
-                                icon_color='#fff'
                                 text_color='#fff'
-                                ride_text="Lonsdale Quay"
+                                icon_color='#fff'
+                                icon_type="bus"
+                                bus_text="05"
+                                ride_text="Dunsmuir"
                             />
                             <SavedRidesIcon
                                 text_color='#fff'
                                 icon_color='#fff'
                                 icon_type="train"
-                                ride_text="Yaletown"
+                                ride_text="Expo Line"
                             />
                             <SavedRidesIcon
                                 text_color='#fff'
                                 icon_color='#fff'
-                                icon_type="bus"
-                                bus_text="R2"
-                                ride_text="Lonsdale Quay"
+                                icon_type="train"
+                                ride_text="Millenium Line"
                             />
                             <SavedRidesIcon
                                 text_color='#fff'

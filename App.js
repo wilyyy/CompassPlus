@@ -48,7 +48,7 @@ export default function App() {
     <NavigationContainer>
 
 
-      <Stack.Navigator initialRouteName='Authentication'
+      <Stack.Navigator initialRouteName='Map'
         screenOptions={{
           headerShown: false,
           animation: 'none',

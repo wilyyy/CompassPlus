@@ -254,6 +254,24 @@ const MapHomeScreen = () => {
 
                 <Marker 
                     coordinate={{
+                        latitude: 49.254099,
+                        longitude: -123.000875,
+                    }}
+                    image={require('../../assets/bus_marker.png')}
+                >
+                    <Callout>
+                        <View>
+                            <Text style={{
+                                color: COLORS.SPACECADET,
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}>Bus Stop</Text>
+                        </View>
+                    </Callout>
+                </Marker>
+
+                <Marker 
+                    coordinate={{
                         latitude: 49.228799,
                         longitude: -123.021775,
                     }}
