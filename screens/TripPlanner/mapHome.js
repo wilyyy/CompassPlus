@@ -6,7 +6,7 @@ import MapView, { Callout, Marker } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import MapViewDirections from 'react-native-maps-directions';
 import { Icon } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 
 //styles
@@ -53,47 +53,26 @@ const BotSearchBar = styled.View`
     left: 5%;
 `;
 
-//Marker Fake Data
-//random number between 49 and -123
 
-// export const NearbyBusMarkers =  [
-//     {
-//         latitude: randomLatitude,
-//         longitude: randomLongitude,
-//         bus_stop: '025 Brentwood'
-//     },
-//     {
-//         latitude: randomLatitude,
-//         longitude: randomLongitude,
-//         bus_stop: '025 Brentwood'
-//     },
-//     {
-//         latitude: randomLatitude,
-//         longitude: randomLongitude,
-//         bus_stop: '025 Brentwood'
-//     },
-//     {
-//         latitude: randomLatitude,
-//         longitude: randomLongitude,
-//         bus_stop: '025 Brentwood'
-//     },
-//     {
-//         latitude: randomLatitude,
-//         longitude: randomLongitude,
-//         bus_stop: '025 Brentwood'
-//     },
-//     {
-//         latitude: randomLatitude,
-//         longitude: randomLongitude,
-//         bus_stop: '025 Brentwood'
-//     },
-// ];
 
 const BusMarker = styled.View``;
 
 
 //search bar
 const MapHomeScreen = () => {
+    const homePlace = {
+        description: 'Home',
+        geometry: { location: { lat: 49.246292, lng: -123.116226} },
+      };
+    const workPlace = {
+        description: 'Work',
+        geometry: { location: { lat: 49.246292, lng: -123.116226} },
+    };
+    const schoolPlace = {
+        description: 'School',
+        geometry: { location: { lat: 49.246292, lng: -123.116226 } },
+    };
+
     const [region, setRegion] = useState({
         latitude: 49.246292,
         longitude: -123.116226,
@@ -112,13 +91,20 @@ const MapHomeScreen = () => {
     const randomLongitude = Math.floor(Math.random() * -123.001375) + -123.001775;
     
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+    const [allLocations, setAllLocations] = useState([]);
     const GetLocations = async() =>{
         const associateAuth = getAuth();
         const fb_uid = associateAuth.currentUser.uid;
         console.log(fb_uid);
         const result = await axios.get('/saved_locations.php', {params: {fb_uid: fb_uid}});
         console.log(result.data);
+        setAllLocations(result.data)
     }
+    useFocusEffect(
+        React.useCallback(()=>{
+            GetLocations();
+        })
+    )
     /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
 
     const [markerDisplay, setMarkerDisplay] = useState(0);
@@ -159,6 +145,7 @@ const MapHomeScreen = () => {
                     radius: 40000,
                     location: `${region.latitude}, ${region.longitude}`
                 }}
+                predefinedPlaces={[homePlace, workPlace, schoolPlace]}
             />
         </TopSearchBar>
         <BotSearchBar>
@@ -189,6 +176,7 @@ const MapHomeScreen = () => {
                     location: `${endRegion.latitude}, ${endRegion.longitude}`
 
                 }}
+                predefinedPlaces={[homePlace, workPlace, schoolPlace]}
             />
         </BotSearchBar>
         <TouchableOpacity
@@ -248,8 +236,8 @@ const MapHomeScreen = () => {
             {/* Do bus markers like this cus not smart enough & time constraint 😢😢 */}
                 <Marker 
                     coordinate={{
-                        latitude: 49.248499,
-                        longitude: -123.001375,
+                        latitude: 49.253999,
+                        longitude: -123.000175,
                     }}
                     image={require('../../assets/bus_marker.png')}
                 >
