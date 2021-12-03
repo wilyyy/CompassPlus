@@ -124,7 +124,7 @@ const SPRING_CONFIG = {
 
 
 
-export default function CompassCardScreen() {
+export default function CompassCardScreen({ }) {
     const dimensions = useWindowDimensions();
     navigation = useNavigation();
 
@@ -305,7 +305,7 @@ export default function CompassCardScreen() {
     // i close tab!
     function confirmTempTicket(passPaymentType, zoneAmount, zoneType) {
         topTemp.value = withSpring(dimensions.height + 300);
-        console.log(zoneType);
+        // console.log(zoneType);
     }
 
     // ---------- TICKET Temp ANIMATIONS END ----------
@@ -314,7 +314,7 @@ export default function CompassCardScreen() {
     const [lottieAnim, setLottieAnim] = useState(false);
     const [lottieAnimTap, setLottieAnimTap] = useState(false);
     function paymentAnimation() {
-        console.log('lottiecheck');
+        // console.log('lottiecheck');
         Haptics.selectionAsync();
         setLottieAnim(true);
         setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 500);
@@ -322,14 +322,16 @@ export default function CompassCardScreen() {
 
     }
 
-    function tapAnimation() {
-        console.log('lottie tap check');
+    function tapAnimation(journeyTimer) {
+        // console.log('lottie tap check');
         Haptics.selectionAsync();
         setLottieAnimTap(true);
         setTimeout(function () { setLottieAnimTap(false); }, 5000);
         setTimeout(function () { setLottieAnim(true); }, 5100);
         setTimeout(function () { setLottieAnim(false); }, 6500);
         setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 5100);
+        // setSBTimer(540);
+        // journeyTimer = sBTimer;
 
     }
 
@@ -340,6 +342,19 @@ export default function CompassCardScreen() {
 
 
     // ====== 🌟🌟🌟🌟🌟🌟 ANIMATIONS END 🌟🌟🌟🌟🌟🌟 ======
+
+
+    const [passTimer, setPassTimer] = useState(0);
+    // const [sBTimer, setSBTimer] = useState(0);
+
+
+
+    function setPass() {
+        setPassTimer(2419200);
+        console.log("time started: ", passTimer)
+    }
+
+
 
     if (!fontsLoaded) {
         return <AppLoading />;
@@ -367,6 +382,9 @@ export default function CompassCardScreen() {
                         ticketAutoReload={handleTicketAuto}
                         addTempTicket={handleTempTicket}
                         paymentAnimation={tapAnimation}
+                        setMonthTimer={passTimer}
+                        setJourneyTimer={storedTimer}
+
                     />
 
                 </Page>
@@ -381,6 +399,8 @@ export default function CompassCardScreen() {
                             month='December'
                             AddFundsConfirm={ReloadPass}
                             startAnimation={paymentAnimation}
+                            StartMonthTimer={setPass}
+
                         />
                     </Animated.View>
                 </PanGestureHandler>
@@ -396,6 +416,7 @@ export default function CompassCardScreen() {
                             ticketBalance="$4.05" //this will come from the database
                             AddFundsConfirm={ReloadTicket}
                             startAnimation={paymentAnimation}
+                            startJourneyTimer={setSBTimer}
                         />
                     </Animated.View>
                 </PanGestureHandler>

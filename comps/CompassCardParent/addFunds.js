@@ -144,6 +144,8 @@ export default function AddFundsTabPass({
     AddFundsConfirm = () => { },
     startAnimation = () => { },
 
+    StartMonthTimer = () => { },
+
 }) {
 
 
@@ -197,7 +199,7 @@ export default function AddFundsTabPass({
 
 
     function closeModalZone(selected) {
-        console.log(selected.id);
+        // console.log(selected.id);
         if (selected.id == 1) {
             setZone(1);
         }
@@ -224,7 +226,7 @@ export default function AddFundsTabPass({
     }
 
     function closeModalPay(selected) {
-        console.log('payment', selected.id);
+        // console.log('payment', selected.id);
         if (selected.id == 1) {
             setPayment(1);
         }
@@ -263,7 +265,7 @@ export default function AddFundsTabPass({
 
 
     function changeButton() {
-        console.log('confPay =', confPay)
+        // console.log('confPay =', confPay)
 
         if (confPay == 1) {
             setButtonColour(COLORS.CAROLINABLUE);
@@ -283,6 +285,8 @@ export default function AddFundsTabPass({
             setPayText('Purchase');
             setConfPay(2);
             startAnimation();
+            StartMonthTimer();
+            // console.log("default ", defaultTimerOne);
 
         }
     }

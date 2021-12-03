@@ -309,7 +309,9 @@ export default function Pass({
     makeDefault = false,
     triggerDefault = () => { },
     onAutoReloadPress = () => { },
-    paymentAnimation = () => { },
+    paymentAnimation = (journeyTimer) => { },
+    monthlyTimer,
+
 
 }) {
 
@@ -392,8 +394,7 @@ export default function Pass({
                         <Text style={styles.buttonText}>Active Trip:</Text>
 
                         <CountDown
-                            until={minutes90}
-                            onFinish={() => alert('dlt')}
+                            until={journeyTimer}
                             size={15}
                             timeToShow={['H', 'M', 'S']}
                             timeLabels={{ h: null, m: null, s: null }}
@@ -409,8 +410,7 @@ export default function Pass({
                         <Text style={styles.buttonText}>Pass:</Text>
 
                         <CountDown
-                            until={month}
-                            onFinish={() => alert('dlt')}
+                            until={monthlyTimer}
                             size={15}
                             timeToShow={['D', 'H', 'M', 'S']}
                             timeLabels={{ d: null, h: null, m: null, s: null }}
