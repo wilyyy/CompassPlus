@@ -1,8 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from "styled-components/native";
-import { Tab, ThemeProvider, Icon } from 'react-native-elements';
-import { Dimensions, ImageBackground, Pressable, SafeAreaView, SafeViewArea, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, useWindowDimensions, View, } from 'react-native';
+import { ThemeProvider } from 'react-native-elements';
+import { Dimensions, StyleSheet, Text, useWindowDimensions, View, } from 'react-native';
 import {
     useFonts,
     Ubuntu_300Light,
@@ -15,7 +14,6 @@ import {
     Ubuntu_700Bold_Italic,
 } from '@expo-google-fonts/ubuntu';
 import AppLoading from 'expo-app-loading';
-import LottieView from 'lottie-react-native';
 import * as Haptics from 'expo-haptics';
 
 
@@ -27,9 +25,6 @@ import { getAuth } from '@firebase/auth';
 
 
 import { COLORS } from '../../constants/styles.js';
-
-import MobileCard from '../../comps/CompassCardParent/pass.js';
-import { Button } from 'react-native-elements/dist/buttons/Button';
 import NavCard from '../../comps/NavBar/NavCard.js';
 import BgCircle from '../../comps/Global/BgCircleScreens';
 
@@ -42,15 +37,13 @@ import Animated, {
     useAnimatedStyle,
     withSpring,
 } from 'react-native-reanimated';
-import AddCardManager from '../../comps/CompassCardParent/addCardManager.js';
 import CardSwipeTest from '../../comps/CompassCardParent/cardsInSwipe';
 import AddFundsTabPass from '../../comps/CompassCardParent/addFunds.js';
 import AddFundsTabTicket from '../../comps/CompassCardParent/addFundsTicket.js';
 import AutoReloadTab from '../../comps/CompassCardParent/autoReload.js';
-import AddPaymentType from '../../comps/CompassCardParent/payment.js';
 import TempTicket from '../../comps/CompassCardParent/tempTicket.js';
-import PaymentAnimOverlay from '../../comps/CompassCardParent/PayAnimOverlay.js';
-import TapAnimOverlay from '../../comps/CompassCardParent/TapAnimOverlay.js';
+import PaymentAnimOverlay from '../../comps/CompassCardParent/payAnimOverlay.js';
+import TapAnimOverlay from '../../comps/CompassCardParent/tapAnimOverlay.js';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -62,18 +55,16 @@ const Page = styled.View`
     height: ${windowHeight}px;
     background-color: ${COLORS.ALICEBLUE};
     align-items: center;
-
 `;
+
 const TopContainer = styled.View`
     top: 15%;
     width: 90%;
     height: 50px; 
     justify-content: space-between;
     flex-direction: row;
-
-    /* border-width: 2px;
-    border-color: lightgrey; */
 `;
+
 const Container = styled.ScrollView`
     position: relative;
     width: 90%;
@@ -82,22 +73,8 @@ const Container = styled.ScrollView`
     align-items: center;
     margin-top:30px;
     flex-direction: row;
-
-    /* border-width: 2px;
-    border-color: lightgrey; */
 `;
-const AddPayment = styled.Pressable`
-    font-size: 16px;
-    font-weight: 700;
-    align-self: flex-end;
-    height: 100%;
-    flex-direction: row;
-    top:10px;
 
-    /* border-width: 2px;
-    border-color: red; */
-
-`;
 const H1 = styled.Text`
     font-size: 24px;
     color: #fff;
@@ -105,14 +82,11 @@ const H1 = styled.Text`
     margin-right:auto;
     align-self: flex-start;
     font-family: 'Ubuntu_700Bold';
-
-    /* border-width: 2px;
-    border-color: blue; */
 `;
+
 const H2 = styled.Text`
     font-size: 24px;
     color: #fff;
-
 `;
 
 //ANIMATIONS
@@ -124,8 +98,6 @@ const SPRING_CONFIG = {
     restSpeedThreshold: 0.1,
     stiffness: 500,
 };
-
-
 
 export default function CompassCardScreen({ }) {
     const dimensions = useWindowDimensions();
@@ -176,8 +148,6 @@ export default function CompassCardScreen({ }) {
         topPass.value = withSpring(dimensions.height + 300);
     }
     function handlePassReload() {
-        // on pass button confirm reload
-        //tab animation
         topPass.value = withSpring(
             dimensions.height / 2.25,
             SPRING_CONFIG
@@ -212,11 +182,9 @@ export default function CompassCardScreen({ }) {
         }
     });
     function ReloadTicket() {
-        // need to set states to save new balances
         topTicket.value = withSpring(dimensions.height + 300);
     }
     function handleTicketReload() {
-        //on ticket button confirm reload
         topTicket.value = withSpring(
             dimensions.height / 2.25,
             SPRING_CONFIG
@@ -255,7 +223,6 @@ export default function CompassCardScreen({ }) {
     }
 
     function handleTicketAuto() {
-        //on ticket button confirm reload
         topAutoTicket.value = withSpring(
             dimensions.height / 2.25,
             SPRING_CONFIG
@@ -317,24 +284,19 @@ export default function CompassCardScreen({ }) {
     const [lottieAnim, setLottieAnim] = useState(false);
     const [lottieAnimTap, setLottieAnimTap] = useState(false);
     function paymentAnimation() {
-        // console.log('lottiecheck');
         Haptics.selectionAsync();
         setLottieAnim(true);
         setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 500);
         setTimeout(function () { setLottieAnim(false); }, 1200);
-
     }
 
     function tapAnimation() {
-        // console.log('lottie tap check');
         Haptics.selectionAsync();
         setLottieAnimTap(true);
         setTimeout(function () { setLottieAnimTap(false); }, 3000);
         setTimeout(function () { setLottieAnim(true); }, 3100);
         setTimeout(function () { setLottieAnim(false); }, 4500);
         setTimeout(function () { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success) }, 3100);
-
-
     }
 
     function pressOutAnim() {
@@ -362,9 +324,7 @@ export default function CompassCardScreen({ }) {
     }
 
 
-
-
-    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF  🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+    /* 🪓🪓🪓 AXIOS STUFF  🪓🪓🪓 */
 
     //Get Comp Card info and set balance to w/e is on database (default $0)
     const [compBalance, setCompBalance] = useState(null);
@@ -377,21 +337,12 @@ export default function CompassCardScreen({ }) {
         console.log(result.data[0].balance);
         setCompBalance(result.data[0].balance);
     }
-
-    // const [updateBalance, setUpdateBalance] = useState(null);
-
-    // const AddToBalance = async (amount, fb_uid) => {
-    //     const associateAuth = getAuth();
-    //     const fb_uid = associateAuth.currentUser.uid;
-    //     await axios.patch('/compass_card.php', { data: { amount: amount, fb_uid : fb_uid } });
-    // }
-
     useFocusEffect(
         React.useCallback(() => {
             GetCompassCard();
         })
     )
-    /* 🪓🪓🪓🪓🪓🪓🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓🪓🪓🪓🪓🪓🪓 */
+    /* 🪓🪓🪓 AXIOS STUFF END 🪓🪓🪓 */
 
     if (!fontsLoaded) {
         return <AppLoading />;
@@ -441,7 +392,6 @@ export default function CompassCardScreen({ }) {
                         />
                     </Animated.View>
                 </PanGestureHandler>
-
 
 
                 {/* RELOAD ticket ANIMATION TAB  */}
@@ -510,9 +460,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'Ubuntu_400Regular'
     },
-    scrollView: {
-
-    },
     NavCont: {
         position: 'absolute',
         bottom: 0,
@@ -566,12 +513,3 @@ const styles = StyleSheet.create({
         height: '100%',
     },
 });
-
-
-
-{/* 
-            <Animated.View style={[styles.overlayPay, openPayScreen]}>
-                <AddPaymentType
-                    AddPaymentType={closePayScreen}
-                />
-            </Animated.View> */}

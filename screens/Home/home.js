@@ -19,8 +19,8 @@ import NavHome from '../../comps/NavBar/NavHome.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BgCircle from '../../comps/Global/BgCircleScreens.js';
-import TapAnimOverlay from '../../comps/CompassCardParent/TapAnimOverlay.js';
-import PaymentAnimOverlay from '../../comps/CompassCardParent/PayAnimOverlay.js';
+import TapAnimOverlay from '../../comps/CompassCardParent/tapAnimOverlay.js';
+import PaymentAnimOverlay from '../../comps/CompassCardParent/payAnimOverlay.js';
 
 import {
     useFonts,
