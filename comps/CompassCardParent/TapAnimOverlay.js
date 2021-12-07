@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, View, Pressable } from 'react-native';
+import React, { useRef } from 'react';
+import { StyleSheet, Pressable } from 'react-native';
 
 import LottieView from 'lottie-react-native';
 
@@ -43,8 +43,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'rgba(0,0,0,0.50)',
         position: 'absolute',
-
-
     },
     lottiePay: {
         width: 400,

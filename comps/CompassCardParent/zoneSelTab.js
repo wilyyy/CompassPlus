@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 
 
@@ -18,7 +18,6 @@ const Item = ({ item, onPress, onPressOut, backgroundColor, textColor }) => (
 );
 
 export const ZonesTab = ({
-    //need to pass item.id
     closeZone = () => { },
 
 }) => {

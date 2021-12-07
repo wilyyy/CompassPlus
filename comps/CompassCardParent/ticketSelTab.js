@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const Amount = [
     { title: '$10.00', id: '1' },
@@ -61,11 +61,8 @@ const styles = StyleSheet.create({
         height: 'auto',
         backgroundColor: '#fff',
         borderRadius: 15,
-        // padding: 30,
         overflow: 'hidden',
         alignSelf: 'center',
-        // borderColor: 'red',
-        // borderWidth: 2,
     },
     title: {
         fontSize: 18,

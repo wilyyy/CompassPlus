@@ -1,14 +1,11 @@
 
 import React, { useState } from 'react';
-import { Animated, Button, Image, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, StyleSheet, Switch, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { AntDesign } from '@expo/vector-icons';
 import { COLORS } from "../../constants/styles";
-// 
-import ZonesTab from './zoneSelTab';
 import PaymentTab from './paySelTab';
 import TicketTab from './ticketSelTab';
-import { borderRadius } from 'polished';
 
 
 const Container = styled.View`
@@ -16,11 +13,8 @@ const Container = styled.View`
     height: 550px;
     background-color: #fff;
     border-radius: 15px;
-    box-shadow: 0px 4px 4px rgba(37, 43, 66, 0.5);    
-    /* border-color: red;
-    border-width: 2px; */
+    box-shadow: 0px 4px 4px rgba(37, 43, 66, 0.5);  
     z-index: 8;
-
 `;
 
 const Notch = styled.View`
@@ -32,8 +26,6 @@ const Notch = styled.View`
     border-radius: 50px;
 `;
 
-
-
 const Title = styled.Text`
     font-size: 24px;
     color: #222222;
@@ -42,59 +34,36 @@ const Title = styled.Text`
     font-weight: 500;
 `;
 
-const Divider = styled.View`
-    width:100%;
-    height:7px;
-    /* background-color: #9BCCE0; */
-    /* margin: 0px 0px 30px 0px; */
-`;
-
 const SettingCont = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width:100%;
     padding: 5px 20px;
-    /* border-width: 2px;
-    border-color: red; */
 `;
 
 const SettingsContLeft = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-    /* border-width: 2px;
-    border-color: blue; */
 `;
 
 const Header = styled.View`
 justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    /* border:2px solid red; */
-`;
-
-const SmallCardIcon = styled.View`
-    width:50px;
-    height:50px;
-    margin: 5px;
-    padding-top: 4%;
 `;
 
 const TextColumn = styled.View`
     width: 200px;
     margin-left:15px;
     justify-content:space-between;
-    /* border-color: red;
-    border-width: 2px; */
 `;
 
 const SmallTitle = styled.Text`
     font-size: 16px;
     margin: 5px 0;
     color: ${COLORS.MIDWAYBLUE};
-    /* font-weight:300; */
 `;
 
 const Amount = styled.Text`
@@ -103,15 +72,6 @@ const Amount = styled.Text`
     /* margin-top:5px; */
     align-self: flex-start;
     font-weight: 700;
-`;
-
-const Arrow = styled.Image`
-    width:50px;
-    height:50px;
-    margin: 5px;
-    align-self: flex-end;
-    /* border-color: red;
-    border-width: 2px; */
 `;
 
 const Line = styled.View`
@@ -129,9 +89,7 @@ const ButtonText = styled.Text`
     font-weight: 700;
 `;
 
-
 const TabButton = styled.TouchableOpacity`
-        /* background-color: ${COLORS.CAROLINABLUE}; */
         background-color: ${props => props.backgroundColor};
         width: 60%;
         height: 55;
@@ -140,27 +98,19 @@ const TabButton = styled.TouchableOpacity`
         justify-content: center;
         margin-top: 15px;
         margin-right: 20px;
-        /* shadow: COLORS.SPACECADET,
-        shadowOpacity: 0.5,
-        shadowOffset: { width: 0, height: 4 }, */
 `;
-
-
 
 
 export default function AddFundsTabPass({
     reloadAmount = "$10.00",
     belowAmount = '$10.00',
     reloadPayment = 'Visa',
-    cardSrc = 'visa',
-    month = 'December',
     autoReloadConfirm = () => { },
     startAnimation = () => { },
 
 }) {
 
 
-    // 🚧🚧🚧🚧
     const [animationAmount, setAnimationAmount] = useState(new Animated.Value(0));
     const [animationPay, setAnimationPay] = useState(new Animated.Value(0));
     const [animationBelow, setAnimationBelow] = useState(new Animated.Value(0));
@@ -362,8 +312,6 @@ export default function AddFundsTabPass({
     const [confPay, setConfPay] = useState(2);
     const [buttonColour, setButtonColour] = useState(COLORS.CAROLINABLUE);
     const [payText, setPayText] = useState('Save');
-    // let payText = 'Purchase';
-    // let buttonColour = COLORS.CAROLINABLUE;
 
 
 
@@ -397,8 +345,6 @@ export default function AddFundsTabPass({
 
     return (
         <Container>
-            {/* <Button title='open' onPress={modalTrigger}></Button> */}
-
             {/* 🚧🚧 ZONE 🚧🚧 */}
             <Animated.View style={[styles.animationCont, styles.amountPosition, openAmount]}>
                 <TicketTab
@@ -423,7 +369,6 @@ export default function AddFundsTabPass({
             <Notch />
             <Header style={styles.toggleCont}>
                 <Title>Set auto reload</Title>
-                {/* <Divider /> */}
 
                 <Switch
                     trackColor={{ false: '#222222', true: '#009DDC' }}
@@ -438,9 +383,6 @@ export default function AddFundsTabPass({
             {/* ZONE */}
             <SettingCont>
                 <SettingsContLeft>
-                    {/* <SmallCardIcon
-                        source={{ uri: '#', }}
-                    /> */}
                     <TextColumn>
                         <SmallTitle>Amount</SmallTitle>
                         <Amount>{reloadAmount}</Amount>
@@ -449,7 +391,6 @@ export default function AddFundsTabPass({
                 <TouchableOpacity
                     onPress={modalAmountTrigger}
                     style={styles.modalButton}
-                // {selectZone}
                 >
                     <AntDesign name="down" size={30} color="#222222" />
                 </TouchableOpacity>
@@ -461,9 +402,6 @@ export default function AddFundsTabPass({
             {/* AMOUNT */}
             <SettingCont>
                 <SettingsContLeft>
-                    {/* <SmallCardIcon
-                        source={{ uri: '#', }}
-                    /> */}
                     <TextColumn>
                         <SmallTitle>When balance is below</SmallTitle>
                         <Amount>{belowAmount}</Amount>
@@ -472,7 +410,6 @@ export default function AddFundsTabPass({
                 <TouchableOpacity
                     onPress={modalBelowTrigger}
                     style={styles.modalButton}
-                // {selectZone}
                 >
                     <AntDesign name="down" size={30} color="#222222" />
                 </TouchableOpacity>
@@ -484,10 +421,6 @@ export default function AddFundsTabPass({
             {/* PAYMENT */}
             <SettingCont>
                 <SettingsContLeft>
-                    {/* <SmallCardIcon>
-                        <Image style={styles.payCard} source={cardSrc.visa} />
-                    </SmallCardIcon> */}
-
                     <TextColumn>
                         <SmallTitle>Payment</SmallTitle>
                         <Amount>{reloadPayment}</Amount>
@@ -538,7 +471,6 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
     },
     modalButton: {
-        // backgroundColor: COLORS.ALICEBLUE,
         padding: 10,
     },
     animationCont: {

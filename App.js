@@ -16,7 +16,6 @@ axios.defaults.baseURL = "https://compassplus.herokuapp.com/api/";
 import PickDestinations from './screens/Authentication/pickDestinations';
 import HomeScreen from './screens/Home/home';
 import CompassCardScreen from './screens/CompassCardScreen/mobileCard';
-import AddPayScreen from './screens/AddPayment';
 import MapHomeScreen from './screens/TripPlanner/mapHome';
 import SavedTrips from './screens/TripPlanner/savedTrips';
 import CreateAccount from './screens/Authentication/createAccount';
@@ -58,9 +57,6 @@ export default function App() {
           <Stack.Screen name='Onboarding' component={PickDestinations} />
           <Stack.Screen name='Home' component={HomeScreen} />
           <Stack.Screen name='MobileCard' component={CompassCardScreen} />
-          <Stack.Screen name='Pay' component={AddPayScreen}
-            options={{ animation: 'none' }}
-          />
           <Stack.Screen name='Map' component={MapHomeScreen} />
           <Stack.Screen name='SavedTrips' component={SavedTrips} />
           <Stack.Screen name='AddSavedLocation' component={AddSavedLocation} />

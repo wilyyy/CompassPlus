@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 
 
@@ -7,7 +7,6 @@ const Payment = [
     { title: 'Mastercard', id: '1' },
     { title: 'Visa', id: '2' },
     // { title: 'Add Payment', id: '3' },
-
 ];
 
 const Item = ({ item, onPress, onPressOut, backgroundColor, textColor }) => (
@@ -72,8 +71,6 @@ const styles = StyleSheet.create({
         elevation: 5,
         padding: 30,
         overflow: 'hidden',
-        // borderColor: 'red',
-        // borderWidth: 2
     },
     item: {
         paddingTop: 5,

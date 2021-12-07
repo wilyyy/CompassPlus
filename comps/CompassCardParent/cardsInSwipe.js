@@ -1,25 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import {
     SafeAreaView,
     Dimensions,
     ScrollView,
-    Text,
     StyleSheet,
     View,
-    ImageBackground,
     Animated,
     useWindowDimensions
 } from "react-native";
-import styled from "styled-components";
 
 import AddCardManager from "../../comps/CompassCardParent/addCardManager";
 import Pass from "./pass.js";
-import Ticket from "./ticket";
 
 const windowWidth = Dimensions.get('window').width;
-const scrollWidth = windowWidth * 4;
-const windowHeight = Dimensions.get('window').height;
-
 
 
 const dots = new Array(2).fill();
@@ -39,15 +32,11 @@ const CardSwipeTest = ({
 
     const { width: windowWidth } = useWindowDimensions();
 
-
-
     const [ticketDefault, setTicketDefault] = useState(false);
-    //const [passDefault, setPassDefault] = useState(false);
-    // console.log(ticketDefault, "Ticket D")
+
     return (
         <SafeAreaView style={{
             width: '100%'
-            // , borderColor: 'red', borderWidth: 2 
         }}>
             <ScrollView
                 contentContainerStyle={styles.container}
@@ -78,14 +67,6 @@ const CardSwipeTest = ({
                     monthlyTimer={setMonthTimer}
                     balance={balance}
                 />
-                {/* <Ticket
-                    onAddFundsPress={handleAddSheetTWO}
-                    expiration='90 minutes'
-                    onAutoReloadPress={ticketAutoReload}
-                    makeDefault={ticketDefault}
-                    triggerDefault={() => { setTicketDefault(true) }}
-
-                /> */}
                 <View
                     style={{ width: '5%' }}
                 />
@@ -124,16 +105,8 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '200%',
         maxWidth: 750,
-
-        // left: '5%'
-        // marginLeft: '5%',
         marginLeft: '8%',
         paddingRight: '70%',
-
-        // justifyContent: 'space-between',
-        // justifyContent: 'space-between'
-        // borderWidth: 2,
-        // borderColor: 'pink'
     },
 
     normalDot: {
@@ -142,18 +115,12 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         backgroundColor: "silver",
         marginHorizontal: 4,
-        // borderWidth: 2,
-        // borderColor: 'pink'
     },
     indicatorContainer: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        // borderWidth: 2,
-        // borderColor: 'purple',
-        // top: -205,
         bottom: '-2%',
-
     }
 });
 

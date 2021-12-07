@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Image, StyleSheet, Switch, Pressable, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Button, StyleSheet, Switch, Pressable, Text, TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
 import { Icon } from 'react-native-elements';
@@ -13,8 +13,9 @@ const Container = styled.View`
     border-radius: 15px;
     margin: 80px 15px 0px 15px;
     top:-6%;
-    box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
+
 const CompassPlaceHolder = styled.View`
     width: 350px;
     height: 200px;
@@ -23,23 +24,13 @@ const CompassPlaceHolder = styled.View`
     align-self: center;
     background-color: ${COLORS.CAROLINABLUE};
     box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.75);
-
 `;
-
 
 const ExpirationCont = styled.View`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     margin:15px;
-
-    /* border-width: 2px;
-    border-color: red; */
-`;
-
-const CompassCardNo = styled.Text`
-    font-size: 12px;
-    margin-bottom: 20px;
 `;
 
 const ExpirationTitle = styled.Text`
@@ -51,17 +42,6 @@ const ExpirationDateFront = styled.Text`
     font-size: 40px;
 `;
 
-// const ButtonCont = styled.View`
-//     justify-content: center;
-//     align-items: center;
-//     width: 100%;
-//     height: 50%;
-//     flex-direction: column;
-
-//     /* border-width: 2px;
-//     border-color: red; */
-// `;
-
 const Hr = styled.View`
     width:80%;
     background-color: ${COLORS.SPACECADET};
@@ -69,85 +49,55 @@ const Hr = styled.View`
     align-self: center;
 `;
 
-
-/* setting cont will hold:
-    -> icon
-    -> text option w/onClick 
-    -> Optional: other button/interactable (i.e. switch)
-*/
 const SettingCont = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width:100%;
-    /* border-width: 2px;
-    border-color: red; */
-    margin-top: 6%;
-    
+    margin-top: 6%;  
 `;
+
 const SettingsContLeft = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-    /* border-width: 2px;
-    border-color: blue; */
 `;
+
 const MenuItem = styled.Text`
     font-size: 18px;
     color: #222222;
     margin: 0px 5px;
-    
-`;
-const IconBack = styled.Image`
-    width:50px;
-    height:50px;
-    margin-right: 60px;
 `;
 
-// start - items for card front
 const CompassCardBarcode = styled.Image`
     width:90%;
     height:100px;
     align-self: center;
     resizeMode:cover;
     border-radius: 15px;
-
 `;
 
 const BackBodyCont = styled.View`
     padding: 0 20px;
     height: 44%;
-
-    /* border-width: 2px;
-    border-color:green; */
 `;
 
 const CardFooter = styled.View`
     align-self: center;
     width: 90%;
-    /* margin-top:12%; */
     height: 15%;
-
-    /* flex-direction: row; */
-
-    /* border-width: 2px;
-    border-color:red; */
 `;
+
 const IconsFrontCont = styled.View`
     width: auto;
     align-items: center;
-
-    /* border-width: 2px;
-    border-color:green; */
 `;
+
 const IconFront = styled.Image`
     width:50px;
     height:50px;
     margin: 5px;
 `;
-// end - items for card front
-
 
 const H2 = styled.Text`
     color: #222222;
@@ -159,7 +109,6 @@ const H2 = styled.Text`
 
 
 export default function Ticket({
-    // cardSide = true, // need to put state for this in app.js?
     onAutoReloadPress = () => { },
     onWalletPress = () => { },
     barcodeId = "Compass No: 016372 9281 9273 CVN 459",
@@ -179,16 +128,12 @@ export default function Ticket({
     }
 
 
-    //set card expiration date / month
-    // const [expiration, setExpiration] = useState('December Pass');
-
     //for SWITCH (set card to/disable default status)
     const [defaultCard, setDefaultCard] = useState(true);
     const toggleDefaultCard = () => setDefaultCard(previousState => !previousState);
 
 
     useEffect(() => {
-        // alert(makeDefault)
         setDefaultCard(makeDefault);
     }, [makeDefault]);
 
@@ -231,7 +176,6 @@ export default function Ticket({
                     <Pressable style={styles.frontFundsButton} onPress={reloadStoredValue}>
                         <Text style={styles.buttonText}>Add Funds</Text>
                     </Pressable>
-                    {/* </ButtonCont> */}
                 </CardFooter>
 
             </Container>
@@ -242,11 +186,6 @@ export default function Ticket({
     if (cardSide === false) {
         return (
             <Container>
-                {/* <Button
-                    style={styles.backButton}
-                    onPress={goCardFront}
-                    title='<'
-                /> */}
                 <Pressable
                     style={styles.toggleSideIcon}
                     onPress={goCardFront}
@@ -385,38 +324,7 @@ const styles = StyleSheet.create({
         shadowColor: '#252B42',
         shadowOpacity: 0.5,
         shadowOffset: { width: 0, height: 4 },
-        // top: '80%'
     }
 })
 
 
-
-
-// think this stuff is unnecessary w how we should setup 
-
-
-{/* TRANSFER */ }
-
-{/* <SettingCont>
-                    <TouchableWithoutFeedback onPress={onTransferPress}>
-                        <SettingsContLeft>
-                            <IconBack
-                                source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                            />
-                            <MenuItem>Transfer balance</MenuItem>
-                        </SettingsContLeft>
-                    </TouchableWithoutFeedback>
-
-                </SettingCont> */}
-
-{/* REMOVE */ }
-{/* <SettingCont>
-                    <TouchableWithoutFeedback onPress={onRemoveTicketPress}>
-                        <SettingsContLeft>
-                            <IconBack
-                                source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                            />
-                            <MenuItem>Remove ticket</MenuItem>
-                        </SettingsContLeft>
-                    </TouchableWithoutFeedback>
-                </SettingCont> */}

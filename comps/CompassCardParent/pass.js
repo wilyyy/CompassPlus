@@ -1,34 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Button, Image, StyleSheet, Switch, Pressable, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Button, Image, StyleSheet, Switch, Pressable, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { COLORS } from "../../constants/styles";
 import { Icon } from 'react-native-elements';
 import LottieView from 'lottie-react-native';
 import CountDown from '../../constants/Countdown';
-import axios from 'axios';
-import { useNavigation, useFocusEffect } from '@react-navigation/core';
-
-
-import {
-    useFonts,
-    Ubuntu_300Light,
-    Ubuntu_300Light_Italic,
-    Ubuntu_400Regular,
-    Ubuntu_400Regular_Italic,
-    Ubuntu_500Medium,
-    Ubuntu_500Medium_Italic,
-    Ubuntu_700Bold,
-    Ubuntu_700Bold_Italic,
-} from '@expo-google-fonts/ubuntu'
-    ;
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Spacing = styled.View`
-
-    border-width: 2px;
-    /* border-color: red;
-    padding-right:20px; */
-`;
 
 const Container = styled.View`
     min-width: 330px;
@@ -39,11 +17,8 @@ const Container = styled.View`
     border-radius: 15px;
     margin-top: 20px;
     left:-1%;
-    /* margin-right:5%; */
-    /* margin-left:5px; */
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
-
 
 const ContainerLocked = styled.View`
     min-width: 330px;
@@ -54,8 +29,6 @@ const ContainerLocked = styled.View`
     border-radius: 15px;
     margin-top: 20px;
     left:-1%;
-    /* margin-right:5%; */
-    /* margin-left:5px; */
     box-shadow:  0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
@@ -91,16 +64,14 @@ const CardTitle = styled.Text`
 `;
 
 const H1 = styled.Text`
-font-size: 24px;
+    font-size: 24px;
     font-family: 'Ubuntu_700Bold';
     color: ${COLORS.SPACECADET};
     margin-top: 6%;
-
-    /* margin-bottom: 5%; */
 `;
 
 const H1Back = styled.Text`
-font-size: 24px;
+    font-size: 24px;
     font-family: 'Ubuntu_700Bold';
     color: ${COLORS.SPACECADET};
     margin-bottom: 5%;
@@ -121,87 +92,27 @@ const ExpirationCont = styled.View`
     justify-content: space-around;
     align-items: center;
     margin:15px;
-
-    /* border-width: 2px;
-    border-color: red; */
 `;
 
-const CompassCardNo = styled.Text`
-    font-size: 12px;
-    margin-bottom: 20px;
-`;
-
-const ExpirationTitle = styled.Text`
-    font-size: 24px;
-`;
-
-const ExpirationDateFront = styled.Text`
-    color: ${COLORS.CAROLINABLUE};
-    font-size: 40px;
-`;
-
-// const ButtonCont = styled.View`
-//     justify-content: center;
-//     align-items: center;
-//     width: 100%;
-//     height: 50%;
-//     flex-direction: column;
-
-//     /* border-width: 2px;
-//     border-color: red; */
-// `;
-
-const Hr = styled.View`
-    width:80%;
-    background-color: ${COLORS.SPACECADET};
-    height:2px;
-    align-self: center;
-`;
-
-
-/* setting cont will hold:
-    -> icon
-    -> text option w/onClick 
-    -> Optional: other button/interactable (i.e. switch)
-*/
 const SettingCont = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width:100%;
-    /* border-width: 2px;
-    border-color: red; */
     margin-top: 6%;
     
 `;
+
 const SettingsContLeft = styled.TouchableOpacity`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-/* 
-    border-width: 2px;
-    border-color: blue; */
 `;
+
 const MenuItem = styled.Text`
     font-size: 18px;
     color: #222222;
     margin: 0px 5px;
-    
-`;
-const IconBack = styled.Image`
-    width:50px;
-    height:50px;
-    margin-right: 60px;
-`;
-
-// start - items for card front
-const CompassCardBarcode = styled.Image`
-    width:90%;
-    height:100px;
-    align-self: center;
-    resizeMode:cover;
-    border-radius: 15px;
-
 `;
 
 const FrontBodyCont = styled.View`
@@ -209,8 +120,6 @@ const FrontBodyCont = styled.View`
     height: 20%;
     justify-content: space-evenly;
     align-items: flex-end;
-    /* border-width: 2px;
-    border-color:green; */
     flex-direction: row;
 `;
 
@@ -219,8 +128,6 @@ const BackBodyCont = styled.View`
     height: 40%;
     justify-content: flex-start;
     align-items: center;
-    /* border-width: 2px;
-    border-color:green; */
 `;
 
 const CardHeader = styled.View`
@@ -228,39 +135,26 @@ const CardHeader = styled.View`
     justify-content: center;
     align-items: center;
     height: 40%;
-
-     /* border-width: 2px;
-    border-color:red;  */
 `;
 
 const CardFooterBack = styled.View`
     flex-direction: row;
     align-items: center;
     height: 20%;
-
     margin: 0 50px;
-    /* height: 20%; */
     justify-content: space-evenly;
     align-items: flex-end;
-/* 
-      border-width: 2px;
-    border-color:red;   */
 `;
 
 const IconsFrontCont = styled.View`
     width: auto;
     align-items: center;
-
-    /* border-width: 2px;
-    border-color:green; */
 `;
 const IconFront = styled.Image`
     width:50px;
     height:50px;
     margin: 5px;
 `;
-// end - items for card front
-
 
 const H2 = styled.Text`
     color: #fff;
@@ -269,8 +163,6 @@ const H2 = styled.Text`
     text-align: center;
     top:50%;
 `;
-
-//add card placeholder
 
 const AddCardPlaceHolder = styled.TouchableOpacity`
     min-width: 330px;
@@ -281,7 +173,6 @@ const AddCardPlaceHolder = styled.TouchableOpacity`
     align-self: center;
     background-color: ${COLORS.ALICEBLUE};
     border: 3px dashed ${COLORS.CAROLINABLUE};
-
     padding:5%;
     box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.75);
 
@@ -324,11 +215,6 @@ export default function Pass({
         setCardSide(true);
     }
 
-
-
-    //set card expiration date / month
-    // const [expiration, setExpiration] = useState('December Pass');
-
     //for SWITCH (set card to/disable default status)
     const [defaultCard, setDefaultCard] = useState(true);
     const toggleDefaultCard = () => setDefaultCard(previousState => !previousState);
@@ -343,8 +229,6 @@ export default function Pass({
         }
     }, [defaultCard]);
 
-    const [autoReload, setAutoReload] = useState(true);
-    const toggleAutoReload = () => setAutoReload(previousState => !previousState);
 
     useEffect(() => {
         console.log(monthlyTimer)
@@ -352,12 +236,10 @@ export default function Pass({
 
 
     var anim = useRef();
-    const minutes90 = 5400;
-    const month = 2419200;
+
     //front of card
     if (cardSide === true && linkedCard === 'yes') {
         return (
-            // <Spacing>
             <Container>
                 <Pressable
                     onPress={goManage}
@@ -438,12 +320,9 @@ export default function Pass({
                             />
 
                         </TouchableOpacity>
-                        <Text
-                            style={styles.iconText}
-                        >Reload Pass</Text>
+                        <Text style={styles.iconText}>Reload Pass</Text>
                     </View>
                     <ExpirationCont>
-                        {/* <H3>Pass expires {expiration}</H3> */}
 
                     </ExpirationCont>
                     <View style={{ flexDirection: 'column' }}>
@@ -460,16 +339,11 @@ export default function Pass({
                             />
 
                         </TouchableOpacity>
-                        <Text
-                            style={styles.iconText}
-                        >Add Funds</Text>
+                        <Text style={styles.iconText}>Add Funds</Text>
                     </View>
-                    {/* <H3>Pass expires {expiration}</H3> */}
-
                 </FrontBodyCont>
 
             </Container>
-            // </Spacing>
         );
     }
 
@@ -477,11 +351,6 @@ export default function Pass({
     if (cardSide === false && linkedCard === 'yes') {
         return (
             <Container>
-                {/* <Button
-                    style={styles.backButton}
-                    onPress={goCardFront}
-                    title='<'
-                /> */}
                 <Pressable
                     style={styles.toggleSideIcon}
                     onPress={goCardFront}
@@ -542,20 +411,6 @@ export default function Pass({
 
                     </SettingCont>
 
-
-                    {/* <SettingCont>
-                        <TouchableWithoutFeedback onPress={onWalletPress}>
-                            <SettingsContLeft>
-                                <Icon
-                                    name='wallet'
-                                    type='antdesign'
-                                    color={COLORS.SPACECADET}
-                                    size={30}
-                                />
-                                <MenuItem>View in Apple Wallet</MenuItem>
-                            </SettingsContLeft>
-                        </TouchableWithoutFeedback>
-                    </SettingCont> */}
                 </BackBodyCont>
                 <CardFooterBack>
                     <View style={{ flexDirection: 'column' }}>
@@ -578,8 +433,6 @@ export default function Pass({
                         >Reload Pass</Text>
                     </View>
                     <ExpirationCont>
-                        {/* <H3>Pass expires {expiration}</H3> */}
-
                     </ExpirationCont>
                     <View style={{ flexDirection: 'column' }}>
                         <TouchableOpacity
@@ -592,8 +445,6 @@ export default function Pass({
                                 color={COLORS.SPACECADET}
                                 size={25}
                                 reverse={true}
-
-
                             />
 
                         </TouchableOpacity>
@@ -613,9 +464,6 @@ export default function Pass({
             <ContainerLocked>
 
                 <AddCardPlaceHolder>
-                    {/* <Image source={require('../../assets/compassPattern.png')}
-                        style={styles.placeholderBg}
-                    /> */}
                     <View style={styles.iconCont}>
                         <Icon
                             name='plus'
@@ -633,9 +481,6 @@ export default function Pass({
 
                 </AddCardPlaceHolder>
                 <CardHeader>
-
-
-
                     <View style={styles.lockIcon}>
                         <Icon
                             name='lock'
@@ -644,23 +489,14 @@ export default function Pass({
                             shadowOpacity={0.50}
                             shadowRadius={3}
                             shadowOffset={{ width: 0, height: 3 }}
-
                             shadowColor={COLORS.SPACECADET}
                             size={180}
-
-
                         />
-
                     </View>
-
                     <AddCardTitle >Add Compass Card to access Stored Value and Pass options</AddCardTitle>
-
                 </CardHeader>
 
-
-
             </ContainerLocked>
-            // </Spacing>
         );
 
     }
@@ -751,8 +587,6 @@ const styles = StyleSheet.create({
         height: 55,
         width: '100%',
         backgroundColor: '#fff',
-        // borderColor: '#222222',
-        // borderWidth: 2,
         borderRadius: 10,
         shadowColor: '#252B42',
         shadowOpacity: 0.5,
@@ -776,65 +610,8 @@ const styles = StyleSheet.create({
         height: 300,
         top: '25%',
         marginTop: '55%',
-        // borderColor: '#222222',
-        // borderWidth: 2,
     },
 })
 
 
 
-
-// think this stuff is unnecessary w how we should setup 
-
-
-{/* TRANSFER */ }
-
-{/* <SettingCont>
-                    <TouchableWithoutFeedback onPress={onTransferPress}>
-                        <SettingsContLeft>
-                            <IconBack
-                                source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                            />
-                            <MenuItem>Transfer balance</MenuItem>
-                        </SettingsContLeft>
-                    </TouchableWithoutFeedback>
-
-                </SettingCont> */}
-
-{/* REMOVE */ }
-{/* <SettingCont>
-                    <TouchableWithoutFeedback onPress={onRemoveTicketPress}>
-                        <SettingsContLeft>
-                            <IconBack
-                                source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }}
-                            />
-                            <MenuItem>Remove ticket</MenuItem>
-                        </SettingsContLeft>
-                    </TouchableWithoutFeedback>
-                </SettingCont> */}
-
-
-                // <SettingCont>
-                //         <SettingsContLeft>
-                //             <Icon
-                //                 name='reload1'
-                //                 type='antdesign'
-                //                 color={COLORS.SPACECADET}
-                //                 size={30}
-                //             />
-                //             <MenuItem>Auto reload</MenuItem>
-                //         </SettingsContLeft>
-                //         {/* <Button
-                //             onPress={onAutoReloadPress}
-                //             title="Edit"
-                //             color="blue"
-                //         /> */}
-                //         <Switch
-                //             trackColor={{ false: '#222222', true: '#009DDC' }}
-                //             thumbColor={autoReload ? '#fff' : '#fff'}
-                //             ios_backgroundColor='#222222'
-                //             onValueChange={toggleAutoReload}
-                //             value={autoReload}
-                //             style={styles.switch}
-                //         />
-                //     </SettingCont>

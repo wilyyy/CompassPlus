@@ -192,7 +192,7 @@ const MapHomeScreen = () => {
                 reverse={true}
             />
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
             // onPress={() => navigation.navigate('')}
             onPress={() => console.log('the above needs to route to the single onboarding screen')}
             style={styles.saveButton}>
@@ -203,7 +203,7 @@ const MapHomeScreen = () => {
                 size={20}
                 reverse={true}
             />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
 
         <MapView
