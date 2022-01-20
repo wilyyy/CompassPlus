@@ -11,7 +11,7 @@ Tap to Scan            |  Manage Card / Tickets  |  Trip Planner
 - Create Account / Log In
 - Input in compass card information and tap card to pay (Mockup)
 - Load fund onto compass card and store temporary bus tickets, available for tap
-- Trip Planner : Put in a starting & ending location and see the closes transit direction from point a to b
+- Trip Planner - Put in a starting & ending location and see the closes transit direction from point a to b
 - Add and save address locations
 - User profile
 
@@ -23,6 +23,8 @@ Tap to Scan            |  Manage Card / Tickets  |  Trip Planner
 - React Native Elements UI Framework
 
 ## Possible Implementations
-- Use translink API to store legitimate compass card credentials
-- E transfer funds between two users
+- Show real time bus results
+- Personalized app color theme & compass card tailored to user's preferences
+- U-Pass integration
+- E-transfer funds between two users
 - Leaderboard system
