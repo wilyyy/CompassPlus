@@ -4,6 +4,8 @@ An all-in-one native mobile application for Translink's Compass Card system. Thi
 
 ## Previews
 <img src="https://im3.ezgif.com/tmp/ezgif-3-f070a17c6e.gif" width="150" height="325" />
+<img src="https://im3.ezgif.com/tmp/ezgif-3-65799512dc.gif" width="150" height="325" />
+<img src="https://im3.ezgif.com/tmp/ezgif-3-aa26093a02.gif" width="150" height="325" />
 
 ## Features 
 - Create Account / Log In
