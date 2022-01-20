@@ -19,6 +19,7 @@ Tap to Scan            |  Trip Planner
 - Google API Services (Maps, Directions, Places)
 - Reanimated 2 Animation API
 - Expo Haptics (for vibration when tapping card)
+- Styled Components
 - React Native Elements UI Framework
 
 ## Possible Implementations
