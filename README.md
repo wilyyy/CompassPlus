@@ -5,7 +5,7 @@ An all-in-one native mobile application for Translink's Compass Card system. Thi
 ## Previews
 Tap to Scan            |  Trip Planner 
 :-------------------------:|:-------------------------:
-<img src="https://media.giphy.com/media/MnmYbfuA9ULhJwQnrH/giphy.gif" width="300" height="650" />  |  <img src="https://im3.ezgif.com/tmp/ezgif-3-ef8cc3a83d.gif" width="300" height="650" /> 
+<img src="https://media.giphy.com/media/MnmYbfuA9ULhJwQnrH/giphy.gif" width="300" height="650" />  |  <img src="https://media.giphy.com/media/FsS49gY5urfgc7t6FX/giphy.gif" width="300" height="650" /> 
 
 ## Features 
 - Create Account / Log In
