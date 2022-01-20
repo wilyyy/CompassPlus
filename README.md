@@ -3,9 +3,9 @@
 An all-in-one native mobile application for Translink's Compass Card system. This application uses an Expo / React Native, PHP and MySQL stack. It also utilizes Firebase for user email and google authentication. The server side source code can be found here -> [CompassPlus Serverside](https://github.com/wilyyy/CompassPlus-Serverside)
 
 ## Previews
-Tap to Scan            |  Trip Planner 
+Tap to Scan            |  Manage Card / Tickets  |  Trip Planner 
 :-------------------------:|:-------------------------:
-<img src="https://media.giphy.com/media/MnmYbfuA9ULhJwQnrH/giphy.gif" width="300" height="650" />  |  <img src="https://media.giphy.com/media/FsS49gY5urfgc7t6FX/giphy.gif" width="300" height="650" /> 
+<img src="https://media.giphy.com/media/MnmYbfuA9ULhJwQnrH/giphy.gif" width="300" height="650" />  |  <img src="https://media.giphy.com/media/aY3WzzmU7m6jYQTjoy/giphy.gif" width="300" height="650" /> |  <img src="https://media.giphy.com/media/FsS49gY5urfgc7t6FX/giphy.gif" width="300" height="650" /> 
 
 ## Features 
 - Create Account / Log In
