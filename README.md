@@ -3,7 +3,7 @@
 An all-in-one native mobile application for Translink's Compass Card system. This application uses an Expo / React Native, PHP and MySQL stack. It also utilizes Firebase for user email and google authentication. The server side source code can be found here -> [CompassPlus Serverside](https://github.com/wilyyy/CompassPlus-Serverside)
 
 ## Previews
-<img src="https://im3.ezgif.com/tmp/ezgif-3-f070a17c6e.gif" width="120" height="260" />
+<img src="https://im3.ezgif.com/tmp/ezgif-3-f070a17c6e.gif" width="150" height="325" />
 
 ## Features 
 - Create Account / Log In
