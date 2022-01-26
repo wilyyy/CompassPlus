@@ -42,8 +42,8 @@ import AddFundsTabPass from '../../comps/CompassCardParent/addFunds.js';
 import AddFundsTabTicket from '../../comps/CompassCardParent/addFundsTicket.js';
 import AutoReloadTab from '../../comps/CompassCardParent/autoReload.js';
 import TempTicket from '../../comps/CompassCardParent/tempTicket.js';
-import PaymentAnimOverlay from '../../comps/CompassCardParent/payAnimOverlay.js';
-import TapAnimOverlay from '../../comps/CompassCardParent/tapAnimOverlay.js';
+import PaymentAnimOverlay from '../../comps/CompassCardParent/PayAnimOverlay.js';
+import TapAnimOverlay from '../../comps/CompassCardParent/TapAnimOverlay.js';
 
 
 const windowWidth = Dimensions.get('window').width;
