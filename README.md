@@ -1,3 +1,5 @@
+<div id="top"></div>
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -9,7 +11,7 @@ An all-in-one native mobile application for Translink's Compass Card system. Thi
 
 This project was an interdisciplinary project created for BCIT's Digital Design & Development program by a team of six and the final product was presented to 200 people including students, faculty and industry professionals
 
-##Collaborators
+## Collaborators
 - **Zoë James** - Project Manager & Front End Developer
 - **Sarah Husslein** - Front End Developer & UI/UX Designer
 - **William Alvarez** - Full Stack Developer
