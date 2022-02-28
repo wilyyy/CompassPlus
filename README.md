@@ -1,6 +1,21 @@
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
 # CompassPlus
 
 An all-in-one native mobile application for Translink's Compass Card system. This application uses an Expo / React Native, PHP and MySQL stack. It also utilizes Firebase for user email and google authentication. The server side source code can be found here -> [CompassPlus Serverside](https://github.com/wilyyy/CompassPlus-Serverside)
+
+This project was an interdisciplinary project created for BCIT's Digital Design & Development program by a team of six and the final product was presented to 200 people including students, faculty and industry professionals
+
+##Collaborators
+- **Zoë James** - Project Manager & Front End Developer
+- **Sarah Husslein** - Front End Developer & UI/UX Designer
+- **William Alvarez** - Full Stack Developer
+- **Isabelle Prassad** - UI/UX Designer
+- **Matthew Zhao** - UI/UX Designer
+- **Ibjyot Gill** - UX Designer
 
 ## Previews
 Tap to Scan            |  Manage Card / Tickets  |  Trip Planner 
